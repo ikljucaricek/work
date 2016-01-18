@@ -2,22 +2,9 @@ import os
 import sys
 from flask_sqlalchemy import SQLAlchemy
 from app import db
-from datetime import datetime 
+from datetime import datetime
  
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(250), nullable=False)
-    surename = db.Column(db.String(250),nullable=False)
-    username = db.Column(db.String(250), nullable=False,unique=True)
-    password = db.Column(db.String(250),nullable=False)
-    picture = db.Column(db.LargeBinary)
-    email = db.Column(db.String(250),nullable=False,unique=True)
-    mobile = db.Column(db.String(15))
-    address = db.Column(db.String(250))
-    rating = db.Column(db.Float)
-    joindate = db.Column(db.DateTime)
-    events = db.relationship('Event',backref='user',lazy='dynamic')
-    
+
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(250), nullable=False)
@@ -31,6 +18,25 @@ class Event(db.Model):
     accessories_purchased = db.Column(db.Boolean)
     user_id = db.Column(db.Integer,db.ForeignKey('user.id'))
     repairman_id = db.Column(db.Integer,db.ForeignKey('user.id'))
+    
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(250), nullable=False)
+    surename = db.Column(db.String(250),nullable=False)
+    username = db.Column(db.String(250), nullable=False,unique=True)
+    password = db.Column(db.String(250),nullable=False)
+    picture = db.Column(db.LargeBinary)
+    email = db.Column(db.String(250),nullable=False,unique=True)
+    mobile = db.Column(db.String(15))
+    address = db.Column(db.String(250))
+    rating = db.Column(db.Float)
+    joindate = db.Column(db.DateTime)
+    events = db.relationship('Event',backref='user',foreign_keys=[Event.user_id],lazy='dynamic')
+    repairman = db.relationship('Event',backref='repairman',foreign_keys=[Event.repairman_id],uselist=False)
+    
+
+    
+
     
 db.create_all()
 
