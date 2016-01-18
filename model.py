@@ -16,6 +16,7 @@ class User(db.Model):
     address = db.Column(db.String(250))
     rating = db.Column(db.Float)
     joindate = db.Column(db.DateTime)
+    events = db.relationship('Event',backref='user',lazy='dynamic')
     
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
