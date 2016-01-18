@@ -30,7 +30,7 @@ class Event(db.Model):
     date_time_close = db.Column(db.DateTime)
     accessories_purchased = db.Column(db.Boolean)
     user_id = db.Column(db.Integer,db.ForeignKey('user.id'))
-    repairman_id = db.Column(db.Integer)
+    repairman_id = db.Column(db.Integer,db.ForeignKey('user.id'))
     
 db.create_all()
 
