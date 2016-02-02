@@ -58,6 +58,15 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-dismissible alert-success" role="alert">
+                <strong>You are Logged In! </strong>{{ message|safe }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
         <h1 class="display-3">Choose your life</h1>
         <p><blockquote>Do you need something done or you are handy with your hands and tools?<br> Choose your role and make things happen!</blockquote></p>
         <br>
