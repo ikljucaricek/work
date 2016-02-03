@@ -35,6 +35,11 @@ def login():
     else:
         return render_template('signin.html')
 
+@app.route('/signout')
+def logout():
+    session.pop('username', None)
+    session.pop('id', None)
+    return redirect('/signin')
 
 @app.route('/startup')
 @login_required
