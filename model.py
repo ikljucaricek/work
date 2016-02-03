@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 import sys
 from flask_sqlalchemy import SQLAlchemy
@@ -33,8 +34,18 @@ class User(db.Model):
     joindate = db.Column(db.DateTime)
     events = db.relationship('Event',backref='user',foreign_keys=[Event.user_id],lazy='dynamic')
     repairman = db.relationship('Event',backref='repairman',foreign_keys=[Event.repairman_id],uselist=False)
-    
 
+    @staticmethod
+    def get_by_mail(mail):
+        return db.session.query(User).filter(User.email == mail).first()
+
+    def get(user_id):
+        return db.session.query(User).filter(User.id == user_id).first()
+
+    def check_password(self, password):
+        if self.password == password:
+            return True
+        return False
     
 
     
