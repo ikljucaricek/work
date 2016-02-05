@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Small Home Maintenance Work</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Optional theme -->
+    <link href="../static/css/bootstrap-theme.min.css" rel="stylesheet">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <link href="../static/js/bootstrap.min.js" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../static/css/jumbotron.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+          <div id="navbar" class="navbar-collapse collapse">
+        <a class="navbar-brand" href="/">Tyg-Ayo</a>
+        <ul class="nav navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/register">Register</a></li>
+            <li><a href="/signin">Sign In</a></li>
+          </ul>
+        </div>
+          </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-3">Choose your life</h1>
+        <p><blockquote>Do you need something done or you are handy with the tools?<br> Choose your role and make things happen!</blockquote></p>
+        <br>
+
+      <div class="row">
+        <div class="col-lg-4">
+          <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+          <h2>Client</h2>
+          <div class="panel panel-info">
+            <div class="panel-heading">Step 1</div>
+            <div class="panel-body">
+              Create an event
+            </div>
+          </div>
+          <div class="panel panel-info">
+            <div class="panel-heading">Step 2</div>
+            <div class="panel-body">
+              Wait for repairman to sign up for a job
+            </div>
+          </div>
+          <div class="panel panel-info">
+            <div class="panel-heading">Step 3</div>
+            <div class="panel-body">
+              Choose your repairman
+            </div>
+          </div>          
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+          <h2>Repairman</h2>
+          <div class="panel panel-info">
+            <div class="panel-heading">Step 1</div>
+            <div class="panel-body">
+              Sign up for a job
+            </div>
+          </div>
+          <div class="panel panel-info">
+            <div class="panel-heading">Step 2</div>
+            <div class="panel-body">
+              Wait for your employee
+            </div>
+          </div>
+        </div><!-- /.col-lg-4 -->
+
+        <div class="col-lg-6 col-md-offset-3">
+          <hr class="featurette-divider">
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-info btn-lg btn-block" data-toggle="modal" id="myBtn">Create Event</button>
+        </div>
+      </div><!-- /.row -->
+
+      </div>
+    </div>
+
+    <div class="container">
+     <!-- Three columns of text below the carousel -->
+      <div class="row">
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Create Event</h4>
+              </div>
+              <form method="POST">
+                <div class="modal-body">                
+                  <label for="name"><span class="glyphicon glyphicon-user"></span> Event Name</label>
+                  <input type="text" class="form-control" id="name" placeholder="Enter Name of Event" required>
+                  <label for="description"><span class="glyphicon glyphicon-comment"></span> Event Description</label><br>
+                  <input type="text" class="form-control" id="description" placeholder="Enter Description of Event" required>
+                  <label for="price"><span class="glyphicon glyphicon-usd"></span> Event Price</label>
+                  <input type="text" class="form-control" id="price" placeholder="Enter Price of Event" required>
+                  <label for="date"><span class="glyphicon glyphicon-calendar"></span> Event Date</label>
+                  <input type="datetime-local" class="form-control" id="datmtme" placeholder="Enter End Date of Event" required>
+                  <label for="address"><span class="glyphicon glyphicon-map-marker"></span> Event Address</label>
+                  <input type="text" class="form-control" id="address" placeholder="Enter Address of Event location" required>
+                  <label for="photo"><span class="glyphicon glyphicon-picture"></span> Photo</label>
+                  <input type="file" accept="image/*" class="form-control" id="photo" placeholder="Enter Photo of Event">
+                  <label for="purchase accessories"><span class="glyphicon glyphicon-check"></span> Purchase Accessories</label>
+                  <input type="checkbox" class="form-control" id="accessories" value="True">
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-info">Start Event</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /.row -->
+
+
+
+    <hr class="featurette-divider">
+
+    </div> <!-- /container -->
+
+    <footer class="footer">
+      <div class="container">
+        <p class="pull-xs-right">
+          <a href="#">Back to top</a>
+        </p>
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-4">
+          <address>
+            <strong>Tyg - Ayo, Inc.</strong><br>
+            1355 Market Street, Suite 900<br>
+            Zagreb, HR 10000<br>
+            <abbr title="Phone">P:</abbr> (123) 456-7890
+              <strong>Full Name</strong><br>
+              <a href="mailto:#">tyg-ayo@example.com</a>
+          </address>
+        </div>
+        <div class="col-lg-4">
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../static/js/jquery.min.js"><\/script>')</script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../static/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+      $(document).ready(function(){
+          $("#myBtn").click(function(){
+              $("#myModal").modal();
+          });
+      });
+    </script>
+  </body>
+</html>
