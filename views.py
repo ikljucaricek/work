@@ -56,7 +56,8 @@ def create_an_event():
         #if request.form.get('datmtme') >= datetime.now():
         if 'photo' in request.files:
             photo = request.files['photo']
-            path_to_photo = '.\\static\\images\\users_avatar\\' + str(session['id']) + '\\' + secure_filename(photo.filename)
+            extension = photo.filename.split('.')
+            path_to_photo = '.\\static\\images\\users_avatar\\' + secure_filename(str(session['id']) + '.' + extension[-1])
             photo.save(path_to_photo)
 
         event = Event(
