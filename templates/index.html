@@ -180,13 +180,17 @@
                     </tr>            
                   </thead>
                   <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td><a href="#">exchange of water pipe</a></td>
-                      <td>100</td>
-                      <td>0</td>
-                    </tr>
-                    <tr>
+                    {% if events %}
+                      {% for event in events %}
+                        <tr>
+                          <th scope="row">{{ event.id }}</th>
+                          <td><a href="#">{{ event.name }}</a></td>
+                          <td>{{ event.price }}</td>
+                          <td>{{ event.accessories_purchased }}</td>
+                        </tr>
+                      {% endfor %}
+                    {% endif %}
+                    <!--<tr>
                       <th scope="row">2</th>
                       <td><a href="#">exchange of lamp bulb handle</a></td>
                       <td>20</td>
@@ -239,7 +243,7 @@
                       <td><a href="#">exchange of lamp bulb handle</a></td>
                       <td>20</td>
                       <td>1</td>
-                    </tr>
+                    </tr>-->
                   </tbody>
                 </table>
               </div>

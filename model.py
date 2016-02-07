@@ -23,6 +23,14 @@ class Event(db.Model):
     def save(self):
         db.session.add(self)
         db.session.commit()
+
+    @staticmethod
+    def get(event_id):
+        return db.session.query(Event).filter(Event.id == event_id).first()
+
+    @staticmethod
+    def get_all():
+        return db.session.query(Event).all()
     
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)

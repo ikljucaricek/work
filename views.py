@@ -17,7 +17,7 @@ def login_required(fn):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', events = Event.get_all()[:-11:-1])
 
 @app.route('/signin', methods=['GET', 'POST'])
 def login():
@@ -33,7 +33,7 @@ def login():
             flash('Unijeli ste pogresne podatke za prijavu!')
             return redirect('/signin')
         flash('Hello ' + user.name + ' ' + user.surename + '!')
-        return render_template('startup.html', username=user.username)
+        return render_template('startup.html', username=user.username, events = Event.get_all())
     else:
         return render_template('signin.html')
 
@@ -75,3 +75,9 @@ def create_an_event():
         flash('You have successfully created Event!')
     #flash('Event cannot be completed before it starts')
     return render_template('startup.html', username = session['username'])
+
+@app.route('/<id>')
+def uploaded_file(id):
+    thatEv = Event.get(id)
+    thatPic = thatEv.photo
+    return render_template('template.html', filename = thatPic)
