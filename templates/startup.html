@@ -183,13 +183,17 @@
                     </tr>            
                   </thead>
                   <tbody>
-                    <tr class='clickable-row' data-href='#'>
-                      <th scope="row">1</th>
-                      <td>exchange of water pipe</td>
-                      <td>100</td>
-                      <td>0</td>
-                      <td></td>
-                    </tr>
+                    {% if events %}
+                      {% for event in events %}
+                      <tr class='clickable-row' data-href='#'>
+                        <th scope="row">1</th>
+                        <td>{{ event.name }}</td>
+                        <td>{{ event.price }}</td>
+                        <td>{{ event.accessories_purchased }}</td>
+                        <td><a href="#">Go To</a></td>
+                      </tr>
+                      {% endfor %}
+                    {% endif %}
                     <tr>
                       <th scope="row">2</th>
                       <td>exchange of lamp bulb handle</td>
