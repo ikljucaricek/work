@@ -48,7 +48,11 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/mypage/<username>">My Page</a></li>
             <li><a href="/register">Register</a></li>
-            <li><a href="/signout">Sign Out {{ user.username }}</a></li>
+            {% if username %}
+              <li><a href="/signout">Sign Out {{ username }}</a></li>
+            {% else %}
+              <li><a href="/signout">Sign Out</a></li>
+            {% endif %}
           </ul>
         </div>
           </div><!--/.nav-collapse -->
@@ -115,7 +119,7 @@
 
         <div class="col-lg-6 col-md-offset-3">
           <hr class="featurette-divider">
-          <button type="button" class="btn btn-info btn-lg btn-block">Create Event</button>
+          <button type="button" class="btn btn-info btn-lg btn-block" data-toggle="modal" id="myBtn">Create Event</button>
         </div>
       </div><!-- /.row -->
 
@@ -125,7 +129,39 @@
     <div class="container">
      <!-- Three columns of text below the carousel -->
       <div class="row">
-
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Create Event</h4>
+              </div>
+              <form method='POST' action="/createvent" enctype="multipart/form-data">
+                <div class="modal-body">                
+                  <label for="name"><span class="glyphicon glyphicon-user"></span> Event Name</label>
+                  <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name of Event" required>
+                  <label for="description"><span class="glyphicon glyphicon-comment"></span> Event Description</label><br>
+                  <input type="text" class="form-control" name="description" id="description" placeholder="Enter Description of Event" required>
+                  <label for="price"><span class="glyphicon glyphicon-usd"></span> Event Price</label>
+                  <input type="number" class="form-control" name="price" id="price" step="any" placeholder="Enter Price of Event" required>
+                  <label for="date"><span class="glyphicon glyphicon-calendar"></span> Event Date</label>
+                  <input type="datetime-local" class="form-control" name="datmtme" id="datmtme" placeholder="Enter End Date of Event">
+                  <label for="address"><span class="glyphicon glyphicon-map-marker"></span> Event Address</label>
+                  <input type="text" class="form-control" name="address" id="address" placeholder="Enter Address of Event location" required>
+                  <label for="photo"><span class="glyphicon glyphicon-picture"></span> Photo</label>
+                  <input type="file" accept="image/*" class="form-control" name="photo" id="photo" placeholder="Enter Photo of Event">
+                  <label for="purchase accessories"><span class="glyphicon glyphicon-check"></span> Purchase Accessories</label>
+                  <input type="checkbox" class="form-control" name="accessories" id="accessories" value="1">
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-info">Start Event</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div><!-- /.row -->
 
 
@@ -258,15 +294,15 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../static/js/jquery.min.js"><\/script>')</script>
+    <script src="../static/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="../static/js/ie10-viewport-bug-workaround.js"></script>
     <script>
-      jQuery(document).ready(function($) {
-        $(".clickable-row").click(function() {
-            window.document.location = $(this).data("href");
-        });
+      $(document).ready(function(){
+          $("#myBtn").click(function(){
+              $("#myModal").modal();
+          });
       });
     </script>
   </body>
