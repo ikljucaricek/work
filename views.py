@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 
 from functools import wraps
-from flask import request, render_template, Response, g, session, redirect, url_for, flash
+from flask import request, render_template, Response, g, session, redirect, url_for, flash, send_from_directory
 from app import app
+from datetime import datetime
 from model import User, Event # from database
+from werkzeug import secure_filename
 
 def login_required(fn):
     @wraps(fn)
@@ -31,7 +33,7 @@ def login():
             flash('Unijeli ste pogresne podatke za prijavu!')
             return redirect('/signin')
         flash('Hello ' + user.name + ' ' + user.surename + '!')
-        return render_template('startup.html', user=user)
+        return render_template('startup.html', username=user.username)
     else:
         return render_template('signin.html')
 
@@ -45,3 +47,30 @@ def logout():
 @login_required
 def start():
     return render_template('startup.html')
+
+@app.route('/createvent', methods=['GET', 'POST'])
+@login_required
+def create_an_event():
+    if request.method == 'POST':
+        path_to_photo = None
+        #if request.form.get('datmtme') >= datetime.now():
+        if 'photo' in request.files:
+            photo = request.files['photo']
+            path_to_photo = '.\\static\\images\\users_avatar\\' + str(session['id']) + '\\' + secure_filename(photo.filename)
+            photo.save(path_to_photo)
+
+        event = Event(
+            name = request.form.get('name'),
+            description = request.form.get('description'),
+            price = request.form.get('price'),
+            address = request.form.get('address'),
+            date_time_create = datetime.now(),
+            date_time_close = request.form.get('datmtme'),
+            accessories_purchased = request.form.get('accessories'),
+            user_id = session.get('id'),
+            active = 1,
+            photo = path_to_photo)
+        event.save()
+        flash('You have successfully created Event!')
+    #flash('Event cannot be completed before it starts')
+    return render_template('startup.html', username = session['username'])

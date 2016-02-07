@@ -19,6 +19,10 @@ class Event(db.Model):
     accessories_purchased = db.Column(db.Boolean)
     user_id = db.Column(db.Integer,db.ForeignKey('user.id'))
     repairman_id = db.Column(db.Integer,db.ForeignKey('user.id'))
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
     
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
