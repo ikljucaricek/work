@@ -41,7 +41,7 @@ def login():
 def logout():
     session.pop('username', None)
     session.pop('id', None)
-    return redirect('/signin')
+    return redirect('/')
 
 @app.route('/startup')
 @login_required
