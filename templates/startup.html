@@ -186,7 +186,7 @@
                     {% if events %}
                       {% for event in events %}
                       <tr class='clickable-row' data-href='#'>
-                        <th scope="row">1</th>
+                        <th scope="row">{{ event.id }}</th>
                         <td>{{ event.name }}</td>
                         <td>{{ event.price }}</td>
                         <td>{{ event.accessories_purchased }}</td>
@@ -194,7 +194,7 @@
                       </tr>
                       {% endfor %}
                     {% endif %}
-                    <tr>
+                    <!--<tr>
                       <th scope="row">2</th>
                       <td>exchange of lamp bulb handle</td>
                       <td>20</td>
@@ -256,7 +256,7 @@
                       <td>20</td>
                       <td>1</td>
                       <td><a href="#">Go To</a></td>
-                    </tr>
+                    </tr>-->
                   </tbody>
                 </table>
               </div>

@@ -33,7 +33,7 @@ def login():
             flash('Unijeli ste pogresne podatke za prijavu!')
             return redirect('/signin')
         flash('Hello ' + user.name + ' ' + user.surename + '!')
-        return render_template('startup.html', username=user.username, events = Event.get_all())
+        return render_template('startup.html', username=user.username, events = Event.get_all()[:-11:-1])
     else:
         return render_template('signin.html')
 
