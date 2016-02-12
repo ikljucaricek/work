@@ -2,7 +2,7 @@
 
 from functools import wraps
 from flask import request, render_template, Response, g, session, redirect, url_for, flash, send_from_directory
-from app import app
+from app import app, db
 from datetime import datetime
 from model import User, Event # from database
 from werkzeug import secure_filename
@@ -48,10 +48,13 @@ def logout():
 def start():
     return render_template('startup.html')
     
-@app.route('/edetails')
+@app.route('/edetails/<id>')
 @login_required
-def showevent():
-    return render_template('edetails.html')
+def showevent(id):
+    event = db.session.query(Event).get(id)
+    if not event:
+        abort(404)
+    return render_template('edetails.html',event=event)
 
 @app.route('/createvent', methods=['GET', 'POST'])
 @login_required
