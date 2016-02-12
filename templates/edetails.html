@@ -62,27 +62,27 @@
         <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-md-offset-4">
-                        <div class="well">Event Name</div>
+                        <div class="well">{{ event.name }}</div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3 col-md-offset-1">
-                    <div class="well">Picture here</div>
+                    <div class="well">HERE WILL BE PHOTO</div>
                     </div>
                     <div class="col-md-6">
-                    <div class="well">Event Details</div>
+                    <div class="well">{{ event.description }}</div>
                     </div>
                 </div>
                 
                 <div class="row">
                     <div class="col-md-3 col-md-offset-1">
-                        Here will following info
-                            Adress<br/>
-                            Tim and date<br/>
-                            Price<br/>
+                        Event Address: <br/>
+                            {{ event.address }}<br/>
+                            Tim and date: {{ event.date_time_close }}<br/>
+                            Price: {{ event.price }} HRK<br/>
                             Contact:<br/>
-                            mail<br/>
-                            phone<br/> 
+                            mail:<br/>
+                            phone:<br/> 
                     </div>  
                     <div class="col-md-6">
                             <div class="row">
