@@ -47,6 +47,11 @@ def logout():
 @login_required
 def start():
     return render_template('startup.html')
+    
+@app.route('/edetails')
+@login_required
+def showevent():
+    return render_template('edetails.html')
 
 @app.route('/createvent', methods=['GET', 'POST'])
 @login_required
