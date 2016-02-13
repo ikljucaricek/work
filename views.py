@@ -60,8 +60,9 @@ def showevent(id):
     if event.accessories_purchased == 1:     
         accessP = "checked"
     else:
-        accessP = ""       
-    return render_template('edetails.html',event=event,user=user,accessP=accessP)
+        accessP = ""
+    cuserId=session.get('id')        
+    return render_template('edetails.html',event=event,user=user,accessP=accessP,cuserId=cuserId)
 
 @app.route('/createvent', methods=['GET', 'POST'])
 @login_required
