@@ -54,7 +54,14 @@ def showevent(id):
     event = db.session.query(Event).get(id)
     if not event:
         abort(404)
-    return render_template('edetails.html',event=event)
+    user = db.session.query(User).get(event.user_id)
+    if not user:
+        abort(404)
+    if event.accessories_purchased == 1:     
+        accessP = "checked"
+    else:
+        accessP = ""       
+    return render_template('edetails.html',event=event,user=user,accessP=accessP)
 
 @app.route('/createvent', methods=['GET', 'POST'])
 @login_required
