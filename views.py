@@ -4,7 +4,7 @@ from functools import wraps
 from flask import request, render_template, Response, g, session, redirect, url_for, flash, send_from_directory
 from app import app, db
 from datetime import datetime
-from model import User, Event # from database
+from model import User, Event, Signup  # from database
 from werkzeug import secure_filename
 
 def login_required(fn):
@@ -62,8 +62,21 @@ def showevent(id):
     else:
         accessP = ""
     cuserId=session.get('id')        
-    return render_template('edetails.html',event=event,user=user,accessP=accessP,cuserId=cuserId)
+    return render_template('edetails.html',username = session['username'],event=event,user=user,accessP=accessP,cuserId=cuserId)
 
+@app.route('/signup', methods=['POST'])
+def signup():
+    eventid = request.form.get('event_to_signup')
+    if request.method == 'POST':      
+        signedup = Signup(
+            event_id = eventid,
+            signedup_id = session.get('id')
+            )
+        signedup.save()
+        flash('You have successfully signed up for the event!')
+    return redirect (url_for('showevent', id=eventid))
+    # return render_template('startup.html', username = session['username'])
+    
 @app.route('/createvent', methods=['GET', 'POST'])
 @login_required
 def create_an_event():
