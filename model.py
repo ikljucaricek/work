@@ -13,6 +13,7 @@ class Signup(db.Model):
     def save(self):
         db.session.add(self)
         db.session.commit()
+        
     
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)

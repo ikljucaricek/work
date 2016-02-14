@@ -6,6 +6,7 @@ from app import app, db
 from datetime import datetime
 from model import User, Event, Signup  # from database
 from werkzeug import secure_filename
+from sqlalchemy.sql import and_, select
 
 def login_required(fn):
     @wraps(fn)
@@ -61,8 +62,20 @@ def showevent(id):
         accessP = "checked"
     else:
         accessP = ""
-    cuserId=session.get('id')        
-    return render_template('edetails.html',username = session['username'],event=event,user=user,accessP=accessP,cuserId=cuserId)
+    cuserId=session.get('id')
+    print event.id
+    s = select([(Signup.id)]).where(
+                                    and_(
+                                        Signup.event_id == event.id,
+                                        Signup.signedup_id == cuserId)
+                                    )
+    result = db.engine.execute(s).fetchall()
+    print result
+    if len(result) == 0:
+        already = 0
+    else:
+        already = 1
+    return render_template('edetails.html',username = session['username'],event=event,user=user,accessP=accessP,cuserId=cuserId,already=already)
 
 @app.route('/signup', methods=['POST'])
 def signup():
