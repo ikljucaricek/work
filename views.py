@@ -57,7 +57,8 @@ def create_an_event():
         if 'photo' in request.files:
             photo = request.files['photo']
             extension = photo.filename.split('.')
-            path_to_photo = '.\\static\\images\\users_avatar\\' + secure_filename(str(session['id']) + '.' + extension[-1])
+            #Needs to be revised
+            path_to_photo = '.\\static\\images\\events_photos\\' + secure_filename(str(session['id']) + '.' + extension[-1])
             photo.save(path_to_photo)
 
         event = Event(
@@ -81,3 +82,35 @@ def uploaded_file(id):
     thatEv = Event.get(id)
     thatPic = thatEv.photo
     return render_template('template.html', filename = thatPic)
+
+@app.route('/profile/<username>')
+def profilePage(username):
+    user = User.get_by_username(username)
+    #user_photo = user.picture
+    return render_template('profile.html', user = user)
+
+@app.route('/modifyuser', methods=['GET', 'POST'])
+@login_required
+def modify_an_user():
+    if request.method == 'POST':
+        path_to_photo = None
+        #if request.form.get('datmtme') >= datetime.now():
+        if 'photo' in request.files:
+            photo = request.files['photo']
+            extension = photo.filename.split('.')
+            #Needs to be revised
+            path_to_photo = '.\\static\\images\\users_avatar\\' + secure_filename(str(session['id']) + '.' + extension[-1])
+            photo.save(path_to_photo)
+
+        user = User(
+            name = request.form.get('name'),
+            surename = request.form.get('surname'),
+            username = request.form.get('username'),
+            address = request.form.get('address'),
+            email = request.form.get('email'),
+            mobile = request.form.get('mobile'),
+            picture = path_to_photo)
+        user.modify(session['id'])
+        flash('You have successfully created Event!')
+    #flash('Event cannot be completed before it starts')
+    return render_template('profile.html', user = User.get_by_username(session['username']))

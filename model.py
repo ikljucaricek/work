@@ -47,9 +47,21 @@ class User(db.Model):
     events = db.relationship('Event',backref='user',foreign_keys=[Event.user_id],lazy='dynamic')
     repairman = db.relationship('Event',backref='repairman',foreign_keys=[Event.repairman_id],uselist=False)
 
+    #Needs to be revised
+    def modify(self, id):
+        #our_user = User.query.filter_by(id=id).first()
+        our_user = User.query.get(id)
+        our_user = self
+        db.session.add(our_user)
+        db.session.commit()
+
     @staticmethod
     def get_by_mail(mail):
         return db.session.query(User).filter(User.email == mail).first()
+        
+    @staticmethod
+    def get_by_username(username):
+        return db.session.query(User).filter(User.username == username).first()
 
     def get(user_id):
         return db.session.query(User).filter(User.id == user_id).first()
