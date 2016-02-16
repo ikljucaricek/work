@@ -121,21 +121,25 @@
                                         <div class="panel-heading">Signed Up Users</div>
                                           <div class="table-responsive">
                                             <table class="table table-hover">
-                                              <thead>
-                                                <tr>
-                                                  <th>Name</th>
-                                                  <th>Rating</th>
-                                                  <th>email</th>
-                                                  <th>Profile</th>
-                                                </tr>            
-                                              </thead>
-                                              <tbody>
-                                                <tr class='clickable-row' data-href='#'>
-                                                    <th scope="row">Bob</th>
-                                                    <td>5.6</td>
-                                                    <td>bob@hismail.urg</td>
-                                                    <td>Link to profile?</td>
-                                                  </tr>
+                                                <thead>
+                                                    <tr>
+                                                      <th>Name</th>
+                                                      <th>Rating</th>
+                                                      <th>email</th>
+                                                      <th>Profile</th>
+                                                    </tr>            
+                                                </thead>
+                                                <tbody>
+                                                {% if users %}
+                                                    {% for us in users %}
+                                                        <tr class='clickable-row' data-href='#'>
+                                                            <th scope="row">{{us.name}}</th>
+                                                            <td>{{us.rating}}</td>
+                                                            <td>{{us.email}}</td>
+                                                            <td>Link to profile?</td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                {% endif %}
                                                  
                                                 <!-- {% if repairmen %}
                                                   {% for repairman in repairmen %}

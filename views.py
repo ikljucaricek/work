@@ -63,19 +63,38 @@ def showevent(id):
     else:
         accessP = ""
     cuserId=session.get('id')
-    print event.id
     s = select([(Signup.id)]).where(
                                     and_(
                                         Signup.event_id == event.id,
                                         Signup.signedup_id == cuserId)
                                     )
+    print "BLA BLA"
+    print s
     result = db.engine.execute(s).fetchall()
     print result
+    Signedupusers = None
+    if not result:
+        s2 = select([(Signup.signedup_id)]).where(
+                                        Signup.event_id == event.id)
+        print s2
+        allsignedup = db.engine.execute(s2).fetchall()
+        print "list"
+        allsignedups = [r[0] for r in allsignedup]
+        s3 = select([(User)]).where(User.id.in_(allsignedups))
+        print "to je to"
+        print s3
+        Signedupusers = db.engine.execute(s3).fetchall()
+        print Signedupusers
     if len(result) == 0:
         already = 0
     else:
         already = 1
-    return render_template('edetails.html',username = session['username'],event=event,user=user,accessP=accessP,cuserId=cuserId,already=already)
+    return render_template('edetails.html',username = session['username'],event=event,
+                                                                            user=user,
+                                                                            accessP=accessP,
+                                                                            cuserId=cuserId,
+                                                                            already=already,
+                                                                            users = Signedupusers)
 
 @app.route('/signup', methods=['POST'])
 def signup():
