@@ -94,6 +94,7 @@ def profilePage(username):
 def modify_an_user():
     if request.method == 'POST':
         path_to_photo = None
+        user_n = User.get_by_username(session['username'])
         #if request.form.get('datmtme') >= datetime.now():
         if 'photo' in request.files:
             photo = request.files['photo']
@@ -103,6 +104,7 @@ def modify_an_user():
             photo.save(path_to_photo)
 
         user = User(
+            id = session['id'],
             name = request.form.get('name'),
             surename = request.form.get('surname'),
             username = request.form.get('username'),
@@ -110,7 +112,7 @@ def modify_an_user():
             email = request.form.get('email'),
             mobile = request.form.get('mobile'),
             picture = path_to_photo)
-        user.modify(session['id'])
-        flash('You have successfully created Event!')
+        user.modify()
+        flash('You successfully modified Event!')
     #flash('Event cannot be completed before it starts')
-    return render_template('profile.html', user = User.get_by_username(session['username']))
+    return render_template('profile.html', user = user_n)

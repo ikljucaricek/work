@@ -48,10 +48,15 @@ class User(db.Model):
     repairman = db.relationship('Event',backref='repairman',foreign_keys=[Event.repairman_id],uselist=False)
 
     #Needs to be revised
-    def modify(self, id):
+    def modify(self):
         #our_user = User.query.filter_by(id=id).first()
-        our_user = User.query.get(id)
-        our_user = self
+        #our_user = User.query.get(id)
+        our_user = db.session.query(User).get(self.id)
+        our_user.name = self.name
+        our_user.surename = self.surename
+        our_user.mobile = self.mobile
+        our_user.address = self.address
+        our_user.picture = self.picture
         db.session.add(our_user)
         db.session.commit()
 
