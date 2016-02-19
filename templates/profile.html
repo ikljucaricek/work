@@ -119,19 +119,15 @@
               <form method='POST' action="/modifyuser" enctype="multipart/form-data">
                 <div class="modal-body">                
                   <label for="name"><span class="glyphicon glyphicon-user"></span> User's Name</label>
-                  <input type="text" class="form-control" name="name" id="name" placeholder="Change Name of User">
+                  <input type="text" class="form-control" name="name" id="name" placeholder="Change Name of User" value="{{ user.name }}">
                   <label for="surname"><span class="glyphicon glyphicon-user"></span> User's Surname</label><br>
-                  <input type="text" class="form-control" name="surname" id="surname" placeholder="Change Surname of User">
-                  <label for="username"><span class="glyphicon glyphicon-sunglasses"></span> User's Username</label>
-                  <input type="text" class="form-control" name="username" id="username" step="any" placeholder="Change Username of User">
-                  <label for="email"><span class="glyphicon glyphicon-envelope"></span> User's Email</label>
-                  <input type="text" class="form-control" name="email" id="email" placeholder="Change Email of User">
+                  <input type="text" class="form-control" name="surname" id="surname" placeholder="Change Surname of User" value="{{ user.surename }}">
                   <label for="address"><span class="glyphicon glyphicon-map-marker"></span> User's Address</label>
-                  <input type="text" class="form-control" name="address" id="address" placeholder="Change Address of User location">
+                  <input type="text" class="form-control" name="address" id="address" placeholder="Change Address of User location" value="{{ user.address }}">
                   <label for="mobile"><span class="glyphicon glyphicon-phone"></span> User's Mobile</label>
-                  <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Change Mobile of User">
+                  <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Change Mobile of User" value="{{ user.mobile }}">
                   <label for="photo"><span class="glyphicon glyphicon-camera"></span> User's Photo</label>
-                  <input type="file" accept="image/*" class="form-control" name="photo" id="photo" placeholder="Change Photo of User">
+                  <input type="file" accept="image/*" class="form-control" name="photo" id="photo" placeholder="Change Photo of User" value="{{ user.photo }}">
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
