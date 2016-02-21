@@ -19,6 +19,11 @@ def login_required(fn):
 def index():
     return render_template('index.html', events = Event.get_all()[:-11:-1])
 
+@app.route('/startup')
+@login_required
+def startup():
+    return render_template('startup.html', username = session['username'], events = Event.get_all()[:-11:-1])
+
 @app.route('/signin', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -35,9 +40,10 @@ def login():
         flash('Hello ' + user.name + ' ' + user.surename + '!')
         return render_template('startup.html', username=user.username, events = Event.get_all()[:-11:-1])
     else:
-        return render_template('signin.html')
+        return redirect('/')
 
 @app.route('/signout')
+@login_required
 def logout():
     session.pop('username', None)
     session.pop('id', None)
