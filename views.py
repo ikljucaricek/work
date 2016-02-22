@@ -35,7 +35,7 @@ def login():
             session['id'] = user.id
             session['username'] = user.username
         else:
-            flash('Unijeli ste pogresne podatke za prijavu!')
+            flash('You entered wrong data!')
             return redirect('/signin')
         flash('Hello ' + user.name + ' ' + user.surename + '!')
         return render_template('startup.html', username=user.username, events = Event.get_all()[:-11:-1])
