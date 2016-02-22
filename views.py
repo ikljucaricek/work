@@ -64,7 +64,7 @@ def create_an_event():
             photo = request.files['photo']
             extension = photo.filename.split('.')
             #Needs to be revised
-            path_to_photo = '.\\static\\images\\events_photos\\' + secure_filename(str(session['id']) + '.' + extension[-1])
+            path_to_photo = './static/images/events_photos/' + secure_filename(str(session['id']) + '.' + extension[-1])
             photo.save(path_to_photo)
 
         event = Event(
@@ -106,7 +106,7 @@ def modify_an_user():
             photo = request.files['photo']
             extension = photo.filename.split('.')
             #Needs to be revised
-            path_to_photo = '.\\static\\images\\users_avatar\\' + secure_filename(str(session['id']) + '.' + extension[-1])
+            path_to_photo = './static/images/users_avatar/' + secure_filename(str(session['id']) + '.' + extension[-1])
             photo.save(path_to_photo)
 
         user = User(
