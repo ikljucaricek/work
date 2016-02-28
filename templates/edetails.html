@@ -119,6 +119,16 @@
                         </div>
                     </div>  
                     <div class="col-md-6">
+                            {% if event.active == False %}
+                            <div class="row">
+                                <div class="col-md-6 detail-purchased">
+                                    <input type="checkbox" name="accessories" disabled="disabled" value="Accessories purchased" {{ accessP }}> Accessories Purchased<br>
+                                </div>
+                                <div class="col-md-5 col-md-offset-1">
+                                    This event is no longer active.
+                                </div>
+                            </div>
+                            {% else %}
                             <div class="row">
                                 <div class="col-md-6 detail-purchased">
                                     <input type="checkbox" name="accessories" disabled="disabled" value="Accessories purchased" {{ accessP }}> Accessories Purchased<br>
@@ -156,10 +166,16 @@
                                                 {% if users %}
                                                     {% for us in users %}
                                                         <tr class='clickable-row' data-href='#'>
-                                                            <th scope="row">{{us.name}}</th>
+                                                            <th scope="row"><a href="/profile/{{ us.name }}">{{us.name}}</a></th>
                                                             <td>{{us.rating}}</td>
                                                             <td>{{us.email}}</td>
-                                                            <td>Link to profile?</td>
+                                                            <td>
+                                                                <form action="{{ url_for('chooserm') }}" method=post class=chooserm>
+                                                                    <input type=hidden value="{{ event.id }}" name="event_to_choose"></input>
+                                                                    <input type=hidden value="{{ us.id }}" name="rm_to_choose"></input>
+                                                                    <input type=submit value="Choose!"></input>
+                                                                </form>
+                                                            </td>
                                                         </tr>
                                                     {% endfor %}
                                                 {% endif %}
@@ -181,6 +197,7 @@
                                     {% endif %}
                                 </div>
                             </div> 
+                            {% endif %}
                      </div>               
                 </div>
         </div>
