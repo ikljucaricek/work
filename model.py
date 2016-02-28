@@ -5,10 +5,10 @@ from flask_sqlalchemy import SQLAlchemy
 from app import db
 from datetime import datetime
  
-class Signedup(db.Model):
+class Applied_repairman(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     event_id = db.Column(db.Integer,db.ForeignKey('event.id'))
-    signedup_id = db.Column(db.Integer,db.ForeignKey('user.id'))
+    repairman_id = db.Column(db.Integer,db.ForeignKey('user.id'))
     
     def save(self):
         db.session.add(self)
@@ -28,7 +28,7 @@ class Event(db.Model):
     accessories_purchased = db.Column(db.Boolean)
     user_id = db.Column(db.Integer,db.ForeignKey('user.id'))
     repairman_id = db.Column(db.Integer,db.ForeignKey('user.id'))
-    signedupe = db.relationship('Signedup',backref='eventup',foreign_keys=[Signedup.event_id],lazy='dynamic')
+    signedupe = db.relationship('Applied_repairman',backref='eventup',foreign_keys=[Applied_repairman.event_id],lazy='dynamic')
     
     def save(self):
         db.session.add(self)
@@ -56,7 +56,7 @@ class User(db.Model):
     joindate = db.Column(db.DateTime)
     events = db.relationship('Event',backref='user',foreign_keys=[Event.user_id],lazy='dynamic')
     repairman = db.relationship('Event',backref='repairman',foreign_keys=[Event.repairman_id],lazy='dynamic')
-    signedupu = db.relationship('Signedup',backref='userup',foreign_keys=[Signedup.signedup_id],lazy='dynamic')
+    signedupu = db.relationship('Applied_repairman',backref='userup',foreign_keys=[Applied_repairman.repairman_id],lazy='dynamic')
     
     @staticmethod
     def get_by_mail(mail):

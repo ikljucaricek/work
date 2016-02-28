@@ -4,7 +4,7 @@ from functools import wraps
 from flask import request, render_template, Response, g, session, redirect, url_for, flash, send_from_directory
 from app import app, db
 from datetime import datetime
-from model import User, Event, Signedup  # from database
+from model import User, Event, Applied_repairman  # from database
 from werkzeug import secure_filename
 from sqlalchemy.sql import and_, select
 
@@ -71,8 +71,8 @@ def showevent(id):
     print cuserId
     if event.user_id == cuserId:
         #If yes, fetch ids of all signedup users for this event
-        s2 = select([(Signedup.signedup_id)]).where(
-                                        Signedup.event_id == event.id)
+        s2 = select([(Applied_repairman.repairman_id)]).where(
+                                        Applied_repairman.event_id == event.id)
         allsignedup = db.engine.execute(s2).fetchall()
         allsignedups = [r[0] for r in allsignedup]
         # Fetch User objects for these ids
@@ -82,10 +82,10 @@ def showevent(id):
         print Signedupusers
     else:    
         # Check If the user is already signed up for this event
-        s = select([(Signedup.id)]).where(
+        s = select([(Applied_repairman.id)]).where(
                                         and_(
-                                            Signedup.event_id == event.id,
-                                            Signedup.signedup_id == cuserId)
+                                            Applied_repairman.event_id == event.id,
+                                            Applied_repairman.repairman_id == cuserId)
                                         )
         result = db.engine.execute(s).fetchall()
         if len(result) != 0:
@@ -103,9 +103,9 @@ def showevent(id):
 def signup():
     eventid = request.form.get('event_to_signup')
     if request.method == 'POST':      
-        signed = Signedup(
+        signed = Applied_repairman(
             event_id = eventid,
-            signedup_id = session.get('id')
+            repairman_id = session.get('id')
             )
         signed.save()
         flash('You have successfully signed up for the event!')
