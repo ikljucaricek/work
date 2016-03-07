@@ -76,24 +76,20 @@
         {% endwith %}
                 <div class="row">
                     <div class="col-md-6 col-md-offset-4">
-                        <div class="well">
-                            <div class="detail-name">
+                        <div class="detail-name">
                                 {{ event.name }}
-                            </dvi>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3 col-md-offset-1">
-                        <div class="well" align="center">
-                           <img src="{{ url_for('static', filename = 'images/users_avatar/2.jpg') }}">
+                        <div align="center">
+                           <img src="/{{ event.photo }}">
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="well detail-text">
-                            <div class="detail-text ">
-                                {{ event.description }}
-                            </div>
+                        <div class="detail-text">
+                            {{ event.description }}
                         </div>
                     </div>
                 </div>
