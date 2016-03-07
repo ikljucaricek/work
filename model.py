@@ -5,7 +5,16 @@ from flask_sqlalchemy import SQLAlchemy
 from app import db
 from datetime import datetime
  
-
+class Applied_repairman(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    event_id = db.Column(db.Integer,db.ForeignKey('event.id'))
+    repairman_id = db.Column(db.Integer,db.ForeignKey('user.id'))
+    
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+        
+        
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(250), nullable=False)
@@ -19,7 +28,8 @@ class Event(db.Model):
     accessories_purchased = db.Column(db.Boolean)
     user_id = db.Column(db.Integer,db.ForeignKey('user.id'))
     repairman_id = db.Column(db.Integer,db.ForeignKey('user.id'))
-
+    signedupe = db.relationship('Applied_repairman',backref='eventup',foreign_keys=[Applied_repairman.event_id],lazy='dynamic')
+    
     def save(self):
         db.session.add(self)
         db.session.commit()
@@ -45,8 +55,9 @@ class User(db.Model):
     rating = db.Column(db.Float)
     joindate = db.Column(db.DateTime)
     events = db.relationship('Event',backref='user',foreign_keys=[Event.user_id],lazy='dynamic')
-    repairman = db.relationship('Event',backref='repairman',foreign_keys=[Event.repairman_id],uselist=False)
-
+    repairman = db.relationship('Event',backref='repairman',foreign_keys=[Event.repairman_id],lazy='dynamic')
+    signedupu = db.relationship('Applied_repairman',backref='userup',foreign_keys=[Applied_repairman.repairman_id],lazy='dynamic')
+    
     #Needs to be revised
     def modify(self):
         #our_user = User.query.filter_by(id=id).first()
@@ -75,6 +86,10 @@ class User(db.Model):
         if self.password == password:
             return True
         return False
+        
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
     
 
     

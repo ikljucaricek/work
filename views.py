@@ -2,10 +2,12 @@
 
 from functools import wraps
 from flask import request, render_template, Response, g, session, redirect, url_for, flash, send_from_directory
-from app import app
+from app import app, db
 from datetime import datetime
-from model import User, Event # from database
+from model import User, Event, Applied_repairman  # from database
 from werkzeug import secure_filename
+from sqlalchemy.sql import and_, select
+
 
 def login_required(fn):
     @wraps(fn)
@@ -40,10 +42,9 @@ def login():
         flash('Hello ' + user.name + ' ' + user.surename + '!')
         return render_template('startup.html', username=user.username, events = Event.get_all()[:-11:-1])
     else:
-        return redirect('/')
+        return render_template('signin.html')
 
 @app.route('/signout')
-@login_required
 def logout():
     session.pop('username', None)
     session.pop('id', None)
@@ -53,7 +54,83 @@ def logout():
 @login_required
 def start():
     return render_template('startup.html')
+    
+@app.route('/edetails/<id>')
+@login_required
+def showevent(id):
+    event = db.session.query(Event).get(id)
+    if not event:
+        abort(404)
+    user = db.session.query(User).get(event.user_id)
+    if not user:
+        abort(404)
+    if event.accessories_purchased == 1:     
+        accessP = "checked"
+    else:
+        accessP = ""
+    cuserId=session.get('id')
+    Signedupusers = None
+    already = 0
+    # Checking if the user is owner of this event
+    print event.user_id
+    print cuserId
+    if event.user_id == cuserId:
+        #If yes, fetch ids of all signedup users for this event
+        s2 = select([(Applied_repairman.repairman_id)]).where(
+                                        Applied_repairman.event_id == event.id)
+        allsignedup = db.engine.execute(s2).fetchall()
+        allsignedups = [r[0] for r in allsignedup]
+        # Fetch User objects for these ids
+        s3 = select([(User)]).where(User.id.in_(allsignedups))
+        Signedupusers = db.engine.execute(s3).fetchall()
+        print "list of signedup users"
+        print Signedupusers
+    else:    
+        # Check If the user is already signed up for this event
+        s = select([(Applied_repairman.id)]).where(
+                                        and_(
+                                            Applied_repairman.event_id == event.id,
+                                            Applied_repairman.repairman_id == cuserId)
+                                        )
+        result = db.engine.execute(s).fetchall()
+        if len(result) != 0:
+            already = 1
+            print "The user is signed up in this events:"
+    
+    return render_template('edetails.html',username = session['username'],event=event,
+                                                                            user=user,
+                                                                   users = Signedupusers,
+                                                                   already = already,
+                                                                   cuserId = cuserId)
 
+                                                                   
+@app.route('/signup', methods=['POST'])
+def signup():
+    eventid = request.form.get('event_to_signup')
+    if request.method == 'POST':      
+        signed = Applied_repairman(
+            event_id = eventid,
+            repairman_id = session.get('id')
+            )
+        signed.save()
+        flash('You have successfully signed up for the event!')
+    return redirect (url_for('showevent', id=eventid))
+    
+@app.route('/chooserm', methods=['POST'])
+def chooserm():
+    eventid = request.form.get('event_to_choose')
+    rmid = request.form.get('rm_to_choose')
+    event = db.session.query(Event).get(eventid)
+    rm = db.session.query(User).get(rmid)
+    rm.repairman.append(event)
+    if request.method == 'POST':      
+        rm.repairman.append(event)
+        event.active = False
+        event.save()
+        rm.save()
+        flash('You have successfully chosed a repairman!')
+    return redirect (url_for('showevent', id=eventid))
+    # return render_template('startup.html', username = session['username'])   
 @app.route('/createvent', methods=['GET', 'POST'])
 @login_required
 def create_an_event():
@@ -63,8 +140,7 @@ def create_an_event():
         if 'photo' in request.files:
             photo = request.files['photo']
             extension = photo.filename.split('.')
-            #Needs to be revised
-            path_to_photo = './static/images/events_photos/' + secure_filename(str(session['id']) + '.' + extension[-1])
+            path_to_photo = '.\\static\\images\\users_avatar\\' + secure_filename(str(session['id']) + '.' + extension[-1])
             photo.save(path_to_photo)
 
         event = Event(

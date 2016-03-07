@@ -1,0 +1,41 @@
+body {
+  padding-top: 40px;
+  background-color: #eee;
+}
+
+.detail-name {
+   font-size: 130%;
+   font-weight: bold;
+}
+
+.detail-pic {
+   height: 200px; 
+}
+
+.detail-text {
+   height: 200px; 
+}
+
+.detail-list {
+   padding-top: 20px; 
+}
+
+.info{
+    color: gray;
+}
+.info-text{
+    font-weight: bold;
+}
+.pre-info{
+    padding-left:10px; 
+}
+
+img{
+    max-width:  200px;
+    max-height: 160px;
+}
+
+.info-section{
+    padding-top: 5px; 
+}
+
