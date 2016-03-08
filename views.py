@@ -192,3 +192,8 @@ def modify_an_user():
         flash('You successfully modified Event!')
     #flash('Event cannot be completed before it starts')
     return render_template('profile.html', user = user_n)
+
+@app.route('/events')
+@login_required
+def allevents():
+    return render_template('events.html', username = session['username'], events = Event.get_all()[::-1])
