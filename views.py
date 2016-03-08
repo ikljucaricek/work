@@ -83,12 +83,6 @@ def create_an_event():
     #flash('Event cannot be completed before it starts')
     return render_template('startup.html', username = session['username'])
 
-@app.route('/<id>')
-def uploaded_file(id):
-    thatEv = Event.get(id)
-    thatPic = thatEv.photo
-    return render_template('template.html', filename = thatPic)
-
 @app.route('/profile/<username>')
 def profilePage(username):
     user = User.get_by_username(username)
