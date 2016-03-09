@@ -42,7 +42,7 @@ def login():
         flash('Hello ' + user.name + ' ' + user.surename + '!')
         return render_template('startup.html', username=user.username, events = Event.get_all()[:-11:-1])
     else:
-        return render_template('index.html')
+        return render_template('index.html', events = Event.get_all()[:-11:-1])
 
 @app.route('/signout')
 def logout():
