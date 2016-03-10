@@ -22,6 +22,11 @@
 
     <!-- Custom styles for this template -->
     <link href="../static/css/jumbotron.css" rel="stylesheet">
+    <style>
+      #srch {
+          width: 520px;
+      }
+    </style>
   </head>
 
   <body>
@@ -71,11 +76,16 @@
             {% endfor %}
           {% endif %}
         {% endwith %}
-        <br>
+        <br><br><br>
 
       <div class="row">
-          <div class="col-sm-6 col-sm-offset-3">
-
+          <div class="col-sm-8 col-sm-offset-3">
+            <form class="form-inline">
+              <div class="form-group">
+                <input type="text" class="form-control" id="srch" placeholder="Search Events">
+              </div>
+              <button type="submit" class="btn btn-info glyphicon glyphicon-search"></button>
+            </form>
           </div>
       </div><!-- /.row -->
 
