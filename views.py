@@ -134,7 +134,17 @@ def chooserm():
                 "To: "+ rm.email,
                 "Subject: Chosen to "+event.name,
                 "",
-                "This mail is from Tygayo Inc. You have been chosen to take care of "+event.name ])
+                "Dear "+ rm.name+",",
+                "",
+                "This mail is from Tygayo Inc. You have been chosen to take care of "+event.name+".",
+                "The event takes place at "+event.address+", scheduled for "+str(event.date_time_create)+".",
+                "",
+                "The event details are in the link bellow:",
+                "http://localhost:5000"+url_for('showevent', id=eventid),
+                "",
+                "Best Regards,",
+                "TygAyo Inc."
+                ])
         username = 'tygayoinc@gmail.com'
         password = 'Work1234'
         server = SMTP("smtp.gmail.com",587)
