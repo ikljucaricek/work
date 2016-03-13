@@ -45,6 +45,42 @@ def login():
     else:
         return render_template('index.html', events = Event.get_all()[:-11:-1])
 
+@app.route('/register', methods=['POST'])
+def register():
+    if request.method == 'POST':
+        path_to_photo = None
+        #if request.form.get('datmtme') >= datetime.now():
+        user = User(
+            name = request.form.get('name'),
+            surename = request.form.get('surename'),
+            username = request.form.get('username'),
+            address = request.form.get('address'),
+            email = request.form.get('email'),
+            password = request.form.get('password'),
+            mobile = request.form.get('mobile'),
+            joindate = datetime.now())
+        user.save()
+        
+        us = User.get_by_username(user.username)
+        print "Tohle je files"
+        print request.files
+        print request.files.getlist('photo')
+        # pho = request.files[0]
+        # print pho.filename
+        if 'photo' in request.files:
+            photo = request.files['photo']
+            extension = photo.filename.split('.')
+            path_to_photo = '.\\static\\images\\users_avatar\\' + secure_filename(str(us.id) + '.' + extension[-1])
+            photo.save(path_to_photo)
+            us.picture = path_to_photo
+            us.save()
+        flash('You have successfully Registered!')
+        session['id'] = us.id
+        session['username'] = us.username
+        return render_template('startup.html', username=us.username, events = Event.get_all()[:-11:-1])
+    else:
+        return render_template('index.html', events = Event.get_all()[:-11:-1])        
+
 @app.route('/signout')
 def logout():
     session.pop('username', None)
@@ -166,7 +202,7 @@ def create_an_event():
         if 'photo' in request.files:
             photo = request.files['photo']
             extension = photo.filename.split('.')
-            path_to_photo = '.\\static\\images\\users_avatar\\' + secure_filename(str(session['id']) + '.' + extension[-1])
+            path_to_photo = '.\\static\\images\\events_photos\\' + secure_filename(str(session['id']) + '.' + extension[-1])
             photo.save(path_to_photo)
 
         event = Event(
@@ -215,7 +251,7 @@ def modify_an_user():
             mobile = request.form.get('mobile'),
             picture = path_to_photo)
         user.modify()
-        flash('You successfully modified Event!')
+        flash('You successfully modified Profile!')
     #flash('Event cannot be completed before it starts')
     return render_template('profile.html', user = user_n)
 
