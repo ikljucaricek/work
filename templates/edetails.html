@@ -165,13 +165,13 @@
                                                             <th scope="row"><a href="/profile/{{ us.name }}">{{us.name}}</a></th>
                                                             <td>{{us.rating}}</td>
                                                             <td>{{us.email}}</td>
-                                                            <td>
-                                                                <form action="{{ url_for('chooserm') }}" method=post class=chooserm>
+                                                            <td><a href="#myModal" data-toggle="modal" id="{{us.id}}_{{us.name}}" data-target="#edit-modal">Choose!</a></td>
+                                                            <!--     <form action="{{ url_for('chooserm') }}" method=post class=chooserm>
                                                                     <input type=hidden value="{{ event.id }}" name="event_to_choose"></input>
                                                                     <input type=hidden value="{{ us.id }}" name="rm_to_choose"></input>
                                                                     <input type=submit value="Choose!"></input>
                                                                 </form>
-                                                            </td>
+                                                            </td> -->
                                                         </tr>
                                                     {% endfor %}
                                                 {% endif %}
@@ -198,6 +198,53 @@
                 </div>
         </div>
     </div>
+<!-- Modal -->
+<div id="edit-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Repairman</h4>
+                </div>
+                <div class="modal-body edit-content">
+                </div>
+                <div class="modal-footer">
+                    <form action="{{ url_for('chooserm') }}" method="post" class="chooserm">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <input type=hidden value="{{ event.id }}" name="event_to_choose"></input>
+                        <input id="repairman" type=hidden value="" name="rm_to_choose"></input>
+                        <input type=submit class="btn btn-primary" value="Choose!"></input>
+                    </form>
+                </div>
+            </div>
+        </div>
+</div>
+  <!--   <div id="edit-modal"  class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+      
+        <!-- Modal content
+        <div class="modal-content">
+          <div class="modal-header" style="padding:35px 50px;">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4><span class="glyphicon glyphicon-lock"></span> Confirmation</h4>
+          </div>
+          <div class="modal-body edit-content" style="padding:40px 50px;">
+            <form action="{{ url_for('chooserm') }}" method="post" class="chooserm">
+            <!-- <form role="form" method='POST' action='/signin'>  role form??? what is that?
+                <label>Are you sure you want to hire </label>
+                <button type="submit" class="btn btn-success btn-block"> OK</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <p>Not a member? <a href="#">Sign Up</a></p>
+            <p>Forgot <a href="#">Password?</a></p>
+          </div>
+        </div>
+        
+      </div>
+    </div>  -->
+    
     
 <footer class="footer">
       <div class="container">
@@ -231,11 +278,27 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../static/js/ie10-viewport-bug-workaround.js"></script>
     <script>
-      $(document).ready(function(){
-          $("#myBtn").click(function(){
-              $("#myModal").modal();
-          });
-      });
+        $('#edit-modal').on('show.bs.modal', function(e) {
+            
+            var $modal = $(this),
+                input = e.relatedTarget.id;
+                res = input.split("_")
+                
+            
+//            $.ajax({
+//                cache: false,
+//                type: 'POST',
+//                url: 'backend.php',
+//                data: 'EID='+essay_id,
+//                success: function(data) 
+//                {
+                    $modal.find('.edit-content').html("Are you sure you want to hire "+res[1]+"?");
+                    //$modal.getElementById('repairman').value = res[0];
+                    $("#repairman").val(res[0]);
+//                }
+//            });
+            
+        })
     </script>
   </body>
 </html>

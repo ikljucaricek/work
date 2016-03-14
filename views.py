@@ -7,6 +7,7 @@ from datetime import datetime
 from model import User, Event, Applied_repairman  # from database
 from werkzeug import secure_filename
 from sqlalchemy.sql import and_, select
+from smtplib import SMTP
 
 
 def login_required(fn):
@@ -72,8 +73,7 @@ def showevent(id):
     Signedupusers = None
     already = 0
     # Checking if the user is owner of this event
-    print event.user_id
-    print cuserId
+
     if event.user_id == cuserId:
         #If yes, fetch ids of all signedup users for this event
         s2 = select([(Applied_repairman.repairman_id)]).where(
@@ -83,8 +83,6 @@ def showevent(id):
         # Fetch User objects for these ids
         s3 = select([(User)]).where(User.id.in_(allsignedups))
         Signedupusers = db.engine.execute(s3).fetchall()
-        print "list of signedup users"
-        print Signedupusers
     else:    
         # Check If the user is already signed up for this event
         s = select([(Applied_repairman.id)]).where(
@@ -95,7 +93,7 @@ def showevent(id):
         result = db.engine.execute(s).fetchall()
         if len(result) != 0:
             already = 1
-            print "The user is signed up in this events:"
+            # print "The user is signed up in this events:"
     
     return render_template('edetails.html',username = session['username'],event=event,
                                                                             user=user,
@@ -128,6 +126,34 @@ def chooserm():
         event.active = False
         event.save()
         rm.save()
+        
+        fromaddr = 'tygayoinc@gmail.com'
+        toaddrs  = rm.email
+        msg = "\r\n".join([
+                "From: tygayoinc@gmail.com",
+                "To: "+ rm.email,
+                "Subject: Chosen to "+event.name,
+                "",
+                "Dear "+ rm.name+",",
+                "",
+                "This mail is from Tygayo Inc. You have been chosen to take care of "+event.name+".",
+                "The event takes place at "+event.address+", scheduled for "+str(event.date_time_create)+".",
+                "",
+                "The event details are in the link bellow:",
+                "http://localhost:5000"+url_for('showevent', id=eventid),
+                "",
+                "Best Regards,",
+                "TygAyo Inc."
+                ])
+        username = 'tygayoinc@gmail.com'
+        password = 'Work1234'
+        server = SMTP("smtp.gmail.com",587)
+        server.ehlo()
+        server.starttls()
+        server.login(username,password)
+        server.sendmail(fromaddr, toaddrs, msg)
+        server.close()
+        
         flash('You have successfully chosed a repairman!')
     return redirect (url_for('showevent', id=eventid))
     # return render_template('startup.html', username = session['username'])   
