@@ -41,6 +41,10 @@ class Event(db.Model):
     @staticmethod
     def get_all():
         return db.session.query(Event).all()
+
+    @staticmethod
+    def get_by_name(filter_name):
+        return db.session.query(Event).filter(Event.name == filter_name)
     
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)

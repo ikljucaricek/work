@@ -80,9 +80,9 @@
 
       <div class="row">
           <div class="col-sm-8 col-sm-offset-3">
-            <form class="form-inline">
+            <form method='POST' action="/events" class="form-inline">
               <div class="form-group">
-                <input type="text" class="form-control" id="srch" placeholder="Search Events">
+                <input type="text" class="form-control" id="srch" name="srch" placeholder="Search Events">
               </div>
               <button type="submit" class="btn btn-info glyphicon glyphicon-search"></button>
             </form>
@@ -151,6 +151,7 @@
                   <tbody>
                     {% if events %}
                       {% for event in events %}
+                        {% if event.active %}
                       <tr class='clickable-row' data-href='#'>
                         <th scope="row">{{ event.id }}</th>
                         <td>{{ event.name }}</td>
@@ -158,6 +159,7 @@
                         <td>{{ event.accessories_purchased }}</td>
                         <td><a href="/edetails/{{ event.id }}">Go To</a></td>
                       </tr>
+                        {% endif %}
                       {% endfor %}
                     {% endif %}
                   </tbody>
