@@ -22,6 +22,8 @@
 
     <!-- Custom styles for this template -->
     <link href="../static/css/jumbotron.css" rel="stylesheet">
+
+    <link href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css" rel="stylesheet">
     <style>
       #srch {
           width: 520px;
@@ -138,7 +140,7 @@
               <!-- Default panel contents -->
             <div class="panel-heading">List of All Events</div>
               <div class="table-responsive">
-                <table class="table table-hover">
+                <table id="tbl" cellspacing="0" width="100%" class="table table-hover">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -204,11 +206,15 @@
     <script src="../static/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../static/js/ie10-viewport-bug-workaround.js"></script>
+    
+    <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+
     <script>
       $(document).ready(function(){
           $("#myBtn").click(function(){
               $("#myModal").modal();
           });
+          $('#tbl').DataTable({order: [ 1, 'desc' ]});
       });
     </script>
   </body>
