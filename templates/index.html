@@ -139,12 +139,12 @@
             <div id="reg-modal" class="modal fade" role="dialog" aria-labelledby="myModalLabel5" aria-hidden="true">
               <div class="modal-dialog" role="document"> 
                 <div class="modal-content">
-                  <div class="modal-header">
+                  <div class="modal-header" >
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel5">Register user</h4>
-                  </div
-                  <form method='POST' action="/register" class="form-horizontal" id="reg-modal">
-                    <div class="modal-body">
+                  </div>
+                  <form method="post" action="{{ url_for('register') }}" class="form-horizontal" id="reg-modal">
+                    <div class="modal-body" style="padding:40px 50px;">
                       <div class="form-group">  
                           <label class="control-label">First name</label>
                           <input type="text" class="form-control" name="name" id="name" placeholder="Enter your first Name" required />
@@ -182,10 +182,10 @@
                         <input type="file" accept="image/*" class="form-control" name="photo" id="photo" placeholder="Enter your profile Photo">
                       </div>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer" style="padding:40px;">
                     <div class="form-group">
-                      <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-                      <button type="submit" class="btn btn-info">Submit</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> 
+                      <input type="submit" class="btn btn-info" value="Submit"></input>
                      </div>
                     </div>
                   </form>
@@ -367,11 +367,6 @@
                 }
             }
             
-        },
-        submitHandler: function(validator, form, submitButton) {
-            var fullName = [validator.getFieldElements('name').val(),
-                            validator.getFieldElements('Surename').val()].join(' ');
-            alert('Hello ' + fullName);
         }
     });
 });
