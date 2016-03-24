@@ -191,12 +191,14 @@
                   <tbody>
                     {% if events %}
                       {% for event in events %}
+                        {% if event.active %}
                         <tr>
                           <th scope="row">{{ event.id }}</th>
                           <td><a href="/edetails/{{ event.id }}">{{ event.name }}</a></td>
                           <td>{{ event.price }}</td>
                           <td>{{ event.accessories_purchased }}</td>
                         </tr>
+                        {% endif %}
                       {% endfor %}
                     {% endif %}
                   </tbody>

@@ -185,6 +185,7 @@
                   <tbody>
                     {% if events %}
                       {% for event in events %}
+                        {% if event.active %}
                       <tr class='clickable-row' data-href='#'>
                         <th scope="row">{{ event.id }}</th>
                         <td>{{ event.name }}</td>
@@ -192,6 +193,7 @@
                         <td>{{ event.accessories_purchased }}</td>
                         <td><a href="{{ url_for('showevent', id=event.id) }}">Go To</a></td>
                       </tr>
+                        {% endif %}
                       {% endfor %}
                     {% endif %}
                     <!--<tr>
