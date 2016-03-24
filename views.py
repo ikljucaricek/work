@@ -119,6 +119,7 @@ def chooserm():
     eventid = request.form.get('event_to_choose')
     rmid = request.form.get('rm_to_choose')
     event = db.session.query(Event).get(eventid)
+    client = db.session.query(User).get(event.user_id)
     rm = db.session.query(User).get(rmid)
     rm.repairman.append(event)
     if request.method == 'POST':      
@@ -129,6 +130,7 @@ def chooserm():
         
         fromaddr = 'tygayoinc@gmail.com'
         toaddrs  = rm.email
+        toaddrs_client = client.email
         msg = "\r\n".join([
                 "From: tygayoinc@gmail.com",
                 "To: "+ rm.email,
@@ -145,6 +147,22 @@ def chooserm():
                 "Best Regards,",
                 "TygAyo Inc."
                 ])
+        msg_client = "\r\n".join([
+                "From: tygayoinc@gmail.com",
+                "To: "+ toaddrs_client,
+                "Subject: Chose repairman for "+event.name,
+                "",
+                "Dear "+ client.name+",",
+                "",
+                "This mail is from Tygayo Inc. You choose "+rm.name+" for repairman.",
+                "The event takes place at "+event.address+", scheduled for "+str(event.date_time_create)+".",
+                "",
+                "The event details are in the link bellow:",
+                "http://localhost:5000"+url_for('showevent', id=eventid),
+                "",
+                "Best Regards,",
+                "TygAyo Inc."
+                ])
         username = 'tygayoinc@gmail.com'
         password = 'Work1234'
         server = SMTP("smtp.gmail.com",587)
@@ -152,6 +170,7 @@ def chooserm():
         server.starttls()
         server.login(username,password)
         server.sendmail(fromaddr, toaddrs, msg)
+        server.sendmail(fromaddr, toaddrs_client, msg_client)
         server.close()
         
         flash('You have successfully chosed a repairman!')
