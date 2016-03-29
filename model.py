@@ -29,6 +29,19 @@ class Event(db.Model):
     user_id = db.Column(db.Integer,db.ForeignKey('user.id'))
     repairman_id = db.Column(db.Integer,db.ForeignKey('user.id'))
     signedupe = db.relationship('Applied_repairman',backref='eventup',foreign_keys=[Applied_repairman.event_id],lazy='dynamic')
+
+        #Needs to be revised
+    def modify(self):
+        #our_user = User.query.filter_by(id=id).first()
+        #our_user = User.query.get(id)
+        our_event = db.session.query(Event).get(self.id)
+        our_event.name = self.name
+        our_event.description = self.description
+        our_event.price = self.price
+        our_event.address = self.address
+        our_event.photo = self.photo
+        db.session.add(our_event)
+        db.session.commit()
     
     def save(self):
         db.session.add(self)

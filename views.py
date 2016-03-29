@@ -204,6 +204,33 @@ def modify_an_user():
             mobile = request.form.get('mobile'),
             picture = path_to_photo)
         user.modify()
+        flash('You successfully modified User!')
+    #flash('Event cannot be completed before it starts')
+    return render_template('edetails.html', user = user_n)
+
+@app.route('/modifyevent', methods=['GET', 'POST'])
+@login_required
+def modify_an_event():
+    if request.method == 'POST':
+        path_to_photo = None
+        user_n = User.get_by_username(session['username'])
+        #if request.form.get('datmtme') >= datetime.now():
+        if 'photo' in request.files:
+            photo = request.files['photo']
+            extension = photo.filename.split('.')
+            #Needs to be revised
+            path_to_photo = './static/images/events_photos/' + secure_filename(str(session['id']) + '.' + extension[-1])
+            photo.save(path_to_photo)
+
+        event = Event(
+            id = request.form.get('id'),#how to get id of current event
+            name = request.form.get('name'),
+            description = request.form.get('description'),
+            price = request.form.get('price'),
+            address = request.form.get('address'),
+            accessories_purchased = request.form.get('accessories'),
+            photo = request.form.get('photo'))
+        event.modify()
         flash('You successfully modified Event!')
     #flash('Event cannot be completed before it starts')
     return render_template('profile.html', user = user_n)
