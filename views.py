@@ -131,38 +131,8 @@ def chooserm():
         fromaddr = 'tygayoinc@gmail.com'
         toaddrs  = rm.email
         toaddrs_client = client.email
-        msg = "\r\n".join([
-                "From: tygayoinc@gmail.com",
-                "To: "+ rm.email,
-                "Subject: Chosen to "+event.name,
-                "",
-                "Dear "+ rm.name+",",
-                "",
-                "This mail is from Tygayo Inc. You have been chosen to take care of "+event.name+".",
-                "The event takes place at "+event.address+", scheduled for "+str(event.date_time_create)+".",
-                "",
-                "The event details are in the link bellow:",
-                "http://localhost:5000"+url_for('showevent', id=eventid),
-                "",
-                "Best Regards,",
-                "TygAyo Inc."
-                ])
-        msg_client = "\r\n".join([
-                "From: tygayoinc@gmail.com",
-                "To: "+ toaddrs_client,
-                "Subject: Chose repairman for "+event.name,
-                "",
-                "Dear "+ client.name+",",
-                "",
-                "This mail is from Tygayo Inc. You choose "+rm.name+" for repairman.",
-                "The event takes place at "+event.address+", scheduled for "+str(event.date_time_create)+".",
-                "",
-                "The event details are in the link bellow:",
-                "http://localhost:5000"+url_for('showevent', id=eventid),
-                "",
-                "Best Regards,",
-                "TygAyo Inc."
-                ])
+        msg = confirmation_mail('repairman', rm, event, eventid)
+        msg_client = confirmation_mail('client', client, event, eventid)
         username = 'tygayoinc@gmail.com'
         password = 'Work1234'
         server = SMTP("smtp.gmail.com",587)
@@ -248,3 +218,42 @@ def allevents():
         else:
             return render_template('events.html', username = session['username'], events = Event.get_all()[::-1])
     return render_template('events.html', username = session['username'], events = Event.get_all()[::-1])
+
+def confirmation_mail(msg_for_what, user_obj, event_obj, eventid):
+    if msg_for_what == 'repairman':
+        chosen_repariman_msg = "\r\n".join([
+            "From: tygayoinc@gmail.com",
+            "To: " + user_obj.email,
+            "Subject: Chosen to " + event_obj.name,
+            "",
+            "Dear " + user_obj.name + ",",
+            "",
+            "This mail is from Tygayo Inc. You have been chosen to take care of " + event_obj.name + ".",
+            "The event takes place at " + event_obj.address + ", scheduled for " + str(event_obj.date_time_create) + ".",
+            "",
+            "The event details are in the link bellow:",
+            "http://localhost:5000" + url_for('showevent', id=eventid),
+            "",
+            "Best Regards,",
+            "TygAyo Inc."
+            ])
+        return chosen_repariman_msg
+
+    if msg_for_what == 'client':
+        msg_to_client = "\r\n".join([
+                "From: tygayoinc@gmail.com",
+                "To: " + user_obj.email,
+                "Subject: Chose repairman for " + event_obj.name,
+                "",
+                "Dear " + user_obj.name + ",",
+                "",
+                "This mail is from Tygayo Inc. You choose " + user_obj.name + " for repairman.",
+                "The event takes place at " + event_obj.address + ", scheduled for " + str(event_obj.date_time_create) + ".",
+                "",
+                "The event details are in the link bellow:",
+                "http://localhost:5000" + url_for('showevent', id=eventid),
+                "",
+                "Best Regards,",
+                "TygAyo Inc."
+                ])
+        return msg_to_client
