@@ -84,7 +84,7 @@
                 <div class="row">
                     <div class="col-md-3 col-md-offset-1">
                         <div align="center">
-                           <img src="/{{ event.photo }}">
+                           <img class="img-circle" src="/{{ event.photo }}">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -212,9 +212,8 @@
                 <h4 class="modal-title" id="myModalLabel">Modify Event Details</h4>
               </div>
               <form method='POST' action="/modifyevent" enctype="multipart/form-data">
-                <div class="modal-body"> 
-                  <label for="name"><span class="glyphicon glyphicon-user"></span> Event Id</label>
-                  <input type="text" class="form-control" name="id" id="id" placeholder="Id of Event" value="{{ event.id }}" readonly>
+                <div class="modal-body">
+                  <input type="hidden" class="form-control" name="id" id="id" placeholder="Id of Event" value="{{ event.id }}" readonly>
                   <label for="name"><span class="glyphicon glyphicon-user"></span> Event Name</label>
                   <input type="text" class="form-control" name="name" id="name" placeholder="Change Name of Event" value="{{ event.name }}">
                   <label for="description"><span class="glyphicon glyphicon-comment"></span> Event Description</label><br>

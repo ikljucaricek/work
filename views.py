@@ -223,7 +223,7 @@ def modify_an_event():
             photo.save(path_to_photo)
 
         event = Event(
-            id = request.form.get('id'),#how to get id of current event
+            id = request.form.get('id'),
             name = request.form.get('name'),
             description = request.form.get('description'),
             price = request.form.get('price'),
