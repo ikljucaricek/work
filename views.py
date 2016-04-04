@@ -278,7 +278,7 @@ def modify_an_event():
             photo = request.files['photo']
             extension = photo.filename.split('.')
             #Needs to be revised
-            path_to_photo = './static/images/events_photos/' + secure_filename(str(session['id']) + '.' + extension[-1])
+            path_to_photo = './static/images/events_photos/' + secure_filename(str(request.form.get('id')) + '.' + extension[-1])
             photo.save(path_to_photo)
 
         event = Event(
@@ -289,7 +289,7 @@ def modify_an_event():
             address = request.form.get('address'),
             date_time_close = request.form.get('datmtme'),
             accessories_purchased = request.form.get('accessories'),
-            photo = request.form.get('photo'))
+            photo = path_to_photo)
         event.modify()
         flash('You successfully modified Event!')
     #flash('Event cannot be completed before it starts')
