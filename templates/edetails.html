@@ -217,11 +217,13 @@
                   <label for="name"><span class="glyphicon glyphicon-user"></span> Event Name</label>
                   <input type="text" class="form-control" name="name" id="name" placeholder="Change Name of Event" value="{{ event.name }}">
                   <label for="description"><span class="glyphicon glyphicon-comment"></span> Event Description</label><br>
-                  <input type="text" class="form-control" name="description" id="description" placeholder="Enter Description of Event" value="{{ event.description }}">
+                  <input type="text" class="form-control" name="description" id="description" placeholder="Change Description of Event" value="{{ event.description }}">
                   <label for="price"><span class="glyphicon glyphicon-usd"></span> Event Price</label>
-                  <input type="number" class="form-control" name="price" id="price" step="any" placeholder="Enter Price of Event" value="{{ event.price }}">
+                  <input type="number" class="form-control" name="price" id="price" step="any" placeholder="Change Price of Event" value="{{ event.price }}">
                   <label for="address"><span class="glyphicon glyphicon-map-marker"></span> Event Address</label>
                   <input type="text" class="form-control" name="address" id="address" placeholder="Change Address of User location" value="{{ event.address }}">
+                  <label for="date"><span class="glyphicon glyphicon-calendar"></span> Event Date</label>
+                  <input type="datetime-local" class="form-control" name="datmtme" id="datmtme" placeholder="Change End Date of Event" value="{{ event.date_time_close }}">
                   <label for="photo"><span class="glyphicon glyphicon-camera"></span> Event Photo</label>
                   <input type="file" accept="image/*" class="form-control" name="photo" id="photo" placeholder="Change Photo of User" value="{{ event.photo }}">
                   <label for="purchase accessories"><span class="glyphicon glyphicon-check"></span> Purchase Accessories</label>

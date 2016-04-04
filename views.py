@@ -228,6 +228,7 @@ def modify_an_event():
             description = request.form.get('description'),
             price = request.form.get('price'),
             address = request.form.get('address'),
+            date_time_close = request.form.get('datmtme'),
             accessories_purchased = request.form.get('accessories'),
             photo = request.form.get('photo'))
         event.modify()

@@ -40,6 +40,7 @@ class Event(db.Model):
         our_event.price = self.price
         our_event.address = self.address
         our_event.photo = self.photo
+        our_event.date_time_close = self.date_time_close
         db.session.add(our_event)
         db.session.commit()
     
