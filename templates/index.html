@@ -60,7 +60,7 @@
         </ul>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#regModal" data-toggle="modal" id="regLnk" data-target="#reg-modal">Register</a></li>
+            <li><a href="#regModal" data-toggle="modal" id="regLnk" data-target="#regForm-modal">Register</a></li>
             <li><a href="#logModal" data-toggle="modal" data-target="#log-modal" id="myLnk">Sign In</a></li>
           </ul>
         </div>
@@ -136,7 +136,7 @@
     </div>
      
     <!-- Modal Register -->
-            <div id="reg-modal" class="modal fade" role="dialog" aria-labelledby="myModalLabel5" aria-hidden="true">
+            <div id="regForm-modal" class="modal fade" role="dialog" aria-labelledby="myModalLabel5" aria-hidden="true">
               <div class="modal-dialog" role="document"> 
                 <div class="modal-content">
                   <div class="modal-header" >
@@ -352,11 +352,7 @@
             },
             password: {
                 validators: {
-                    identical: {
-                        field: 'passwordConfr',
-                        message: 'The password and its confirm are not the same'
-                },
-                    notEmpty: {
+                   notEmpty: {
                         message: 'The password is required and cannot be empty'
                     }
                 }
