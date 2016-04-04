@@ -45,6 +45,51 @@ def login():
     else:
         return render_template('index.html', events = Event.get_all()[:-11:-1])
 
+@app.route('/register', methods=['POST'])
+def register():
+    if request.method == 'POST':
+        path_to_photo = None
+        #if request.form.get('datmtme') >= datetime.now():
+        usernamecheck = User.get_by_username(request.form.get('username'))
+        mailcheck = User.get_by_mail(request.form.get('email'))
+        if mailcheck != None:
+            flash('We are sorry, register was not sucesfull as this email adress is already registered.')
+            return render_template('index.html',events = Event.get_all()[:-11:-1])
+        elif usernamecheck != None:
+            flash('We are sorry, register was not sucesfull as this username is already registered.')
+            return render_template('index.html',events = Event.get_all()[:-11:-1])
+        else:            
+            user = User(
+                name = request.form.get('name'),
+                surename = request.form.get('surename'),
+                username = request.form.get('username'),
+                address = request.form.get('address'),
+                email = request.form.get('email'),
+                password = request.form.get('password'),
+                mobile = request.form.get('mobile'),
+                joindate = datetime.now())
+            user.save()
+            
+            us = User.get_by_username(user.username)
+            print "Tohle je files"
+            print request.files
+            print request.files.getlist('photo')
+            # pho = request.files[0]
+            # print pho.filename
+            if 'photo' in request.files:
+                photo = request.files['photo']
+                extension = photo.filename.split('.')
+                path_to_photo = '.\\static\\images\\users_avatar\\' + secure_filename(str(us.id) + '.' + extension[-1])
+                photo.save(path_to_photo)
+                us.picture = path_to_photo
+                us.save()
+            flash('You have successfully Registered!')
+            session['id'] = us.id
+            session['username'] = us.username
+            return render_template('startup.html', username=us.username, events = Event.get_all()[:-11:-1])
+    else:
+        return render_template('index.html', events = Event.get_all()[:-11:-1])        
+
 @app.route('/signout')
 def logout():
     session.pop('username', None)
@@ -130,9 +175,22 @@ def chooserm():
         
         fromaddr = 'tygayoinc@gmail.com'
         toaddrs  = rm.email
-        toaddrs_client = client.email
-        msg = confirmation_mail('repairman', rm, event, eventid)
-        msg_client = confirmation_mail('client', client, event, eventid)
+        msg = "\r\n".join([
+                "From: tygayoinc@gmail.com",
+                "To: "+ rm.email,
+                "Subject: Chosen to "+event.name,
+                "",
+                "Dear "+ rm.name+",",
+                "",
+                "This mail is from Tygayo Inc. You have been chosen to take care of "+event.name+".",
+                "The event takes place at "+event.address+", scheduled for "+str(event.date_time_create)+".",
+                "",
+                "The event details are in the link bellow:",
+                "http://localhost:5000"+url_for('showevent', id=eventid),
+                "",
+                "Best Regards,",
+                "TygAyo Inc."
+                ])
         username = 'tygayoinc@gmail.com'
         password = 'Work1234'
         server = SMTP("smtp.gmail.com",587)
@@ -146,6 +204,7 @@ def chooserm():
         flash('You have successfully chosed a repairman!')
     return redirect (url_for('showevent', id=eventid))
     # return render_template('startup.html', username = session['username'])   
+    
 @app.route('/createvent', methods=['GET', 'POST'])
 @login_required
 def create_an_event():
@@ -155,7 +214,7 @@ def create_an_event():
         if 'photo' in request.files:
             photo = request.files['photo']
             extension = photo.filename.split('.')
-            path_to_photo = '.\\static\\images\\users_avatar\\' + secure_filename(str(session['id']) + '.' + extension[-1])
+            path_to_photo = '.\\static\\images\\events_photos\\' + secure_filename(str(session['id']) + '.' + extension[-1])
             photo.save(path_to_photo)
 
         event = Event(
@@ -204,7 +263,7 @@ def modify_an_user():
             mobile = request.form.get('mobile'),
             picture = path_to_photo)
         user.modify()
-        flash('You successfully modified User!')
+        flash('You successfully modified Profile!')
     #flash('Event cannot be completed before it starts')
     return render_template('edetails.html', user = user_n)
 
