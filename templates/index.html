@@ -350,6 +350,10 @@
             },
             password: {
                 validators: {
+                    identical: {
+                        field: 'passwordConfr',
+                        message: 'The password and its confirm are not the same'
+                },
                     notEmpty: {
                         message: 'The password is required and cannot be empty'
                     }

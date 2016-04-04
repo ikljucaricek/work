@@ -50,34 +50,43 @@ def register():
     if request.method == 'POST':
         path_to_photo = None
         #if request.form.get('datmtme') >= datetime.now():
-        user = User(
-            name = request.form.get('name'),
-            surename = request.form.get('surename'),
-            username = request.form.get('username'),
-            address = request.form.get('address'),
-            email = request.form.get('email'),
-            password = request.form.get('password'),
-            mobile = request.form.get('mobile'),
-            joindate = datetime.now())
-        user.save()
-        
-        us = User.get_by_username(user.username)
-        print "Tohle je files"
-        print request.files
-        print request.files.getlist('photo')
-        # pho = request.files[0]
-        # print pho.filename
-        if 'photo' in request.files:
-            photo = request.files['photo']
-            extension = photo.filename.split('.')
-            path_to_photo = '.\\static\\images\\users_avatar\\' + secure_filename(str(us.id) + '.' + extension[-1])
-            photo.save(path_to_photo)
-            us.picture = path_to_photo
-            us.save()
-        flash('You have successfully Registered!')
-        session['id'] = us.id
-        session['username'] = us.username
-        return render_template('startup.html', username=us.username, events = Event.get_all()[:-11:-1])
+        usernamecheck = User.get_by_username(request.form.get('username'))
+        mailcheck = User.get_by_mail(request.form.get('email'))
+        if mailcheck != None:
+            flash('We are sorry, register was not sucesfull as this email adress is already registered.')
+            return render_template('index.html',events = Event.get_all()[:-11:-1])
+        elif usernamecheck != None:
+            flash('We are sorry, register was not sucesfull as this username is already registered.')
+            return render_template('index.html',events = Event.get_all()[:-11:-1])
+        else:            
+            user = User(
+                name = request.form.get('name'),
+                surename = request.form.get('surename'),
+                username = request.form.get('username'),
+                address = request.form.get('address'),
+                email = request.form.get('email'),
+                password = request.form.get('password'),
+                mobile = request.form.get('mobile'),
+                joindate = datetime.now())
+            user.save()
+            
+            us = User.get_by_username(user.username)
+            print "Tohle je files"
+            print request.files
+            print request.files.getlist('photo')
+            # pho = request.files[0]
+            # print pho.filename
+            if 'photo' in request.files:
+                photo = request.files['photo']
+                extension = photo.filename.split('.')
+                path_to_photo = '.\\static\\images\\users_avatar\\' + secure_filename(str(us.id) + '.' + extension[-1])
+                photo.save(path_to_photo)
+                us.picture = path_to_photo
+                us.save()
+            flash('You have successfully Registered!')
+            session['id'] = us.id
+            session['username'] = us.username
+            return render_template('startup.html', username=us.username, events = Event.get_all()[:-11:-1])
     else:
         return render_template('index.html', events = Event.get_all()[:-11:-1])        
 
@@ -193,6 +202,7 @@ def chooserm():
         flash('You have successfully chosed a repairman!')
     return redirect (url_for('showevent', id=eventid))
     # return render_template('startup.html', username = session['username'])   
+    
 @app.route('/createvent', methods=['GET', 'POST'])
 @login_required
 def create_an_event():
