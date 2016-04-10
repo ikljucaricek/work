@@ -237,7 +237,18 @@ def create_an_event():
 def profilePage(username):
     user = User.get_by_username(username)
     #user_photo = user.picture
-    return render_template('profile.html', user = user)
+    return render_template('profile.html', user = user)  
+
+@app.route('/mypage/<username>')
+def myPage(username):
+    user = User.get_by_username(username)
+    sqltxt = select([(Applied_repairman.event_id)]).where(Applied_repairman.repairman_id == user.id)
+    allsignedup = db.engine.execute(sqltxt).fetchall()
+    allsignedups = [r[0] for r in allsignedup]
+    # Fetch Event objects for these ids
+    sqltxt2 = select([(Event)]).where(Event.id.in_(allsignedups))
+    Signedupuevents = db.engine.execute(sqltxt2).fetchall()
+    return render_template('mypage.html', user = user, SUPevents = Signedupuevents)   
 
 @app.route('/modifyuser', methods=['GET', 'POST'])
 @login_required
