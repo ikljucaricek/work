@@ -68,13 +68,14 @@
         <br><br><br>
       </div>
     </div>
+    <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
           <div class="panel panel-info">
               <!-- Default panel contents -->
             <div class="panel-heading">Events user signed-up for</div>
               <div class="table-responsive">
-                <table id="tbl" cellspacing="0" width="100%" class="table table-hover">
+                <table id="tbl-signup" cellspacing="5px" width="100%" class="table table-hover">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -106,6 +107,9 @@
           </div>
         </div>
     </div>
+          <br>
+
+    </div> <!-- /container -->
     
     
     <footer class="footer">
@@ -138,11 +142,11 @@
     <script src="../static/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../static/js/ie10-viewport-bug-workaround.js"></script>
+    <!-- search and paging for tables -->
+    <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
     <script>
       $(document).ready(function(){
-          $("#myBtn").click(function(){
-              $("#myModal").modal();
-          });
+          $('#tbl-signup').DataTable({order: [ 1, 'desc' ]});
       });
     </script>
   </body>
