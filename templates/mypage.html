@@ -69,40 +69,78 @@
       </div>
     </div>
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-          <div class="panel panel-info">
-              <!-- Default panel contents -->
-            <div class="panel-heading">Events user signed-up for</div>
-              <div class="table-responsive">
-                <table id="tbl" cellspacing="0" width="100%" class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Name</th>
-                      <th>Time & Date</th>
-                      <th>Price</th>
-                      <th>Accessories Purchased</th>
-                      <th>Link</th>
-                    </tr>            
-                  </thead>
-                  <tbody>
-                    {% if SUPevents %}
-                      {% for event in SUPevents %}
-                        {% if event.active %}
-                      <tr class='clickable-row' data-href='#'>
-                        <th scope="row">{{ event.id }}</th>
-                        <td>{{ event.name }}</td>
-                        <td>{{ event.date_time_close }}</td>
-                        <td>{{ event.price }}</td>
-                        <td>{{ event.accessories_purchased }}</td>
-                        <td><a href="/edetails/{{ event.id }}">Go To</a></td>
-                      </tr>
-                        {% endif %}
-                      {% endfor %}
-                    {% endif %}
-                  </tbody>
-                </table>
-              </div>
+        <div class="col-md-10 col-md-offset-1">
+          <div class="col-md-6">
+            <div class="panel panel-info">
+                <!-- Default panel contents -->
+              <div class="panel-heading">Events created by User</div>
+                <div class="table-responsive">
+                  <table id="tble" cellspacing="0" width="100%" class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Time & Date</th>
+                        <th>Price</th>
+                        <th>Accessories Purchased</th>
+                        <th>Link</th>
+                      </tr>            
+                    </thead>
+                    <tbody>
+                      {% if SUPevents %}
+                        {% for event in SUPevents %}
+                          {% if event.active %}
+                        <tr class='clickable-row' data-href='#'>
+                          <th scope="row">{{ event.id }}</th>
+                          <td>{{ event.name }}</td>
+                          <td>{{ event.date_time_close }}</td>
+                          <td>{{ event.price }}</td>
+                          <td>{{ event.accessories_purchased }}</td>
+                          <td><a href="/edetails/{{ event.id }}">Go To</a></td>
+                        </tr>
+                          {% endif %}
+                        {% endfor %}
+                      {% endif %}
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="panel panel-info">
+                <!-- Default panel contents -->
+              <div class="panel-heading">Events user signed-up for</div>
+                <div class="table-responsive">
+                  <table id="tbl" cellspacing="0" width="100%" class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Time & Date</th>
+                        <th>Price</th>
+                        <th>Accessories Purchased</th>
+                        <th>Link</th>
+                      </tr>            
+                    </thead>
+                    <tbody>
+                      {% if SUPevents %}
+                        {% for event in SUPevents %}
+                          {% if event.active %}
+                        <tr class='clickable-row' data-href='#'>
+                          <th scope="row">{{ event.id }}</th>
+                          <td>{{ event.name }}</td>
+                          <td>{{ event.date_time_close }}</td>
+                          <td>{{ event.price }}</td>
+                          <td>{{ event.accessories_purchased }}</td>
+                          <td><a href="/edetails/{{ event.id }}">Go To</a></td>
+                        </tr>
+                          {% endif %}
+                        {% endfor %}
+                      {% endif %}
+                    </tbody>
+                  </table>
+                </div>
+            </div>
           </div>
         </div>
     </div>
@@ -138,11 +176,14 @@
     <script src="../static/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../static/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
     <script>
       $(document).ready(function(){
           $("#myBtn").click(function(){
               $("#myModal").modal();
           });
+          $('#tble').DataTable({order: [ 1, 'desc' ]});
+          $('#tbl').DataTable({order: [ 1, 'desc' ]});
       });
     </script>
   </body>

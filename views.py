@@ -240,6 +240,7 @@ def profilePage(username):
     return render_template('profile.html', user = user)  
 
 @app.route('/mypage/<username>')
+@login_required
 def myPage(username):
     user = User.get_by_username(username)
     sqltxt = select([(Applied_repairman.event_id)]).where(Applied_repairman.repairman_id == user.id)
