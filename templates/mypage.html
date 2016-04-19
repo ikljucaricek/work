@@ -72,13 +72,14 @@
         <div class="col-md-8 col-md-offset-2">
           <div class="panel panel-info">
               <!-- Default panel contents -->
-            <div class="panel-heading">List of Signedup Events</div>
+            <div class="panel-heading">Events user signed-up for</div>
               <div class="table-responsive">
                 <table id="tbl" cellspacing="0" width="100%" class="table table-hover">
                   <thead>
                     <tr>
                       <th>#</th>
                       <th>Name</th>
+                      <th>Time & Date</th>
                       <th>Price</th>
                       <th>Accessories Purchased</th>
                       <th>Link</th>
@@ -91,6 +92,7 @@
                       <tr class='clickable-row' data-href='#'>
                         <th scope="row">{{ event.id }}</th>
                         <td>{{ event.name }}</td>
+                        <td>{{ event.date_time_close }}</td>
                         <td>{{ event.price }}</td>
                         <td>{{ event.accessories_purchased }}</td>
                         <td><a href="/edetails/{{ event.id }}">Go To</a></td>
