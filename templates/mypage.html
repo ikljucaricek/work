@@ -22,7 +22,8 @@
 
     <!-- Custom styles for this template -->
     <link href="../static/css/jumbotron.css" rel="stylesheet">
-
+    <!-- Table styles -->
+    <link href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css" rel="stylesheet">
   </head>
     <body>
 
@@ -184,7 +185,7 @@
               $("#myModal").modal();
           });
           $('#tble').DataTable({order: [ 1, 'desc' ]});
-          $('#tbl').DataTable({order: [ 1, 'desc' ]});
+          $('#tbl-signup').DataTable({order: [ 1, 'desc' ]});
       });
     </script>
   </body>
