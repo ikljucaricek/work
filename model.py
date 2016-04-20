@@ -103,6 +103,7 @@ class User(db.Model):
     def get_by_username(username):
         return db.session.query(User).filter(User.username == username).first()
 
+    @staticmethod
     def get(user_id):
         return db.session.query(User).filter(User.id == user_id).first()
 

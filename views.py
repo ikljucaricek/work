@@ -147,7 +147,7 @@ def showevent(id):
                                                                    cuserId = cuserId)
 
                                                                    
-@app.route('/signup', methods=['POST'])
+@app.route('/signup', methods=['POST','GET'])
 def signup():
     eventid = request.form.get('event_to_signup')
     if request.method == 'POST':      
@@ -157,7 +157,9 @@ def signup():
             )
         signed.save()
         flash('You have successfully signed up for the event!')
-    return redirect (url_for('showevent', id=eventid))
+        id = session.get('id')
+        user = User.get(id)    
+    return redirect (url_for('myPage',username=user.username))
     
 @app.route('/chooserm', methods=['POST'])
 def chooserm():
