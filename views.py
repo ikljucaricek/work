@@ -240,6 +240,7 @@ def profilePage(username):
     return render_template('profile.html', user = user)  
 
 @app.route('/mypage/<username>')
+@login_required
 def myPage(username):
     user = User.get_by_username(username)
     sqltxt = select([(Applied_repairman.event_id)]).where(Applied_repairman.repairman_id == user.id)
@@ -248,7 +249,11 @@ def myPage(username):
     # Fetch Event objects for these ids
     sqltxt2 = select([(Event)]).where(Event.id.in_(allsignedups))
     Signedupuevents = db.engine.execute(sqltxt2).fetchall()
-    return render_template('mypage.html', user = user, SUPevents = Signedupuevents)   
+
+    #Get all events creted by User
+    event_created_by_user_query = select([Event]).where(Event.user_id == user.id)
+    event_created_by_user = db.engine.execute(event_created_by_user_query).fetchall()
+    return render_template('mypage.html', user = user, CreatedEvents = event_created_by_user, SUPevents = Signedupuevents)   
 
 @app.route('/modifyuser', methods=['GET', 'POST'])
 @login_required
