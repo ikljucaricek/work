@@ -268,7 +268,7 @@ def modify_an_user():
         user.modify()
         flash('You successfully modified Profile!')
     #flash('Event cannot be completed before it starts')
-    return render_template('edetails.html', user = user_n)
+    return render_template('profile.html', user = user_n)
 
 @app.route('/modifyevent', methods=['GET', 'POST'])
 @login_required
@@ -297,6 +297,17 @@ def modify_an_event():
         flash('You successfully modified Event!')
     #flash('Event cannot be completed before it starts')
     return render_template('profile.html', user = user_n)
+
+@app.route('/deactevent', methods=['GET', 'POST'])
+@login_required
+def deactivate_event():
+    if request.method == 'POST':
+        event = Event(
+            id = request.form.get('id'),
+            active = 0)
+        event.deactivate()
+        flash('You successfully deactivated Event!')
+    return render_template('profile.html', user = User.get_by_username(session['username']))
 
 @app.route('/events', methods=['GET', 'POST'])
 @login_required

@@ -43,6 +43,12 @@ class Event(db.Model):
         our_event.date_time_close = self.date_time_close
         db.session.add(our_event)
         db.session.commit()
+
+    def deactivate(self):
+        our_event = db.session.query(Event).get(self.id)
+        our_event.active = self.active
+        db.session.add(our_event)
+        db.session.commit()
     
     def save(self):
         db.session.add(self)

@@ -114,7 +114,10 @@
                             <span class="info">Contact:</span><br/>
                             <span class="pre-info">mail:</span><span class="info-text"> {{ user.email }}</span><br/>
                             <span class="pre-info">phone:</span><span class="info-text"> {{ user.mobile }}</span><br/>
-                        </div>
+                        </div><br/>
+                      {% if event.active != False %}
+                        <button class="btn btn-danger" type="button" data-toggle="modal" id="deactBtn">Deactivate Event</button>
+                      {% endif %}
                     </div>  
                     <div class="col-md-6">
                             {% if event.active == False %}
@@ -237,6 +240,27 @@
             </div>
           </div>
         </div>
+
+        <div class="modal fade" id="deactEvent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Deactivate Event</h4>
+              </div>
+              <form method='POST' action="/deactevent" enctype="multipart/form-data">
+                <div class="modal-body">
+                  <input type="hidden" class="form-control" name="id" id="id" placeholder="Id of Event" value="{{ event.id }}" readonly>
+                  <p>Deactivation is permanent! Do you want to deactivate Event?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-danger">Deactivate Event</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div><!-- /.row -->
 <!-- Modal -->
 <div id="edit-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -321,6 +345,13 @@
       $(document).ready(function(){
           $("#myBtn").click(function(){
               $("#modfyEvent").modal();
+          });
+      });
+    </script>
+    <script>
+      $(document).ready(function(){
+          $("#deactBtn").click(function(){
+              $("#deactEvent").modal();
           });
       });
     </script>
