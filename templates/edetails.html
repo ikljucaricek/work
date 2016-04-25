@@ -97,8 +97,10 @@
                 
                 <div class="row">
                     <div class="col-md-3 col-md-offset-1">
+                      {% if event.active != False and user.id == cuserId %}
                       <button class="btn btn-info" type="button" data-toggle="modal" id="myBtn">Edit Event Info</button>
-                        <div class="info-section">
+                      {% endif %}
+                       <div class="info-section">
                             <span class="info">Event Address:</span> <br/>
                             <span class="info-text pre-info">{{ event.address }}</span><br/>
                         </div>
