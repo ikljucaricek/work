@@ -115,7 +115,7 @@
                             <span class="pre-info">mail:</span><span class="info-text"> {{ user.email }}</span><br/>
                             <span class="pre-info">phone:</span><span class="info-text"> {{ user.mobile }}</span><br/>
                         </div><br/>
-                      {% if event.active != False %}
+                      {% if event.active != False and user.id == cuserId %}
                         <button class="btn btn-danger" type="button" data-toggle="modal" id="deactBtn">Deactivate Event</button>
                       {% endif %}
                     </div>  
