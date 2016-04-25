@@ -51,9 +51,9 @@
         </ul>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="/mypage/<username>">My Page</a></li>
-            <li><a href="/register">Register</a></li>
             {% if username %}
+              <li><a href="/mypage/{{ username }}">My Page</a></li>
+              <li><a href="/profile/{{ username }}">Profile Page</a></li>            
               <li><a href="/signout">Sign Out {{ username }}</a></li>
             {% else %}
               <li><a href="/signout">Sign Out</a></li>
