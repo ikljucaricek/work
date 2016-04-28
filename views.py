@@ -144,7 +144,8 @@ def showevent(id):
                                                                             user=user,
                                                                    users = Signedupusers,
                                                                    already = already,
-                                                                   cuserId = cuserId)
+                                                                   cuserId = cuserId,
+                                                                   accessP = accessP)
 
                                                                    
 @app.route('/signup', methods=['POST','GET'])
@@ -278,14 +279,23 @@ def modify_an_event():
     if request.method == 'POST':
         path_to_photo = None
         user_n = User.get_by_username(session['username'])
+        originid = request.form.get('id')
+        print originid
+        originEvent = Event.get(originid)
         #if request.form.get('datmtme') >= datetime.now():
-        if 'photo' in request.files:
+        if 'photo' in request.files:      
             photo = request.files['photo']
-            extension = photo.filename.split('.')
-            #Needs to be revised
-            path_to_photo = './static/images/events_photos/' + secure_filename(str(request.form.get('id')) + '.' + extension[-1])
-            photo.save(path_to_photo)
-
+            if photo:
+                extension = photo.filename.split('.')
+                print "changing photo"
+                #Needs to be revised
+                path_to_photo = './static/images/events_photos/' + secure_filename(str(request.form.get('id')) + '.' + extension[-1])
+                photo.save(path_to_photo)
+            else:
+                print "not changing photo"
+                path_to_photo = originEvent.photo
+            
+        print path_to_photo    
         event = Event(
             id = request.form.get('id'),
             name = request.form.get('name'),
@@ -294,7 +304,8 @@ def modify_an_event():
             address = request.form.get('address'),
             date_time_close = request.form.get('datmtme'),
             accessories_purchased = request.form.get('accessories'),
-            photo = path_to_photo)
+            photo = path_to_photo
+            )
         event.modify()
         flash('You successfully modified Event!')
     #flash('Event cannot be completed before it starts')
