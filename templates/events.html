@@ -145,6 +145,7 @@
                     <tr>
                       <th>#</th>
                       <th>Name</th>
+                      <th>Description</th>
                       <th>Price</th>
                       <th>Accessories Purchased</th>
                       <th>Link</th>
@@ -157,6 +158,7 @@
                       <tr class='clickable-row' data-href='#'>
                         <th scope="row">{{ event.id }}</th>
                         <td>{{ event.name }}</td>
+                        <td>{{ event.description}}</td>
                         <td>{{ event.price }}</td>
                         <td>{{ event.accessories_purchased }}</td>
                         <td><a href="/edetails/{{ event.id }}">Go To</a></td>
@@ -214,7 +216,14 @@
           $("#myBtn").click(function(){
               $("#myModal").modal();
           });
-          $('#tbl').DataTable({order: [ 1, 'desc' ]});
+          $('#tbl').DataTable({
+            "columnDefs": [
+                {
+                    "targets": [ 2 ],
+                    "visible": false
+                }
+            ]        
+          });
       });
     </script>
   </body>
