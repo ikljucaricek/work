@@ -280,22 +280,21 @@ def modify_an_event():
         path_to_photo = None
         user_n = User.get_by_username(session['username'])
         originid = request.form.get('id')
-        print originid
         originEvent = Event.get(originid)
         #if request.form.get('datmtme') >= datetime.now():
         if 'photo' in request.files:      
             photo = request.files['photo']
             if photo:
                 extension = photo.filename.split('.')
-                print "changing photo"
+                #print "changing photo"
                 #Needs to be revised
                 path_to_photo = './static/images/events_photos/' + secure_filename(str(request.form.get('id')) + '.' + extension[-1])
                 photo.save(path_to_photo)
             else:
-                print "not changing photo"
+                #print "not changing photo"
                 path_to_photo = originEvent.photo
-            
-        print path_to_photo    
+                
+        #print path_to_photo    
         event = Event(
             id = request.form.get('id'),
             name = request.form.get('name'),

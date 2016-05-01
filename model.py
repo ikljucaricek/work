@@ -37,6 +37,7 @@ class Event(db.Model):
         our_event = db.session.query(Event).get(self.id)
         our_event.name = self.name
         our_event.description = self.description
+        our_event.accessories_purchased = self.accessories_purchased
         our_event.price = self.price
         our_event.address = self.address
         our_event.photo = self.photo
