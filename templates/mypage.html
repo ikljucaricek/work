@@ -93,7 +93,7 @@
                     <tbody>
                       {% if CreatedEvents %}
                         {% for event in CreatedEvents %}
-                          {% if event.active %}
+                          
                         <tr class='clickable-row' data-href='#'>
                           <th scope="row">{{ event.id }}</th>
                           <td>{{ event.name }}</td>
@@ -102,7 +102,7 @@
                           <td>{{ event.accessories_purchased }}</td>
                           <td><a href="/edetails/{{ event.id }}">Go To</a></td>
                         </tr>
-                          {% endif %}
+                         
                         {% endfor %}
                       {% endif %}
                     </tbody>
@@ -129,7 +129,7 @@
                     <tbody>
                       {% if SUPevents %}
                         {% for event in SUPevents %}
-                          {% if event.active %}
+                          
                         <tr class='clickable-row' data-href='#'>
                           <th scope="row">{{ event.id }}</th>
                           <td>{{ event.name }}</td>
@@ -138,7 +138,7 @@
                           <td>{{ event.accessories_purchased }}</td>
                           <td><a href="/edetails/{{ event.id }}">Go To</a></td>
                         </tr>
-                          {% endif %}
+                          
                         {% endfor %}
                       {% endif %}
                     </tbody>
