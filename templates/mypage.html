@@ -41,11 +41,14 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Contact</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/events">All Events</a>
+          </li>
         </ul>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             {% if user.username %}
-              <li><a href="/mypage/{{ user.username }}">My Page</a></li>           
+              <li><a href="/profile/{{ user.username }}">Profile Page</a></li>           
               <li><a href="/signout">Sign Out {{ user.username }}</a></li>
             {% endif %}
           </ul>
@@ -82,24 +85,22 @@
                         <th>#</th>
                         <th>Name</th>
                         <th>Time & Date</th>
-                        <th>Price</th>
-                        <th>Accessories Purchased</th>
+                        <th>Active</th>
                         <th>Link</th>
                       </tr>            
                     </thead>
                     <tbody>
                       {% if CreatedEvents %}
                         {% for event in CreatedEvents %}
-                          {% if event.active %}
+                          
                         <tr class='clickable-row' data-href='#'>
                           <th scope="row">{{ event.id }}</th>
                           <td>{{ event.name }}</td>
                           <td>{{ event.date_time_close }}</td>
-                          <td>{{ event.price }}</td>
-                          <td>{{ event.accessories_purchased }}</td>
+                          <td>{{ event.active }}</td>
                           <td><a href="/edetails/{{ event.id }}">Go To</a></td>
                         </tr>
-                          {% endif %}
+                         
                         {% endfor %}
                       {% endif %}
                     </tbody>
@@ -118,24 +119,22 @@
                         <th>#</th>
                         <th>Name</th>
                         <th>Time & Date</th>
-                        <th>Price</th>
-                        <th>Accessories Purchased</th>
+                        <th>Active</th>
                         <th>Link</th>
                       </tr>            
                     </thead>
                     <tbody>
                       {% if SUPevents %}
                         {% for event in SUPevents %}
-                          {% if event.active %}
+                          
                         <tr class='clickable-row' data-href='#'>
                           <th scope="row">{{ event.id }}</th>
                           <td>{{ event.name }}</td>
                           <td>{{ event.date_time_close }}</td>
-                          <td>{{ event.price }}</td>
-                          <td>{{ event.accessories_purchased }}</td>
+                          <td>{{ event.active }}</td>
                           <td><a href="/edetails/{{ event.id }}">Go To</a></td>
                         </tr>
-                          {% endif %}
+                          
                         {% endfor %}
                       {% endif %}
                     </tbody>
@@ -184,8 +183,8 @@
           $("#myBtn").click(function(){
               $("#myModal").modal();
           });
-          $('#tble').DataTable({order: [ 1, 'desc' ]});
-          $('#tbl-signup').DataTable({order: [ 1, 'desc' ]});
+          $('#tble').DataTable({order: [ 0, 'desc' ]});
+          $('#tbl-signup').DataTable({order: [ 0, 'desc' ]});
       });
     </script>
   </body>
