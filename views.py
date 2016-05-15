@@ -86,6 +86,17 @@ def register():
             flash('You have successfully Registered!')
             session['id'] = us.id
             session['username'] = us.username
+            fromaddr = 'tygayoinc@gmail.com'
+            toaddrs  = us.email
+            msg = registration_mail(us)
+            username = 'tygayoinc@gmail.com'
+            password = 'Work1234'
+            server = SMTP("smtp.gmail.com",587)
+            server.ehlo()
+            server.starttls()
+            server.login(username,password)
+            server.sendmail(fromaddr, toaddrs, msg)
+            server.close()
             return render_template('startup.html', username=us.username, events = Event.get_all()[:-11:-1])
     else:
         return render_template('index.html', events = Event.get_all()[:-11:-1])        
@@ -370,3 +381,19 @@ def confirmation_mail(msg_for_what, rm , client, event_obj, eventid):
                 "TygAyo Inc."
                 ])
         return msg_to_client
+        
+def registration_mail(user):
+        user_msg = "\r\n".join([
+            "From: tygayoinc@gmail.com",
+            "To: " + user.email,
+            "Subject: Tygayo inc - Registration",
+            "",
+            "Dear " + user.name + ",",
+            "",
+            "You have sacessfully registered on portal Tygayo Inc. Thank You for Your interest."
+            "",
+            "Best Regards,",
+            "TygAyo Inc."
+            "http://localhost:5000"
+            ])
+        return user_msg  
