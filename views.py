@@ -319,8 +319,7 @@ def modify_an_event():
         event.modify()
         flash('You successfully modified Event!')
     #flash('Event cannot be completed before it starts')
-    return render_template('profile.html', user = user_n)
-
+    return redirect (url_for('showevent', id=originid))
 @app.route('/deactevent', methods=['GET', 'POST'])
 @login_required
 def deactivate_event():
