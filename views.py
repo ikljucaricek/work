@@ -232,7 +232,7 @@ def create_an_event():
         event.save()
         flash('You have successfully created Event!')
     #flash('Event cannot be completed before it starts')
-    return render_template('startup.html', username = session['username'])
+    return redirect (url_for('myPage', username = session['username']))
 
 @app.route('/profile/<username>')
 def profilePage(username):
