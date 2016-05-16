@@ -265,10 +265,13 @@ def modify_an_user():
         #if request.form.get('datmtme') >= datetime.now():
         if 'photo' in request.files:
             photo = request.files['photo']
-            extension = photo.filename.split('.')
-            #Needs to be revised
-            path_to_photo = './static/images/users_avatar/' + secure_filename(str(session['id']) + '.' + extension[-1])
-            photo.save(path_to_photo)
+            if photo:
+                extension = photo.filename.split('.')
+                #Needs to be revised
+                path_to_photo = './static/images/users_avatar/' + secure_filename(str(session['id']) + '.' + extension[-1])
+                photo.save(path_to_photo)
+            else:
+                path_to_photo = user_n.picture
 
         user = User(
             id = session['id'],
