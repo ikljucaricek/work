@@ -285,7 +285,7 @@ def modify_an_user():
         user.modify()
         flash('You successfully modified Profile!')
     #flash('Event cannot be completed before it starts')
-    return render_template('profile.html', user = user_n)
+    return redirect (url_for('profilePage', username = user_n.username))
 
 @app.route('/modifyevent', methods=['GET', 'POST'])
 @login_required
