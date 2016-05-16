@@ -77,8 +77,9 @@
         <div class="col-lg-4">
           <img class="img-circle" src="/{{ user.picture }}" alt="Generic placeholder image" width="140" height="140">
           <br><br>
-
+          {% if user.id == cuserId %}
           <button class="btn btn-info" type="button" data-toggle="modal" id="myBtn">Edit Profile Info</button>
+          {% endif %}
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
           <span class="label label-default">Name:</span><p> {{ user.name }}</p>

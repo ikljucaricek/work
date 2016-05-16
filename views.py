@@ -238,7 +238,7 @@ def create_an_event():
 def profilePage(username):
     user = User.get_by_username(username)
     #user_photo = user.picture
-    return render_template('profile.html', user = user)  
+    return render_template('profile.html', user = user, cuserId = session.get('id'))  
 
 @app.route('/mypage/<username>')
 @login_required
