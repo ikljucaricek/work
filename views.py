@@ -14,6 +14,7 @@ def login_required(fn):
     @wraps(fn)
     def decorated_view(*args, **kwargs):
         if not ('id' in session):
+            flash('You need to signin!')
             return redirect('/signin')
         return fn(*args, **kwargs)
     return decorated_view
