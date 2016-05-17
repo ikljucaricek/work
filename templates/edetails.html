@@ -231,7 +231,7 @@
                   <label for="date"><span class="glyphicon glyphicon-calendar"></span> Event Date</label>
                   <input type="datetime-local" class="form-control" name="datmtme" id="datmtme" placeholder="Change End Date of Event" value="{{ event.date_time_close }}">
                   <label for="photo"><span class="glyphicon glyphicon-camera"></span> Event Photo</label>
-                  <input type="file" accept="image/x-png, image/gif, image/jpeg"" class="form-control" name="photo" id="photo" placeholder="Change Photo of User" value="{{ event.photo }}">
+                  <input type="file" accept="image/*" class="form-control" name="photo" id="photo" placeholder="Change Photo of User" value="{{ event.photo }}">
                   <label for="accessories"><span class="glyphicon glyphicon-check"></span> Purchase Accessories</label>
                   <input type="checkbox" class="form-control" name="accessories" id="accessories" value="1" {{ accessP }}>
                 </div>
