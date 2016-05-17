@@ -53,10 +53,10 @@ def register():
         usernamecheck = User.get_by_username(request.form.get('username'))
         mailcheck = User.get_by_mail(request.form.get('email'))
         if mailcheck != None:
-            flash('We are sorry, register was not sucesfull as this email adress is already registered.')
+            flash('We are sorry, register was not successful as this email adress is already registered.')
             return render_template('index.html',events = Event.get_all()[:-11:-1])
         elif usernamecheck != None:
-            flash('We are sorry, register was not sucesfull as this username is already registered.')
+            flash('We are sorry, register was not successful as this username is already registered.')
             return render_template('index.html',events = Event.get_all()[:-11:-1])
         else:            
             user = User(
