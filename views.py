@@ -42,9 +42,9 @@ def login():
             flash('You entered wrong data!')
             return redirect('/signin')
         flash('Hello ' + user.name + ' ' + user.surename + '!')
-        return render_template('startup.html', username=user.username, events = Event.get_all()[:-11:-1])
+        return redirect (url_for('startup'))
     else:
-        return render_template('index.html', events = Event.get_all()[:-11:-1])
+        return redirect (url_for('index'))
 
 @app.route('/register', methods=['POST'])
 def register():
@@ -55,10 +55,10 @@ def register():
         mailcheck = User.get_by_mail(request.form.get('email'))
         if mailcheck != None:
             flash('We are sorry, register was not successful as this email adress is already registered.')
-            return render_template('index.html',events = Event.get_all()[:-11:-1])
+            return redirect (url_for('index'))
         elif usernamecheck != None:
             flash('We are sorry, register was not successful as this username is already registered.')
-            return render_template('index.html',events = Event.get_all()[:-11:-1])
+            return redirect (url_for('index'))
         else:            
             user = User(
                 name = request.form.get('name'),
@@ -98,9 +98,9 @@ def register():
             server.login(username,password)
             server.sendmail(fromaddr, toaddrs, msg)
             server.close()
-            return render_template('startup.html', username=us.username, events = Event.get_all()[:-11:-1])
+            return redirect (url_for('startup'))
     else:
-        return render_template('index.html', events = Event.get_all()[:-11:-1])        
+        return redirect (url_for('index'))
 
 @app.route('/signout')
 def logout():
@@ -205,7 +205,6 @@ def chooserm():
         
         flash('You have successfully chosed a repairman!')
     return redirect (url_for('showevent', id=eventid))
-    # return render_template('startup.html', username = session['username'])   
     
 @app.route('/createvent', methods=['GET', 'POST'])
 @login_required
@@ -333,7 +332,7 @@ def deactivate_event():
             active = 0)
         event.deactivate()
         flash('You successfully deactivated Event!')
-    return render_template('profile.html', user = User.get_by_username(session['username']))
+    return redirect (url_for('showevent', id=originid))
 
 @app.route('/events', methods=['GET', 'POST'])
 @login_required
