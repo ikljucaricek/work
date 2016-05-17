@@ -245,7 +245,7 @@
                       <th>#</th>
                       <th>Name</th>
                       <th>Price</th>
-                      <th>Accessories Purchased</th>
+                      <th>Description</th>
                     </tr>            
                   </thead>
                   <tbody>
@@ -256,7 +256,7 @@
                           <th scope="row">{{ event.id }}</th>
                           <td><a href="/edetails/{{ event.id }}">{{ event.name }}</a></td>
                           <td>{{ event.price }}</td>
-                          <td>{{ event.accessories_purchased }}</td>
+                          <td>{{ event.description }}</td>
                         </tr>
                         {% endif %}
                       {% endfor %}
