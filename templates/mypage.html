@@ -61,6 +61,7 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
+        <h1>{{ user.username }}'s Mypage</h1>
         {% with messages = get_flashed_messages() %}
           {% if messages %}
             {% for message in messages %}
