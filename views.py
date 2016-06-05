@@ -25,7 +25,7 @@ def index():
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    return render_template('about.html',username = session.get('username'))
 
 @app.route('/startup')
 @login_required
