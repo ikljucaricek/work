@@ -28,6 +28,10 @@
       #srch {
           width: 520px;
       }
+      tr:hover {
+         cursor: pointer;
+         /* whatever other hover styles you want */
+      }
     </style>
   </head>
 
@@ -154,20 +158,20 @@
                       <th>Description</th>
                       <th>Price</th>
                       <th>Accessories Purchased</th>
-                      <th>Link</th>
+                      
                     </tr>            
                   </thead>
                   <tbody>
                     {% if events %}
                       {% for event in events %}
                         {% if event.active %}
-                      <tr class='clickable-row' data-href='#'>
+                      <tr class='clickable-row' data-href='/edetails/{{ event.id }}'>
                         <th scope="row">{{ event.id }}</th>
                         <td>{{ event.name }}</td>
                         <td>{{ event.description}}</td>
                         <td>{{ event.price }}</td>
                         <td>{{ event.accessories_purchased }}</td>
-                        <td><a href="/edetails/{{ event.id }}">Go To</a></td>
+                        
                       </tr>
                         {% endif %}
                       {% endfor %}
@@ -231,6 +235,13 @@
                 }
             ],
             "order": [ 0, 'desc' ]        
+          });
+      });
+    </script>
+    <script>
+      jQuery(document).ready(function($) {
+      $(".clickable-row").click(function() {
+          window.document.location = $(this).data("href");
           });
       });
     </script>
