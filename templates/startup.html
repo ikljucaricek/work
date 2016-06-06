@@ -88,7 +88,8 @@
           <div class="panel panel-info">
             <div class="panel-heading">Step 1</div>
             <div class="panel-body">
-              Create an event
+              Create an event  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+              <a class="btn btn-info" href="#" role="button" data-toggle="modal" id="myBtn2">Create an event</a>
             </div>
           </div>
           <div class="panel panel-info">
@@ -100,7 +101,8 @@
           <div class="panel panel-info">
             <div class="panel-heading">Step 3</div>
             <div class="panel-body">
-              Choose your repairman
+              Choose your repairman  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+              <a class="btn btn-info" href="/mypage/{{ username }}" role="button">My Page</a>
             </div>
           </div>          
         </div><!-- /.col-lg-4 -->
@@ -112,7 +114,8 @@
           <div class="panel panel-info">
             <div class="panel-heading">Step 1</div>
             <div class="panel-body">
-              Sign up for a job
+              Sign up for a job  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+              <a class="btn btn-info" href="/events" role="button">All Events</a>
             </div>
           </div>
           <div class="panel panel-info">
@@ -248,6 +251,9 @@
     <script>
       $(document).ready(function(){
           $("#myBtn").click(function(){
+              $("#myModal").modal();
+          });
+          $("#myBtn2").click(function(){
               $("#myModal").modal();
           });
       });
