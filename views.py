@@ -245,20 +245,22 @@ def profilePage(username):
     return render_template('profile.html', user = user, cuserId = session.get('id'))  
 
 @app.route('/mypage/<username>')
+@app.route('/mypage/')
 @login_required
 def myPage(username):
-    user = User.get_by_username(username)
-    sqltxt = select([(Applied_repairman.event_id)]).where(Applied_repairman.repairman_id == user.id)
-    allsignedup = db.engine.execute(sqltxt).fetchall()
-    allsignedups = [r[0] for r in allsignedup]
-    # Fetch Event objects for these ids
-    sqltxt2 = select([(Event)]).where(Event.id.in_(allsignedups))
-    Signedupuevents = db.engine.execute(sqltxt2).fetchall()
+    if len(username) != 0:
+        user = User.get_by_username(username)
+        sqltxt = select([(Applied_repairman.event_id)]).where(Applied_repairman.repairman_id == user.id)
+        allsignedup = db.engine.execute(sqltxt).fetchall()
+        allsignedups = [r[0] for r in allsignedup]
+        # Fetch Event objects for these ids
+        sqltxt2 = select([(Event)]).where(Event.id.in_(allsignedups))
+        Signedupuevents = db.engine.execute(sqltxt2).fetchall()
 
-    #Get all events creted by User
-    event_created_by_user_query = select([Event]).where(Event.user_id == user.id)
-    event_created_by_user = db.engine.execute(event_created_by_user_query).fetchall()
-    return render_template('mypage.html', user = user, CreatedEvents = event_created_by_user, SUPevents = Signedupuevents)   
+        #Get all events creted by User
+        event_created_by_user_query = select([Event]).where(Event.user_id == user.id)
+        event_created_by_user = db.engine.execute(event_created_by_user_query).fetchall()
+        return render_template('mypage.html', user = user, CreatedEvents = event_created_by_user, SUPevents = Signedupuevents)
 
 @app.route('/modifyuser', methods=['GET', 'POST'])
 @login_required
