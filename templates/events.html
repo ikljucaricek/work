@@ -120,7 +120,7 @@
                   <label for="name"><span class="glyphicon glyphicon-user"></span> Event Name</label>
                   <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name of Event" required><br>
                   <label for="description"><span class="glyphicon glyphicon-comment"></span> Event Description</label><br>
-                  <input type="text" class="form-control" name="description" id="description" placeholder="Enter Description of Event" required><br>
+                  <textarea class="form-control" name="description" id="description" placeholder="Change Description of Event" required>{{ event.description }}</textarea><br>
                   <label for="price"><span class="glyphicon glyphicon-usd"></span> Event Price</label>
                   <input type="number" class="form-control" name="price" id="price" step="any" placeholder="Enter Price of Event" required><br>
                   <label for="date"><span class="glyphicon glyphicon-calendar"></span> Event Date</label>
