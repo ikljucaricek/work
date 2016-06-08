@@ -223,7 +223,7 @@
                   <label for="name"><span class="glyphicon glyphicon-user"></span> Event Name</label>
                   <input type="text" class="form-control" name="name" id="name" placeholder="Change Name of Event" value="{{ event.name }}"><br>
                   <label for="description"><span class="glyphicon glyphicon-comment"></span> Event Description</label><br>
-                  <input type="text" class="form-control" name="description" id="description" placeholder="Change Description of Event" value="{{ event.description }}"><br>
+                  <textarea class="form-control" name="description" id="description" placeholder="Change Description of Event">{{ event.description }}</textarea><br>
                   <label for="price"><span class="glyphicon glyphicon-usd"></span> Event Price</label>
                   <input type="number" class="form-control" name="price" id="price" step="any" placeholder="Change Price of Event" value="{{ event.price }}"><br>
                   <label for="address"><span class="glyphicon glyphicon-map-marker"></span> Event Address</label>
