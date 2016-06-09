@@ -21,7 +21,7 @@ class Event(db.Model):
     description = db.Column(db.String(250), nullable=False)
     photo = db.Column(db.LargeBinary)
     active = db.Column(db.Boolean)
-    close = db.Column(db.Boolean)
+    closed = db.Column(db.Boolean)
     price = db.Column(db.Float,nullable=False)
     address = db.Column(db.String(250),nullable=False)
     date_time_create = db.Column(db.DateTime)
