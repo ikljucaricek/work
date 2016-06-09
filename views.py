@@ -239,6 +239,7 @@ def create_an_event():
             accessories_purchased = request.form.get('accessories'),
             user_id = session.get('id'),
             active = 1,
+            close = 0,
             photo = path_to_photo)
         event.save()
         flash('You have successfully created Event!')
