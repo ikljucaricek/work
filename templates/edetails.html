@@ -130,6 +130,10 @@
                                 </div>
                                 <div class="col-md-5 col-md-offset-1">
                                     This event is no longer active.
+                                    {% if user.id == cuserId %}
+                                    </br> You chose <a href="/profile/{{ repairman.username }}">{{ repairman.username }}</a> as a repairman.
+                                    {% endif %}
+                                    
                                 </div>
                             </div>
                             {% else %}

@@ -144,8 +144,14 @@ def showevent(id):
         # Fetch User objects for these ids
         s3 = select([(User)]).where(User.id.in_(allsignedups))
         Signedupusers = db.engine.execute(s3).fetchall()
+        if event.repairman_id:
+            repairman = User.get(event.repairman_id)
+        else:
+            repairman = None
+        
     else:    
         # Check If the user is already signed up for this event
+        repairman = None
         s = select([(Applied_repairman.id)]).where(
                                         and_(
                                             Applied_repairman.event_id == event.id,
@@ -161,7 +167,8 @@ def showevent(id):
                                                                    users = Signedupusers,
                                                                    already = already,
                                                                    cuserId = cuserId,
-                                                                   accessP = accessP)
+                                                                   accessP = accessP,
+                                                                   repairman = repairman)
 
                                                                    
 @app.route('/signup', methods=['POST','GET'])
