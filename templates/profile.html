@@ -123,13 +123,13 @@
               <form method='POST' action="/modifyuser" enctype="multipart/form-data">
                 <div class="modal-body">                
                   <label for="name"><span class="glyphicon glyphicon-user"></span> User's Name</label>
-                  <input type="text" class="form-control" name="name" id="name" placeholder="Change Name of User" value="{{ user.name }}">
+                  <input type="text" class="form-control" name="name" id="name" placeholder="Change Name of User" value="{{ user.name }}"><br>
                   <label for="surname"><span class="glyphicon glyphicon-user"></span> User's Surname</label><br>
-                  <input type="text" class="form-control" name="surname" id="surname" placeholder="Change Surname of User" value="{{ user.surename }}">
+                  <input type="text" class="form-control" name="surname" id="surname" placeholder="Change Surname of User" value="{{ user.surename }}"><br>
                   <label for="address"><span class="glyphicon glyphicon-map-marker"></span> User's Address</label>
-                  <input type="text" class="form-control" name="address" id="address" placeholder="Change Address of User location" value="{{ user.address }}">
+                  <input type="text" class="form-control" name="address" id="address" placeholder="Change Address of User location" value="{{ user.address }}"><br>
                   <label for="mobile"><span class="glyphicon glyphicon-phone"></span> User's Mobile</label>
-                  <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Change Mobile of User" value="{{ user.mobile }}">
+                  <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Change Mobile of User" value="{{ user.mobile }}"><br>
                   <label for="photo"><span class="glyphicon glyphicon-camera"></span> User's Photo</label>
                   <input type="file" accept="image/*" class="form-control" name="photo" id="photo" placeholder="Change Photo of User" value="\{{ user.photo }}">
                 </div>

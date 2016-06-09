@@ -221,17 +221,17 @@
                 <div class="modal-body">
                   <input type="hidden" class="form-control" name="id" id="id" placeholder="Id of Event" value="{{ event.id }}" readonly>
                   <label for="name"><span class="glyphicon glyphicon-user"></span> Event Name</label>
-                  <input type="text" class="form-control" name="name" id="name" placeholder="Change Name of Event" value="{{ event.name }}">
+                  <input type="text" class="form-control" name="name" id="name" placeholder="Change Name of Event" value="{{ event.name }}"><br>
                   <label for="description"><span class="glyphicon glyphicon-comment"></span> Event Description</label><br>
-                  <input type="text" class="form-control" name="description" id="description" placeholder="Change Description of Event" value="{{ event.description }}">
+                  <textarea class="form-control" name="description" id="description" placeholder="Change Description of Event">{{ event.description }}</textarea><br>
                   <label for="price"><span class="glyphicon glyphicon-usd"></span> Event Price</label>
-                  <input type="number" class="form-control" name="price" id="price" step="any" placeholder="Change Price of Event" value="{{ event.price }}">
+                  <input type="number" class="form-control" name="price" id="price" step="any" placeholder="Change Price of Event" value="{{ event.price }}"><br>
                   <label for="address"><span class="glyphicon glyphicon-map-marker"></span> Event Address</label>
-                  <input type="text" class="form-control" name="address" id="address" placeholder="Change Address of User location" value="{{ event.address }}">
+                  <input type="text" class="form-control" name="address" id="address" placeholder="Change Address of User location" value="{{ event.address }}"><br>
                   <label for="date"><span class="glyphicon glyphicon-calendar"></span> Event Date</label>
-                  <input type="datetime-local" class="form-control" name="datmtme" id="datmtme" placeholder="Change End Date of Event" value="{{ event.date_time_close.strftime("%Y-%m-%dT%H:%M:%S") }}" required>
+                  <input type="datetime-local" class="form-control" name="datmtme" id="datmtme" placeholder="Change End Date of Event" value="{{ event.date_time_close.strftime("%Y-%m-%dT%H:%M:%S") }}" required><br>
                   <label for="photo"><span class="glyphicon glyphicon-camera"></span> Event Photo</label>
-                  <input type="file" accept="image/*" class="form-control" name="photo" id="photo" placeholder="Change Photo of User" value="{{ event.photo }}">
+                  <input type="file" accept="image/*" class="form-control" name="photo" id="photo" placeholder="Change Photo of User" value="{{ event.photo }}"><br>
                   <label for="accessories"><span class="glyphicon glyphicon-check"></span> Purchase Accessories</label>
                   <input type="checkbox" class="form-control" name="accessories" id="accessories" value="1" {{ accessP }}>
                 </div>

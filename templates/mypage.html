@@ -24,6 +24,12 @@
     <link href="../static/css/jumbotron.css" rel="stylesheet">
     <!-- Table styles -->
     <link href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css" rel="stylesheet">
+    <style>
+      tr:hover {
+         cursor: pointer;
+         /* whatever other hover styles you want */
+      }
+    </style>
   </head>
     <body>
 
@@ -80,6 +86,7 @@
             <div class="panel panel-info">
                 <!-- Default panel contents -->
               <div class="panel-heading">Events created by User</div>
+            </div>
                 <div class="table-responsive">
                   <table id="tble" cellspacing="0" width="100%" class="table table-hover">
                     <thead>
@@ -89,33 +96,30 @@
                         <th>Description</th>
                         <th>Time & Date</th>
                         <th>Active</th>
-                        <th>Link</th>
                       </tr>            
                     </thead>
                     <tbody>
                       {% if CreatedEvents %}
                         {% for event in CreatedEvents %}
                           
-                        <tr class='clickable-row' data-href='#'>
+                        <tr class='clickable-row' data-href='/edetails/{{ event.id }}'>
                           <th scope="row">{{ event.id }}</th>
                           <td>{{ event.name }}</td>
                           <td>{{ event.description}}</td>
                           <td>{{ event.date_time_close }}</td>
                           <td>{{ event.active }}</td>
-                          <td><a href="/edetails/{{ event.id }}">Go To</a></td>
-                        </tr>
-                         
+                        </tr>                         
                         {% endfor %}
                       {% endif %}
                     </tbody>
                   </table>
                 </div>
-            </div>
           </div>
           <div class="col-md-6">
             <div class="panel panel-info">
                 <!-- Default panel contents -->
-              <div class="panel-heading">Events user signed-up for</div>
+              <div class="panel-heading">Events User signed-up for</div>
+            </div>
                 <div class="table-responsive">
                 <table id="tbl-signup" cellspacing="5px" width="100%" class="table table-hover">
                     <thead>
@@ -125,28 +129,23 @@
                         <th>Description</th>
                         <th>Time & Date</th>
                         <th>Active</th>
-                        <th>Link</th>
                       </tr>            
                     </thead>
                     <tbody>
                       {% if SUPevents %}
-                        {% for event in SUPevents %}
-                          
-                        <tr class='clickable-row' data-href='#'>
+                        {% for event in SUPevents %}                          
+                        <tr class='clickable-row' data-href='/edetails/{{ event.id }}'>
                           <th scope="row">{{ event.id }}</th>
                           <td>{{ event.name }}</td>
                           <td>{{ event.description}}</td>
                           <td>{{ event.date_time_close }}</td>
                           <td>{{ event.active }}</td>
-                          <td><a href="/edetails/{{ event.id }}">Go To</a></td>
-                        </tr>
-                          
+                        </tr>                          
                         {% endfor %}
                       {% endif %}
                     </tbody>
                   </table>
                 </div>
-            </div>
           </div>
         </div>
     </div>
@@ -205,6 +204,13 @@
                     "visible": false
                 }    
                 ]});
+      });
+    </script>
+    <script>
+      jQuery(document).ready(function($) {
+      $(".clickable-row").click(function() {
+          window.open($(this).data("href"),'_blank');
+          });
       });
     </script>
   </body>
