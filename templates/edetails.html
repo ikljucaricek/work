@@ -107,7 +107,7 @@
                         </div>
                         <div class="info-section">
                             <span class="info">Time and date:</span> <br/>
-                            <span class="info-text pre-info">{{ event.date_time_close }}</span><br/>
+                            <span class="info-text pre-info">{{ event.date_time_execute }}</span><br/>
                         </div>
                         <div class="info-section">
                             <span class="info">Price:</span><br/>
@@ -130,8 +130,13 @@
                                 </div>
                                 <div class="col-md-5 col-md-offset-1">
                                     This event is no longer active.
-                                    {% if user.id == cuserId %}
-                                    </br> You chose <a href="/profile/{{ repairman.username }}">{{ repairman.username }}</a> as a repairman.
+                                    {% if user.id == cuserId and event.repairman_id == NULL %}
+                                    </br> </br>You chose <a href="/profile/{{ repairman.username }}">{{ repairman.username }}</a> as a repairman.
+                                        {% if event.closed == False %}
+                                            </br></br>
+                                            If the event has beed carried on, please, close the event:
+                                            <button class="btn btn-info" type="button" data-toggle="modal" id="closeBtn">Finish Event</button>
+                                        {% endif %}        
                                     {% endif %}
                                     
                                 </div>
@@ -233,7 +238,7 @@
                   <label for="address"><span class="glyphicon glyphicon-map-marker"></span> Event Address</label>
                   <input type="text" class="form-control" name="address" id="address" placeholder="Change Address of User location" value="{{ event.address }}"><br>
                   <label for="date"><span class="glyphicon glyphicon-calendar"></span> Event Date</label>
-                  <input type="datetime-local" class="form-control" name="datmtme" id="datmtme" placeholder="Change End Date of Event" value="{{ event.date_time_close.strftime("%Y-%m-%dT%H:%M:%S") }}" required><br>
+                  <input type="datetime-local" class="form-control" name="datmtme" id="datmtme" placeholder="Change End Date of Event" value="{{ event.date_time_execute.strftime("%Y-%m-%dT%H:%M:%S") }}" required><br>
                   <label for="photo"><span class="glyphicon glyphicon-camera"></span> Event Photo</label>
                   <input type="file" accept="image/*" class="form-control" name="photo" id="photo" placeholder="Change Photo of User" value="{{ event.photo }}"><br>
                   <label for="accessories"><span class="glyphicon glyphicon-check"></span> Purchase Accessories</label>
@@ -268,6 +273,28 @@
             </div>
           </div>
         </div>
+        
+        <div class="modal fade" id="closeEvent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Finish Event</h4>
+              </div>
+              <form method='POST' action="/closeevent" enctype="multipart/form-data">
+                <div class="modal-body">
+                  <input type="hidden" class="form-control" name="id" id="id" placeholder="Id of Event" value="{{ event.id }}" readonly>
+                  <p>Finishing the event is Permanent. Was the job carried out completely?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
+                  <button type="submit" class="btn btn-danger">Finish Event</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        
       </div><!-- /.row -->
 <!-- Modal -->
 <div id="edit-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -359,6 +386,13 @@
       $(document).ready(function(){
           $("#deactBtn").click(function(){
               $("#deactEvent").modal();
+          });
+      });
+    </script>
+    <script>
+      $(document).ready(function(){
+          $("#closeBtn").click(function(){
+              $("#closeEvent").modal();
           });
       });
     </script>

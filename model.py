@@ -25,6 +25,7 @@ class Event(db.Model):
     price = db.Column(db.Float,nullable=False)
     address = db.Column(db.String(250),nullable=False)
     date_time_create = db.Column(db.DateTime)
+    date_time_execute = db.Column(db.DateTime)
     date_time_close = db.Column(db.DateTime)
     accessories_purchased = db.Column(db.Boolean)
     user_id = db.Column(db.Integer,db.ForeignKey('user.id'))
@@ -42,13 +43,19 @@ class Event(db.Model):
         our_event.price = self.price
         our_event.address = self.address
         our_event.photo = self.photo
-        our_event.date_time_close = self.date_time_close
+        our_event.date_time_execute = self.date_time_execute
         db.session.add(our_event)
         db.session.commit()
 
     def deactivate(self):
         our_event = db.session.query(Event).get(self.id)
         our_event.active = self.active
+        db.session.add(our_event)
+        db.session.commit()
+        
+    def close(self):
+        our_event = db.session.query(Event).get(self.id)
+        our_event.closed = self.closed
         db.session.add(our_event)
         db.session.commit()
     

@@ -235,11 +235,11 @@ def create_an_event():
             price = request.form.get('price'),
             address = request.form.get('address'),
             date_time_create = datetime.now(),
-            date_time_close = request.form.get('datmtme'),
+            date_time_execute = request.form.get('datmtme'),
             accessories_purchased = request.form.get('accessories'),
             user_id = session.get('id'),
             active = 1,
-            close = 0,
+            closed = 0,
             photo = path_to_photo)
         event.save()
         flash('You have successfully created Event!')
@@ -322,14 +322,16 @@ def modify_an_event():
                 #print "not changing photo"
                 path_to_photo = originEvent.photo
                 
-        #print path_to_photo    
+        #print path_to_photo
+        print originEvent.date_time_create
+        print request.form.get('datmtme')
         event = Event(
             id = request.form.get('id'),
             name = request.form.get('name'),
             description = request.form.get('description'),
             price = request.form.get('price'),
             address = request.form.get('address'),
-            date_time_close = request.form.get('datmtme'),
+            date_time_execute = request.form.get('datmtme'),
             accessories_purchased = request.form.get('accessories'),
             photo = path_to_photo
             )
@@ -346,7 +348,20 @@ def deactivate_event():
             active = 0)
         event.deactivate()
         flash('You successfully deactivated Event!')
-    return redirect (url_for('showevent', id=originid))
+    return redirect (url_for('showevent', id=request.form.get('id')))
+    
+@app.route('/closeevent', methods=['GET', 'POST'])
+@login_required
+def close_event():
+    if request.method == 'POST':
+        eventid = request.form.get('id')
+        event = Event(
+            id = eventid,
+            closed = 1)
+        event.close()
+        print 'event was closed'
+        flash('Event has been Finished!')
+    return redirect (url_for('showevent', id=eventid))
 
 @app.route('/events', methods=['GET', 'POST'])
 @login_required
