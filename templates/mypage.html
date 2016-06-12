@@ -96,18 +96,24 @@
                         <th>Description</th>
                         <th>Time & Date</th>
                         <th>Active</th>
+                        <th>Closed</th>
                       </tr>            
                     </thead>
                     <tbody>
                       {% if CreatedEvents %}
                         {% for event in CreatedEvents %}
-                          
-                        <tr class='clickable-row' data-href='/edetails/{{ event.id }}'>
-                          <th scope="row">{{ event.id }}</th>
+                        <!-- paint rows in different colours according to their status -->  
+                        <tr {% if event.active == False %}
+                                {% if event.closed == True %} class="warning"
+                                {% else %} class="danger" {% endif %}
+                            {% else %} class="success" % endif %}
+                            class='clickable-row' data-href='/edetails/{{ event.id }}'>
+                          <th  scope="row">{{ event.id }}</th>
                           <td>{{ event.name }}</td>
                           <td>{{ event.description}}</td>
-                          <td>{{ event.date_time_close }}</td>
+                          <td>{{ event.date_time_execute }}</td>
                           <td>{{ event.active }}</td>
+                          <td>{{ event.closed }}</td>
                         </tr>                         
                         {% endfor %}
                       {% endif %}
