@@ -238,7 +238,11 @@
                   <label for="address"><span class="glyphicon glyphicon-map-marker"></span> Event Address</label>
                   <input type="text" class="form-control" name="address" id="address" placeholder="Change Address of User location" value="{{ event.address }}"><br>
                   <label for="date"><span class="glyphicon glyphicon-calendar"></span> Event Date</label>
+                  {% if event.date_time_execute != None %}
                   <input type="datetime-local" class="form-control" name="datmtme" id="datmtme" placeholder="Change End Date of Event" value="{{ event.date_time_execute.strftime("%Y-%m-%dT%H:%M:%S") }}" required><br>
+                  {% else %}
+                  <input type="datetime-local" class="form-control" name="datmtme" id="datmtme" placeholder="Change End Date of Event" required><br>
+                  {% endif %}
                   <label for="photo"><span class="glyphicon glyphicon-camera"></span> Event Photo</label>
                   <input type="file" accept="image/*" class="form-control" name="photo" id="photo" placeholder="Change Photo of User" value="{{ event.photo }}"><br>
                   <label for="accessories"><span class="glyphicon glyphicon-check"></span> Purchase Accessories</label>
