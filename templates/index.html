@@ -81,7 +81,8 @@
         {% with messages = get_flashed_messages() %}
           {% if messages %}
             {% for message in messages %}
-              <div class="alert alert-dismissible alert-danger" role="alert">
+              <div class="alert alert-dismissible alert-danger fade in" id="alrt" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
                 <strong>Warning! </strong>{{ message|safe }}
               </div>
             {% endfor %}
@@ -387,6 +388,13 @@
         }
     });
 });
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+    $("#alrt").fadeTo(2000, 500).slideUp(500, function(){
+    $("#alrt").alert('close');
+      });
+    });
     </script>
   </body>
 </html>
