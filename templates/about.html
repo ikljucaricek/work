@@ -82,8 +82,8 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
           {% if username %}
-            <li><a href="/mypage/{{ username }}">My Page</a></li>
-            <li><a href="/profile/{{ username }}">Profile Page</a></li>            
+            <li><a href="/mypage/{{ username }}">My Events</a></li>
+            <li><a href="/profile/{{ username }}">My Profile</a></li>            
             <li><a href="/signout">Sign Out {{ username }}</a></li>
           {% else %} 
             <li><a href="#regModal" data-toggle="modal" id="regLnk" data-target="#regForm-modal">Register</a></li>
