@@ -39,3 +39,16 @@ img{
     padding-top: 5px; 
 }
 
+.footer {
+    background-color: #373737;
+    color: white;
+}
+
+body {
+    padding-bottom: 0;
+}
+
+hr {
+  color: #373737;
+}
+
