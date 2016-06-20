@@ -151,7 +151,8 @@
                                         {% if already == 0 %}
                                             <form action="{{ url_for('signup') }}" method=post class=signup>
                                             <input type=hidden value="{{ event.id }}" name="event_to_signup"></input>
-                                            <input type=submit value="Signup Now!"></input>
+                                            
+                                            <button type="submit" class="btn btn-info">Signup Now!</button>
                                             </form>
                                         {% else %}
                                             You are already signed up!
