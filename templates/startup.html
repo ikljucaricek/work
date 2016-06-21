@@ -42,6 +42,9 @@
       .panel {
         text-align: center;
       }
+      #myBtn3{
+        color: #2dacd3;
+      }
     </style>
   </head>
 
@@ -63,6 +66,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/events">All Events</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="modal" id="myBtn3">Create Event</a>
           </li>
         </ul>
         <div id="navbar" class="navbar-collapse collapse">
@@ -272,6 +278,9 @@
               $("#myModal").modal();
           });
           $("#myBtn2").click(function(){
+              $("#myModal").modal();
+          });
+          $("#myBtn3").click(function(){
               $("#myModal").modal();
           });
       });
