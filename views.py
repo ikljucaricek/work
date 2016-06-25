@@ -235,7 +235,7 @@ def create_an_event():
             price = request.form.get('price'),
             address = request.form.get('address'),
             date_time_create = datetime.now(),
-            date_time_execute = request.form.get('datmtme'),
+            date_time_execute = datetime.strptime(request.form.get('datmtme'), "%m/%d/%Y %H:%M %p"),
             accessories_purchased = request.form.get('accessories'),
             user_id = session.get('id'),
             active = 1,
@@ -331,7 +331,7 @@ def modify_an_event():
             description = request.form.get('description'),
             price = request.form.get('price'),
             address = request.form.get('address'),
-            date_time_execute = request.form.get('datmtme'),
+            date_time_execute = datetime.strptime(request.form.get('datmtme'), "%m/%d/%Y %H:%M %p"),
             accessories_purchased = request.form.get('accessories'),
             photo = path_to_photo
             )

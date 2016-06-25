@@ -24,6 +24,8 @@
     <link href="../static/css/jumbotron.css" rel="stylesheet">
 
     <link href="../static/css/jquery.dataTables.min.css" rel="stylesheet">
+
+    <link href="../static/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <style>
       .panel {
         text-align: center;
@@ -139,7 +141,12 @@
                   <label for="price"><span class="glyphicon glyphicon-usd"></span> Event Price</label>
                   <input type="number" class="form-control" name="price" id="price" step="any" placeholder="Enter Price of Event" required><br>
                   <label for="date"><span class="glyphicon glyphicon-calendar"></span> Event Date</label>
-                  <input type="datetime-local" class="form-control" name="datmtme" id="datmtme" placeholder="Enter End Date of Event" required><br>
+                  <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' name="datmtme" placeholder="Enter End Date of Event" class="form-control" required/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                  </div><br>
                   <label for="address"><span class="glyphicon glyphicon-map-marker"></span> Event Address</label>
                   <input type="text" class="form-control" name="address" id="address" placeholder="Enter Address of Event location" required><br>
                   <label for="photo"><span class="glyphicon glyphicon-picture"></span> Photo</label>
@@ -230,6 +237,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../static/js/jquery.min.js"><\/script>')</script>
     <script src="../static/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+    <script src="../static/js/bootstrap-datetimepicker.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../static/js/ie10-viewport-bug-workaround.js"></script>
     
@@ -266,5 +275,12 @@
       });
     });
     </script>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker({
+              locale:'hr'
+            });
+        });
+    </script> 
   </body>
 </html>
