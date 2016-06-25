@@ -59,6 +59,10 @@
       #mrgn{
         margin-bottom: 50px;
       }
+      .img-thumbnail{
+        max-width: 80px;
+        max-height: 80px;
+      }
     </style>
 
   </head>
@@ -274,11 +278,11 @@
       <!-- Example row of columns -->
       <div class="row">
         <div class="col-md-8 col-md-offset-2">
-          <div class="panel panel-info">
+          <div class="panel panel-primary">
               <!-- Default panel contents -->
             <div class="panel-heading">Newest Events</div>
           </div>            
-              <div class="table-responsive">
+              <!--<div class="table-responsive">
                 <table class="table table-hover">
                   <thead>
                     <tr>
@@ -303,11 +307,50 @@
                     {% endif %}
                   </tbody>
                 </table>
-              </div>
+              </div>-->
         </div>
       </div>
 
-    
+      <div class="row">
+      {% if events %}
+        {% for event in events %}
+          {% if event.active %}
+          <div class="col-lg-4">
+          <a href="/edetails/{{ event.id }}" target="_blank">
+            <div class="panel panel-info">
+              <div class="panel-heading">#{{ event.id }} | {{ event.name }}</div>
+              <div class="panel-body">
+                <img src="{{ event.photo }}" class="img-thumbnail">
+                <b>Description: </b>{{ event.description[0:50] }}
+              </div>
+              <div class="panel-footer"><b>Price: </b>{{ event.price }}</div>
+            </div>
+          </a>
+          </div>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+      </div>
+
+      <div class="row">
+      {% if events %}
+        {% for event in events %}
+          {% if event.active %}
+          <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+              <img src="{{ event.photo }}" alt="...">
+              <div class="caption">
+                <h3><span class="label label-default">#{{ event.id }}</span> | {{ event.name }}</h3>
+                <p>{{ event.description[0:50] }}</p>
+                <p><b>Price: </b>{{ event.price }}</p>                
+                <input type="button" class="btn btn-info btn-lg btn-block" onclick="window.open('/edetails/{{ event.id }}','_blank');" value="See Event"/>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+      </div>
 
     </div> <!-- /container -->
 
