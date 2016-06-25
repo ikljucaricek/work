@@ -357,6 +357,7 @@ def close_event():
         eventid = request.form.get('id')
         event = Event(
             id = eventid,
+            active = 0,
             closed = 1)
         event.close()
         print 'event was closed'

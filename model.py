@@ -55,6 +55,7 @@ class Event(db.Model):
         
     def close(self):
         our_event = db.session.query(Event).get(self.id)
+        our_event.active = self.active
         our_event.closed = self.closed
         db.session.add(our_event)
         db.session.commit()
