@@ -63,6 +63,20 @@
         max-width: 80px;
         max-height: 80px;
       }
+      .round-indicator-active{
+        border-radius: 100%;
+        width: 15px;
+        height: 15px;
+        background-color: #5cb85c;
+        display: inline-block;
+      }
+      .round-indicator-inactive{
+        border-radius: 100%;
+        width: 15px;
+        height: 15px;
+        background-color: #d9534f;
+        display: inline-block;
+      }
     </style>
 
   </head>
@@ -314,7 +328,6 @@
       <div class="row">
       {% if events %}
         {% for event in events %}
-          {% if event.active %}
           <div class="col-lg-4">
           <a href="/edetails/{{ event.id }}" target="_blank">
             <div class="panel panel-info">
@@ -322,12 +335,17 @@
               <div class="panel-body">
                 <img src="{{ event.photo }}" class="img-thumbnail">
                 <b>Description: </b>{{ event.description[0:50] }}
+                <br>
+                {% if event.active %}
+                Status: <div class="round-indicator-active" alt="Active Event"></div>
+                {% else %}
+                Status: <div class="round-indicator-inactive" alt="Inactive Event"></div>
+                {% endif %}
               </div>
               <div class="panel-footer"><b>Price: </b>{{ event.price }}</div>
             </div>
           </a>
           </div>
-          {% endif %}
         {% endfor %}
       {% endif %}
       </div>
