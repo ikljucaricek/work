@@ -72,8 +72,8 @@ class Event(db.Model):
         return db.session.query(Event).all()
 
     @staticmethod
-    def get_by_name(filter_name):
-        return db.session.query(Event).filter(Event.name == filter_name)
+    def get_by_name_or_description(filter_event):
+        return db.session.query(Event).filter(Event.name.like('%' + filter_event + '%') | Event.description.like('%' + filter_event + '%')).all()
     
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)

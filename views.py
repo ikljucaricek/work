@@ -369,7 +369,7 @@ def allevents():
     if request.method == 'POST':
         filter_by_name = request.form.get('srch')
         if filter_by_name != '':
-            return render_template('events.html', username = session['username'], events = Event.get_by_name(filter_by_name)[::-1])
+            return render_template('events.html', username = session['username'], events = Event.get_by_name_or_description(filter_by_name)[::-1])
         else:
             return render_template('events.html', username = session['username'], events = Event.get_all()[::-1])
     return render_template('events.html', username = session['username'], events = Event.get_all()[::-1])
