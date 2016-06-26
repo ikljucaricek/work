@@ -241,8 +241,11 @@ def create_an_event():
             active = 1,
             closed = 0,
             photo = path_to_photo)
-        event.save()
-        flash('You have successfully created Event!')
+        if (datetime.strptime(request.form.get('datmtme'), "%m/%d/%Y %H:%M %p") > datetime.now()):
+            event.save()
+            flash('You have successfully created Event!')
+        else:
+            flash("Execution Date of Event can't be before Event is created!", "warning")
     #flash('Event cannot be completed before it starts')
     return redirect (url_for('myPage', username = session['username']))
 
