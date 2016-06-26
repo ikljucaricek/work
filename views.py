@@ -338,8 +338,11 @@ def modify_an_event():
             accessories_purchased = request.form.get('accessories'),
             photo = path_to_photo
             )
-        event.modify()
-        flash('You successfully modified Event!')
+        if (datetime.strptime(request.form.get('datmtme'), "%m/%d/%Y %H:%M %p") > datetime.now()):
+            event.modify()
+            flash('You successfully modified Event!')
+        else:
+            flash("Execution Date of Event can't be before Event is created!", "warning")
     #flash('Event cannot be completed before it starts')
     return redirect (url_for('showevent', id=originid))
 @app.route('/deactevent', methods=['GET', 'POST'])
