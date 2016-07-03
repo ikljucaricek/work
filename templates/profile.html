@@ -89,13 +89,20 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
-        {% with messages = get_flashed_messages() %}
+        {% with messages = get_flashed_messages(with_categories=true) %}
           {% if messages %}
-            {% for message in messages %}
+            {% for category, message in messages %}
+              {% if category != 'warning' %}
               <div class="alert alert-dismissible alert-success" id="alrt" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 {{ message|safe }}
               </div>
+              {% else %}
+              <div class="alert alert-dismissible alert-danger fade in" id="alrt" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <strong>Warning! </strong>{{ message|safe }}
+              </div>
+              {% endif %}
             {% endfor %}
           {% endif %}
         {% endwith %}

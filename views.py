@@ -251,9 +251,13 @@ def create_an_event():
 
 @app.route('/profile/<username>')
 def profilePage(username):
-    user = User.get_by_username(username)
-    #user_photo = user.picture
-    return render_template('profile.html', user = user, cuserId = session.get('id'))  
+    if len(username) != 0 and User.get_by_username(username) != None:
+        user = User.get_by_username(username)
+        #user_photo = user.picture
+        return render_template('profile.html', user = user, cuserId = session.get('id'))
+    else:
+        flash("%s doesn't exist!" %username, "warning")
+        return redirect (url_for('profilePage', username = session['username']))
 
 @app.route('/mypage/<username>')
 @app.route('/mypage/')
