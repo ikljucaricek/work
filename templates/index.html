@@ -136,6 +136,7 @@
         <div class="col-lg-4">
           <img class="img-circle" src="../static/images/tyg_ayo/client.png" alt="Generic placeholder image" width="140" height="140">
           <h2>Client</h2>
+          {% if username %}
           <a href="/startup" data-toggle="modal" id="myBtn2">
             <div class="panel panel-info">
             <div class="panel-heading">Step 1</div>
@@ -144,6 +145,16 @@
             </div>
           </div>
           </a>
+          {% else %}
+          <a href="#logModal" data-toggle="modal" data-target="#log-modal" id="myLnk">
+            <div class="panel panel-info">
+            <div class="panel-heading">Step 1</div>
+            <div class="panel-body">
+              Create an event
+            </div>
+          </div>
+          </a>
+          {% endif %}
           <div class="panel panel-info">
             <div class="panel-heading">Step 2</div>
             <div class="panel-body">
@@ -159,7 +170,7 @@
           </div>
           </a>
           {% else %}
-          <a href="/mypage/">
+          <a href="#logModal" data-toggle="modal" data-target="#log-modal" id="myLnk">
           <div class="panel panel-info">
             <div class="panel-heading">Step 3</div>
             <div class="panel-body">
@@ -174,6 +185,7 @@
         <div class="col-lg-4">
           <img class="img-circle" src="../static/images/tyg_ayo/repairmanicon.png" alt="Generic placeholder image" width="140" height="140">
           <h2>Repairman</h2>
+          {% if username %}
           <a href="/events">
           <div class="panel panel-info">
             <div class="panel-heading">Step 1</div>
@@ -182,6 +194,16 @@
             </div>
           </div>
           </a>
+          {% else %}
+          <a href="#logModal" data-toggle="modal" data-target="#log-modal" id="myLnk">
+          <div class="panel panel-info">
+            <div class="panel-heading">Step 1</div>
+            <div class="panel-body">
+              Sign up for a job
+            </div>
+          </div>
+          </a>
+          {% endif %}
           <div class="panel panel-info">
             <div class="panel-heading">Step 2</div>
             <div class="panel-body">
