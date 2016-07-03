@@ -41,6 +41,13 @@
       #myBtn3:hover {
         color: #57BDDC;
       }
+      .img-circle{
+        height: 170px;
+        width: 170px;
+      }
+      button {
+        width: 170px;
+      }
     </style>
   </head>
 
@@ -98,7 +105,7 @@
 
       <div class="row">
         <div class="col-lg-4">
-          <img class="img-circle" src="/{{ user.picture }}" alt="Generic placeholder image" width="140" height="140">
+          <img class="img-circle" src="/{{ user.picture }}" alt="Generic placeholder image">
           <br><br>
           {% if user.id == cuserId %}
           <button class="btn btn-info" type="button" data-toggle="modal" id="myBtn">Edit Profile Info</button>
