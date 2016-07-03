@@ -48,6 +48,12 @@
       body {
         padding-bottom: 0;
       }
+      #myBtn3 {
+        color: #2dacd3;
+      }
+      #myBtn3:hover {
+        color: #57BDDC;
+      }
     </style>
   </head>
 
@@ -69,6 +75,9 @@
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="/events">All Events</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href data-toggle="modal" id="myBtn3">Create Event</a>
           </li>
         </ul>
         <div id="navbar" class="navbar-collapse collapse">
@@ -247,6 +256,9 @@
     <script>
       $(document).ready(function(){
           $("#myBtn").click(function(){
+              $("#myModal").modal();
+          });
+          $("#myBtn3").click(function(){
               $("#myModal").modal();
           });
           $('#tbl').DataTable({
