@@ -259,7 +259,7 @@ def profilePage(username):
 @app.route('/mypage/')
 @login_required
 def myPage(username):
-    if len(username) != 0:
+    if len(username) != 0 and User.get_by_username(username) != None:
         user = User.get_by_username(username)
         sqltxt = select([(Applied_repairman.event_id)]).where(Applied_repairman.repairman_id == user.id)
         allsignedup = db.engine.execute(sqltxt).fetchall()
@@ -272,6 +272,9 @@ def myPage(username):
         event_created_by_user_query = select([Event]).where(Event.user_id == user.id)
         event_created_by_user = db.engine.execute(event_created_by_user_query).fetchall()
         return render_template('mypage.html', user = user, CreatedEvents = event_created_by_user, SUPevents = Signedupuevents)
+    else:
+        flash("You are not %s!" %username, "warning")
+        return redirect (url_for('myPage', username = session['username']))
 
 @app.route('/modifyuser', methods=['GET', 'POST'])
 @login_required
