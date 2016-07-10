@@ -6,7 +6,7 @@ from app import app, db
 from datetime import datetime
 from model import User, Event, Applied_repairman  # from database
 from werkzeug import secure_filename
-from sqlalchemy.sql import and_, select
+from sqlalchemy.sql import and_, select, or_
 from smtplib import SMTP
 
 
@@ -269,7 +269,14 @@ def myPage(username):
         allsignedup = db.engine.execute(sqltxt).fetchall()
         allsignedups = [r[0] for r in allsignedup]
         # Fetch Event objects for these ids
-        sqltxt2 = select([(Event)]).where(Event.id.in_(allsignedups))
+        sqltxt2 = select([(Event)]).where(
+                                          or_(Event.repairman_id == user.id,
+                                              and_(
+                                                   Event.id.in_(allsignedups),
+                                                   Event.repairman_id == None                                  
+                                              )
+                                          
+                                          ))
         Signedupuevents = db.engine.execute(sqltxt2).fetchall()
 
         #Get all events creted by User
