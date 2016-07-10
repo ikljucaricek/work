@@ -123,28 +123,25 @@
                     <thead>
                       <tr>
                         <th>#</th>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Time & Date</th>
-                        <th>Active</th>
-                        <th>Closed</th>
+                        <th>Name:</th>
+                        <th>Description:</th>
+                        <th>Execution on:</th>
+                        <th>Status:</th>
                       </tr>            
                     </thead>
                     <tbody>
                       {% if CreatedEvents %}
                         {% for event in CreatedEvents %}
                         <!-- paint rows in different colours according to their status -->  
-                        <tr {% if event.active == False %}
-                                {% if event.closed == True %} class="warning clickable-row"
-                                {% else %} class="danger clickable-row" {% endif %}
-                            {% else %} class="success clickable-row" {% endif %}
-                            data-href='/edetails/{{ event.id }}'>
+                        <tr data-href='/edetails/{{ event.id }}'>
                           <th  scope="row">{{ event.id }}</th>
                           <td>{{ event.name }}</td>
                           <td>{{ event.description}}</td>
                           <td>{{ event.date_time_execute }}</td>
-                          <td>{{ event.active }}</td>
-                          <td>{{ event.closed }}</td>
+                          <td>{% if event.active == False %}
+                                {% if event.closed == True %} <span class="label label-default">Closed</span>
+                                {% else %} <span class="label label-danger">Inactive</span>  {% endif %}
+                            {% else %} <span class="label label-success">Active</span>{% endif %}</td>
                         </tr>                         
                         {% endfor %}
                       {% endif %}
