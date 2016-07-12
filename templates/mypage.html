@@ -125,10 +125,10 @@
                     <thead>
                       <tr>
                         <th>#</th>
-                        <th>Name:</th>
-                        <th>Description:</th>
-                        <th>Execution on:</th>
-                        <th>Status:</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Date of Execution</th>
+                        <th>Status</th>
                       </tr>            
                     </thead>
                     <tbody>
@@ -139,7 +139,7 @@
                           <th  scope="row">{{ event.id }}</th>
                           <td>{{ event.name }}</td>
                           <td>{{ event.description}}</td>
-                          <td>{{ event.date_time_execute }}</td>
+                          <td>{{ event.date_time_execute.strftime("%d/%m/%Y %H:%M") }}</td>
                           <td>{% if event.active == False %}
                                 {% if event.closed == True %} <span class="label label-default">Closed</span>
                                 {% else %} <span class="label label-danger">Inactive</span>  {% endif %}
@@ -163,7 +163,7 @@
                         <th>#</th>
                         <th>Name</th>
                         <th>Description</th>
-                        <th>Time & Date</th>
+                        <th>Date of Execution</th>
                         <th>Status</th>
                       </tr>            
                     </thead>
@@ -174,7 +174,7 @@
                           <th scope="row">{{ event.id }}</th>
                           <td>{{ event.name }}</td>
                           <td>{{ event.description}}</td>
-                          <td>{{ event.date_time_close }}</td>
+                          <td>{{ event.date_time_execute.strftime("%d/%m/%Y %H:%M") }}</td>
                           <td>{% if event.active == False %}
                                 {% if event.closed == True %} <span class="label label-default">Closed</span>
                                 {% else %} <span class="label label-warning">Chosen</span>  {% endif %}
