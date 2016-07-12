@@ -2,3 +2,10 @@
 ###################
 *.swp
 *.orig
+*.pyc
+model_*.py
+ssc
+views_*.py
+logs.log
+static/images/events_photos/*
+static/images/users_avatar/*
