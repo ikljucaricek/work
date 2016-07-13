@@ -349,11 +349,11 @@ def modify_an_event():
             description = request.form.get('description'),
             price = request.form.get('price'),
             address = request.form.get('address'),
-            date_time_execute = datetime.strptime(request.form.get('datmtme'), "%m/%d/%Y %H:%M %p"),
+            date_time_execute = datetime.strptime(request.form.get('datmtme'), "%m/%d/%Y %I:%M %p"),
             accessories_purchased = request.form.get('accessories'),
             photo = path_to_photo
             )
-        if (datetime.strptime(request.form.get('datmtme'), "%m/%d/%Y %H:%M %p") > datetime.now()):
+        if (datetime.strptime(request.form.get('datmtme'), "%m/%d/%Y %I:%M %p") > datetime.now()):
             event.modify()
             flash('You successfully modified Event!')
         else:
@@ -377,9 +377,11 @@ def deactivate_event():
 def decline_event():
     if request.method == 'POST':
         event = Event.get(request.form.get('id'))
-        #if datetime.now() > event.date_time_execute:
-        event.activate()
-            # potential problem with different time zones
+        print datetime.now()
+        print event.date_time_execute
+        if datetime.now() < event.date_time_execute:
+            event.activate()
+          # potential problem with different time zones
         event.remove_repairman()
         event.decline()
         
