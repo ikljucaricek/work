@@ -139,7 +139,11 @@
                           <th  scope="row">{{ event.id }}</th>
                           <td>{{ event.name }}</td>
                           <td>{{ event.description}}</td>
+                          {% if event.date_time_execute != None %}
                           <td>{{ event.date_time_execute.strftime("%d/%m/%Y %H:%M") }}</td>
+                          {% else %}
+                          <td></td>
+                          {% endif %}
                           <td>{% if event.active == False %}
                                 {% if event.closed == True %} <span class="label label-default">Closed</span>
                                 {% else %} <span class="label label-danger">Inactive</span>  {% endif %}
@@ -174,7 +178,11 @@
                           <th scope="row">{{ event.id }}</th>
                           <td>{{ event.name }}</td>
                           <td>{{ event.description}}</td>
+                          {% if event.date_time_execute != None %}
                           <td>{{ event.date_time_execute.strftime("%d/%m/%Y %H:%M") }}</td>
+                          {% else %}
+                          <td></td>
+                          {% endif %}
                           <td>{% if event.active == False %}
                                 {% if event.closed == True %} <span class="label label-default">Closed</span>
                                 {% else %} <span class="label label-warning">Chosen</span>  {% endif %}
