@@ -359,6 +359,7 @@ def modify_an_event():
             flash("Execution Date of Event can't be before Event is created!", "warning")
     #flash('Event cannot be completed before it starts')
     return redirect (url_for('showevent', id=originid))
+    
 @app.route('/deactevent', methods=['GET', 'POST'])
 @login_required
 def deactivate_event():
@@ -368,6 +369,21 @@ def deactivate_event():
             active = 0)
         event.deactivate()
         flash('You successfully deactivated Event!')
+    return redirect (url_for('showevent', id=request.form.get('id')))
+    
+@app.route('/declineevent', methods=['GET', 'POST'])
+@login_required
+def decline_event():
+    if request.method == 'POST':
+        event = Event(
+            id = request.form.get('id'),
+            active = 1,
+            repairman_id = None)
+        event.decline()
+        
+        link = Applied_repairman.get_link(request.form.get('id'),session['id'])
+        link.delete()            
+        flash('You have successfully declined the Event!')
     return redirect (url_for('showevent', id=request.form.get('id')))
     
 @app.route('/closeevent', methods=['GET', 'POST'])

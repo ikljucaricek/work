@@ -13,6 +13,14 @@ class Applied_repairman(db.Model):
     def save(self):
         db.session.add(self)
         db.session.commit()
+    
+    @staticmethod
+    def get_link(event_id, repairman_id):
+        return db.session.query(Applied_repairman).filter(Applied_repairman.event_id == event_id and Applied_repairman.repairman_id == repairman_id).all()
+    
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
         
         
 class Event(db.Model):
@@ -52,6 +60,14 @@ class Event(db.Model):
         our_event.active = self.active
         db.session.add(our_event)
         db.session.commit()
+     
+    def decline(self):
+        our_event = db.session.query(Event).get(self.id)
+        our_event.active = self.active
+        our_event.repairman_id = self.repairman_id
+        db.session.add(our_event)
+        db.session.commit()
+     
         
     def close(self):
         our_event = db.session.query(Event).get(self.id)

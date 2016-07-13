@@ -94,6 +94,9 @@
                           <button class="btn btn-info" type="button" data-toggle="modal" id="myBtn">Edit Event Info</button><br><br>
                           <button class="btn btn-danger" type="button" data-toggle="modal" id="deactBtn">Deactivate Event</button>
                           {% endif %}
+                          {% if event.active == False and event.repairman_id == cuserId %}
+                            <button class="btn btn-danger" type="button" data-toggle="modal" id="declineBtn">Decline Event</button>
+                          {% endif %}
                         </div>
                     </div>
                     <div class="col-md-7">
@@ -165,6 +168,9 @@
                                 </div>
                                 <div class="col-md-5 col-md-offset-3">
                                     This event is no longer active.
+                                    {% if event.repairman_id == cuserId %}
+                                        </br> You have been chosen as the Repairman!
+                                    {% endif %}
                                     {% if user.id == cuserId and event.repairman_id != NULL %}
                                     </br> </br>You chose <a href="/profile/{{ repairman.username }}">{{ repairman.username }}</a> as a repairman.
                                         {% if event.closed == False %}
@@ -324,6 +330,28 @@
           </div>
         </div>
         
+        <div class="modal fade" id="declineEvent" tabindex="-1" role="dialog" aria-labelledby="DeclineModal">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Decline Event</h4>
+              </div>
+              <form method='POST' action="/declineevent" enctype="multipart/form-data">
+                <div class="modal-body">
+                  <input type="hidden" class="form-control" name="id" id="id" placeholder="Id of Event" value="{{ event.id }}" readonly>
+                  <p>Are you sure you want to decline this event for which you were chosen as the repairman?
+                  </br>If you do this you would be signoff from the event and in case the time for the execution did not pass the event would go back to active.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-danger">Decline Event</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        
         <div class="modal fade" id="closeEvent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -476,6 +504,13 @@
       $(document).ready(function(){
           $("#deactBtn").click(function(){
               $("#deactEvent").modal();
+          });
+      });
+    </script>
+    <script>
+      $(document).ready(function(){
+          $("#declineBtn").click(function(){
+              $("#declineEvent").modal();
           });
       });
     </script>
