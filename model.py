@@ -16,8 +16,9 @@ class Applied_repairman(db.Model):
     
     @staticmethod
     def get_link(event_id, repairman_id):
-        return db.session.query(Applied_repairman).filter(Applied_repairman.event_id == event_id and Applied_repairman.repairman_id == repairman_id).all()
-    
+        return db.session.query(Applied_repairman).filter(Applied_repairman.event_id == event_id and Applied_repairman.repairman_id == repairman_id).first()
+        # here is a potential source of the problem, in general it should be ".all()" in the end but then the views needs to operate with a list 
+        
     def delete(self):
         db.session.delete(self)
         db.session.commit()
@@ -60,7 +61,19 @@ class Event(db.Model):
         our_event.active = self.active
         db.session.add(our_event)
         db.session.commit()
-     
+        
+    def activate(self):
+        our_event = db.session.query(Event).get(self.id)
+        our_event.active = 1
+        db.session.add(our_event)
+        db.session.commit()
+        
+    def remove_repairman(self):
+        our_event = db.session.query(Event).get(self.id)
+        our_event.repairman_id = None
+        db.session.add(our_event)
+        db.session.commit()
+        
     def decline(self):
         our_event = db.session.query(Event).get(self.id)
         our_event.active = self.active

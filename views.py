@@ -235,13 +235,14 @@ def create_an_event():
             price = request.form.get('price'),
             address = request.form.get('address'),
             date_time_create = datetime.now(),
-            date_time_execute = datetime.strptime(request.form.get('datmtme'), "%m/%d/%Y %H:%M %p"),
+            date_time_execute = datetime.strptime(request.form.get('datmtme'), "%m/%d/%Y %I:%M %p"),
             accessories_purchased = request.form.get('accessories'),
             user_id = session.get('id'),
             active = 1,
             closed = 0,
             photo = path_to_photo)
-        if (datetime.strptime(request.form.get('datmtme'), "%m/%d/%Y %H:%M %p") > datetime.now()):
+            
+        if (datetime.strptime(request.form.get('datmtme'), "%m/%d/%Y %I:%M %p") > datetime.now()):    
             event.save()
             flash('You have successfully created Event!')
         else:
@@ -375,13 +376,15 @@ def deactivate_event():
 @login_required
 def decline_event():
     if request.method == 'POST':
-        event = Event(
-            id = request.form.get('id'),
-            active = 1,
-            repairman_id = None)
+        event = Event.get(request.form.get('id'))
+        #if datetime.now() > event.date_time_execute:
+        event.activate()
+            # potential problem with different time zones
+        event.remove_repairman()
         event.decline()
         
         link = Applied_repairman.get_link(request.form.get('id'),session['id'])
+        print link.id
         link.delete()            
         flash('You have successfully declined the Event!')
     return redirect (url_for('showevent', id=request.form.get('id')))
