@@ -255,7 +255,11 @@ def profilePage(username):
     if len(username) != 0 and User.get_by_username(username) != None:
         user = User.get_by_username(username)
         #user_photo = user.picture
-        return render_template('profile.html', user = user, cuserId = session.get('id'))
+        if user.picture != None:
+            return render_template('profile.html', user = user, cuserId = session.get('id'))
+        else:
+            user.picture = "./static/images/users_avatar/default.jpg"
+            return render_template('profile.html', user = user, cuserId = session.get('id'))
     else:
         flash("%s doesn't exist!" %username, "warning")
         return redirect (url_for('profilePage', username = session['username']))
@@ -317,7 +321,7 @@ def modify_an_user():
         user.modify()
         flash('You successfully modified Profile!')
     #flash('Event cannot be completed before it starts')
-    return redirect (url_for('profilePage', username = user_n.username))
+    return redirect (url_for('profilePage', username = session['username']))
 
 @app.route('/modifyevent', methods=['GET', 'POST'])
 @login_required
