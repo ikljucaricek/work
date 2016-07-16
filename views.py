@@ -21,7 +21,11 @@ def login_required(fn):
 
 @app.route('/')
 def index():
-    return render_template('index.html', events = Event.get_all()[:-11:-1])
+    events = Event.get_all()[:-10:-1]
+    for event in events:
+        if event.photo == None:
+            event.photo = "./static/images/events_photos/default.jpg"
+    return render_template('index.html', events = events)
 
 @app.route('/about')
 def about():
@@ -30,7 +34,11 @@ def about():
 @app.route('/startup')
 @login_required
 def startup():
-    return render_template('startup.html', username = session['username'], events = Event.get_all()[:-11:-1])
+    events = Event.get_all()[:-10:-1]
+    for event in events:
+        if event.photo == None:
+            event.photo = "./static/images/events_photos/default.jpg"
+    return render_template('startup.html', username = session['username'], events = events)
 
 @app.route('/signin', methods=['GET', 'POST'])
 def login():
@@ -161,6 +169,8 @@ def showevent(id):
         if len(result) != 0:
             already = 1
             # print "The user is signed up in this events:"
+    if event.photo == None:
+        event.photo = "./static/images/events_photos/default.jpg"
     
     return render_template('edetails.html',username = session['username'],event=event,
                                                                             user=user,
