@@ -89,7 +89,7 @@ def register():
             print request.files.getlist('photo')
             # pho = request.files[0]
             # print pho.filename
-            if 'photo' in request.files request.files['photo'].filename != '':
+            if 'photo' in request.files and request.files['photo'].filename != '':
                 photo = request.files['photo']
                 extension = photo.filename.split('.')
                 path_to_photo = '.\\static\\images\\users_avatar\\' + secure_filename(str(us.id) + '.' + extension[-1])
