@@ -233,8 +233,9 @@ def create_an_event():
     if request.method == 'POST':
         path_to_photo = None
         #if request.form.get('datmtme') >= datetime.now():
-        if 'photo' in request.files:
+        if 'photo' in request.files and request.files['photo'].filename != '':
             photo = request.files['photo']
+            print "Ovo je foto:", photo
             extension = photo.filename.split('.')
             path_to_photo = '.\\static\\images\\events_photos\\' + secure_filename(str(session['id']) + '.' + extension[-1])
             photo.save(path_to_photo)
@@ -248,8 +249,8 @@ def create_an_event():
             date_time_execute = datetime.strptime(request.form.get('datmtme'), "%m/%d/%Y %I:%M %p"),
             accessories_purchased = request.form.get('accessories'),
             user_id = session.get('id'),
-            active = 1,
-            closed = 0,
+            active = bool(1),
+            closed = bool(0),
             photo = path_to_photo)
             
         if (datetime.strptime(request.form.get('datmtme'), "%m/%d/%Y %I:%M %p") > datetime.now()):    
@@ -381,7 +382,7 @@ def deactivate_event():
     if request.method == 'POST':
         event = Event(
             id = request.form.get('id'),
-            active = 0)
+            active = bool(0))
         event.deactivate()
         flash('You successfully deactivated Event!')
     return redirect (url_for('showevent', id=request.form.get('id')))
