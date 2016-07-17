@@ -89,7 +89,7 @@ def register():
             print request.files.getlist('photo')
             # pho = request.files[0]
             # print pho.filename
-            if 'photo' in request.files:
+            if 'photo' in request.files request.files['photo'].filename != '':
                 photo = request.files['photo']
                 extension = photo.filename.split('.')
                 path_to_photo = '.\\static\\images\\users_avatar\\' + secure_filename(str(us.id) + '.' + extension[-1])
@@ -310,7 +310,7 @@ def modify_an_user():
         path_to_photo = None
         user_n = User.get_by_username(session['username'])
         #if request.form.get('datmtme') >= datetime.now():
-        if 'photo' in request.files:
+        if 'photo' in request.files and request.files['photo'].filename != '':
             photo = request.files['photo']
             if photo:
                 extension = photo.filename.split('.')
@@ -343,7 +343,7 @@ def modify_an_event():
         originid = request.form.get('id')
         originEvent = Event.get(originid)
         #if request.form.get('datmtme') >= datetime.now():
-        if 'photo' in request.files:      
+        if 'photo' in request.files and request.files['photo'].filename != '':      
             photo = request.files['photo']
             if photo:
                 extension = photo.filename.split('.')
