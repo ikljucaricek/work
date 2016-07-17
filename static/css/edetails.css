@@ -73,3 +73,8 @@ hr {
   color: #57BDDC;
 }
 
+.glyphicon.glyphicon-question-sign {
+   cursor: pointer;
+   /* whatever other hover styles you want */
+}
+

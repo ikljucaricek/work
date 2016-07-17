@@ -49,6 +49,10 @@
       .btn.btn-info {
         width: 170px;
       }
+      .glyphicon.glyphicon-question-sign {
+         cursor: pointer;
+         /* whatever other hover styles you want */
+      }
     </style>
   </head>
 
@@ -208,7 +212,8 @@
                       <label for="photo"><span class="glyphicon glyphicon-picture"></span> Photo</label>
                       <input type="file" accept="image/*" class="form-control" name="photo" id="photo" placeholder="Enter Photo of Event"><br>
                       <label for="purchase accessories"><span class="glyphicon glyphicon-check"></span> Purchase Accessories</label>
-                      <input type="checkbox" class="form-control" name="accessories" id="accessories" value="1">
+                      <div class="pull-right"><span type="button" title="Purchase Accessories Explanation" data-toggle="popover" class="glyphicon glyphicon-question-sign" data-placement="left" data-content="If you don't have all the required parts and Repairman needs to bring something - then you select this checkbox"></span></div>
+                      <input type="checkbox" class="form-control" name="accessories" id="accessories" value="0"> 
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -274,5 +279,10 @@
             $('#datetimepicker1').datetimepicker();
         });
     </script> 
+    <script type="text/javascript">
+      $(function () {
+        $('[data-toggle="popover"]').popover()
+      })
+    </script>
   </body>
 </html>
