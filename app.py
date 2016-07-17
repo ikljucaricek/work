@@ -1,12 +1,16 @@
 # -*- coding: utf-8 -*-
-import logging
+import logging, os
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
 app.secret_key = '26s3uqr&v2@dt@93%*79biuao@)zlmmi)^^p*jycr#!&ydg_ok7l78'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://workuser:work1234@localhost/work'
+if os.environ.get('DATABASE_URL') is None:
+	app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://workuser:work1234@localhost/work'
+else:
+	app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://fglzebctdqphod:aK6qOhgTPt-e2JSQP05DKpes2S@ec2-54-247-185-241.eu-west-1.compute.amazonaws.com:5432/debfq3v7p66b39'
 
 db = SQLAlchemy(app)
 
