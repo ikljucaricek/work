@@ -32,7 +32,6 @@
       }
       #srch {
           max-width: 510px;
-          vertical-align: top;
       }
       .form-group button {
         margin-left: 5px;
@@ -127,11 +126,14 @@
       <div class="row">
           <div class="col-sm-8 col-sm-offset-3">
             <form method='POST' action="/events" class="form-inline">
+              <div class="input-group">
               <div class="form-group">
                 <input type="text" class="form-control" id="srch" name="srch" placeholder="Search Events by Name and/or Description">
-                <button type="submit" class="btn btn-info glyphicon glyphicon-search"></button>
               </div>
-              
+                <span class="input-group-btn">
+                  <button type="submit" class="btn btn-info glyphicon glyphicon-search"></button>
+                </span>
+              </div>      
             </form>
           </div>
 
