@@ -9,3 +9,4 @@ views_*.py
 logs.log
 static/images/events_photos/*
 static/images/users_avatar/*
+static/images/tyg-ayo/*
