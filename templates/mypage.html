@@ -87,7 +87,6 @@
             <a class="nav-link" href data-toggle="modal" id="myBtn3">Create Event</a>
           </li>
         </ul>
-        <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             {% if user.username %}
               <li class="nav-item active"><a href="/mypage/{{ user.username }}">My Events</a></li>
@@ -95,7 +94,6 @@
               <li><a href="/signout">Sign Out {{ user.username }}</a></li>
             {% endif %}
           </ul>
-        </div>
           </div><!--/.nav-collapse -->
       </div>
     </nav>
