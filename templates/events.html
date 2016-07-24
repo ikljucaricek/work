@@ -31,7 +31,8 @@
         text-align: center;
       }
       #srch {
-          width: 520px;
+          width: 510px;
+          display: inline-block;
       }
       tr:hover {
          cursor: pointer;
@@ -125,8 +126,9 @@
             <form method='POST' action="/events" class="form-inline">
               <div class="form-group">
                 <input type="text" class="form-control" id="srch" name="srch" placeholder="Search Events by Name and/or Description">
+                <button type="submit" class="btn btn-info glyphicon glyphicon-search"></button>
               </div>
-              <button type="submit" class="btn btn-info glyphicon glyphicon-search"></button>
+              
             </form>
           </div>
 
