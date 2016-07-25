@@ -196,10 +196,7 @@
                             </div>
                             {% else %}
                             <div class="row">
-                                <div class="col-md-4 detail-purchased">
-                                    <input type="checkbox" name="accessories" disabled="disabled" value="Accessories purchased" {{ accessP }}> Accessories Purchased<br>
-                                </div>
-                                <div class="col-md-4 col-md-offset-2">
+                                <div class="col-md-4">
                                     {% if user.id != cuserId %}
                                         {% if already == 0 %}
                                             <form action="{{ url_for('signup') }}" method=post class=signup>
