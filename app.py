@@ -20,5 +20,4 @@ from views import *
 if __name__ == "__main__":
     logging.basicConfig(filename='logs.log', level=logging.DEBUG)
     logging.getLogger().addHandler(logging.StreamHandler())
-    app.run()
-#    app.run(debug=True, host="0.0.0.0")
+    app.run(debug=True, host="0.0.0.0")
