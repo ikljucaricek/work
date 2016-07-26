@@ -10,7 +10,7 @@ if os.environ.get('DATABASE_URL') is None:
 	app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://workuser:work1234@localhost/work'
 else:
 	app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://fglzebctdqphod:aK6qOhgTPt-e2JSQP05DKpes2S@ec2-54-247-185-241.eu-west-1.compute.amazonaws.com:5432/debfq3v7p66b39'
+#pp.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://nwbzhqmswnhfuh:MKkoYXy-J-ig_ezQLfKB-c2eMI@ec2-23-23-107-82.compute-1.amazonaws.com:5432/dcsg94fhfj1fne'
 
 db = SQLAlchemy(app)
 
