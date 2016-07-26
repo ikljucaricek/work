@@ -21,4 +21,5 @@ from views import *
 #    logging.basicConfig(filename='logs.log', level=logging.DEBUG)
 #    logging.getLogger().addHandler(logging.StreamHandler())
 #    app.run(debug=False, host="0.0.0.0")
-app.run(debug=False, host="0.0.0.0")
+if __name__ == "__main__":
+	app.run(debug=False, host="0.0.0.0")
