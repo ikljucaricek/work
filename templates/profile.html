@@ -24,6 +24,9 @@
     <link href="../static/css/jumbotron.css" rel="stylesheet">
 
     <link href="../static/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    
+    <!-- Validatror -->
+    <link href="../static/css/bootstrapvalidator.min.css" rel="stylesheet">
     <style>
       .footer {
         background: linear-gradient(#3c3c3c 0,#222 100%);
@@ -185,44 +188,54 @@
         </div>
       </div><!-- /.row -->
 
-            <div class="modal fade" id="myModalCreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Create Event</h4>
-                  </div>
-                  <form method='POST' action="/createvent" enctype="multipart/form-data">
-                    <div class="modal-body">                
-                      <label for="name"><span class="glyphicon glyphicon-user"></span> Event Name</label>
+        <div class="modal fade" id="myModalCreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Create Event</h4>
+              </div>
+              <form method='POST' action="/createvent" enctype="multipart/form-data" id='createEv-modalform'>
+                <div class="modal-body">
+                  <div class="form-group">                
+                      <label for="name" class="control-label"><span class="glyphicon glyphicon-user"></span> Event Name</label>
                       <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name of Event" required><br>
-                      <label for="description"><span class="glyphicon glyphicon-comment"></span> Event Description</label><br>
+                  </div>
+                  <div class="form-group"> 
+                      <label for="description" class="control-label"><span class="glyphicon glyphicon-comment"></span> Event Description</label><br>
                       <textarea class="form-control" name="description" id="description" placeholder="Change Description of Event" required></textarea><br>
+                  </div>
+                  <div class="form-group">  
                       <label for="price"><span class="glyphicon glyphicon-usd"></span> Event Price</label>
                       <input type="number" class="form-control" name="price" id="price" step="any" placeholder="Enter Price of Event" required><br>
-                      <label for="date"><span class="glyphicon glyphicon-calendar"></span> Event Date</label>
-                      <div class='input-group date' id='datetimepicker1'>
-                        <input type='text' name="datmtme" placeholder="Enter End Date of Event" class="form-control" required/>
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
-                      </div><br>
+                  </div>  
+                  <label for="date"><span class="glyphicon glyphicon-calendar"></span> Event Date</label>
+                  <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' name="datmtme" placeholder="Enter End Date of Event" class="form-control" required/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                  </div><br>
+                  <div class="form-group">  
                       <label for="address"><span class="glyphicon glyphicon-map-marker"></span> Event Address</label>
                       <input type="text" class="form-control" name="address" id="address" placeholder="Enter Address of Event location" required><br>
+                  </div>
+                  <div class="form-group">  
                       <label for="photo"><span class="glyphicon glyphicon-picture"></span> Photo</label>
                       <input type="file" accept="image/*" class="form-control" name="photo" id="photo" placeholder="Enter Photo of Event"><br>
-                      <label for="purchase accessories"><span class="glyphicon glyphicon-check"></span> Purchase Accessories</label>
-                      <div class="pull-right"><span type="button" title="Purchase Accessories Explanation" data-toggle="popover" class="glyphicon glyphicon-question-sign" data-placement="left" data-content="If you don't have all the required parts and Repairman needs to bring something - then you select this checkbox"></span></div>
-                      <input type="checkbox" class="form-control" name="accessories" id="accessories" value="0"> 
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                      <button type="submit" class="btn btn-info">Start Event</button>
-                    </div>
-                  </form>
-                </div>
-              </div>
+                  </div>
+                  <label for="purchase accessories"><span class="glyphicon glyphicon-check"></span> Purchase Accessories</label>
+                  <div class="pull-right"><span type="button" title="Purchase Accessories Explanation" data-toggle="popover" class="glyphicon glyphicon-question-sign" data-placement="left" data-content="If you don't have all the required parts and Repairman needs to bring something - then you select this checkbox"></span></div>
+                  <input type="checkbox" class="form-control" name="accessories" id="accessories" value="0">      
+                </div>  
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-info">Start Event</button>
+              </div>  
+              </form>
             </div>
+          </div>
+        </div>
     </div> <!-- /container -->
 
     <footer class="footer">
@@ -257,6 +270,52 @@
     <script src="../static/js/bootstrap-datetimepicker.min.js"></script>    
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../static/js/ie10-viewport-bug-workaround.js"></script>
+    <!-- Validator -->
+    <script src="../static/js/bootstrapvalidator.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('#createEv-modalform').bootstrapValidator({
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                name: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The first name is required and cannot be empty'
+                        }
+                    }
+                },
+                description: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The first name is required and cannot be empty'
+                        }
+                    }
+                },
+                address: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The first name is required and cannot be empty'
+                        }
+                    }
+                },
+                price: {
+                    validators: {
+                        integer: {
+                            message: 'The price has to be an integer'
+                        },
+                        notEmpty: {
+                            message: 'The price is required and cannot be empty'
+                        }  
+                    }
+                }
+            }
+        });
+    });
+    </script>
     <script>
       $(document).ready(function(){
           $("#myBtn").click(function(){
@@ -267,6 +326,7 @@
           });
       });
     </script>
+    
     <script type="text/javascript">
     $(document).ready(function() {
     $("#alrt").fadeTo(2000, 500).slideUp(500, function(){
