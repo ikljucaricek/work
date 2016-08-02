@@ -421,15 +421,14 @@ def close_event():
     return redirect (url_for('showevent', id=eventid))
 
 @app.route('/events', methods=['GET', 'POST'])
-@login_required
 def allevents():
     if request.method == 'POST':
         filter_by_name = request.form.get('srch')
         if filter_by_name != '':
-            return render_template('events.html', username = session['username'], events = Event.get_by_name_or_description(filter_by_name)[::-1])
+            return render_template('events.html', username = session.get('username'), events = Event.get_by_name_or_description(filter_by_name)[::-1])
         else:
-            return render_template('events.html', username = session['username'], events = Event.get_all()[::-1])
-    return render_template('events.html', username = session['username'], events = Event.get_all()[::-1])
+            return render_template('events.html', username = session.get('username'), events = Event.get_all()[::-1])
+    return render_template('events.html', username = session.get('username'), events = Event.get_all()[::-1])
 
 def confirmation_mail(msg_for_what, rm , client, event_obj, eventid):
     if msg_for_what == 'repairman':
