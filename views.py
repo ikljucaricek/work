@@ -99,7 +99,7 @@ def register():
             flash('You have successfully Registered!')
             session['id'] = us.id
             session['username'] = us.username
-            fromaddr = 'tygayoinc@gmail.com'
+            fromaddr = "%s <%s>" % ('TygAyo','tygayoinc@gmail.com')
             toaddrs  = us.email
             msg = registration_mail(us)
             username = 'tygayoinc@gmail.com'
