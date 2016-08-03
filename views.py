@@ -246,8 +246,8 @@ def create_an_event():
             date_time_execute = datetime.strptime(request.form.get('datmtme'), "%m/%d/%Y %I:%M %p"),
             accessories_purchased = request.form.get('accessories'),
             user_id = session.get('id'),
-            active = bool(1),
-            closed = bool(0),
+            active = 1,
+            closed = 0,
             photo = path_to_photo)
             
         if (datetime.strptime(request.form.get('datmtme'), "%m/%d/%Y %I:%M %p") > datetime.now()):    
@@ -379,7 +379,7 @@ def deactivate_event():
     if request.method == 'POST':
         event = Event(
             id = request.form.get('id'),
-            active = bool(0))
+            active = 0)
         event.deactivate()
         flash('You successfully deactivated Event!')
     return redirect (url_for('showevent', id=request.form.get('id')))
