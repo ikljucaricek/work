@@ -85,8 +85,8 @@ def register():
             
             us = User.get_by_username(user.username)
             print "Tohle je files"
-            print request.files
-            print request.files.getlist('photo')
+            print "Evo smo: ",request.files
+            print "Tak sto sad: ".request.files.getlist('photo')
             # pho = request.files[0]
             # print pho.filename
             if 'photo' in request.files and request.files['photo'].filename != '':
