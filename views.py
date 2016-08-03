@@ -83,33 +83,33 @@ def register():
                 joindate = datetime.now())
             user.save()
             
-            us = User.get_by_username(user.username)
-            print "Tohle je files"
-            print "Evo smo: ",request.files
-            print "Tak sto sad: ".request.files.getlist('photo')
-            # pho = request.files[0]
-            # print pho.filename
-            if 'photo' in request.files and request.files['photo'].filename != '':
-                photo = request.files['photo']
-                extension = photo.filename.split('.')
-                path_to_photo = '.\\static\\images\\users_avatar\\' + secure_filename(str(us.id) + '.' + extension[-1])
-                photo.save(path_to_photo)
-                us.picture = path_to_photo
-                us.save()
-            flash('You have successfully Registered!')
-            session['id'] = us.id
-            session['username'] = us.username
-            fromaddr = 'tygayoinc@gmail.com'
-            toaddrs  = us.email
-            msg = registration_mail(us)
-            username = 'tygayoinc@gmail.com'
-            password = 'Work1234'
-            server = SMTP("smtp.gmail.com",587)
-            server.ehlo()
-            server.starttls()
-            server.login(username,password)
-            server.sendmail(fromaddr, toaddrs, msg)
-            server.close()
+            # us = User.get_by_username(user.username)
+            # print "Tohle je files"
+            # print "Evo smo: ",request.files
+            # print "Tak sto sad: ".request.files.getlist('photo')
+            # # pho = request.files[0]
+            # # print pho.filename
+            # if 'photo' in request.files and request.files['photo'].filename != '':
+                # photo = request.files['photo']
+                # extension = photo.filename.split('.')
+                # path_to_photo = '.\\static\\images\\users_avatar\\' + secure_filename(str(us.id) + '.' + extension[-1])
+                # photo.save(path_to_photo)
+                # us.picture = path_to_photo
+                # us.save()
+            # flash('You have successfully Registered!')
+            # session['id'] = us.id
+            # session['username'] = us.username
+            # fromaddr = 'tygayoinc@gmail.com'
+            # toaddrs  = us.email
+            # msg = registration_mail(us)
+            # username = 'tygayoinc@gmail.com'
+            # password = 'Work1234'
+            # server = SMTP("smtp.gmail.com",587)
+            # server.ehlo()
+            # server.starttls()
+            # server.login(username,password)
+            # server.sendmail(fromaddr, toaddrs, msg)
+            # server.close()
             return redirect (url_for('startup'))
     else:
         return redirect (url_for('index'))
