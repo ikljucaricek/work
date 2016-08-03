@@ -126,14 +126,11 @@ def start():
     return render_template('startup.html')
     
 @app.route('/edetails/<id>')
-@login_required
 def showevent(id):
     event = db.session.query(Event).get(id)
     if not event:
         abort(404)
     user = db.session.query(User).get(event.user_id)
-    if not user:
-        abort(404)
     if event.accessories_purchased == 1:     
         accessP = "checked"
     else:
@@ -172,7 +169,7 @@ def showevent(id):
     if event.photo == None:
         event.photo = "./static/images/events_photos/default.jpg"
     
-    return render_template('edetails.html',username = session['username'],event=event,
+    return render_template('edetails.html',username = session.get('username'),event=event,
                                                                             user=user,
                                                                    users = Signedupusers,
                                                                    already = already,
