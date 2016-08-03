@@ -96,20 +96,20 @@ def register():
                 # photo.save(path_to_photo)
                 # us.picture = path_to_photo
                 # us.save()
-            # flash('You have successfully Registered!')
-            # session['id'] = us.id
-            # session['username'] = us.username
-            # fromaddr = 'tygayoinc@gmail.com'
-            # toaddrs  = us.email
-            # msg = registration_mail(us)
-            # username = 'tygayoinc@gmail.com'
-            # password = 'Work1234'
-            # server = SMTP("smtp.gmail.com",587)
-            # server.ehlo()
-            # server.starttls()
-            # server.login(username,password)
-            # server.sendmail(fromaddr, toaddrs, msg)
-            # server.close()
+            flash('You have successfully Registered!')
+            session['id'] = us.id
+            session['username'] = us.username
+            fromaddr = 'tygayoinc@gmail.com'
+            toaddrs  = us.email
+            msg = registration_mail(us)
+            username = 'tygayoinc@gmail.com'
+            password = 'Work1234'
+            server = SMTP("smtp.gmail.com",587)
+            server.ehlo()
+            server.starttls()
+            server.login(username,password)
+            server.sendmail(fromaddr, toaddrs, msg)
+            server.close()
             return redirect (url_for('startup'))
     else:
         return redirect (url_for('index'))
