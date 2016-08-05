@@ -33,6 +33,7 @@ class Event(db.Model):
     closed = db.Column(db.Boolean)
     price = db.Column(db.Float,nullable=False)
     address = db.Column(db.String(250),nullable=False)
+    neighborhood = db.Column(db.String(250),nullable=False)
     date_time_create = db.Column(db.DateTime)
     date_time_execute = db.Column(db.DateTime)
     date_time_close = db.Column(db.DateTime)
@@ -154,8 +155,6 @@ class User(db.Model):
     def save(self):
         db.session.add(self)
         db.session.commit()
-    
-
-    
+  
 db.create_all()
 
