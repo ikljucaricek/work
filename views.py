@@ -383,7 +383,18 @@ def deactivate_event():
         event.deactivate()
         flash('You successfully deactivated Event!')
     return redirect (url_for('showevent', id=request.form.get('id')))
-    
+
+
+@app.route('/unassign', methods=['GET', 'POST'])
+@login_required
+def un_assign():
+    if request.method == 'POST':        
+        link = Applied_repairman.get_link(request.form.get('id'),session['id'])
+        print link.id
+        link.delete()            
+        flash('You have successfully un-asigned from the Event!')
+    return redirect (url_for('showevent', id=request.form.get('id')))
+        
 @app.route('/declineevent', methods=['GET', 'POST'])
 @login_required
 def decline_event():
