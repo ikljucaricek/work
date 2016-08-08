@@ -220,6 +220,7 @@
                                             
                                         {% else %}
                                             You are already signed up!
+                                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#unsign-modal" id="myLnk">Un-assign</button>
                                         {% endif %}
                                     {% endif %}
                                 </div>
@@ -428,6 +429,30 @@
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                   <button type="submit" class="btn btn-danger">Decline Event</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        
+        <div class="modal fade" id="unsign-modal" tabindex="-1" role="dialog" aria-labelledby="DeclineModal">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Un-assign</h4>
+              </div>
+              <form method='POST' action="/unassign" enctype="multipart/form-data">
+                <div class="modal-body">
+                  <input type="hidden" class="form-control" name="id" id="id" placeholder="Id of Event" value="{{ event.id }}" readonly>
+                  <p>Are you sure you want to un-assign from this event?
+                  </br>If you do this the client would not be able to pick you as the reparman. </br></br>
+                    You can sign up any time again.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-warning">Un-assign</button>
                 </div>
               </form>
             </div>
