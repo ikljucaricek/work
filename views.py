@@ -451,7 +451,7 @@ def confirmation_mail(msg_for_what, rm , client, event_obj, eventid):
             "The event takes place at " + event_obj.address + ", scheduled for " + str(event_obj.date_time_create) + ".",
             "",
             "The event details are in the link bellow:",
-            "http://localhost:5000" + url_for('showevent', id=eventid),
+            "http://tygayo.herokuapp.com/" + url_for('showevent', id=eventid),
             "",
             "Best Regards,",
             "TygAyo Inc."
@@ -470,7 +470,7 @@ def confirmation_mail(msg_for_what, rm , client, event_obj, eventid):
                 "The event takes place at " + event_obj.address + ", scheduled for " + str(event_obj.date_time_create) + ".",
                 "",
                 "The event details are in the link bellow:",
-                "http://localhost:5000" + url_for('showevent', id=eventid),
+                "http://tygayo.herokuapp.com/" + url_for('showevent', id=eventid),
                 "",
                 "Best Regards,",
                 "TygAyo Inc."
@@ -489,6 +489,6 @@ def registration_mail(user):
             "",
             "Best Regards,",
             "TygAyo Inc."
-            "http://localhost:5000"
+            "http://tygayo.herokuapp.com/"
             ])
         return user_msg  
