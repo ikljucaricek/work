@@ -97,19 +97,19 @@ def register():
                 us.picture = path_to_photo
                 us.save()
             flash('You have successfully Registered!')
-            # session['id'] = us.id
-            # session['username'] = us.username
-            # fromaddr = 'tygayoinc@gmail.com'
-            # toaddrs  = us.email
-            # msg = registration_mail(us)
-            # username = 'tygayoinc@gmail.com'
-            # password = 'Work1234'
-            # server = SMTP("smtp.gmail.com",587)
-            # server.ehlo()
-            # server.starttls()
-            # server.login(username,password)
-            # server.sendmail(fromaddr, toaddrs, msg)
-            # server.close()
+            session['id'] = us.id
+            session['username'] = us.username
+            fromaddr = "%s <%s>" % ('TygAyo','tygayoinc@gmail.com')
+            toaddrs  = us.email
+            msg = registration_mail(us)
+            username = 'tygayoinc@gmail.com'
+            password = 'Work1234'
+            server = SMTP("smtp.gmail.com",587)
+            server.ehlo()
+            server.starttls()
+            server.login(username,password)
+            server.sendmail(fromaddr, toaddrs, msg)
+            server.close()
             return redirect (url_for('startup'))
     else:
         return redirect (url_for('index'))
@@ -383,7 +383,18 @@ def deactivate_event():
         event.deactivate()
         flash('You successfully deactivated Event!')
     return redirect (url_for('showevent', id=request.form.get('id')))
-    
+
+
+@app.route('/unassign', methods=['GET', 'POST'])
+@login_required
+def un_assign():
+    if request.method == 'POST':        
+        link = Applied_repairman.get_link(request.form.get('id'),session['id'])
+        print link.id
+        link.delete()            
+        flash('You have successfully un-asigned from the Event!')
+    return redirect (url_for('showevent', id=request.form.get('id')))
+        
 @app.route('/declineevent', methods=['GET', 'POST'])
 @login_required
 def decline_event():
@@ -440,7 +451,7 @@ def confirmation_mail(msg_for_what, rm , client, event_obj, eventid):
             "The event takes place at " + event_obj.address + ", scheduled for " + str(event_obj.date_time_create) + ".",
             "",
             "The event details are in the link bellow:",
-            "http://localhost:5000" + url_for('showevent', id=eventid),
+            "http://tygayo.herokuapp.com/" + url_for('showevent', id=eventid),
             "",
             "Best Regards,",
             "TygAyo Inc."
@@ -459,7 +470,7 @@ def confirmation_mail(msg_for_what, rm , client, event_obj, eventid):
                 "The event takes place at " + event_obj.address + ", scheduled for " + str(event_obj.date_time_create) + ".",
                 "",
                 "The event details are in the link bellow:",
-                "http://localhost:5000" + url_for('showevent', id=eventid),
+                "http://tygayo.herokuapp.com/" + url_for('showevent', id=eventid),
                 "",
                 "Best Regards,",
                 "TygAyo Inc."
@@ -478,6 +489,6 @@ def registration_mail(user):
             "",
             "Best Regards,",
             "TygAyo Inc."
-            "http://localhost:5000"
+            "http://tygayo.herokuapp.com/"
             ])
         return user_msg  
