@@ -260,8 +260,17 @@
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                   </div><br>
-                  <div class="form-group">  
-                      <label for="address"><span class="glyphicon glyphicon-map-marker"></span> Event Address</label>
+
+                  <div class="form-group">
+                      <label for="cityList"><span class="glyphicon glyphicon-map-marker"></span> City of the Event</label>
+                      <select class="form-control" name="cityList" id="cityList"></select>
+                  </div>
+                  <div class="form-group">
+                      <label for="address"><span class="glyphicon glyphicon-map-marker"></span> Neighborhood of the Event</label>
+                      <select class="form-control" name="neighborhoodList" id="neighborhoodList"></select>
+                  </div>
+                                    <div class="form-group">  
+                      <label for="address"><span class="glyphicon glyphicon-map-marker"></span> Event Street and number</label>
                       <input type="text" class="form-control" name="address" id="address" placeholder="Enter Address of Event location" required><br>
                   </div>
                   <div class="form-group">  
@@ -461,5 +470,39 @@
         $('[data-toggle="popover"]').popover()
       })
     </script>
+    <script>
+    var cities = ["Zagreb","Split","Rijeka","Osjek"];     
+    var sel = document.getElementById('cityList');
+    var fragment = document.createDocumentFragment();
+    
+    cities.forEach(function(cuisine, index) {
+        var opt = document.createElement('option');
+        opt.innerHTML = cuisine;
+        opt.value = cuisine;
+        fragment.appendChild(opt);
+    });
+    sel.appendChild(fragment);
+    </script>
+    <script>
+    var neighborhoods = ["Lucko","Gornji Grad","Remiza","Tresnjevka","Vrbani"];     
+    var sel = document.getElementById('neighborhoodList');
+    var fragment = document.createDocumentFragment();
+    
+    neighborhoods.forEach(function(cuisine, index) {
+        var opt = document.createElement('option');
+        opt.innerHTML = cuisine;
+        opt.value = cuisine;
+        fragment.appendChild(opt);
+    });
+    sel.appendChild(fragment);
+    </script>
+    <script>
+    $(document).ready(function(){
+        $("#cityList").change(function() {
+            $('#neighborhoodList').attr('disabled', !(this.value === "Zagreb"));
+        });
+    });
+</script>
+    
   </body>
 </html>

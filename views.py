@@ -232,15 +232,20 @@ def create_an_event():
         #if request.form.get('datmtme') >= datetime.now():
         if 'photo' in request.files and request.files['photo'].filename != '':
             photo = request.files['photo']
-            print "Ovo je foto:", photo
             extension = photo.filename.split('.')
             path_to_photo = '.\\static\\images\\events_photos\\' + secure_filename(str(session['id']) + '.' + extension[-1])
             photo.save(path_to_photo)
-
+            
+        if request.form.get('cityList') == "Zagreb":
+            neighborhoodinput = request.form.get('neighborhoodList')
+        else:
+            neighborhoodinput = ""
         event = Event(
             name = request.form.get('name'),
             description = request.form.get('description'),
             price = request.form.get('price'),
+            city = request.form.get('cityList'),
+            neighborhood = neighborhoodinput,
             address = request.form.get('address'),
             date_time_create = datetime.now(),
             date_time_execute = datetime.strptime(request.form.get('datmtme'), "%m/%d/%Y %I:%M %p"),
