@@ -360,11 +360,18 @@ def modify_an_event():
         #print path_to_photo
         print originEvent.date_time_create
         print request.form.get('datmtme')
+        
+        if request.form.get('cityList') == "Zagreb":
+            neighborhoodinput = request.form.get('neighborhoodList')
+        else:
+            neighborhoodinput = ""
         event = Event(
             id = request.form.get('id'),
             name = request.form.get('name'),
             description = request.form.get('description'),
             price = request.form.get('price'),
+            city = request.form.get('cityList'),
+            neighborhood = neighborhoodinput,
             address = request.form.get('address'),
             date_time_execute = datetime.strptime(request.form.get('datmtme'), "%m/%d/%Y %I:%M %p"),
             accessories_purchased = request.form.get('accessories'),

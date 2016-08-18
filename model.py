@@ -33,7 +33,7 @@ class Event(db.Model):
     closed = db.Column(db.Boolean)
     price = db.Column(db.Float,nullable=False)
     city = db.Column(db.String(250),nullable=False)
-    neighborhood = db.Column(db.String(250),nullable=False)
+    neighborhood = db.Column(db.String(250))
     address = db.Column(db.String(250),nullable=False)
     date_time_create = db.Column(db.DateTime)
     date_time_execute = db.Column(db.DateTime)
@@ -52,6 +52,8 @@ class Event(db.Model):
         our_event.description = self.description
         our_event.accessories_purchased = self.accessories_purchased
         our_event.price = self.price
+        our_event.city = self.city
+        our_event.neighborhood = self.neighborhood
         our_event.address = self.address
         our_event.photo = self.photo
         our_event.date_time_execute = self.date_time_execute

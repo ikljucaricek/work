@@ -313,6 +313,10 @@
                   <textarea class="form-control" name="description" id="description" placeholder="Change Description of Event">{{ event.description }}</textarea><br>
                   <label for="price"><span class="glyphicon glyphicon-usd"></span> Event Price</label>
                   <input type="number" class="form-control" name="price" id="price" step="any" placeholder="Change Price of Event" value="{{ event.price }}"><br>
+                  <label for="address"><span class="glyphicon glyphicon-map-marker"></span> Event City</label>
+                  <select class="form-control" name="cityList" id="cityList"></select><br>
+                  <label for="address"><span class="glyphicon glyphicon-map-marker"></span> Event Neighborhood</label>
+                  <select class="form-control" name="neighborhoodList" id="neighborhoodList"></select><br>
                   <label for="address"><span class="glyphicon glyphicon-map-marker"></span> Event Address</label>
                   <input type="text" class="form-control" name="address" id="address" placeholder="Change Address of User location" value="{{ event.address }}"><br>
                   <label for="date"><span class="glyphicon glyphicon-calendar"></span> Event Date</label>
@@ -782,5 +786,38 @@
         $('[data-toggle="popover"]').popover()
       })
     </script>
+    <script>
+    var cities = ["Zagreb","Split","Rijeka","Osjek"];     
+    var sel = document.getElementById('cityList');
+    var fragment = document.createDocumentFragment();
+    
+    cities.forEach(function(cuisine, index) {
+        var opt = document.createElement('option');
+        opt.innerHTML = cuisine;
+        opt.value = cuisine;
+        fragment.appendChild(opt);
+    });
+    sel.appendChild(fragment);
+    </script>
+    <script>
+    var neighborhoods = ["Lucko","Gornji Grad","Remiza","Tresnjevka","Vrbani"];     
+    var sel = document.getElementById('neighborhoodList');
+    var fragment = document.createDocumentFragment();
+    
+    neighborhoods.forEach(function(cuisine, index) {
+        var opt = document.createElement('option');
+        opt.innerHTML = cuisine;
+        opt.value = cuisine;
+        fragment.appendChild(opt);
+    });
+    sel.appendChild(fragment);
+    </script>
+    <script>
+    $(document).ready(function(){
+        $("#cityList").change(function() {
+            $('#neighborhoodList').attr('disabled', !(this.value === "Zagreb"));
+        });
+    });
+</script>
   </body>
 </html>
