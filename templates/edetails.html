@@ -159,9 +159,17 @@
                             </div>
                             <div class="info-section">
                                 <span class="label label-default">E-mail:</span>
+                                {% if event.repairman_id == cuserId  or user.id == cuserId %}
                                 <p> {{ user.email }}</p>
+                                {% else %}
+                                <p> - Private - </p>
+                                {% endif %}  
                                 <span class="label label-default">Phone:</span>
+                                {% if event.repairman_id == cuserId  or user.id == cuserId %}
                                 <p> {{ user.mobile }}</p>
+                                {% else %}
+                                <p> - Private - </p>
+                                {% endif %}  
                             </div>
                           </div>
                         </div>
