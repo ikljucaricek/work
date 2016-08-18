@@ -125,9 +125,21 @@
                         </div><br><br>
                         <div class="row">
                           <div class="col-md-4">
+                            <div class="info-section">
+                                <span class="label label-default">City:</span>
+                                <p>{{ event.city }}</p>
+                            </div>
+                            <div class="info-section">
+                                <span class="label label-default">Neighborhood:</span>
+                                <p>{{ event.neighborhood }}</p>
+                            </div>                         
                            <div class="info-section">
-                                <span class="label label-default">Event Address:</span>
+                                <span class="label label-default">Street and number:</span>
+                                {% if event.repairman_id == cuserId  or user.id == cuserId %}
                                 <p>{{ event.address }}</p>
+                                {% else %}
+                                <p> - Private - </p>
+                                {% endif %}  
                             </div>
                             <div class="info-section">
                                 <span class="label label-default">Time and date:</span>
