@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ g.lang_code }}">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,24 +9,24 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Small Home Maintenance Work</title>
+    <title>{% trans %}Small Home Maintenance Work{% endtrans %}</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../static/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Optional theme -->
-    <link href="../static/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="../../static/css/bootstrap-theme.min.css" rel="stylesheet">
 
     <!-- Latest compiled and minified JavaScript -->
-    <link href="../static/js/bootstrap.min.js" rel="stylesheet">
+    <link href="../../static/js/bootstrap.min.js" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="../static/css/jumbotron.css" rel="stylesheet">
 
-    <link href="../static/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="../../static/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     
     <!-- Validatror -->
-    <link href="../static/css/bootstrapvalidator.min.css" rel="stylesheet">
+    <link href="../../static/css/bootstrapvalidator.min.css" rel="stylesheet">
     <style>
       .footer {
         background: linear-gradient(#3c3c3c 0,#222 100%);
@@ -56,6 +56,12 @@
          cursor: pointer;
          /* whatever other hover styles you want */
       }
+      #lng, #lng2 {
+        color: #2dacd3;
+      }
+      #lng:hover, #lng2:hover {
+        color: #57BDDC;
+      }
     </style>
   </head>
 
@@ -70,35 +76,37 @@
             <span class="icon-bar"></span>
           </button>
           {% if user.username %}
-              <a class="navbar-brand" href="/startup">Tyg-Ayo</a>
+              <a class="navbar-brand" href="{{ url_for('.startup') }}">Tyg-Ayo</a>
           {% else %}
-              <a class="navbar-brand" href="/">Tyg-Ayo</a>
+              <a class="navbar-brand" href="{{ url_for('.index') }}">Tyg-Ayo</a>
           {% endif %}
         </div>
         <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="/startup">Home </a>
+            <a class="nav-link" href="{{ url_for('.startup') }}">{% trans %}Home{% endtrans %} </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/about#">About</a>
+            <a class="nav-link" href="{{ url_for('.about') }}">{% trans %}About{% endtrans %}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#contact">Contact</a>
+            <a class="nav-link" href="#contact">{% trans %}Contact{% endtrans %}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/events">All Events</a>
+            <a class="nav-link" href="{{ url_for('.allevents') }}">{% trans %}All Events{% endtrans %}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href data-toggle="modal" id="myBtn3">Create Event</a>
+            <a class="nav-link" href data-toggle="modal" id="myBtn3">{% trans %}Create Event{% endtrans %}</a>
           </li>
         </ul>
           <ul class="nav navbar-nav navbar-right">
             {% if user.username %}              
-              <li><a href="/mypage/{{ user.username }}">My Events</a></li> 
-              <li class="nav-item active"><a href="/profile/{{ user.username }}">My Profile</a></li>           
-              <li><a href="/signout">Sign Out {{ user.username }}</a></li>
+              <li><a href="{{ url_for('.myPage', username=user.username) }}">{% trans %}My Events{% endtrans %}</a></li> 
+              <li class="nav-item active"><a href="{{ url_for('.profilePage', username=user.username) }}">{% trans %}My Profile{% endtrans %}</a></li>           
+              <li><a href="{{ url_for('logout') }}">{% trans %}Sign Out{% endtrans %} {{ user.username }}</a></li>
             {% endif %}
+              <li><a id="lng" href="/hr/profile/{{user.username}}">{% trans %}cro{% endtrans %}</a></li>
+              <li><a id="lng2" href="/en/profile/{{user.username}}">en</a></li>
           </ul>
           </div><!--/.nav-collapse -->
       </div>
@@ -123,7 +131,7 @@
             {% endfor %}
           {% endif %}
         {% endwith %}
-        <h1 class="display-3">{{ user.username }}'s Profile</h1>
+        <h1 class="display-3">{{ user.username }}'s {% trans %}Profile{% endtrans %}</h1>
 
         <br>
 
@@ -132,26 +140,26 @@
           <img class="img-circle" src="/{{ user.picture }}" alt="Generic placeholder image">
           <br><br>
           {% if user.id == cuserId %}
-          <button class="btn btn-info" type="button" data-toggle="modal" id="myBtn">Edit Profile Info</button>
+          <button class="btn btn-info" type="button" data-toggle="modal" id="myBtn">{% trans %}Edit Profile Info{% endtrans %}</button>
           {% endif %}
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
-          <span class="label label-default">Name:</span><p> {{ user.name }}</p>
+          <span class="label label-default">{% trans %}Name{% endtrans %}:</span><p> {{ user.name }}</p>
           
-          <span class="label label-default">Last Name:</span><p> {{ user.surename }}</p>
+          <span class="label label-default">{% trans %}Last Name{% endtrans %}:</span><p> {{ user.surename }}</p>
 
-          <span class="label label-default">Username:</span><p> {{ user.username }}</p>
+          <span class="label label-default">{% trans %}Username{% endtrans %}:</span><p> {{ user.username }}</p>
 
-          <span class="label label-default">Join date:</span><p>{{ user.joindate }}</p>
+          <span class="label label-default">{% trans %}Join date{% endtrans %}:</span><p>{{ user.joindate }}</p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
-          <span class="label label-default">E-mail:</span><p> {{ user.email }}</p>
+          <span class="label label-default">{% trans %}E-mail{% endtrans %}:</span><p> {{ user.email }}</p>
 
-          <span class="label label-default">Address:</span><p> {{ user.address }}</p>
+          <span class="label label-default">{% trans %}Address{% endtrans %}:</span><p> {{ user.address }}</p>
 
-          <span class="label label-default">Phone:</span><p> {{ user.mobile }}</p>
+          <span class="label label-default">{% trans %}Phone{% endtrans %}:</span><p> {{ user.mobile }}</p>
 
-          <span class="label label-default">Rating:</span><p> {{ user.rating }}</p>
+          <span class="label label-default">{% trans %}Rating{% endtrans %}:</span><p> {{ user.rating }}</p>
         </div><!-- /.col-lg-4 -->
 
 <!--         <div class="col-lg-6 col-md-offset-3">
@@ -172,24 +180,24 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Change Your Info Data</h4>
+                <h4 class="modal-title" id="myModalLabel">{% trans %}Change Your Info Data{% endtrans %}</h4>
               </div>
-              <form method='POST' action="/modifyuser" enctype="multipart/form-data">
+              <form method='POST' action="{{ url_for('.modify_an_user') }}" enctype="multipart/form-data">
                 <div class="modal-body">                
-                  <label for="name"><span class="glyphicon glyphicon-user"></span> User's Name</label>
-                  <input type="text" class="form-control" name="name" id="name" placeholder="Change Name of User" value="{{ user.name }}"><br>
-                  <label for="surname"><span class="glyphicon glyphicon-user"></span> User's Last Name</label><br>
-                  <input type="text" class="form-control" name="surname" id="surname" placeholder="Change Last Name of User" value="{{ user.surename }}"><br>
-                  <label for="address"><span class="glyphicon glyphicon-map-marker"></span> User's Address</label>
-                  <input type="text" class="form-control" name="address" id="address" placeholder="Change Address of User location" value="{{ user.address }}"><br>
-                  <label for="mobile"><span class="glyphicon glyphicon-phone"></span> User's Mobile</label>
-                  <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Change Mobile of User" value="{{ user.mobile }}"><br>
-                  <label for="photo"><span class="glyphicon glyphicon-camera"></span> User's Photo</label>
-                  <input type="file" accept="image/*" class="form-control" name="photo" id="photo" placeholder="Change Photo of User" value="\{{ user.picture }}">
+                  <label for="name"><span class="glyphicon glyphicon-user"></span> {% trans %}User's Name{% endtrans %}</label>
+                  <input type="text" class="form-control" name="name" id="name" placeholder="{% trans %}Change Name of User{% endtrans %}" value="{{ user.name }}"><br>
+                  <label for="surname"><span class="glyphicon glyphicon-user"></span> {% trans %}User's Last Name{% endtrans %}</label><br>
+                  <input type="text" class="form-control" name="surname" id="surname" placeholder="{% trans %}Change Last Name of User{% endtrans %}" value="{{ user.surename }}"><br>
+                  <label for="address"><span class="glyphicon glyphicon-map-marker"></span> {% trans %}User's Address{% endtrans %}</label>
+                  <input type="text" class="form-control" name="address" id="address" placeholder="{% trans %}Change Address of User location{% endtrans %}" value="{{ user.address }}"><br>
+                  <label for="mobile"><span class="glyphicon glyphicon-phone"></span> {% trans %}User's Mobile{% endtrans %}</label>
+                  <input type="text" class="form-control" name="mobile" id="mobile" placeholder="{% trans %}Change Mobile of User{% endtrans %}" value="{{ user.mobile }}"><br>
+                  <label for="photo"><span class="glyphicon glyphicon-camera"></span> {% trans %}User's Photo{% endtrans %}</label>
+                  <input type="file" accept="image/*" class="form-control" name="photo" id="photo" placeholder="{% trans %}Change Photo of User{% endtrans %}" value="\{{ user.picture }}">
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-info">Save changes</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                  <button type="submit" class="btn btn-info">{% trans %}Save changes{% endtrans %}</button>
                 </div>
               </form>
             </div>
@@ -202,44 +210,44 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Create Event</h4>
+                <h4 class="modal-title" id="myModalLabel">{% trans %}Create Event{% endtrans %}</h4>
               </div>
               <form method='POST' action="/createvent" enctype="multipart/form-data" id='createEv-modalform'>
                 <div class="modal-body">
                   <div class="form-group">                
-                      <label for="name" class="control-label"><span class="glyphicon glyphicon-user"></span> Event Name</label>
-                      <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name of Event" required><br>
+                      <label for="name" class="control-label"><span class="glyphicon glyphicon-user"></span> {% trans %}Event Name{% endtrans %}</label>
+                      <input type="text" class="form-control" name="name" id="name" placeholder="{% trans %}Enter Name of Event{% endtrans %}" required><br>
                   </div>
                   <div class="form-group"> 
-                      <label for="description" class="control-label"><span class="glyphicon glyphicon-comment"></span> Event Description</label><br>
-                      <textarea class="form-control" name="description" id="description" placeholder="Change Description of Event" required></textarea><br>
+                      <label for="description" class="control-label"><span class="glyphicon glyphicon-comment"></span> {% trans %}Event Description{% endtrans %}</label><br>
+                      <textarea class="form-control" name="description" id="description" placeholder="{% trans %}Change Description of Event{% endtrans %}" required></textarea><br>
                   </div>
                   <div class="form-group">  
-                      <label for="price"><span class="glyphicon glyphicon-usd"></span> Event Price</label>
-                      <input type="number" class="form-control" name="price" id="price" step="any" placeholder="Enter Price of Event" required><br>
+                      <label for="price"><span class="glyphicon glyphicon-usd"></span> {% trans %}Event Price{% endtrans %}</label>
+                      <input type="number" class="form-control" name="price" id="price" step="any" placeholder="{% trans %}Enter Price of Event{% endtrans %}" required><br>
                   </div>  
-                  <label for="date"><span class="glyphicon glyphicon-calendar"></span> Event Date</label>
+                  <label for="date"><span class="glyphicon glyphicon-calendar"></span> {% trans %}Event Date{% endtrans %}</label>
                   <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' name="datmtme" placeholder="Enter End Date of Event" class="form-control" required/>
+                    <input type='text' name="datmtme" placeholder="{% trans %}Enter End Date of Event{% endtrans %}" class="form-control" required/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                   </div><br>
                   <div class="form-group">  
-                      <label for="address"><span class="glyphicon glyphicon-map-marker"></span> Event Address</label>
-                      <input type="text" class="form-control" name="address" id="address" placeholder="Enter Address of Event location" required><br>
+                      <label for="address"><span class="glyphicon glyphicon-map-marker"></span> {% trans %}Event Address{% endtrans %}</label>
+                      <input type="text" class="form-control" name="address" id="address" placeholder="{% trans %}Enter Address of Event location{% endtrans %}" required><br>
                   </div>
                   <div class="form-group">  
-                      <label for="photo"><span class="glyphicon glyphicon-picture"></span> Photo</label>
-                      <input type="file" accept="image/*" class="form-control" name="photo" id="photo" placeholder="Enter Photo of Event"><br>
+                      <label for="photo"><span class="glyphicon glyphicon-picture"></span> {% trans %}Photo{% endtrans %}</label>
+                      <input type="file" accept="image/*" class="form-control" name="photo" id="photo" placeholder="{% trans %}Enter Photo of Event{% endtrans %}"><br>
                   </div>
-                  <label for="purchase accessories"><span class="glyphicon glyphicon-check"></span> Purchase Accessories</label>
-                  <div class="pull-right"><span type="button" title="Purchase Accessories Explanation" data-toggle="popover" class="glyphicon glyphicon-question-sign" data-placement="left" data-content="If you don't have all the required parts and Repairman needs to bring something - then you select this checkbox"></span></div>
+                  <label for="purchase accessories"><span class="glyphicon glyphicon-check"></span> {% trans %}Purchase Accessories{% endtrans %}</label>
+                  <div class="pull-right"><span type="button" title="{% trans %}Purchase Accessories Explanation{% endtrans %}" data-toggle="popover" class="glyphicon glyphicon-question-sign" data-placement="left" data-content="{% trans %}If you don't have all the required parts and Repairman needs to bring something - then you select this checkbox{% endtrans %}"></span></div>
                   <input type="checkbox" class="form-control" name="accessories" id="accessories" value="0">      
                 </div>  
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-info">Start Event</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                  <button type="submit" class="btn btn-info">{% trans %}Start Event{% endtrans %}</button>
               </div>  
               </form>
             </div>
@@ -250,7 +258,7 @@
     <footer class="footer">
       <div class="container" align="center">
         <p class="pull-xs-right">
-          <a href="#">Back to top</a>
+          <a href="#">{% trans %}Back to top{% endtrans %}</a>
         </p>
         <div class="col-md-4">
         </div>
@@ -273,14 +281,14 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../static/js/jquery.min.js"><\/script>')</script>
-    <script src="../static/js/bootstrap.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../static/js/jquery.min.js"><\/script>')</script>
+    <script src="../../static/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
-    <script src="../static/js/bootstrap-datetimepicker.min.js"></script>    
+    <script src="../../static/js/bootstrap-datetimepicker.min.js"></script>    
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../static/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="../../static/js/ie10-viewport-bug-workaround.js"></script>
     <!-- Validator -->
-    <script src="../static/js/bootstrapvalidator.min.js"></script>
+    <script src="../../static/js/bootstrapvalidator.min.js"></script>
     <script>
     $(document).ready(function() {
         $('#createEv-modalform').bootstrapValidator({
@@ -293,31 +301,31 @@
                 name: {
                     validators: {
                         notEmpty: {
-                            message: 'The first name is required and cannot be empty'
+                            message: {% trans %}'The first name is required and cannot be empty'{% endtrans %}
                         }
                     }
                 },
                 description: {
                     validators: {
                         notEmpty: {
-                            message: 'The first name is required and cannot be empty'
+                            message: {% trans %}'The first name is required and cannot be empty'{% endtrans %}
                         }
                     }
                 },
                 address: {
                     validators: {
                         notEmpty: {
-                            message: 'The first name is required and cannot be empty'
+                            message: {% trans %}'The first name is required and cannot be empty'{% endtrans %}
                         }
                     }
                 },
                 price: {
                     validators: {
                         integer: {
-                            message: 'The price has to be an integer'
+                            message: {% trans %}'The price has to be an integer'{% endtrans %}
                         },
                         notEmpty: {
-                            message: 'The price is required and cannot be empty'
+                            message: {% trans %}'The price is required and cannot be empty'{% endtrans %}
                         }  
                     }
                 }

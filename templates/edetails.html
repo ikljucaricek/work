@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ g.lang_code }}">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,27 +9,27 @@
     <meta name="author" content="ikypav">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Small Home Maintenance Work</title>
+    <title>{% trans %}Small Home Maintenance Work{% endtrans %}</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../static/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Optional theme -->
-    <link href="../static/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="../../static/css/bootstrap-theme.min.css" rel="stylesheet">
 
     <!-- Latest compiled and minified JavaScript -->
-    <link href="../static/js/bootstrap.min.js" rel="stylesheet">
+    <link href="../../static/js/bootstrap.min.js" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../static/css/jumbotron.css" rel="stylesheet">
+    <link href="../../static/css/jumbotron.css" rel="stylesheet">
     
     <!-- Custom styles for this template -->
-    <link href="../static/css/edetails.css" rel="stylesheet">
+    <link href="../../static/css/edetails.css" rel="stylesheet">
 
     <!-- Validatror -->
-    <link href="../static/css/bootstrapvalidator.min.css" rel="stylesheet">    
+    <link href="../../static/css/bootstrapvalidator.min.css" rel="stylesheet">    
 
-    <link href="../static/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="../../static/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
   </head>
   
   <body>
@@ -43,42 +43,44 @@
             <span class="icon-bar"></span>
           </button>
           {% if username %}
-              <a class="navbar-brand" href="/startup">Tyg-Ayo</a>
+              <a class="navbar-brand" href="{{ url_for('.startup') }}">Tyg-Ayo</a>
           {% else %}
-              <a class="navbar-brand" href="/">Tyg-Ayo</a>
+              <a class="navbar-brand" href="{{ url_for('.index') }}">Tyg-Ayo</a>
           {% endif %}
         </div>
         <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="/startup">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="{{ url_for('.startup') }}">{% trans %}Home{% endtrans %} <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/about">About</a>
+            <a class="nav-link" href="{{ url_for('.about') }}">{% trans %}About{% endtrans %}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#contact">Contact</a>
+            <a class="nav-link" href="#contact">{% trans %}Contact{% endtrans %}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/events">All Events</a>
+            <a class="nav-link" href="{{ url_for('.allevents') }}">{% trans %}All Events{% endtrans %}</a>
           </li>
           <li class="nav-item">
             {% if username %}
-            <a class="nav-link" href data-toggle="modal" id="myBtn3">Create Event</a>
+            <a class="nav-link" href data-toggle="modal" id="myBtn3">{% trans %}Create Event{% endtrans %}</a>
             {% else %}
-            <a class="nav-link" href data-toggle="modal" data-target="#log-modal" id="myLnk">Create Event</a>
+            <a class="nav-link" href data-toggle="modal" data-target="#log-modal" id="myLnk">{% trans %}Create Event{% endtrans %}</a>
             {% endif %}
           </li>
         </ul>
           <ul class="nav navbar-nav navbar-right">
             {% if username %}
-              <li><a href="/mypage/{{ username }}">My Events</a></li>
-              <li><a href="/profile/{{ username }}">My Profile</a></li>            
-              <li><a href="/signout">Sign Out {{ username }}</a></li>
+              <li><a href="{{ url_for('.myPage', username=username) }}">{% trans %}My Events{% endtrans %}</a></li>
+              <li><a href="{{ url_for('.profilePage', username=username) }}">{% trans %}My Profile{% endtrans %}</a></li>
+              <li><a href="{{ url_for('logout') }}">{% trans %}Sign Out{% endtrans %} {{ username }}</a></li>
             {% else %}
-                <li><a href="#regModal" data-toggle="modal" id="regLnk" data-target="#regForm-modal">Register</a></li>
-                <li><a href data-toggle="modal" data-target="#log-modal" id="myLnk">Sign In</a></li>
+                <li><a href="#regModal" data-toggle="modal" id="regLnk" data-target="#regForm-modal">{% trans %}Register{% endtrans %}</a></li>
+                <li><a href data-toggle="modal" data-target="#log-modal" id="myLnk">{% trans %}Sign In{% endtrans %}</a></li>
             {% endif %}
+            <li><a id="lng" href="/hr/edetails/{{ event.id }}">{% trans %}cro{% endtrans %}</a></li>
+            <li><a id="lng2" href="/en/edetails/{{ event.id }}">en</a></li> 
           </ul>
           </div><!--/.nav-collapse -->
       </div>
@@ -108,11 +110,11 @@
                         <div align="center">
                            <img class="img-circle" src="/{{ event.photo }}"><br><br>
                           {% if event.active != False and user.id == cuserId %}
-                          <button class="btn btn-info" type="button" data-toggle="modal" id="myBtn">Edit Event Info</button><br><br>
-                          <button class="btn btn-danger" type="button" data-toggle="modal" id="deactBtn">Deactivate Event</button>
+                          <button class="btn btn-info" type="button" data-toggle="modal" id="myBtn">{% trans %}Edit Event Info{% endtrans %}</button><br><br>
+                          <button class="btn btn-danger" type="button" data-toggle="modal" id="deactBtn">{% trans %}Deactivate Event{% endtrans %}</button>
                           {% endif %}
                           {% if event.active == False and event.repairman_id == cuserId %}
-                            <button class="btn btn-danger" type="button" data-toggle="modal" id="declineBtn">Decline Event</button>
+                            <button class="btn btn-danger" type="button" data-toggle="modal" id="declineBtn">{% trans %}Decline{% endtrans %} Event</button>
                           {% endif %}
                         </div>
                     </div>
@@ -126,15 +128,15 @@
                         <div class="row">
                           <div class="col-md-4">
                            <div class="info-section">
-                                <span class="label label-default">Event Address:</span>
+                                <span class="label label-default">{% trans %}Event Address{% endtrans %}:</span>
                                 <p>{{ event.address }}</p>
                             </div>
                             <div class="info-section">
-                                <span class="label label-default">Time and date:</span>
+                                <span class="label label-default">{% trans %}Time and date{% endtrans %}:</span>
                                 <p>{{ event.date_time_execute }}</p>
                             </div>
                             <div class="info-section">
-                                <span class="label label-default">Accessories Purchased:</span>
+                                <span class="label label-default">{% trans %}Accessories Purchased{% endtrans %}:</span>
                                 <p>
                                 <input type="checkbox" name="accessories" disabled="disabled" value="Accessories purchased" {{ accessP }}>
                                 </p>
@@ -142,13 +144,13 @@
                           </div>
                           <div class="col-md-4 col-md-offset-3">
                             <div class="info-section">
-                                <span class="label label-default">Price:</span>
+                                <span class="label label-default">{% trans %}Price{% endtrans %}:</span>
                                 <p>{{ event.price }} HRK</p>
                             </div>
                             <div class="info-section">
-                                <span class="label label-default">E-mail:</span>
+                                <span class="label label-default">{% trans %}E-mail{% endtrans %}:</span>
                                 <p> {{ user.email }}</p>
-                                <span class="label label-default">Phone:</span>
+                                <span class="label label-default">{% trans %}Phone{% endtrans %}:</span>
                                 <p> {{ user.mobile }}</p>
                             </div>
                           </div>
@@ -187,16 +189,16 @@
                             {% if event.active == False %}
                             <div class="row">
                                 <div class="col-md-5 col-md-offset-0">
-                                    This event is no longer active.
+                                    {% trans %}This event is no longer active.{% endtrans %}
                                     {% if event.repairman_id == cuserId %}
-                                        </br> You have been chosen as the Repairman!
+                                        </br> {% trans %}You have been chosen as the Repairman!{% endtrans %}
                                     {% endif %}
                                     {% if user.id == cuserId and event.repairman_id != NULL %}
-                                    </br> </br>You chose <a href="/profile/{{ repairman.username }}">{{ repairman.username }}</a> as a repairman.
+                                    </br> </br>{% trans %}You chose{% endtrans %} <a href="{{ url_for('.profilePage', username=repairman.username) }}">{{ repairman.username }}</a> {% trans %}as a repairman.{% endtrans %}
                                         {% if event.closed == False %}
                                             </br></br>
-                                            If the event has beed carried on, please, close the event:
-                                            <button class="btn btn-info" type="button" data-toggle="modal" id="closeBtn">Finish Event</button>
+                                            {% trans %}If the event has beed carried on, please, close the event:{% endtrans %}
+                                            <button class="btn btn-info" type="button" data-toggle="modal" id="closeBtn">{% trans %}Finish Event{% endtrans %}</button>
                                         {% endif %}        
                                     {% endif %}
                                     
@@ -211,16 +213,16 @@
                                             <form action="{{ url_for('signup') }}" method=post class=signup>
                                             <input type=hidden value="{{ event.id }}" name="event_to_signup"></input>
                                             
-                                            <button type="submit" class="btn btn-info">Signup Now!</button>
+                                            <button type="submit" class="btn btn-info">{% trans %}Signup Now!{% endtrans %}</button>
                                             </form>
                                             {% else %}
-                                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#log-modal" id="myLnk">Signup Now!</button>
+                                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#log-modal" id="myLnk">{% trans %}Signup Now!{% endtrans %}</button>
                                             <!-- <button type="submit" class="btn btn-info">Signup Now!</button>  -->
                                             {% endif %}
                                             
                                         {% else %}
-                                            You are already signed up!
-                                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#unsign-modal" id="myLnk">Un-assign</button>
+                                            {% trans %}You are already signed up!{% endtrans %}
+                                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#unsign-modal" id="myLnk">{% trans %}Un-assign{% endtrans %}</button>
                                         {% endif %}
                                     {% endif %}
                                 </div>
@@ -230,25 +232,25 @@
                                     {% if user.id == cuserId %}
                                     <div class="panel panel-info">
                                         <!-- Default panel contents -->
-                                        <div class="panel-heading">Signed Up Users</div>
+                                        <div class="panel-heading">{% trans %}Signed Up {% endtrans %}</div>
                                           <div class="table-responsive">
                                             <table class="table table-hover">
                                                 <thead>
                                                     <tr>
-                                                      <th>Name</th>
-                                                      <th>Rating</th>
-                                                      <th>email</th>
-                                                      <th>Select</th>
+                                                      <th>{% trans %}Name{% endtrans %}</th>
+                                                      <th>{% trans %}Rating{% endtrans %}</th>
+                                                      <th>{% trans %}email{% endtrans %}</th>
+                                                      <th>{% trans %}Select{% endtrans %}</th>
                                                     </tr>            
                                                 </thead>
                                                 <tbody>
                                                 {% if users %}
                                                     {% for us in users %}
                                                         <tr class='clickable-row' data-href='#'>
-                                                            <th scope="row"><a href="/profile/{{ us.name }}">{{us.name}}</a></th>
+                                                            <th scope="row"><a href="{{ url_for('.profilePage', name=us.name) }}">{{us.name}}</a></th>
                                                             <td>{{us.rating}}</td>
                                                             <td>{{us.email}}</td>
-                                                            <td><a href="#myModal" data-toggle="modal" id="{{us.id}}_{{us.name}}" data-target="#edit-modal">Choose!</a></td>
+                                                            <td><a href="#myModal" data-toggle="modal" id="{{us.id}}_{{us.name}}" data-target="#edit-modal">{% trans %}Choose!{% endtrans %}</a></td>
                                                             <!--     <form action="{{ url_for('chooserm') }}" method=post class=chooserm>
                                                                     <input type=hidden value="{{ event.id }}" name="event_to_choose"></input>
                                                                     <input type=hidden value="{{ us.id }}" name="rm_to_choose"></input>
@@ -290,44 +292,44 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modify Event Details</h4>
+                <h4 class="modal-title" id="myModalLabel">{% trans %}Modify Event Details{% endtrans %}</h4>
               </div>
               <form method='POST' action="/modifyevent" enctype="multipart/form-data">
                 <div class="modal-body">
                   <input type="hidden" class="form-control" name="id" id="id" placeholder="Id of Event" value="{{ event.id }}" readonly>
-                  <label for="name"><span class="glyphicon glyphicon-user"></span> Event Name</label>
-                  <input type="text" class="form-control" name="name" id="name" placeholder="Change Name of Event" value="{{ event.name }}"><br>
-                  <label for="description"><span class="glyphicon glyphicon-comment"></span> Event Description</label><br>
-                  <textarea class="form-control" name="description" id="description" placeholder="Change Description of Event">{{ event.description }}</textarea><br>
-                  <label for="price"><span class="glyphicon glyphicon-usd"></span> Event Price</label>
-                  <input type="number" class="form-control" name="price" id="price" step="any" placeholder="Change Price of Event" value="{{ event.price }}"><br>
-                  <label for="address"><span class="glyphicon glyphicon-map-marker"></span> Event Address</label>
-                  <input type="text" class="form-control" name="address" id="address" placeholder="Change Address of User location" value="{{ event.address }}"><br>
-                  <label for="date"><span class="glyphicon glyphicon-calendar"></span> Event Date</label>
+                  <label for="name"><span class="glyphicon glyphicon-user"></span> {% trans %}Event Name{% endtrans %}</label>
+                  <input type="text" class="form-control" name="name" id="name" placeholder="{% trans %}Change Name of Event{% endtrans %}" value="{{ event.name }}"><br>
+                  <label for="description"><span class="glyphicon glyphicon-comment"></span> {% trans %}Event Description{% endtrans %}</label><br>
+                  <textarea class="form-control" name="description" id="description" placeholder="{% trans %}Change Description of Event{% endtrans %}">{{ event.description }}</textarea><br>
+                  <label for="price"><span class="glyphicon glyphicon-usd"></span> {% trans %}Event Price{% endtrans %}</label>
+                  <input type="number" class="form-control" name="price" id="price" step="any" placeholder="{% trans %}Change Price of Event{% endtrans %}" value="{{ event.price }}"><br>
+                  <label for="address"><span class="glyphicon glyphicon-map-marker"></span> {% trans %}Event Address{% endtrans %}</label>
+                  <input type="text" class="form-control" name="address" id="address" placeholder="{% trans %}Change Address of User location{% endtrans %}" value="{{ event.address }}"><br>
+                  <label for="date"><span class="glyphicon glyphicon-calendar"></span> {% trans %}Event Date{% endtrans %}</label>
                   {% if event.date_time_execute != None %}
                   <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' name="datmtme" placeholder="Change End Date of Event" class="form-control" value="{{ event.date_time_execute.strftime("%m/%d/%Y %H:%M %p") }}" required/>
+                    <input type='text' name="datmtme" placeholder="{% trans %}Change End Date of Event{% endtrans %}" class="form-control" value="{{ event.date_time_execute.strftime("%m/%d/%Y %H:%M %p") }}" required/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                   </div><br>
                   {% else %}
                   <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' name="datmtme" placeholder="Change End Date of Event" class="form-control" required/>
+                    <input type='text' name="datmtme" placeholder="{% trans %}Change End Date of Event{% endtrans %}" class="form-control" required/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                   </div><br>
                   {% endif %}
-                  <label for="photo"><span class="glyphicon glyphicon-camera"></span> Event Photo</label>
-                  <input type="file" accept="image/*" class="form-control" name="photo" id="photo" placeholder="Change Photo of User" value="{{ event.photo }}"><br>
-                  <label for="accessories"><span class="glyphicon glyphicon-check"></span> Purchase Accessories</label>
-                  <div class="pull-right"><span type="button" title="Purchase Accessories Explanation" data-toggle="popover" class="glyphicon glyphicon-question-sign" data-placement="left" data-content="If you don't have all the required parts and Repairman needs to bring something - then you select this checkbox"></span></div>
+                  <label for="photo"><span class="glyphicon glyphicon-camera"></span> {% trans %}Event Photo{% endtrans %}</label>
+                  <input type="file" accept="image/*" class="form-control" name="photo" id="photo" placeholder="{% trans %}Change Photo of User{% endtrans %}" value="{{ event.photo }}"><br>
+                  <label for="accessories"><span class="glyphicon glyphicon-check"></span> {% trans %}Purchase Accessories{% endtrans %}</label>
+                  <div class="pull-right"><span type="button" title="{% trans %}Purchase Accessories Explanation{% endtrans %}" data-toggle="popover" class="glyphicon glyphicon-question-sign" data-placement="left" data-content="{% trans %}If you don't have all the required parts and Repairman needs to bring something - then you select this checkbox{% endtrans %}"></span></div>
                   <input type="checkbox" class="form-control" name="accessories" id="accessories" value="0" {{ accessP }}> 
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-info">Save changes</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                  <button type="submit" class="btn btn-info">{% trans %}Save changes{% endtrans %}</button>
                 </div>
               </form>
             </div>
@@ -340,50 +342,50 @@
                 <div class="modal-content">
                   <div class="modal-header" >
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel5">Register user</h4>
+                    <h4 class="modal-title" id="myModalLabel5">{% trans %}Register user{% endtrans %}</h4>
                   </div>
                   <form method="post" action="{{ url_for('register') }}" class="form-horizontal" id="reg-modal">
                     <div class="modal-body" style="padding:40px 50px;">
                       <div class="form-group">  
-                          <label class="control-label">First name</label>
-                          <input type="text" class="form-control" name="name" id="name" placeholder="Enter your first Name" required />
+                          <label class="control-label">{% trans %}First name{% endtrans %}</label>
+                          <input type="text" class="form-control" name="name" id="name" placeholder="{% trans %}Enter your first Name{% endtrans %}" required />
                       </div>
                       <div class="form-group">
-                          <label for="surename" class="control-label">Surename</label>
-                          <input type="text" class="form-control" name="surename" id="surename" placeholder="Enter your Surename" required>
+                          <label for="surename" class="control-label">{% trans %}Surename{% endtrans %}</label>
+                          <input type="text" class="form-control" name="surename" id="surename" placeholder="{% trans %}Enter your Surename{% endtrans %}" required>
                       </div>
                       <div class="form-group">                      
-                        <label for="email" class="control-label">Email</label>
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Enter your Email" required>
+                        <label for="email" class="control-label">{% trans %}Email{% endtrans %}</label>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="{% trans %}Enter your Email{% endtrans %}" required>
                       </div>
                       <div class="form-group">  
-                        <label for="username" class="control-label">User alias</label>
-                        <input type="text" class="form-control" name="username" id="username" placeholder="Enter your Alias" required>
+                        <label for="username" class="control-label">{% trans %}User alias{% endtrans %}</label>
+                        <input type="text" class="form-control" name="username" id="username" placeholder="{% trans %}Enter your Alias{% endtrans %}" required>
                       </div>
                       <div class="form-group"> 
-                        <label for="password" class="control-label">Password</label><br>
-                        <input type="password" class="form-control" name="password" id="password" placeholder="Enter your Password" required>
+                        <label for="password" class="control-label">{% trans %}Password{% endtrans %}</label><br>
+                        <input type="password" class="form-control" name="password" id="password" placeholder="{% trans %}Enter your Password{% endtrans %}" required>
                       </div>
                       <div class="form-group"> 
-                        <label for="passwordConfr" class="control-label">Password confirmation</label><br>
+                        <label for="passwordConfr" class="control-label">{% trans %}Password confirmation{% endtrans %}</label><br>
                         <input type="password" class="form-control" name="passwordConfr" id="passwordConfr" required>
                       </div>
                       <div class="form-group"> 
-                        <label for="mobile" class="control-label">Mobile</label><br>
-                        <input type="number" class="form-control" name="mobile" id="mobile" placeholder="Enter your Mobile Phone number">
+                        <label for="mobile" class="control-label">{% trans %}Mobile{% endtrans %}</label><br>
+                        <input type="number" class="form-control" name="mobile" id="mobile" placeholder="{% trans %}Enter your Mobile Phone number{% endtrans %}">
                       </div>
                       <div class="form-group"> 
-                        <label for="address" class="control-label">Address</label><br>
-                        <input type="text" class="form-control" name="address" id="address" placeholder="Enter your Address">
+                        <label for="address" class="control-label">{% trans %}Address{% endtrans %}</label><br>
+                        <input type="text" class="form-control" name="address" id="address" placeholder="{% trans %}Enter your Address{% endtrans %}">
                       </div>
                       <div class="form-group"> 
-                        <label for="photo" class="control-label">Photo</label>
-                        <input type="file" accept="image/*" class="form-control" name="photo" id="photo" placeholder="Enter your profile Photo">
+                        <label for="photo" class="control-label">{% trans %}Photo{% endtrans %}</label>
+                        <input type="file" accept="image/*" class="form-control" name="photo" id="photo" placeholder="{% trans %}Enter your profile Photo{% endtrans %}">
                       </div>
                     </div>
                     <div class="modal-footer" style="padding:40px;">
                     <div class="form-group">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> 
+                      <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button> 
                       <input type="submit" class="btn btn-info" value="Submit"></input>
                      </div>
                     </div>
@@ -397,16 +399,16 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Deactivate Event</h4>
+                <h4 class="modal-title" id="myModalLabel">{% trans %}Deactivate Event{% endtrans %}</h4>
               </div>
               <form method='POST' action="/deactevent" enctype="multipart/form-data">
                 <div class="modal-body">
                   <input type="hidden" class="form-control" name="id" id="id" placeholder="Id of Event" value="{{ event.id }}" readonly>
-                  <p>Deactivation is permanent! Do you want to deactivate Event?</p>
+                  <p>{% trans %}Deactivation is permanent! Do you want to deactivate Event?{% endtrans %}</p>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-danger">Deactivate Event</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                  <button type="submit" class="btn btn-danger">{% trans %}Deactivate Event{% endtrans %}</button>
                 </div>
               </form>
             </div>
@@ -418,17 +420,17 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Decline Event</h4>
+                <h4 class="modal-title" id="myModalLabel">{% trans %}Decline Event{% endtrans %}</h4>
               </div>
               <form method='POST' action="/declineevent" enctype="multipart/form-data">
                 <div class="modal-body">
-                  <input type="hidden" class="form-control" name="id" id="id" placeholder="Id of Event" value="{{ event.id }}" readonly>
-                  <p>Are you sure you want to decline this event for which you were chosen as the repairman?
-                  </br>If you do this you would be signoff from the event and in case the time for the execution did not pass the event would go back to active.</p>
+                  <input type="hidden" class="form-control" name="id" id="id" placeholder="{% trans %}Id of Event{% endtrans %}" value="{{ event.id }}" readonly>
+                  <p>{% trans %}Are you sure you want to decline this event for which you were chosen as the repairman?{% endtrans %}
+                  </br>{% trans %}If you do this you would be signoff from the event and in case the time for the execution did not pass the event would go back to active.{% endtrans %}</p>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-danger">Decline Event</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                  <button type="submit" class="btn btn-danger">{% trans %}Decline Event{% endtrans %}</button>
                 </div>
               </form>
             </div>
@@ -440,19 +442,19 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Un-assign</h4>
+                <h4 class="modal-title" id="myModalLabel">{% trans %}Un-assign{% endtrans %}</h4>
               </div>
               <form method='POST' action="/unassign" enctype="multipart/form-data">
                 <div class="modal-body">
-                  <input type="hidden" class="form-control" name="id" id="id" placeholder="Id of Event" value="{{ event.id }}" readonly>
-                  <p>Are you sure you want to un-assign from this event?
-                  </br>If you do this the client would not be able to pick you as the reparman. </br></br>
-                    You can sign up any time again.
+                  <input type="hidden" class="form-control" name="id" id="id" placeholder="{% trans %}Id of Event{% endtrans %}" value="{{ event.id }}" readonly>
+                  <p>{% trans %}Are you sure you want to un-assign from this event?{% endtrans %}
+                  </br>{% trans %}If you do this the client would not be able to pick you as the reparman.{% endtrans %} </br></br>
+                    {% trans %}You can sign up any time again.{% endtrans %}
                     </p>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-warning">Un-assign</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                  <button type="submit" class="btn btn-warning">{% trans %}Un-assign{% endtrans %}</button>
                 </div>
               </form>
             </div>
@@ -464,16 +466,16 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Finish Event</h4>
+                <h4 class="modal-title" id="myModalLabel">{% trans %}Finish Event{% endtrans %}</h4>
               </div>
               <form method='POST' action="/closeevent" enctype="multipart/form-data">
                 <div class="modal-body">
-                  <input type="hidden" class="form-control" name="id" id="id" placeholder="Id of Event" value="{{ event.id }}" readonly>
-                  <p>Finishing the event is Permanent. Was the job carried out completely?</p>
+                  <input type="hidden" class="form-control" name="id" id="id" placeholder="{% trans %}Id of Event{% endtrans %}" value="{{ event.id }}" readonly>
+                  <p>{% trans %}Finishing the event is Permanent. Was the job carried out completely?{% endtrans %}</p>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
-                  <button type="submit" class="btn btn-danger">Finish Event</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Back{% endtrans %}</button>
+                  <button type="submit" class="btn btn-danger">{% trans %}Finish Event{% endtrans %}</button>
                 </div>
               </form>
             </div>
@@ -487,16 +489,16 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title" id="myModalLabel">Repairman</h4>
+                            <h4 class="modal-title" id="myModalLabel">{% trans %}Repairman{% endtrans %}</h4>
                         </div>
                         <div class="modal-body edit-content">
                         </div>
                         <div class="modal-footer">
                             <form action="{{ url_for('chooserm') }}" method="post" class="chooserm">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
                                 <input type=hidden value="{{ event.id }}" name="event_to_choose"></input>
                                 <input id="repairman" type=hidden value="" name="rm_to_choose"></input>
-                                <input type=submit class="btn btn-primary" value="Choose!"></input>
+                                <input type=submit class="btn btn-primary" value="{% trans %}Choose!{% endtrans %}"></input>
                             </form>
                         </div>
                     </div>
@@ -508,34 +510,34 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Create Event</h4>
+                <h4 class="modal-title" id="myModalLabel">{% trans %}Create Event{% endtrans %}</h4>
               </div>
               <form method='POST' action="/createvent" enctype="multipart/form-data">
                 <div class="modal-body">                
-                  <label for="name"><span class="glyphicon glyphicon-user"></span> Event Name</label>
-                  <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name of Event" required><br>
-                  <label for="description"><span class="glyphicon glyphicon-comment"></span> Event Description</label><br>
-                  <textarea class="form-control" name="description" id="description" placeholder="Change Description of Event" required></textarea><br>
-                  <label for="price"><span class="glyphicon glyphicon-usd"></span> Event Price</label>
-                  <input type="number" class="form-control" name="price" id="price" step="any" placeholder="Enter Price of Event" required><br>
-                  <label for="date"><span class="glyphicon glyphicon-calendar"></span> Event Date</label>
+                  <label for="name"><span class="glyphicon glyphicon-user"></span> {% trans %}Event Name{% endtrans %}</label>
+                  <input type="text" class="form-control" name="name" id="name" placeholder="{% trans %}Enter Name of Event{% endtrans %}" required><br>
+                  <label for="description"><span class="glyphicon glyphicon-comment"></span> {% trans %}Event Description{% endtrans %}</label><br>
+                  <textarea class="form-control" name="description" id="description" placeholder="{% trans %}Change Description of Event{% endtrans %}" required></textarea><br>
+                  <label for="price"><span class="glyphicon glyphicon-usd"></span> {% trans %}Event Price{% endtrans %}</label>
+                  <input type="number" class="form-control" name="price" id="price" step="any" placeholder="{% trans %}Enter Price of Event{% endtrans %}" required><br>
+                  <label for="date"><span class="glyphicon glyphicon-calendar"></span> {% trans %}Event Date{% endtrans %}</label>
                   <div class='input-group date' id='datetimepicker3'>
-                    <input type='text' name="datmtme" placeholder="Enter End Date of Event" class="form-control" required/>
+                    <input type='text' name="datmtme" placeholder="{% trans %}Enter End Date of Event{% endtrans %}" class="form-control" required/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                   </div><br>
-                  <label for="address"><span class="glyphicon glyphicon-map-marker"></span> Event Address</label>
-                  <input type="text" class="form-control" name="address" id="address" placeholder="Enter Address of Event location" required><br>
-                  <label for="photo"><span class="glyphicon glyphicon-picture"></span> Photo</label>
-                  <input type="file" accept="image/*" class="form-control" name="photo" id="photo" placeholder="Enter Photo of Event"><br>
-                  <label for="purchase accessories"><span class="glyphicon glyphicon-check"></span> Purchase Accessories</label>
-                  <div class="pull-right"><span type="button" title="Purchase Accessories Explanation" data-toggle="popover" class="glyphicon glyphicon-question-sign" data-placement="left" data-content="If you don't have all the required parts and Repairman needs to bring something - then you select this checkbox"></span></div>
+                  <label for="address"><span class="glyphicon glyphicon-map-marker"></span> {% trans %}Event Address{% endtrans %}</label>
+                  <input type="text" class="form-control" name="address" id="address" placeholder="{% trans %}Enter Address of Event location{% endtrans %}" required><br>
+                  <label for="photo"><span class="glyphicon glyphicon-picture"></span> {% trans %}Photo{% endtrans %}</label>
+                  <input type="file" accept="image/*" class="form-control" name="photo" id="photo" placeholder="{% trans %}Enter Photo of Event{% endtrans %}"><br>
+                  <label for="purchase accessories"><span class="glyphicon glyphicon-check"></span> {% trans %}Purchase Accessories{% endtrans %}</label>
+                  <div class="pull-right"><span type="button" title="{% trans %}Purchase Accessories Explanation{% endtrans %}" data-toggle="popover" class="glyphicon glyphicon-question-sign" data-placement="left" data-content="{% trans %}If you don't have all the required parts and Repairman needs to bring something - then you select this checkbox{% endtrans %}"></span></div>
                   <input type="checkbox" class="form-control" name="accessories" id="accessories" value="0">   
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-info">Start Event</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                  <button type="submit" class="btn btn-info">{% trans %}Start Event{% endtrans %}</button>
                 </div>
               </form>
             </div>
@@ -547,27 +549,27 @@
             <div class="modal-content">
               <div class="modal-header" style="padding:35px 50px;">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+                <h4><span class="glyphicon glyphicon-lock"></span> {% trans %}Login{% endtrans %}</h4>
               </div>
               <div class="modal-body" style="padding:40px 50px;">
                 <form role="form" method='POST' action='/signin'>
                   <div class="form-group">
-                    <label for="usrname"><span class="glyphicon glyphicon-user"></span> Email address</label>
-                    <input type="text" class="form-control" id="mail" name="mail" placeholder="Enter email" autofocus required>
+                    <label for="usrname"><span class="glyphicon glyphicon-user"></span> {% trans %}Email address{% endtrans %}</label>
+                    <input type="text" class="form-control" id="mail" name="mail" placeholder="{% trans %}Enter email{% endtrans %}" autofocus required>
                   </div>
                   <div class="form-group">
-                    <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-                    <input type="password" class="form-control" id="psw" name="lozinka" placeholder="Enter password">
+                    <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> {% trans %}Password{% endtrans %}</label>
+                    <input type="password" class="form-control" id="psw" name="lozinka" placeholder="{% trans %}Enter password{% endtrans %}">
                   </div>
                   <div class="checkbox">
-                    <label><input type="checkbox" value="" checked>Remember me</label>
+                    <label><input type="checkbox" value="" checked>{% trans %}Remember me{% endtrans %}</label>
                   </div>
-                    <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+                    <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> {% trans %}Login{% endtrans %}</button>
                 </form>
               </div>
               <div class="modal-footer">
-                <p>Not a member? <a href="#">Sign Up</a></p>
-                <p>Forgot <a href="#">Password?</a></p>
+                <p>Not a member? <a href="#">{% trans %}Sign Up{% endtrans %}</a></p>
+                <p>Forgot <a href="#">{% trans %}Password?{% endtrans %}</a></p>
               </div>
             </div>
           </div>
@@ -602,7 +604,7 @@
     <footer class="footer">
       <div class="container" align="center">
         <p class="pull-xs-right">
-          <a href="#">Back to top</a>
+          <a href="#">{% trans %}Back to top{% endtrans %}</a>
         </p>
         <div class="col-md-4">
         </div>
@@ -625,14 +627,14 @@
     ================================================== 
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../static/js/jquery.min.js"><\/script>')</script>
-    <script src="../static/js/bootstrap.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../static/js/jquery.min.js"><\/script>')</script>
+    <script src="../../static/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
-    <script src="../static/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../../static/js/bootstrap-datetimepicker.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../static/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="../../static/js/ie10-viewport-bug-workaround.js"></script>
      <!-- Validator -->
-    <script src="../static/js/bootstrapvalidator.min.js"></script>
+    <script src="../../static/js/bootstrapvalidator.min.js"></script>
     <script>
       $(document).ready(function(){
           $("#myBtn").click(function(){
@@ -676,7 +678,7 @@
 //                data: 'EID='+essay_id,
 //                success: function(data) 
 //                {
-                    $modal.find('.edit-content').html("Are you sure you want to hire "+res[1]+"?");
+                    $modal.find('.edit-content').html("{% trans %}Are you sure you want to hire{% endtrans %} "+res[1]+"?");
                     //$modal.getElementById('repairman').value = res[0];
                     $("#repairman").val(res[0]);
 //                }
@@ -706,38 +708,38 @@
             name: {
                 validators: {
                     notEmpty: {
-                        message: 'The first name is required and cannot be empty'
+                        message: {% trans %}'The first name is required and cannot be empty'{% endtrans %}
                     }
                 }
             },
             surename: {
                 validators: {
                     notEmpty: {
-                        message: 'The surename is required and cannot be empty'
+                        message: {% trans %}'The surename is required and cannot be empty'{% endtrans %}
                     }
                 }
             },
             email: {
                 validators: {
                     notEmpty: {
-                        message: 'The email address is required nd cannot be empty'
+                        message: {% trans %}'The email address is required nd cannot be empty'{% endtrans %}
                     },
                     emailAddress: {
-                        message: 'The input is not a valid email address'
+                        message: {% trans %}'The input is not a valid email address'{% endtrans %}
                     }
                 }
             },
             username: {
                 validators: {
                     notEmpty: {
-                        message: 'The username is required and cannot be empty'
+                        message: {% trans %}'The username is required and cannot be empty'{% endtrans %}
                     }
                 }
             },
             password: {
                 validators: {
                    notEmpty: {
-                        message: 'The password is required and cannot be empty'
+                        message: {% trans %}'The password is required and cannot be empty'{% endtrans %}
                     }
                 }
             },
@@ -745,10 +747,10 @@
                 validators: {
                     identical: {
                     field: 'password',
-                    message: 'The password and its confirm are not the same'
+                    message: {% trans %}'The password and its confirm are not the same'{% endtrans %}
                 },
                     notEmpty: {
-                        message: 'The password check is required and cannot be empty'
+                        message: {% trans %}'The password check is required and cannot be empty'{% endtrans %}
                     }
                 }
             }
