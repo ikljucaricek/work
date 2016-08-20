@@ -105,7 +105,7 @@ msgstr "Događaj je završen!"
 #: templates/index.html:13 templates/mypage.html:12 templates/profile.html:12
 #: templates/startup.html:12
 msgid "Small Home Maintenance Work"
-msgstr "Mali kućanski popravci"
+msgstr "Mali kućni popravci"
 
 #: templates/about.html:98 templates/about.html:138 templates/edetails.html:57
 #: templates/events.html:97 templates/index.html:132 templates/mypage.html:92
@@ -185,7 +185,7 @@ msgid ""
 "offer the service.\n"
 "        Tygayo makes the agreement easy and transparent."
 msgstr ""
-"TygAyo ti pomaže pri obavljanu malih kućanskih popravaka.\n"
+"TygAyo ti pomaže pri obavljanu malih kućnih popravaka.\n"
 "        Nije bitno da li se radi o promjeni žarulje, slavine, kotlića ili"
 " se radi o bilo kakvoj drugoj pomoći koja vam je potrebna u kućanstvu.\n"
 "Možda i sami želite ponuditi pomoć odnosno uslugu jer ste jednostavno "
@@ -781,7 +781,7 @@ msgstr "Izaberi ulogu"
 
 #: templates/index.html:166 templates/startup.html:179
 msgid "Do you need something done or you are handy with the tools?"
-msgstr "Imaš li sitan kućanski popravak ili si jednostavno vješt s alatom?"
+msgstr "Imaš li sitan kućni popravak ili si jednostavno vješt s alatom?"
 
 #: templates/index.html:166 templates/startup.html:179
 msgid "Choose your role and make things happen!"
