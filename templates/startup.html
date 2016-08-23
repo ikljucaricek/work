@@ -183,7 +183,7 @@
         <div class="col-lg-4" align="center">
           <img class="img-circle" src="../static/images/tyg_ayo/client.png" alt="Generic placeholder image" width="140" height="140">
           <h2>{% trans %}Client{% endtrans %}</h2>
-          <a href="#" data-toggle="modal" id="myBtn2">
+          <a href data-toggle="modal" id="myBtn2">
             <div class="panel panel-info">
             <div class="panel-heading">{% trans %}Step 1{% endtrans %}</div>
             <div class="panel-body">
@@ -441,10 +441,10 @@
     <script>
       $(document).ready(function(){
           $("#myBtn").click(function(){
-              $("#myModal").modal();
+              $("#createEv-modal").modal();
           });
           $("#myBtn2").click(function(){
-              $("#myModal").modal();
+              $("#createEv-modal").modal();
           });
           $("#myBtn3").click(function(){
               $("#createEv-modal").modal();
