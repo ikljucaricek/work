@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-19 16:29+0200\n"
+"POT-Creation-Date: 2016-08-23 11:01+0200\n"
 "PO-Revision-Date: 2016-08-10 08:47+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: hr\n"
@@ -757,6 +757,10 @@ msgstr "Da li ste sigurni da želite zaposliti"
 #: templates/events.html:149
 msgid "Search Events by Name and/or Description"
 msgstr "Pretraživanje popravaka po imenu ili opisu"
+
+#: templates/events.html:151
+msgid "Go!"
+msgstr "Idi"
 
 #: templates/events.html:232
 msgid "List of All Events"
