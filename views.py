@@ -252,7 +252,7 @@ def chooserm():
         server.close()
         refresh()
         flash(gettext('You have successfully chosed a repairman!'))
-    return redirect (url_for('showevent', id=eventid))
+    return redirect (url_for('.showevent', id=eventid))
     
 @bp.route('/createvent', methods=['GET', 'POST'])
 @login_required
@@ -364,7 +364,7 @@ def modify_an_user():
         refresh()
         flash(gettext('You successfully modified Profile!'))
     #flash('Event cannot be completed before it starts')
-    return redirect (url_for('profilePage', username = session['username']))
+    return redirect (url_for('.profilePage', username = session['username']))
 
 @app.route('/modifyevent', methods=['GET', 'POST'])
 @login_required
@@ -408,7 +408,7 @@ def modify_an_event():
             refresh()
             flash(gettext("Execution Date of Event can't be before Event is created!", "warning"))
     #flash('Event cannot be completed before it starts')
-    return redirect (url_for('showevent', id=originid))
+    return redirect (url_for('.showevent', id=originid))
     
 @app.route('/deactevent', methods=['GET', 'POST'])
 @login_required
@@ -420,7 +420,7 @@ def deactivate_event():
         event.deactivate()
         refresh()
         flash(gettext('You successfully deactivated Event!'))
-    return redirect (url_for('showevent', id=request.form.get('id')))
+    return redirect (url_for('.showevent', id=request.form.get('id')))
 
 
 @app.route('/unassign', methods=['GET', 'POST'])
@@ -432,7 +432,7 @@ def un_assign():
         link.delete()
         refresh()      
         flash(gettext('You have successfully un-asigned from the Event!'))
-    return redirect (url_for('showevent', id=request.form.get('id')))
+    return redirect (url_for('.showevent', id=request.form.get('id')))
         
 @app.route('/declineevent', methods=['GET', 'POST'])
 @login_required
@@ -452,7 +452,7 @@ def decline_event():
         link.delete()  
         refresh()          
         flash(gettext('You have successfully declined the Event!'))
-    return redirect (url_for('showevent', id=request.form.get('id')))
+    return redirect (url_for('.showevent', id=request.form.get('id')))
     
 @app.route('/closeevent', methods=['GET', 'POST'])
 @login_required
@@ -467,7 +467,7 @@ def close_event():
         print 'event was closed'
         refresh()
         flash(gettext('Event has been Finished!'))
-    return redirect (url_for('showevent', id=eventid))
+    return redirect (url_for('.showevent', id=eventid))
 
 @bp.route('/events', methods=['GET', 'POST'])
 def allevents():
@@ -492,7 +492,7 @@ def confirmation_mail(msg_for_what, rm , client, event_obj, eventid):
             "The event takes place at " + event_obj.address + ", scheduled for " + str(event_obj.date_time_create) + ".",
             "",
             "The event details are in the link bellow:",
-            "http://tygayo.herokuapp.com/" + url_for('showevent', id=eventid),
+            "http://tygayo.herokuapp.com/" + url_for('.showevent', id=eventid),
             "",
             "Best Regards,",
             "TygAyo Inc."
@@ -511,7 +511,7 @@ def confirmation_mail(msg_for_what, rm , client, event_obj, eventid):
                 "The event takes place at " + event_obj.address + ", scheduled for " + str(event_obj.date_time_create) + ".",
                 "",
                 "The event details are in the link bellow:",
-                "http://tygayo.herokuapp.com/" + url_for('showevent', id=eventid),
+                "http://tygayo.herokuapp.com/" + url_for('.showevent', id=eventid),
                 "",
                 "Best Regards,",
                 "TygAyo Inc."
