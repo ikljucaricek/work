@@ -94,11 +94,11 @@ def register():
         if mailcheck != None:
             refresh()
             flash(gettext('We are sorry, register was not successful as this email adress is already registered.'))
-            return redirect (url_for('index'))
+            return redirect (url_for('.index'))
         elif usernamecheck != None:
             refresh()
             flash(gettext('We are sorry, register was not successful as this username is already registered.'))
-            return redirect (url_for('index'))
+            return redirect (url_for('.index'))
         else:            
             user = User(
                 name = request.form.get('name'),
@@ -139,9 +139,9 @@ def register():
             server.login(username,password)
             server.sendmail(fromaddr, toaddrs, msg)
             server.close()
-            return redirect (url_for('startup'))
+            return redirect (url_for('.startup'))
     else:
-        return redirect (url_for('index'))
+        return redirect (url_for('.index'))
 
 @app.route('/signout')
 def logout():
@@ -220,7 +220,7 @@ def signup():
         flash(gettext('You have successfully signed up for the event!'))
         id = session.get('id')
         user = User.get(id)    
-    return redirect (url_for('myPage',username=user.username))
+    return redirect (url_for('.myPage',username=user.username))
     
 @app.route('/chooserm', methods=['POST'])
 def chooserm():
@@ -288,7 +288,7 @@ def create_an_event():
             refresh()
             flash(gettext("Execution Date of Event can't be before Event is created!", "warning"))
     #flash('Event cannot be completed before it starts')
-    return redirect (url_for('myPage', username = session['username']))
+    return redirect (url_for('.myPage', username = session['username']))
 
 @bp.route('/profile/<username>')
 def profilePage(username):
@@ -332,7 +332,7 @@ def myPage(username):
     else:
         refresh()
         flash(gettext("You are not %s!" %username, "warning"))
-        return redirect (url_for('myPage', username = session['username']))
+        return redirect (url_for('.myPage', username = session['username']))
 
 @bp.route('/modifyuser', methods=['GET', 'POST'])
 @login_required
