@@ -760,7 +760,7 @@ msgstr "Pretraživanje popravaka po imenu ili opisu"
 
 #: templates/events.html:151
 msgid "Go!"
-msgstr "Idi"
+msgstr "Idi!"
 
 #: templates/events.html:232
 msgid "List of All Events"
