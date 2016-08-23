@@ -150,7 +150,7 @@
           <div class="col-sm-8 col-sm-offset-3">
             <form method='POST' action="{{ url_for('.allevents') }}" class="form-inline">
               <div class="input-group">
-                <input type="text" class="form-control" id="srch" name="srch" placeholder="{% trans %}Search Events by Name and/or Description{% endtrans %}">
+                <input type="text" class="form-control" id="srch" name="srch" placeholder="{% trans %}Search Events by Name and/or Description{% endtrans %}" value="{{ srch_value }}">
                 <span class="input-group-btn">
                   <button class="btn btn-info" type="submit">{% trans %}Go!{% endtrans %}</button>
                 </span>

@@ -484,9 +484,9 @@ def allevents():
                 if evnt.photo == None:
                     evnt.photo = "../static/images/events_photos/default.jpg"
             if  events_by_name != None:       
-                return render_template('events.html', username = session.get('username'), events = events_by_name)
+                return render_template('events.html', username = session.get('username'), events = events_by_name, srch_value=filter_by_name)
             else:
-                return render_template('events.html', username = session.get('username'), events = None)
+                return render_template('events.html', username = session.get('username'), events = None, srch_value=filter_by_name)
         #else:
         #    return render_template('events.html', username = session.get('username'), events = Event.get_all()[::-1])
     return render_template('events.html', username = session.get('username'), events = events)
