@@ -471,13 +471,22 @@ def close_event():
 
 @bp.route('/events', methods=['GET', 'POST'])
 def allevents():
+    events = Event.get_all()[::-1]
+    for event in events:
+        if event.photo == None:
+            event.photo = "../static/images/events_photos/default.jpg"
+
     if request.method == 'POST':
         filter_by_name = request.form.get('srch')
         if filter_by_name != '':
-            return render_template('events.html', username = session.get('username'), events = Event.get_by_name_or_description(filter_by_name)[::-1])
-        else:
-            return render_template('events.html', username = session.get('username'), events = Event.get_all()[::-1])
-    return render_template('events.html', username = session.get('username'), events = Event.get_all()[::-1])
+            events_by_name = Event.get_by_name_or_description(filter_by_name)[::-1]
+            for evnt in events_by_name:
+                if evnt == None:
+                    evnt.photo = "../static/images/events_photos/default.jpg"
+                return render_template('events.html', username = session.get('username'), events = events_by_name)
+        #else:
+        #    return render_template('events.html', username = session.get('username'), events = Event.get_all()[::-1])
+    return render_template('events.html', username = session.get('username'), events = events)
 
 def confirmation_mail(msg_for_what, rm , client, event_obj, eventid):
     if msg_for_what == 'repairman':
