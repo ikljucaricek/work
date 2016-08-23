@@ -48,7 +48,7 @@ def index():
     events = Event.get_all()[:-10:-1]
     for event in events:
         if event.photo == None:
-            event.photo = "./static/images/events_photos/default.jpg"
+            event.photo = "../static/images/events_photos/default.jpg"
     return render_template('index.html', events = events)
 
 @bp.route('/about')
@@ -61,7 +61,7 @@ def startup():
     events = Event.get_all()[:-10:-1]
     for event in events:
         if event.photo == None:
-            event.photo = "./static/images/events_photos/default.jpg"
+            event.photo = "../static/images/events_photos/default.jpg"
     return render_template('startup.html', username = session['username'], events = events)
 
 @bp.route('/signin', methods=['GET', 'POST'])
