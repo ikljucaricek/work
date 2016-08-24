@@ -124,7 +124,7 @@ msgstr "Kontakt"
 #: templates/mypage.html:98 templates/profile.html:96
 #: templates/startup.html:137
 msgid "All Events"
-msgstr "Svi Poslovi"
+msgstr "Svi Popravci"
 
 #: templates/about.html:108 templates/about.html:110 templates/about.html:269
 #: templates/edetails.html:67 templates/edetails.html:69
@@ -825,7 +825,7 @@ msgstr "Izaberi svog majstora"
 
 #: templates/index.html:227 templates/index.html:236 templates/startup.html:218
 msgid "Sign up for a job"
-msgstr "Prijavi se za posao"
+msgstr "Prijavi se za popravak"
 
 #: templates/index.html:244 templates/startup.html:225
 msgid "Wait for your employee"
