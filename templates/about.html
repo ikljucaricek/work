@@ -268,7 +268,7 @@ As communication is a key aspect of every society we believe that providing you 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">{% trans %}Create Event{% endtrans %}</h4>
               </div>
-              <form method='POST' action="/createvent" enctype="multipart/form-data" id='createEv-modalform'>
+              <form method='POST' action="{{ url_for('.create_an_event') }}" enctype="multipart/form-data" id='createEv-modalform'>
                 <div class="modal-body">
                   <div class="form-group">                
                       <label for="name" class="control-label"><span class="glyphicon glyphicon-user"></span> {% trans %}Event Name{% endtrans %}</label>
@@ -324,7 +324,7 @@ As communication is a key aspect of every society we believe that providing you 
                 <h4><span class="glyphicon glyphicon-lock"></span> {% trans %}Login{% endtrans %}</h4>
               </div>
               <div class="modal-body" style="padding:40px 50px;">
-                <form role="form" method='POST' action='/signin'>
+                <form role="form" method='POST' action='{{ .login }}'>
                   <div class="form-group">
                     <label for="usrname"><span class="glyphicon glyphicon-user"></span> {% trans %}Email address{% endtrans %}</label>
                     <input type="text" class="form-control" id="mail" name="mail" placeholder="{% trans %}Enter email{% endtrans %}" required>
@@ -359,7 +359,7 @@ As communication is a key aspect of every society we believe that providing you 
                 <h4><span class="glyphicon glyphicon-lock"></span> {% trans %}Login{% endtrans %}</h4>
               </div>
               <div class="modal-body" style="padding:40px 50px;">
-                <form role="form" method='POST' action='/signin'>
+                <form role="form" method='POST' action='{{ .login }}'>
                   <div class="form-group">
                     <label for="usrname"><span class="glyphicon glyphicon-user"></span> {% trans %}Email address{% endtrans %}</label>
                     <input type="text" class="form-control" id="mail" name="mail" placeholder="{% trans %}Enter email{% endtrans %}" autofocus required>

@@ -294,7 +294,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">{% trans %}Modify Event Details{% endtrans %}</h4>
               </div>
-              <form method='POST' action="/modifyevent" enctype="multipart/form-data">
+              <form method='POST' action="{{ url_for('modify_an_event') }}" enctype="multipart/form-data">
                 <div class="modal-body">
                   <input type="hidden" class="form-control" name="id" id="id" placeholder="Id of Event" value="{{ event.id }}" readonly>
                   <label for="name"><span class="glyphicon glyphicon-user"></span> {% trans %}Event Name{% endtrans %}</label>
@@ -401,7 +401,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">{% trans %}Deactivate Event{% endtrans %}</h4>
               </div>
-              <form method='POST' action="/deactevent" enctype="multipart/form-data">
+              <form method='POST' action="{{ url_for('modify_an_event') }}" enctype="multipart/form-data">
                 <div class="modal-body">
                   <input type="hidden" class="form-control" name="id" id="id" placeholder="Id of Event" value="{{ event.id }}" readonly>
                   <p>{% trans %}Deactivation is permanent! Do you want to deactivate Event?{% endtrans %}</p>
@@ -422,7 +422,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">{% trans %}Decline Event{% endtrans %}</h4>
               </div>
-              <form method='POST' action="/declineevent" enctype="multipart/form-data">
+              <form method='POST' action="{{ url_for('decline_event') }}" enctype="multipart/form-data">
                 <div class="modal-body">
                   <input type="hidden" class="form-control" name="id" id="id" placeholder="{% trans %}Id of Event{% endtrans %}" value="{{ event.id }}" readonly>
                   <p>{% trans %}Are you sure you want to decline this event for which you were chosen as the repairman?{% endtrans %}
@@ -444,7 +444,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">{% trans %}Un-assign{% endtrans %}</h4>
               </div>
-              <form method='POST' action="/unassign" enctype="multipart/form-data">
+              <form method='POST' action="{{ url_for('un_assign') }}" enctype="multipart/form-data">
                 <div class="modal-body">
                   <input type="hidden" class="form-control" name="id" id="id" placeholder="{% trans %}Id of Event{% endtrans %}" value="{{ event.id }}" readonly>
                   <p>{% trans %}Are you sure you want to un-assign from this event?{% endtrans %}
@@ -468,7 +468,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">{% trans %}Finish Event{% endtrans %}</h4>
               </div>
-              <form method='POST' action="/closeevent" enctype="multipart/form-data">
+              <form method='POST' action="{{ url_for('close_event') }}" enctype="multipart/form-data">
                 <div class="modal-body">
                   <input type="hidden" class="form-control" name="id" id="id" placeholder="{% trans %}Id of Event{% endtrans %}" value="{{ event.id }}" readonly>
                   <p>{% trans %}Finishing the event is Permanent. Was the job carried out completely?{% endtrans %}</p>
@@ -512,7 +512,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">{% trans %}Create Event{% endtrans %}</h4>
               </div>
-              <form method='POST' action="/createvent" enctype="multipart/form-data">
+              <form method='POST' action="{{ url_for('.create_an_event') }}" enctype="multipart/form-data">
                 <div class="modal-body">                
                   <label for="name"><span class="glyphicon glyphicon-user"></span> {% trans %}Event Name{% endtrans %}</label>
                   <input type="text" class="form-control" name="name" id="name" placeholder="{% trans %}Enter Name of Event{% endtrans %}" required><br>
@@ -552,7 +552,7 @@
                 <h4><span class="glyphicon glyphicon-lock"></span> {% trans %}Login{% endtrans %}</h4>
               </div>
               <div class="modal-body" style="padding:40px 50px;">
-                <form role="form" method='POST' action='/signin'>
+                <form role="form" method='POST' action='{{ url_for('.login') }}'>
                   <div class="form-group">
                     <label for="usrname"><span class="glyphicon glyphicon-user"></span> {% trans %}Email address{% endtrans %}</label>
                     <input type="text" class="form-control" id="mail" name="mail" placeholder="{% trans %}Enter email{% endtrans %}" autofocus required>
