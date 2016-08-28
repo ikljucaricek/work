@@ -322,14 +322,14 @@
                   <label for="price"><span class="glyphicon glyphicon-usd"></span> Event Price</label>
                   <input type="number" class="form-control" name="price" id="price" step="any" placeholder="Change Price of Event" value="{{ event.price }}"><br>
                   <label for="address"><span class="glyphicon glyphicon-map-marker"></span> Event City</label>
-                  <select class="form-control" name="cityList" id="cityList"></select><br>
+                  <select class="form-control" name="cityList" id="cityList2"></select><br>
                   <label for="address"><span class="glyphicon glyphicon-map-marker"></span> Event Neighborhood</label>
-                  <select class="form-control" name="neighborhoodList" id="neighborhoodList"></select><br>
+                  <select class="form-control" name="neighborhoodList" id="neighborhoodList2"></select><br>
                   <label for="address"><span class="glyphicon glyphicon-map-marker"></span> Event Address</label>
                   <input type="text" class="form-control" name="address" id="address" placeholder="Change Address of User location" value="{{ event.address }}"><br>
                   <label for="date"><span class="glyphicon glyphicon-calendar"></span> Event Date</label>
                   {% if event.date_time_execute != None %}
-                  <div class='input-group date' id='datetimepicker1'>
+                  <div class='input-group date' id='datetimepicker3'>
                     <input type='text' name="datmtme" placeholder="Change End Date of Event" class="form-control" value="{{ event.date_time_execute.strftime("%m/%d/%Y %H:%M %p") }}" required/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -527,43 +527,7 @@
                 </div>
         </div>
 
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Create Event</h4>
-              </div>
-              <form method='POST' action="/createvent" enctype="multipart/form-data">
-                <div class="modal-body">                
-                  <label for="name"><span class="glyphicon glyphicon-user"></span> Event Name</label>
-                  <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name of Event" required><br>
-                  <label for="description"><span class="glyphicon glyphicon-comment"></span> Event Description</label><br>
-                  <textarea class="form-control" name="description" id="description" placeholder="Change Description of Event" required></textarea><br>
-                  <label for="price"><span class="glyphicon glyphicon-usd"></span> Event Price</label>
-                  <input type="number" class="form-control" name="price" id="price" step="any" placeholder="Enter Price of Event" required><br>
-                  <label for="date"><span class="glyphicon glyphicon-calendar"></span> Event Date</label>
-                  <div class='input-group date' id='datetimepicker3'>
-                    <input type='text' name="datmtme" placeholder="Enter End Date of Event" class="form-control" required/>
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                  </div><br>
-                  <label for="address"><span class="glyphicon glyphicon-map-marker"></span> Event Address</label>
-                  <input type="text" class="form-control" name="address" id="address" placeholder="Enter Address of Event location" required><br>
-                  <label for="photo"><span class="glyphicon glyphicon-picture"></span> Photo</label>
-                  <input type="file" accept="image/*" class="form-control" name="photo" id="photo" placeholder="Enter Photo of Event"><br>
-                  <label for="purchase accessories"><span class="glyphicon glyphicon-check"></span> Purchase Accessories</label>
-                  <div class="pull-right"><span type="button" title="Purchase Accessories Explanation" data-toggle="popover" class="glyphicon glyphicon-question-sign" data-placement="left" data-content="If you don't have all the required parts and Repairman needs to bring something - then you select this checkbox"></span></div>
-                  <input type="checkbox" class="form-control" name="accessories" id="accessories" value="0">   
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-info">Start Event</button>
-                </div>
-              </form>
-            </div>
-          </div>
+        <div class="modal fade" id="createEv-modalExt" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"> 
         </div>
         
         <div class="modal fade" id="log-modal" role="dialog">
@@ -714,7 +678,14 @@
     $("#alrt").alert('close');
       });
     $("#myBtn3").click(function(){
-        $("#myModal").modal();
+          var $this = $(this).data('target');
+          $("#createEv-modalExt").load("/modalCreateEvent.html", function (responseTxt, statusTxt, xhr) {
+            if (statusTxt == "success"){
+                $(this).modal('show');
+                }
+            if(statusTxt == "error")
+                alert("Error while loading: " + xhr.status + ": " + xhr.statusText);
+          });
     });
     });
     </script>
@@ -783,49 +754,13 @@
     </script>
     <script type="text/javascript">
         $(function () {
-            $('#datetimepicker1').datetimepicker();
-        });
-        $(function () {
             $('#datetimepicker3').datetimepicker();
         });
-    </script> 
+    </script>
     <script type="text/javascript">
       $(function () {
         $('[data-toggle="popover"]').popover()
       })
     </script>
-    <script>
-    var cities = ["Zagreb","Split","Rijeka","Osjek"];     
-    var sel = document.getElementById('cityList');
-    var fragment = document.createDocumentFragment();
-    
-    cities.forEach(function(cuisine, index) {
-        var opt = document.createElement('option');
-        opt.innerHTML = cuisine;
-        opt.value = cuisine;
-        fragment.appendChild(opt);
-    });
-    sel.appendChild(fragment);
-    </script>
-    <script>
-    var neighborhoods = ["Lucko","Gornji Grad","Remiza","Tresnjevka","Vrbani"];     
-    var sel = document.getElementById('neighborhoodList');
-    var fragment = document.createDocumentFragment();
-    
-    neighborhoods.forEach(function(cuisine, index) {
-        var opt = document.createElement('option');
-        opt.innerHTML = cuisine;
-        opt.value = cuisine;
-        fragment.appendChild(opt);
-    });
-    sel.appendChild(fragment);
-    </script>
-    <script>
-    $(document).ready(function(){
-        $("#cityList").change(function() {
-            $('#neighborhoodList').attr('disabled', !(this.value === "Zagreb"));
-        });
-    });
-</script>
   </body>
 </html>

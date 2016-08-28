@@ -31,6 +31,10 @@ def index():
 def about():
     return render_template('about.html',username = session.get('username'))
 
+@app.route('/modalCreateEvent.html')
+def modalCreateEvent():
+    return render_template('modalCreateEvent.html')    
+    
 @app.route('/startup')
 @login_required
 def startup():
