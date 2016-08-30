@@ -259,7 +259,7 @@
       $(document).ready(function(){
           $("#myBtn3").click(function(){
               var $this = $(this).data('target');
-              $("#createEv-modalExt").load("/modalCreateEvent.html", function (responseTxt, statusTxt, xhr) {
+              $("#createEv-modalExt").load("url_for(modalCreateEvent)", function (responseTxt, statusTxt, xhr) {
                 if (statusTxt == "success"){
                     $(this).modal('show');
                     }
