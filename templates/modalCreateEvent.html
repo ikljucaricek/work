@@ -1,54 +1,56 @@
-          <div class="modal-dialog" role="document">
+<!DOCTYPE html>
+<html lang="{{ g.lang_code }}"> 
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Create Event</h4>
+                <h4 class="modal-title" id="myModalLabel">{% trans %}Create Event{% endtrans %}</h4>
               </div>
               <form method='POST' action="/createvent" enctype="multipart/form-data" id='createEv-modalform'>
                 <div class="modal-body">
                   <div class="form-group">                
-                      <label for="name" class="control-label"><span class="glyphicon glyphicon-user"></span> Event Name</label>
-                      <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name of Event" required><br>
+                      <label for="name" class="control-label"><span class="glyphicon glyphicon-user"></span> {% trans %}Event Name{% endtrans %}</label>
+                      <input type="text" class="form-control" name="name" id="name" placeholder="{% trans %}Enter Name of Event{% endtrans %}" required><br>
                   </div>
                   <div class="form-group"> 
-                      <label for="description" class="control-label"><span class="glyphicon glyphicon-comment"></span> Event Description</label><br>
-                      <textarea class="form-control" name="description" id="description" placeholder="Change Description of Event" required></textarea><br>
+                      <label for="description" class="control-label"><span class="glyphicon glyphicon-comment"></span> {% trans %}Event Description{% endtrans %}</label><br>
+                      <textarea class="form-control" name="description" id="description" placeholder="{% trans %}Change Description of Event{% endtrans %}" required></textarea><br>
                   </div>
                   <div class="form-group">  
-                      <label for="price"><span class="glyphicon glyphicon-usd"></span> Event Price</label>
-                      <input type="number" class="form-control" name="price" id="price" step="any" placeholder="Enter Price of Event" required><br>
+                      <label for="price"><span class="glyphicon glyphicon-usd"></span> {% trans %}Event Price{% endtrans %}</label>
+                      <input type="number" class="form-control" name="price" id="price" step="any" placeholder="{% trans %}Enter Price of Event{% endtrans %}" required><br>
                   </div>  
-                  <label for="date"><span class="glyphicon glyphicon-calendar"></span> Event Date</label>
+                  <label for="date"><span class="glyphicon glyphicon-calendar"></span> {% trans %}Event Date{% endtrans %}</label>
                   <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' name="datmtme" placeholder="Enter End Date of Event" class="form-control" required/>
+                    <input type='text' name="datmtme" placeholder="{% trans %}Enter End Date of Event{% endtrans %}" class="form-control" required/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                   </div><br>
 
                   <div class="form-group">
-                      <label for="cityList"><span class="glyphicon glyphicon-map-marker"></span> City of the Event</label>
+                      <label for="cityList"><span class="glyphicon glyphicon-map-marker"></span> {% trans %}City of the Event{% endtrans %}</label>
                       <select class="form-control" name="cityList" id="cityList"></select>
                   </div>
                   <div class="form-group">
-                      <label for="address"><span class="glyphicon glyphicon-map-marker"></span> Neighborhood of the Event</label>
+                      <label for="address"><span class="glyphicon glyphicon-map-marker"></span> {% trans %}Neighborhood of the Event{% endtrans %}</label>
                       <select class="form-control" name="neighborhoodList" id="neighborhoodList"></select>
                   </div>
                                     <div class="form-group">  
-                      <label for="address"><span class="glyphicon glyphicon-map-marker"></span> Event Street and number</label>
-                      <input type="text" class="form-control" name="address" id="address" placeholder="Enter Address of Event location" required><br>
+                      <label for="address"><span class="glyphicon glyphicon-map-marker"></span> {% trans %}Event Street and number{% endtrans %}</label>
+                      <input type="text" class="form-control" name="address" id="address" placeholder="{% trans %}Enter Address of Event location{% endtrans %}" required><br>
                   </div>
                   <div class="form-group">  
-                      <label for="photo"><span class="glyphicon glyphicon-picture"></span> Photo</label>
-                      <input type="file" accept="image/*" class="form-control" name="photo" id="photo" placeholder="Enter Photo of Event"><br>
+                      <label for="photo"><span class="glyphicon glyphicon-picture"></span> {% trans %}Photo{% endtrans %}</label>
+                      <input type="file" accept="image/*" class="form-control" name="photo" id="photo" placeholder="{% trans %}Enter Photo of Event{% endtrans %}"><br>
                   </div>
-                  <label for="purchase accessories"><span class="glyphicon glyphicon-check"></span> Purchase Accessories</label>
-                  <div class="pull-right"><span type="button" title="Purchase Accessories Explanation" data-toggle="popover" class="glyphicon glyphicon-question-sign" data-placement="left" data-content="If you don't have all the required parts and Repairman needs to bring something - then you select this checkbox"></span></div>
+                  <label for="purchase accessories"><span class="glyphicon glyphicon-check"></span> {% trans %}Purchase Accessories{% endtrans %}</label>
+                  <div class="pull-right"><span type="button" title="{% trans %}Purchase Accessories Explanation{% endtrans %}" data-toggle="popover" class="glyphicon glyphicon-question-sign" data-placement="left" data-content="{% trans %}If you don't have all the required parts and Repairman needs to bring something - then you select this checkbox{% endtrans %}"></span></div>
                   <input type="checkbox" class="form-control" name="accessories" id="accessories" value="0">      
                 </div>  
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-info">Start Event</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                  <button type="submit" class="btn btn-info">{% trans %}Start Event{% endtrans %}</button>
               </div>  
               </form>
             </div>
