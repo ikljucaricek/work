@@ -1,33 +1,57 @@
 # -*- coding: utf-8 -*-
 
 from functools import wraps
-from flask import request, render_template, Response, g, session, redirect, url_for, flash, send_from_directory
-from app import app, db
+from flask import request, render_template, Response, g, session, redirect, url_for, flash, send_from_directory, Blueprint
+from app import app, db, babel
 from datetime import datetime
 from model import User, Event, Applied_repairman  # from database
 from werkzeug import secure_filename
 from sqlalchemy.sql import and_, select, or_
 from smtplib import SMTP
+from flask.ext.babel import gettext, ngettext, gettext, refresh
 
+
+
+@babel.localeselector
+def get_locale():
+    if g.lang_code:
+        return g.lang_code
+    return 'hr'  # deafult languages
+
+@app.route('/')
+def index_app():
+    return redirect("/hr/")
+
+bp = Blueprint('frontend', __name__, url_prefix='/<lang_code>')
+
+@bp.url_defaults
+def add_language_code(endpoint, values):
+    values.setdefault('lang_code', g.lang_code)
+
+
+@bp.url_value_preprocessor
+def pull_lang_code(endpoint, values):
+    g.lang_code = values.pop('lang_code')
 
 def login_required(fn):
     @wraps(fn)
     def decorated_view(*args, **kwargs):
         if not ('id' in session):
-            flash('You need to signin!')
+            refresh()
+            flash(gettext('You need to signin!'))
             return redirect('/signin')
         return fn(*args, **kwargs)
     return decorated_view
 
-@app.route('/')
+@bp.route('/')
 def index():
     events = Event.get_all()[:-10:-1]
     for event in events:
         if event.photo == None:
-            event.photo = "./static/images/events_photos/default.jpg"
+            event.photo = "../static/images/events_photos/default.jpg"
     return render_template('index.html', events = events)
 
-@app.route('/about')
+@bp.route('/about')
 def about():
     return render_template('about.html',username = session.get('username'))
 
@@ -41,10 +65,10 @@ def startup():
     events = Event.get_all()[:-10:-1]
     for event in events:
         if event.photo == None:
-            event.photo = "./static/images/events_photos/default.jpg"
+            event.photo = "../static/images/events_photos/default.jpg"
     return render_template('startup.html', username = session['username'], events = events)
 
-@app.route('/signin', methods=['GET', 'POST'])
+@bp.route('/signin', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         #username = request.form.get('username')
@@ -55,12 +79,14 @@ def login():
             session['id'] = user.id
             session['username'] = user.username
         else:
-            flash('You entered wrong data!')
-            return redirect('/signin')
-        flash('Hello ' + user.name + ' ' + user.surename + '!')
-        return redirect (url_for('startup'))
+            refresh()
+            flash(gettext('You entered wrong data!'))
+            return redirect(url_for('.login'))
+        refresh()
+        flash(gettext('Hello ' + user.name + ' ' + user.surename + '!'))
+        return redirect (url_for('.startup'))
     else:
-        return redirect (url_for('index'))
+        return redirect (url_for('.index'))
 
 @app.route('/register', methods=['POST'])
 def register():
@@ -70,11 +96,13 @@ def register():
         usernamecheck = User.get_by_username(request.form.get('username'))
         mailcheck = User.get_by_mail(request.form.get('email'))
         if mailcheck != None:
-            flash('We are sorry, register was not successful as this email adress is already registered.')
-            return redirect (url_for('index'))
+            refresh()
+            flash(gettext('We are sorry, register was not successful as this email adress is already registered.'))
+            return redirect (url_for('.index'))
         elif usernamecheck != None:
-            flash('We are sorry, register was not successful as this username is already registered.')
-            return redirect (url_for('index'))
+            refresh()
+            flash(gettext('We are sorry, register was not successful as this username is already registered.'))
+            return redirect (url_for('.index'))
         else:            
             user = User(
                 name = request.form.get('name'),
@@ -100,7 +128,8 @@ def register():
                 photo.save(path_to_photo)
                 us.picture = path_to_photo
                 us.save()
-            flash('You have successfully Registered!')
+            refresh()
+            flash(gettext('You have successfully Registered!'))
             session['id'] = us.id
             session['username'] = us.username
             fromaddr = "%s <%s>" % ('TygAyo','tygayoinc@gmail.com')
@@ -114,9 +143,9 @@ def register():
             server.login(username,password)
             server.sendmail(fromaddr, toaddrs, msg)
             server.close()
-            return redirect (url_for('startup'))
+            return redirect (url_for('.startup'))
     else:
-        return redirect (url_for('index'))
+        return redirect (url_for('.index'))
 
 @app.route('/signout')
 def logout():
@@ -124,12 +153,12 @@ def logout():
     session.pop('id', None)
     return redirect('/')
 
-@app.route('/startup')
-@login_required
-def start():
-    return render_template('startup.html')
+#@app.route('/startup')
+#@login_required
+#def start():
+#    return render_template('startup.html')
     
-@app.route('/edetails/<id>')
+@bp.route('/edetails/<id>')
 def showevent(id):
     event = db.session.query(Event).get(id)
     if not event:
@@ -191,10 +220,11 @@ def signup():
             repairman_id = session.get('id')
             )
         signed.save()
-        flash('You have successfully signed up for the event!')
+        refresh()
+        flash(gettext('You have successfully signed up for the event!'))
         id = session.get('id')
         user = User.get(id)    
-    return redirect (url_for('myPage',username=user.username))
+    return redirect (url_for('.myPage',username=user.username))
     
 @app.route('/chooserm', methods=['POST'])
 def chooserm():
@@ -224,11 +254,11 @@ def chooserm():
         server.sendmail(fromaddr, toaddrs, msg)
         server.sendmail(fromaddr, toaddrs_client, msg_client)
         server.close()
-        
-        flash('You have successfully chosed a repairman!')
-    return redirect (url_for('showevent', id=eventid))
+        refresh()
+        flash(gettext('You have successfully chosed a repairman!'))
+    return redirect (url_for('.showevent', id=eventid))
     
-@app.route('/createvent', methods=['GET', 'POST'])
+@bp.route('/createvent', methods=['GET', 'POST'])
 @login_required
 def create_an_event():
     if request.method == 'POST':
@@ -261,13 +291,15 @@ def create_an_event():
             
         if (datetime.strptime(request.form.get('datmtme'), "%m/%d/%Y %I:%M %p") > datetime.now()):    
             event.save()
-            flash('You have successfully created Event!')
+            refresh()
+            flash(gettext('You have successfully created Event!'))
         else:
-            flash("Execution Date of Event can't be before Event is created!", "warning")
+            refresh()
+            flash(gettext("Execution Date of Event can't be before Event is created!", "warning"))
     #flash('Event cannot be completed before it starts')
-    return redirect (url_for('myPage', username = session['username']))
+    return redirect (url_for('.myPage', username = session['username']))
 
-@app.route('/profile/<username>')
+@bp.route('/profile/<username>')
 def profilePage(username):
     if len(username) != 0 and User.get_by_username(username) != None:
         user = User.get_by_username(username)
@@ -278,11 +310,12 @@ def profilePage(username):
             user.picture = "./static/images/users_avatar/default.jpg"
             return render_template('profile.html', user = user, cuserId = session.get('id'))
     else:
-        flash("%s doesn't exist!" %username, "warning")
-        return redirect (url_for('profilePage', username = session['username']))
+        refresh()
+        flash(gettext("%s doesn't exist!" %username, "warning"))
+        return redirect (url_for('.profilePage', username = session['username']))
 
-@app.route('/mypage/<username>')
-@app.route('/mypage/')
+@bp.route('/mypage/<username>')
+@bp.route('/mypage/')
 @login_required
 def myPage(username):
     if len(username) != 0 and User.get_by_username(username) != None:
@@ -306,10 +339,11 @@ def myPage(username):
         event_created_by_user = db.engine.execute(event_created_by_user_query).fetchall()
         return render_template('mypage.html', user = user, CreatedEvents = event_created_by_user, SUPevents = Signedupuevents)
     else:
-        flash("You are not %s!" %username, "warning")
-        return redirect (url_for('myPage', username = session['username']))
+        refresh()
+        flash(gettext("You are not %s!" %username, "warning"))
+        return redirect (url_for('.myPage', username = session['username']))
 
-@app.route('/modifyuser', methods=['GET', 'POST'])
+@bp.route('/modifyuser', methods=['GET', 'POST'])
 @login_required
 def modify_an_user():
     if request.method == 'POST':
@@ -336,9 +370,10 @@ def modify_an_user():
             mobile = request.form.get('mobile'),
             picture = path_to_photo)
         user.modify()
-        flash('You successfully modified Profile!')
+        refresh()
+        flash(gettext('You successfully modified Profile!'))
     #flash('Event cannot be completed before it starts')
-    return redirect (url_for('profilePage', username = session['username']))
+    return redirect (url_for('.profilePage', username = session['username']))
 
 @app.route('/modifyevent', methods=['GET', 'POST'])
 @login_required
@@ -383,11 +418,13 @@ def modify_an_event():
             )
         if (datetime.strptime(request.form.get('datmtme'), "%m/%d/%Y %I:%M %p") > datetime.now()):
             event.modify()
-            flash('You successfully modified Event!')
+            refresh()
+            flash(gettext('You successfully modified Event!'))
         else:
-            flash("Execution Date of Event can't be before Event is created!", "warning")
+            refresh()
+            flash(gettext("Execution Date of Event can't be before Event is created!", "warning"))
     #flash('Event cannot be completed before it starts')
-    return redirect (url_for('showevent', id=originid))
+    return redirect (url_for('.showevent', id=originid))
     
 @app.route('/deactevent', methods=['GET', 'POST'])
 @login_required
@@ -397,8 +434,9 @@ def deactivate_event():
             id = request.form.get('id'),
             active = 0)
         event.deactivate()
-        flash('You successfully deactivated Event!')
-    return redirect (url_for('showevent', id=request.form.get('id')))
+        refresh()
+        flash(gettext('You successfully deactivated Event!'))
+    return redirect (url_for('.showevent', id=request.form.get('id')))
 
 
 @app.route('/unassign', methods=['GET', 'POST'])
@@ -407,9 +445,10 @@ def un_assign():
     if request.method == 'POST':        
         link = Applied_repairman.get_link(request.form.get('id'),session['id'])
         print link.id
-        link.delete()            
-        flash('You have successfully un-asigned from the Event!')
-    return redirect (url_for('showevent', id=request.form.get('id')))
+        link.delete()
+        refresh()      
+        flash(gettext('You have successfully un-asigned from the Event!'))
+    return redirect (url_for('.showevent', id=request.form.get('id')))
         
 @app.route('/declineevent', methods=['GET', 'POST'])
 @login_required
@@ -426,9 +465,10 @@ def decline_event():
         
         link = Applied_repairman.get_link(request.form.get('id'),session['id'])
         print link.id
-        link.delete()            
-        flash('You have successfully declined the Event!')
-    return redirect (url_for('showevent', id=request.form.get('id')))
+        link.delete()  
+        refresh()          
+        flash(gettext('You have successfully declined the Event!'))
+    return redirect (url_for('.showevent', id=request.form.get('id')))
     
 @app.route('/closeevent', methods=['GET', 'POST'])
 @login_required
@@ -441,18 +481,31 @@ def close_event():
             closed = 1)
         event.close()
         print 'event was closed'
-        flash('Event has been Finished!')
-    return redirect (url_for('showevent', id=eventid))
+        refresh()
+        flash(gettext('Event has been Finished!'))
+    return redirect (url_for('.showevent', id=eventid))
 
-@app.route('/events', methods=['GET', 'POST'])
+@bp.route('/events', methods=['GET', 'POST'])
 def allevents():
+    events = Event.get_all()[::-1]
+    for event in events:
+        if event.photo == None:
+            event.photo = "../static/images/events_photos/default.jpg"
+
     if request.method == 'POST':
         filter_by_name = request.form.get('srch')
         if filter_by_name != '':
-            return render_template('events.html', username = session.get('username'), events = Event.get_by_name_or_description(filter_by_name)[::-1])
-        else:
-            return render_template('events.html', username = session.get('username'), events = Event.get_all()[::-1])
-    return render_template('events.html', username = session.get('username'), events = Event.get_all()[::-1])
+            events_by_name = Event.get_by_name_or_description(filter_by_name)[::-1]
+            for evnt in events_by_name:
+                if evnt.photo == None:
+                    evnt.photo = "../static/images/events_photos/default.jpg"
+            if  events_by_name != None:       
+                return render_template('events.html', username = session.get('username'), events = events_by_name, srch_value=filter_by_name)
+            else:
+                return render_template('events.html', username = session.get('username'), events = None, srch_value=filter_by_name)
+        #else:
+        #    return render_template('events.html', username = session.get('username'), events = Event.get_all()[::-1])
+    return render_template('events.html', username = session.get('username'), events = events)
 
 def confirmation_mail(msg_for_what, rm , client, event_obj, eventid):
     if msg_for_what == 'repairman':
@@ -467,7 +520,7 @@ def confirmation_mail(msg_for_what, rm , client, event_obj, eventid):
             "The event takes place at " + event_obj.address + ", scheduled for " + str(event_obj.date_time_create) + ".",
             "",
             "The event details are in the link bellow:",
-            "http://tygayo.herokuapp.com/" + url_for('showevent', id=eventid),
+            "http://tygayo.herokuapp.com/" + url_for('.showevent', id=eventid),
             "",
             "Best Regards,",
             "TygAyo Inc."
@@ -486,7 +539,7 @@ def confirmation_mail(msg_for_what, rm , client, event_obj, eventid):
                 "The event takes place at " + event_obj.address + ", scheduled for " + str(event_obj.date_time_create) + ".",
                 "",
                 "The event details are in the link bellow:",
-                "http://tygayo.herokuapp.com/" + url_for('showevent', id=eventid),
+                "http://tygayo.herokuapp.com/" + url_for('.showevent', id=eventid),
                 "",
                 "Best Regards,",
                 "TygAyo Inc."
@@ -508,3 +561,5 @@ def registration_mail(user):
             "http://tygayo.herokuapp.com/"
             ])
         return user_msg  
+
+app.register_blueprint(bp)

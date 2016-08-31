@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ g.lang_code }}">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Small Home Maintenance Work</title>
+    <title>{% trans %}Small Home Maintenance Work{% endtrans %}</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../static/css/bootstrap.min.css" rel="stylesheet">
@@ -80,7 +80,7 @@
          /* whatever other hover styles you want */
       }
       .jumbotron {
-        background-image: url(../static/images/tyg_ayo/city_background.jpg);
+        background-image: url(../static/images/tyg_ayo/zagreb_night.jpg);
         background-size: cover;
         background-attachment: fixed;
         height: 100%;
@@ -92,6 +92,18 @@
       .featurette-divider{
         margin-bottom: 40px;
         border-top: 0px;
+      }
+      #lng, #lng2 {
+        color: #2dacd3;
+      }
+      #lng:hover, #lng2:hover {
+        color: #57BDDC;
+      }
+      .footer a{
+        color: #337ab7;
+      }
+      .footer a:hover{
+        color: #2dacd3;
       }
     </style>
   </head>
@@ -107,37 +119,39 @@
             <span class="icon-bar"></span>
           </button>
           {% if username %}
-              <a class="navbar-brand" href="/startup">Tyg-Ayo</a>
+              <a class="navbar-brand" href="{{ url_for('.startup') }}">Tyg-Ayo</a>
           {% else %}
-              <a class="navbar-brand" href="/">Tyg-Ayo</a>
+              <a class="navbar-brand" href="{{ url_for('.index') }}">Tyg-Ayo</a>
           {% endif %}
         </div>
         <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="/startup">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="{{ url_for('.startup') }}">{% trans %}Home{% endtrans %} <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/about">About</a>
+            <a class="nav-link" href="{{ url_for('.about') }}">{% trans %}About{% endtrans %}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#contact">Contact</a>
+            <a class="nav-link" href="#contact">{% trans %}Contact{% endtrans %}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/events">All Events</a>
+            <a class="nav-link" href="{{ url_for('.allevents') }}">{% trans %}All Events{% endtrans %}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href data-toggle="modal" data-target='#createEv-modalExt' id="myBtn3">Create Event</a>
+            <a class="nav-link" href data-toggle="modal" id="myBtn3">{% trans %}Create Event{% endtrans %}</a>
           </li>
         </ul>
           <ul class="nav navbar-nav navbar-right">
             {% if username %}
-              <li><a href="/mypage/{{ username }}">My Events</a></li>
-              <li><a href="/profile/{{ username }}">My Profile</a></li>            
-              <li><a href="/signout">Sign Out {{ username }}</a></li>
+              <li><a href="{{ url_for('.myPage', username=username) }}">{% trans %}My Events{% endtrans %}</a></li>
+              <li><a href="{{ url_for('.profilePage', username=username) }}">{% trans %}My Profile{% endtrans %}</a></li>            
+              <li><a href="{{ url_for('logout') }}">{% trans %}Sign Out{% endtrans %} {{ username }}</a></li>
             {% else %}
-              <li><a href="/signout">Sign Out</a></li>
+              <li><a href="{{ url_for('logout') }}">{% trans %}Sign Out{% endtrans %}</a></li>
             {% endif %}
+              <li><a id="lng" href="/hr/startup">{% trans %}cro{% endtrans %}</a></li>
+              <li><a id="lng2" href="/en/startup">en</a></li>
           </ul>
           </div><!--/.nav-collapse -->
       </div>
@@ -157,39 +171,40 @@
               {% else %}
               <div class="alert alert-dismissible alert-danger fade in" id="alrt" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <strong>Warning! </strong>{{ message|safe }}
+                <strong>{% trans %}Warning!{% endtrans %} </strong>{{ message|safe }}
               </div>
               {% endif %}
             {% endfor %}
           {% endif %}
         {% endwith %}
-        <h1 class="display-3 col-sm-8 col-sm-offset-3">Choose your role</h1>
-        <p><blockquote class="col-sm-8 col-sm-offset-3">Do you need something done or you are handy with the tools?<br> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Choose your role and make things happen!</blockquote></p>
+      <div align="center">
+        <h1 class="display-3 col-sm-8 col-sm-offset-2">{% trans %}Choose your role{% endtrans %}</h1>
+        <p><blockquote class="col-sm-8 col-sm-offset-2">{% trans %}Do you need something done or you are handy with the tools?{% endtrans %}<br> {% trans %}Choose your role and make things happen!{% endtrans %}</blockquote></p>
         <br>
-
+      </div>
       <div class="row">
         <div class="col-lg-4" align="center">
-          <img class="img-circle" src="../static/images/tyg_ayo/client.png" alt="Generic placeholder image" width="140" height="140">
-          <h2>Client</h2>
-          <a href="#" data-toggle="modal" id="myBtn2">
+          <img class="img-circle" src="../static/images/tyg_ayo/client_1.png" alt="Generic placeholder image" width="140" height="140">
+          <h2>{% trans %}Client{% endtrans %}</h2>
+          <a href data-toggle="modal" id="myBtn2">
             <div class="panel panel-info">
-            <div class="panel-heading">Step 1</div>
+            <div class="panel-heading">{% trans %}Step 1{% endtrans %}</div>
             <div class="panel-body">
-              Create an event
+              {% trans %}Create an event{% endtrans %}
             </div>
           </div>
           </a>
           <div class="panel panel-info">
-            <div class="panel-heading">Step 2</div>
+            <div class="panel-heading">{% trans %}Step 2{% endtrans %}</div>
             <div class="panel-body">
-              Wait for repairman to sign up for a job
+              {% trans %}Wait for repairman to sign up for a job{% endtrans %}
             </div>
           </div>
-          <a href="/mypage/{{ username }}">
+          <a href="{{ url_for('.myPage', username=username) }}">
           <div class="panel panel-info">
-            <div class="panel-heading">Step 3</div>
+            <div class="panel-heading">{% trans %}Step 3{% endtrans %}</div>
             <div class="panel-body">
-              Choose your repairman
+              {% trans %}Choose your repairman{% endtrans %}
             </div>
           </div>
           </a>   
@@ -197,33 +212,33 @@
         <div class="col-lg-4">
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4" align="center">
-          <img class="img-circle" src="../static/images/tyg_ayo/repairmanicon.png" alt="Generic placeholder image" width="140" height="140">
-          <h2>Repairman</h2>
-         <a href="/events">
+          <img class="img-circle" src="../static/images/tyg_ayo/repairmanicon_1.png" alt="Generic placeholder image" width="140" height="140">
+          <h2>{% trans %}Repairman{% endtrans %}</h2>
+         <a href="{{ url_for('.allevents') }}">
           <div class="panel panel-info">
-            <div class="panel-heading">Step 1</div>
+            <div class="panel-heading">{% trans %}Step 1{% endtrans %}</div>
             <div class="panel-body">
-              Sign up for a job
+              {% trans %}Sign up for a job{% endtrans %}
             </div>
           </div>
           </a>
           <div class="panel panel-info">
-            <div class="panel-heading">Step 2</div>
+            <div class="panel-heading">{% trans %}Step 2{% endtrans %}</div>
             <div class="panel-body">
-              Wait for your employee
+              {% trans %}Wait for your employee{% endtrans %}
             </div>
           </div>
           <div class="panel panel-info">
-            <div class="panel-heading">Step 3</div>
+            <div class="panel-heading">{% trans %}Step 3{% endtrans %}</div>
             <div class="panel-body">
-              Bring your tools and come over
+              {% trans %}Bring your tools and come over{% endtrans %}
             </div>
           </div>
         </div><!-- /.col-lg-4 -->
 
         <div class="col-lg-6 col-md-offset-3">
           <hr class="featurette-divider">
-          <input type="button" class="btn btn-info btn-lg btn-block" onclick="location.href='/events';" value="See All Events"/>
+          <input type="button" class="btn btn-info btn-lg btn-block" onclick="location.href='{{ url_for('.allevents') }}';" value="{% trans %}See All Events{% endtrans %}"/>
         </div>
       </div><!-- /.row -->
 
@@ -240,7 +255,7 @@
         <div class="col-md-8 col-md-offset-2">
           <div class="panel panel-info">
               <!-- Default panel contents -->
-            <div class="panel-heading">Newest Events</div>
+            <div class="panel-heading">{% trans %}Newest Events{% endtrans %}</div>
           </div>            
               <!--<div class="table-responsive">
                 <table class="table table-hover">
@@ -281,13 +296,13 @@
               <div class="caption">
                 <h3><span class="label label-default">#{{ event.id }}</span> | {{ event.name }}</h3>
                 <p>{{ event.description[0:50] }}</p>
-                <p><b>Price: </b>{{ event.price }}</p>
+                <p><b>{% trans %}Price:{% endtrans %} </b>{{ event.price }}</p>
                 {% if event.active %}
-                <p>Status: <span class="label label-success">Active</span></p>
+                <p>Status: <span class="label label-success">{% trans %}Active{% endtrans %}</span></p>
                 {% else %}
-                <p>Status: <span class="label label-danger">Inactive</span></p>
+                <p>Status: <span class="label label-danger">{% trans %}Inactive{% endtrans %}</span></p>
                 {% endif %}
-                <input type="button" class="btn btn-info btn-lg btn-block" onclick="window.open('/edetails/{{ event.id }}','_blank');" value="See Event"/>
+                <input type="button" class="btn btn-info btn-lg btn-block" onclick="window.open('{{ url_for('.showevent', id=event.id) }}','_blank');" value="{% trans %}See Event{% endtrans %}"/>
               </div>
             </div>
           </div>
@@ -301,7 +316,7 @@
     <footer class="footer">
       <div class="container" align="center">
         <p class="pull-xs-right">
-          <a href="#">Back to top</a>
+          <a href="#">{% trans %}Back to top{% endtrans %}</a>
         </p>
         <div class="col-md-4">
         </div>
@@ -325,13 +340,13 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
-    <script src="../static/js/bootstrap-datetimepicker.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../static/js/jquery.min.js"><\/script>')</script>
-    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../../static/js/bootstrap-datetimepicker.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../static/js/jquery.min.js"><\/script>')</script>
+    <script src="../../static/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../static/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="../../static/js/ie10-viewport-bug-workaround.js"></script>
     <!-- Validator -->
-    <script src="../static/js/bootstrapvalidator.min.js"></script>
+    <script src="../../static/js/bootstrapvalidator.min.js"></script>
     <script>
       $(document).ready(function(){
           $("#myBtn2").click(function(){

@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ g.lang_code }}">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +10,8 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Small Home Maintenance Work</title>
+    <title>{% trans %}Small Home Maintenance Work{% endtrans %}</title>
+    <base href="/{{ g.lang_code }}/">
 
     <!-- Bootstrap core CSS -->
     <link href="../static/css/bootstrap.min.css" rel="stylesheet">
@@ -85,7 +86,7 @@
         display: inline-block;
       }
       .jumbotron {
-        background-image: url(../static/images/tyg_ayo/city_background.jpg);
+        background-image: url(../static/images/tyg_ayo/zagreb_night.jpg);
         background-size: cover;
         background-attachment: fixed;
         height: 100%;
@@ -93,6 +94,18 @@
       .jumbotron h1, h2, blockquote{
         color: white;
         border-left: hidden;
+      }
+      #lng, #lng2 {
+        color: #2dacd3;
+      }
+      #lng:hover, #lng2:hover {
+        color: #57BDDC;
+      }
+      .footer a{
+        color: #337ab7;
+      }
+      .footer a:hover{
+        color: #2dacd3;
       }
     </style>
 
@@ -108,7 +121,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">Tyg-Ayo</a>
+          <a class="navbar-brand" href="{{ url_for('.index') }}">Tyg-Ayo</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -116,18 +129,20 @@
               <a class="nav-link" href="/startup">Home <span class="sr-only">(current)</span></a>
             </li> -->
             <li class="nav-item">
-              <a class="nav-link" href="/about">About</a>
+              <a class="nav-link" href="{{ url_for('.about') }}">{% trans %}About{% endtrans %}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#contact">Contact</a>
+              <a class="nav-link" href="#contact">{% trans %}Contact{% endtrans %}</a>
             </li>            
             <li class="nav-item">
-              <a class="nav-link" href="/events">All Events</a>
+              <a class="nav-link" href="{{ url_for('.allevents') }}">{% trans %}All Events{% endtrans %}</a>
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#regModal" data-toggle="modal" id="regLnk" data-target="#regForm-modal">Register</a></li>
-            <li><a href="#logModal" data-toggle="modal" data-target="#log-modal" id="myLnk">Sign In</a></li>
+            <li><a href="#regModal" data-toggle="modal" id="regLnk" data-target="#regForm-modal">{% trans %}Register{% endtrans %}</a></li>
+            <li><a href="#logModal" data-toggle="modal" data-target="#log-modal" id="myLnk">{% trans %}Sign In{% endtrans %}</a></li>
+            <li><a id="lng" href="/hr/">{% trans %}cro{% endtrans %}</a></li>
+            <li><a id="lng2" href="/en/">en</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -147,53 +162,53 @@
           {% endif %}
         {% endwith %}
       <div align="center">
-        <h1 class="display-3 col-sm-8 col-sm-offset-2">Choose your role</h1>
-        <p><blockquote class="col-sm-8 col-sm-offset-2">Do you need something done or you are handy with the tools?<br> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Choose your role and make things happen!</blockquote></p>
+        <h1 class="display-3 col-sm-8 col-sm-offset-2">{% trans %}Choose your role{% endtrans %}</h1>
+        <p><blockquote class="col-sm-8 col-sm-offset-2">{% trans %}Do you need something done or you are handy with the tools?{% endtrans %}<br> {% trans %}Choose your role and make things happen!{% endtrans %}</blockquote></p>
         <br>
       </div>
       <div class="row">
         <div class="col-lg-4" align="center">
-          <img class="img-circle" src="../static/images/tyg_ayo/client.png" alt="Generic placeholder image" width="140" height="140">
-          <h2>Client</h2>
+          <img class="img-circle" src="../static/images/tyg_ayo/client_1.png" alt="Generic placeholder image" width="140" height="140">
+          <h2>{% trans %}Client{% endtrans %}</h2>
           {% if username %}
-          <a href="/startup" data-toggle="modal" id="myBtn2">
+          <a href="{{ url_for('.startup') }}" data-toggle="modal" id="myBtn2">
             <div class="panel panel-info">
-            <div class="panel-heading">Step 1</div>
+            <div class="panel-heading">{% trans %}Step 1{% endtrans %}</div>
             <div class="panel-body">
-              Create an event
+              {% trans %}Create an event{% endtrans %}
             </div>
           </div>
           </a>
           {% else %}
           <a href="#logModal" data-toggle="modal" data-target="#log-modal" id="myLnk">
             <div class="panel panel-info">
-            <div class="panel-heading">Step 1</div>
+            <div class="panel-heading">{% trans %}Step 1{% endtrans %}</div>
             <div class="panel-body">
-              Create an event
+              {% trans %}Create an event{% endtrans %}
             </div>
           </div>
           </a>
           {% endif %}
           <div class="panel panel-info">
-            <div class="panel-heading">Step 2</div>
+            <div class="panel-heading">{% trans %}Step 2{% endtrans %}</div>
             <div class="panel-body">
-              Wait for repairman to sign up for a job
+              {% trans %}Wait for repairman to sign up for a job{% endtrans %}
             </div>
           </div>
           {% if username %}
-          <a href="/mypage/{{ username }}">
+          <a href="{{ url_for('.myPage', username) }}">
           <div class="panel panel-info">
-            <div class="panel-heading">Step 3</div>
+            <div class="panel-heading">{% trans %}Step 3{% endtrans %}</div>
             <div class="panel-body">
-              Choose your repairman
+              {% trans %}Choose your repairman{% endtrans %}
           </div>
           </a>
           {% else %}
           <a href="#logModal" data-toggle="modal" data-target="#log-modal" id="myLnk">
           <div class="panel panel-info">
-            <div class="panel-heading">Step 3</div>
+            <div class="panel-heading">{% trans %}Step 3{% endtrans %}</div>
             <div class="panel-body">
-              Choose your repairman
+              {% trans %}Choose your repairman{% endtrans %}
             </div>
           </div>
           </a>
@@ -202,37 +217,37 @@
         <div class="col-lg-4">
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4" align="center">
-          <img class="img-circle" src="../static/images/tyg_ayo/repairmanicon.png" alt="Generic placeholder image" width="140" height="140">
-          <h2>Repairman</h2>
+          <img class="img-circle" src="../static/images/tyg_ayo/repairmanicon_1.png" alt="Generic placeholder image" width="140" height="140">
+          <h2>{% trans %}Repairman{% endtrans %}</h2>
           {% if username %}
-          <a href="/events">
+          <a href="{{ url_for('.allevents') }}">
           <div class="panel panel-info">
-            <div class="panel-heading">Step 1</div>
+            <div class="panel-heading">{% trans %}Step 1{% endtrans %}</div>
             <div class="panel-body">
-              Sign up for a job
+              {% trans %}Sign up for a job{% endtrans %}
             </div>
           </div>
           </a>
           {% else %}
           <a href="#logModal" data-toggle="modal" data-target="#log-modal" id="myLnk">
           <div class="panel panel-info">
-            <div class="panel-heading">Step 1</div>
+            <div class="panel-heading">{% trans %}Step 1{% endtrans %}</div>
             <div class="panel-body">
-              Sign up for a job
+              {% trans %}Sign up for a job{% endtrans %}
             </div>
           </div>
           </a>
           {% endif %}
           <div class="panel panel-info">
-            <div class="panel-heading">Step 2</div>
+            <div class="panel-heading">{% trans %}Step 2{% endtrans %}</div>
             <div class="panel-body">
-              Wait for your employee
+              {% trans %}Wait for your employee{% endtrans %}
             </div>
           </div>
           <div class="panel panel-info">
-            <div class="panel-heading">Step 3</div>
+            <div class="panel-heading">{% trans %}Step 3{% endtrans %}</div>
             <div class="panel-body">
-              Bring your tools and come over
+              {% trans %}Bring your tools and come over{% endtrans %}
             </div>
           </div>
         </div><!-- /.col-lg-4 -->
@@ -252,50 +267,50 @@
                 <div class="modal-content">
                   <div class="modal-header" >
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel5">Register user</h4>
+                    <h4 class="modal-title" id="myModalLabel5">{% trans %}Register user{% endtrans %}</h4>
                   </div>
                   <form method="post" action="{{ url_for('register') }}" class="form-horizontal" id="reg-modal">
                     <div class="modal-body" style="padding:40px 50px;">
                       <div class="form-group">  
-                          <label class="control-label">First name</label>
+                          <label class="control-label">{% trans %}First name{% endtrans %}</label>
                           <input type="text" class="form-control" name="name" id="name" placeholder="Enter your first Name" autofocus required />
                       </div>
                       <div class="form-group">
-                          <label for="surename" class="control-label">Last Name</label>
+                          <label for="surename" class="control-label">{% trans %}Last Name{% endtrans %}</label>
                           <input type="text" class="form-control" name="surename" id="surename" placeholder="Enter your Last Name" required>
                       </div>
                       <div class="form-group">                      
-                        <label for="email" class="control-label">Email</label>
+                        <label for="email" class="control-label">{% trans %}Email{% endtrans %}</label>
                         <input type="email" class="form-control" name="email" id="email" placeholder="Enter your Email" required>
                       </div>
                       <div class="form-group">  
-                        <label for="username" class="control-label">User alias</label>
+                        <label for="username" class="control-label">{% trans %}User alias{% endtrans %}</label>
                         <input type="text" class="form-control" name="username" id="username" placeholder="Enter your Alias" required>
                       </div>
                       <div class="form-group"> 
-                        <label for="password" class="control-label">Password</label><br>
+                        <label for="password" class="control-label">{% trans %}Password{% endtrans %}</label><br>
                         <input type="password" class="form-control" name="password" id="password" placeholder="Enter your Password" required>
                       </div>
                       <div class="form-group"> 
-                        <label for="passwordConfr" class="control-label">Password confirmation</label><br>
+                        <label for="passwordConfr" class="control-label">{% trans %}Password confirmation{% endtrans %}</label><br>
                         <input type="password" class="form-control" name="passwordConfr" id="passwordConfr" required>
                       </div>
                       <div class="form-group"> 
-                        <label for="mobile" class="control-label">Mobile</label><br>
+                        <label for="mobile" class="control-label">{% trans %}Mobile{% endtrans %}</label><br>
                         <input type="number" class="form-control" name="mobile" id="mobile" placeholder="Enter your Mobile Phone number">
                       </div>
                       <div class="form-group"> 
-                        <label for="address" class="control-label">Address</label><br>
+                        <label for="address" class="control-label">{% trans %}Address{% endtrans %}</label><br>
                         <input type="text" class="form-control" name="address" id="address" placeholder="Enter your Address">
                       </div>
                       <div class="form-group"> 
-                        <label for="photo" class="control-label">Photo</label>
+                        <label for="photo" class="control-label">{% trans %}Photo{% endtrans %}</label>
                         <input type="file" accept="image/*" class="form-control" name="photo" id="photo" placeholder="Enter your profile Photo">
                       </div>
                     </div>
                     <div class="modal-footer" style="padding:40px;">
                     <div class="form-group">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> 
+                      <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button> 
                       <input type="submit" class="btn btn-info" value="Submit"></input>
                      </div>
                     </div>
@@ -315,22 +330,22 @@
             <div class="modal-content">
               <div class="modal-header" style="padding:35px 50px;">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+                <h4><span class="glyphicon glyphicon-lock"></span> {% trans %}Login{% endtrans %}</h4>
               </div>
               <div class="modal-body" style="padding:40px 50px;">
-                <form role="form" method='POST' action='/signin'>
+                <form role="form" method='POST' action='{{ url_for('.login') }}'>
                   <div class="form-group">
-                    <label for="usrname"><span class="glyphicon glyphicon-user"></span> Email address</label>
+                    <label for="usrname"><span class="glyphicon glyphicon-user"></span> {% trans %}Email address{% endtrans %}</label>
                     <input type="text" class="form-control" id="mail" name="mail" placeholder="Enter email" autofocus required>
                   </div>
                   <div class="form-group">
-                    <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+                    <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> {% trans %}Password{% endtrans %}</label>
                     <input type="password" class="form-control" id="psw" name="lozinka" placeholder="Enter password">
                   </div>
                   <div class="checkbox">
-                    <label><input type="checkbox" value="" checked>Remember me</label>
+                    <label><input type="checkbox" value="" checked>{% trans %}Remember me{% endtrans %}</label>
                   </div>
-                    <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+                    <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> {% trans %}Login{% endtrans %}</button>
                 </form>
               </div>
               <div class="modal-footer">
@@ -348,7 +363,7 @@
         <div class="col-md-8 col-md-offset-2">
           <div class="panel panel-info">
               <!-- Default panel contents -->
-            <div class="panel-heading">Newest Events</div>
+            <div class="panel-heading">{% trans %}Newest Events{% endtrans %}</div>
           </div>            
               <!--<div class="table-responsive">
                 <table class="table table-hover">
@@ -389,13 +404,13 @@
               <div class="caption">
                 <h3><span class="label label-default">#{{ event.id }}</span> | {{ event.name }}</h3>
                 <p>{{ event.description[0:50] }}</p>
-                <p><b>Price: </b>{{ event.price }}</p>
+                <p><b>{% trans %}Price:{% endtrans %} </b>{{ event.price }}</p>
                 {% if event.active %}
-                <p>Status: <span class="label label-success">Active</span></p>
+                <p>Status: <span class="label label-success">{% trans %}Active{% endtrans %}</span></p>
                 {% else %}
-                <p>Status: <span class="label label-danger">Inactive</span></p>
+                <p>Status: <span class="label label-danger">{% trans %}Inactive{% endtrans %}</span></p>
                 {% endif %}
-                <input type="button" class="btn btn-info btn-lg btn-block" onclick="window.open('/edetails/{{ event.id }}','_blank');" value="See Event"/>
+                <input type="button" class="btn btn-info btn-lg btn-block" onclick="window.open('{{ url_for('.showevent', id=event.id) }}','_blank');" value="{% trans %}See Event{% endtrans %}"/>
               </div>
             </div>
           </div>
@@ -409,7 +424,7 @@
     <footer class="footer">
       <div class="container" align="center">
         <p class="pull-xs-right">
-          <a href="#">Back to top</a>
+          <a href="#">{% trans %}Back to top{% endtrans %}</a>
         </p>
         <div class="col-lg-4">
         </div>
@@ -432,11 +447,11 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../static/js/jquery.min.js"><\/script>')</script>
-    <script src="../static/js/bootstrap.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../static/js/jquery.min.js"><\/script>')</script>
+    <script src="../../static/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../static/js/ie10-viewport-bug-workaround.js"></script>
-    <script src="../static/js/bootstrapvalidator.min.js"></script>
+    <script src="../../static/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="../../static/js/bootstrapvalidator.min.js"></script>
 <!--     <script>
       $(document).ready(function(){
           $("#myLnk").click(function(){
@@ -456,38 +471,38 @@
             name: {
                 validators: {
                     notEmpty: {
-                        message: 'The first name is required and cannot be empty'
+                        message: {% trans %}'The first name is required and cannot be empty'{% endtrans %}
                     }
                 }
             },
             surename: {
                 validators: {
                     notEmpty: {
-                        message: 'The surename is required and cannot be empty'
+                        message: {% trans %}'The surename is required and cannot be empty'{% endtrans %}
                     }
                 }
             },
             email: {
                 validators: {
                     notEmpty: {
-                        message: 'The email address is required nd cannot be empty'
+                        message: {% trans %}'The email address is required nd cannot be empty'{% endtrans %}
                     },
                     emailAddress: {
-                        message: 'The input is not a valid email address'
+                        message: {% trans %}'The input is not a valid email address'{% endtrans %}
                     }
                 }
             },
             username: {
                 validators: {
                     notEmpty: {
-                        message: 'The username is required and cannot be empty'
+                        message: {% trans %}'The username is required and cannot be empty'{% endtrans %}
                     }
                 }
             },
             password: {
                 validators: {
                    notEmpty: {
-                        message: 'The password is required and cannot be empty'
+                        message: {% trans %}'The password is required and cannot be empty'{% endtrans %}
                     }
                 }
             },
@@ -495,10 +510,10 @@
                 validators: {
                     identical: {
                     field: 'password',
-                    message: 'The password and its confirm are not the same'
+                    message: {% trans %}'The password and its confirm are not the same'{% endtrans %}
                 },
                     notEmpty: {
-                        message: 'The password check is required and cannot be empty'
+                        message: {% trans %}'The password check is required and cannot be empty'{% endtrans %}
                     }
                 }
             }

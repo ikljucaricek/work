@@ -2,8 +2,11 @@
 import logging, os
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
+from flask.ext.babel import Babel
 
 app = Flask(__name__)
+app.config['BABEL_DEFAULT_LOCALE'] = 'hr'
+babel = Babel(app)
 
 app.secret_key = '26s3uqr&v2@dt@93%*79biuao@)zlmmi)^^p*jycr#!&ydg_ok7l78'
 if os.environ.get('JAWSDB_MARIA_URL') is None:

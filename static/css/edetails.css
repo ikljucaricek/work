@@ -77,4 +77,9 @@ hr {
    cursor: pointer;
    /* whatever other hover styles you want */
 }
-
+#lng, #lng2 {
+  color: #2dacd3;
+}
+#lng:hover, #lng2:hover {
+  color: #57BDDC;
+}
