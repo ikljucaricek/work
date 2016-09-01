@@ -286,7 +286,7 @@ def create_an_event():
             flash(gettext('You have successfully created Event!'))
         else:
             refresh()
-            flash(gettext("Execution Date of Event can't be before Event is created!", "warning"))
+            flash(gettext("Execution Date of Event can't be before Event is created!"), "warning")
     #flash('Event cannot be completed before it starts')
     return redirect (url_for('.myPage', username = session['username']))
 
@@ -302,7 +302,7 @@ def profilePage(username):
             return render_template('profile.html', user = user, cuserId = session.get('id'))
     else:
         refresh()
-        flash(gettext("%s doesn't exist!" %username, "warning"))
+        flash(gettext("%s doesn't exist!") %username, "warning")
         return redirect (url_for('.profilePage', username = session['username']))
 
 @bp.route('/mypage/<username>')
@@ -331,7 +331,7 @@ def myPage(username):
         return render_template('mypage.html', user = user, CreatedEvents = event_created_by_user, SUPevents = Signedupuevents)
     else:
         refresh()
-        flash(gettext("You are not %s!" %username, "warning"))
+        flash(gettext("You are not %s!") %username, "warning")
         return redirect (url_for('.myPage', username = session['username']))
 
 @bp.route('/modifyuser', methods=['GET', 'POST'])
@@ -366,7 +366,7 @@ def modify_an_user():
     #flash('Event cannot be completed before it starts')
     return redirect (url_for('.profilePage', username = session['username']))
 
-@app.route('/modifyevent', methods=['GET', 'POST'])
+@bp.route('/modifyevent', methods=['GET', 'POST'])
 @login_required
 def modify_an_event():
     if request.method == 'POST':
@@ -406,7 +406,7 @@ def modify_an_event():
             flash(gettext('You successfully modified Event!'))
         else:
             refresh()
-            flash(gettext("Execution Date of Event can't be before Event is created!", "warning"))
+            flash(gettext("Execution Date of Event can't be before Event is created!"), "warning")
     #flash('Event cannot be completed before it starts')
     return redirect (url_for('.showevent', id=originid))
     
