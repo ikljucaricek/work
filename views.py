@@ -46,7 +46,7 @@ def login_required(fn):
 
 @bp.route('/')
 def index():
-    events = Event.get_all()[:-10:-1]
+    events = Event.get_all()[0][:-10:-1]
     for event in events:
         if event.photo == None:
             event.photo = "../static/images/events_photos/default.jpg"
@@ -59,7 +59,7 @@ def about():
 @bp.route('/startup')
 @login_required
 def startup():
-    events = Event.get_all()[:-10:-1]
+    events = Event.get_all()[0][:-10:-1]
     for event in events:
         if event.photo == None:
             event.photo = "../static/images/events_photos/default.jpg"

@@ -98,7 +98,7 @@ class Event(db.Model):
         return db.session.query(Event).filter(Event.id == event_id).first()
 
     @staticmethod
-    def get_all(page):
+    def get_all(page=1):
         result_of_qry = Event.query.paginate(page, 12, False)
         pages = result_of_qry.pages
         return result_of_qry.items[::-1], pages
