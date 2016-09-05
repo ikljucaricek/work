@@ -85,7 +85,7 @@ def login():
     else:
         return redirect (url_for('.index'))
 
-@app.route('/register', methods=['POST'])
+@bp.route('/register', methods=['POST'])
 def register():
     if request.method == 'POST':
         path_to_photo = None
@@ -108,7 +108,7 @@ def register():
                 address = request.form.get('address'),
                 email = request.form.get('email'),
                 password = request.form.get('password'),
-                mobile = request.form.get('mobile'),
+                mobile = request.form.get('mobile'), 
                 joindate = datetime.now())
             user.save()
             
