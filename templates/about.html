@@ -281,7 +281,7 @@ As communication is a key aspect of every society we believe that providing you 
                 <h4><span class="glyphicon glyphicon-lock"></span> {% trans %}Login{% endtrans %}</h4>
               </div>
               <div class="modal-body" style="padding:40px 50px;">
-                <form role="form" method='POST' action='{{ .login }}'>
+                <form role="form" method='POST' action='{{ url_for('.login') }}'>
                   <div class="form-group">
                     <label for="usrname"><span class="glyphicon glyphicon-user"></span> {% trans %}Email address{% endtrans %}</label>
                     <input type="text" class="form-control" id="mail" name="mail" placeholder="{% trans %}Enter email{% endtrans %}" required>
@@ -316,7 +316,7 @@ As communication is a key aspect of every society we believe that providing you 
                 <h4><span class="glyphicon glyphicon-lock"></span> {% trans %}Login{% endtrans %}</h4>
               </div>
               <div class="modal-body" style="padding:40px 50px;">
-                <form role="form" method='POST' action='{{ .login }}'>
+                <form role="form" method='POST' action='{{ url_for('.login') }}'>
                   <div class="form-group">
                     <label for="usrname"><span class="glyphicon glyphicon-user"></span> {% trans %}Email address{% endtrans %}</label>
                     <input type="text" class="form-control" id="mail" name="mail" placeholder="{% trans %}Enter email{% endtrans %}" autofocus required>

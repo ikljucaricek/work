@@ -9,6 +9,7 @@ from werkzeug import secure_filename
 from sqlalchemy.sql import and_, select, or_
 from smtplib import SMTP
 from flask.ext.babel import gettext, ngettext, gettext, refresh
+from flask.ext.sqlalchemy import BaseQuery
 
 
 
@@ -45,7 +46,7 @@ def login_required(fn):
 
 @bp.route('/')
 def index():
-    events = Event.get_all()[:-10:-1]
+    events = Event.get_all()[0][:-10:-1]
     for event in events:
         if event.photo == None:
             event.photo = "../static/images/events_photos/default.jpg"
@@ -62,7 +63,7 @@ def modalCreateEvent():
 @app.route('/startup')
 @login_required
 def startup():
-    events = Event.get_all()[:-10:-1]
+    events = Event.get_all()[0][:-10:-1]
     for event in events:
         if event.photo == None:
             event.photo = "../static/images/events_photos/default.jpg"
@@ -88,7 +89,7 @@ def login():
     else:
         return redirect (url_for('.index'))
 
-@app.route('/register', methods=['POST'])
+@bp.route('/register', methods=['POST'])
 def register():
     if request.method == 'POST':
         path_to_photo = None
@@ -111,7 +112,7 @@ def register():
                 address = request.form.get('address'),
                 email = request.form.get('email'),
                 password = request.form.get('password'),
-                mobile = request.form.get('mobile'),
+                mobile = request.form.get('mobile'), 
                 joindate = datetime.now())
             user.save()
             
@@ -295,7 +296,7 @@ def create_an_event():
             flash(gettext('You have successfully created Event!'))
         else:
             refresh()
-            flash(gettext("Execution Date of Event can't be before Event is created!", "warning"))
+            flash(gettext("Execution Date of Event can't be before Event is created!"), "warning")
     #flash('Event cannot be completed before it starts')
     return redirect (url_for('.myPage', username = session['username']))
 
@@ -311,7 +312,7 @@ def profilePage(username):
             return render_template('profile.html', user = user, cuserId = session.get('id'))
     else:
         refresh()
-        flash(gettext("%s doesn't exist!" %username, "warning"))
+        flash(gettext("%s doesn't exist!") %username, "warning")
         return redirect (url_for('.profilePage', username = session['username']))
 
 @bp.route('/mypage/<username>')
@@ -340,7 +341,7 @@ def myPage(username):
         return render_template('mypage.html', user = user, CreatedEvents = event_created_by_user, SUPevents = Signedupuevents)
     else:
         refresh()
-        flash(gettext("You are not %s!" %username, "warning"))
+        flash(gettext("You are not %s!") %username, "warning")
         return redirect (url_for('.myPage', username = session['username']))
 
 @bp.route('/modifyuser', methods=['GET', 'POST'])
@@ -375,7 +376,7 @@ def modify_an_user():
     #flash('Event cannot be completed before it starts')
     return redirect (url_for('.profilePage', username = session['username']))
 
-@app.route('/modifyevent', methods=['GET', 'POST'])
+@bp.route('/modifyevent', methods=['GET', 'POST'])
 @login_required
 def modify_an_event():
     if request.method == 'POST':
@@ -422,7 +423,7 @@ def modify_an_event():
             flash(gettext('You successfully modified Event!'))
         else:
             refresh()
-            flash(gettext("Execution Date of Event can't be before Event is created!", "warning"))
+            flash(gettext("Execution Date of Event can't be before Event is created!"), "warning")
     #flash('Event cannot be completed before it starts')
     return redirect (url_for('.showevent', id=originid))
     
@@ -486,8 +487,9 @@ def close_event():
     return redirect (url_for('.showevent', id=eventid))
 
 @bp.route('/events', methods=['GET', 'POST'])
-def allevents():
-    events = Event.get_all()[::-1]
+@bp.route('/events/<int:page>', methods=['GET', 'POST'])
+def allevents(page=1):
+    events, pages = Event.get_all(page)
     for event in events:
         if event.photo == None:
             event.photo = "../static/images/events_photos/default.jpg"
@@ -495,17 +497,17 @@ def allevents():
     if request.method == 'POST':
         filter_by_name = request.form.get('srch')
         if filter_by_name != '':
-            events_by_name = Event.get_by_name_or_description(filter_by_name)[::-1]
+            events_by_name, pages = Event.get_by_name_or_description(filter_by_name, page)
             for evnt in events_by_name:
                 if evnt.photo == None:
                     evnt.photo = "../static/images/events_photos/default.jpg"
             if  events_by_name != None:       
-                return render_template('events.html', username = session.get('username'), events = events_by_name, srch_value=filter_by_name)
+                return render_template('events.html', username = session.get('username'), events = events_by_name, srch_value=filter_by_name, pages=pages)
             else:
                 return render_template('events.html', username = session.get('username'), events = None, srch_value=filter_by_name)
         #else:
         #    return render_template('events.html', username = session.get('username'), events = Event.get_all()[::-1])
-    return render_template('events.html', username = session.get('username'), events = events)
+    return render_template('events.html', username = session.get('username'), events = events, pages = pages)
 
 def confirmation_mail(msg_for_what, rm , client, event_obj, eventid):
     if msg_for_what == 'repairman':

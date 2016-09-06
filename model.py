@@ -102,12 +102,17 @@ class Event(db.Model):
         return db.session.query(Event).filter(Event.id == event_id).first()
 
     @staticmethod
-    def get_all():
-        return db.session.query(Event).all()
+    def get_all(page=1):
+        result_of_qry = Event.query.paginate(page, 12, False)
+        pages = result_of_qry.pages
+        return result_of_qry.items[::-1], pages
+        #return db.session.query(Event).all()
 
     @staticmethod
-    def get_by_name_or_description(filter_event):
-        return db.session.query(Event).filter(Event.name.like('%' + filter_event + '%') | Event.description.like('%' + filter_event + '%')).all()
+    def get_by_name_or_description(filter_event, page):
+        result_of_query = Event.query.filter(Event.name.like('%' + filter_event + '%') | Event.description.like('%' + filter_event + '%')).paginate(page, 12, False)
+        pages = result_of_query.pages
+        return result_of_query.items[::-1], pages
     
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)

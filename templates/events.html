@@ -227,7 +227,7 @@
             
             <div class="col-sm-6 col-md-4">
               <div class="thumbnail">
-                <img src="{{ event.photo }}" class="img-thumbnail">
+                <img src="/{{ event.photo }}" class="img-thumbnail">
                 <div class="caption">
                   <h3><span class="label label-default">#{{ event.id }}</span> | {{ event.name }}</h3>
                   <p>{{ event.description[0:50] }}</p>
@@ -506,11 +506,13 @@
     </script>
     <script>
         // init bootpag
+        var golink='{{ url_for(".allevents", page=0) }} #content';
         $('#page-selection').bootpag({
-            total: Math.ceil({{ events|length }}/12),
+            total: {{ pages }},
             maxVisible: 7
-        }).on("page", function(event, /* page number here */ num){
-            $("#content").html($("#stuff").html()); // some ajax content loading...
+        }).on("page", function(event, num){
+            $("#content").load(golink.replace("0", num), {
+              srch:$("#srch").val()});         
         });
     </script>
     <script id="stuff">
@@ -519,7 +521,7 @@
             
             <div class="col-sm-6 col-md-4">
               <div class="thumbnail">
-                <img src="{{ event.photo }}" class="img-thumbnail">
+                <img src="/{{ event.photo }}" class="img-thumbnail">
                 <div class="caption">
                   <h3><span class="label label-default">#{{ event.id }}</span> | {{ event.name }}</h3>
                   <p>{{ event.description[0:50] }}</p>
