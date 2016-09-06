@@ -56,11 +56,11 @@ def index():
 def about():
     return render_template('about.html',username = session.get('username'))
 
-@app.route('/modalCreateEvent.html')
+@bp.route('/modalCreateEvent.html')
 def modalCreateEvent():
     return render_template('modalCreateEvent.html')    
     
-@app.route('/startup')
+@bp.route('/startup')
 @login_required
 def startup():
     events = Event.get_all()[0][:-10:-1]

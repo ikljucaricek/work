@@ -264,9 +264,9 @@ As communication is a key aspect of every society we believe that providing you 
               </div>
             </div>
 
-        <div class="modal fade" id="createEv-modalExt" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        </div>
-         </div>
+    <div class="modal fade" id="createEv-modalExt" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    </div>
+        
     <div class="container">
      <!-- Three columns of text below the carousel -->
       <div class="row">
@@ -281,7 +281,7 @@ As communication is a key aspect of every society we believe that providing you 
                 <h4><span class="glyphicon glyphicon-lock"></span> {% trans %}Login{% endtrans %}</h4>
               </div>
               <div class="modal-body" style="padding:40px 50px;">
-                <form role="form" method='POST' action='{{ url_for('.login') }}'>
+                <form role="form" method='POST' action="{{ url_for('.login') }}">
                   <div class="form-group">
                     <label for="usrname"><span class="glyphicon glyphicon-user"></span> {% trans %}Email address{% endtrans %}</label>
                     <input type="text" class="form-control" id="mail" name="mail" placeholder="{% trans %}Enter email{% endtrans %}" required>
@@ -316,7 +316,7 @@ As communication is a key aspect of every society we believe that providing you 
                 <h4><span class="glyphicon glyphicon-lock"></span> {% trans %}Login{% endtrans %}</h4>
               </div>
               <div class="modal-body" style="padding:40px 50px;">
-                <form role="form" method='POST' action='{{ url_for('.login') }}'>
+                <form role="form" method='POST' action="{{ url_for('.login') }}">
                   <div class="form-group">
                     <label for="usrname"><span class="glyphicon glyphicon-user"></span> {% trans %}Email address{% endtrans %}</label>
                     <input type="text" class="form-control" id="mail" name="mail" placeholder="{% trans %}Enter email{% endtrans %}" autofocus required>
@@ -361,6 +361,7 @@ As communication is a key aspect of every society we believe that providing you 
         <div class="col-lg-4">
         </div>
       </div>
+    </div>
     </footer>
 
     <!-- Bootstrap core JavaScript
@@ -376,16 +377,20 @@ As communication is a key aspect of every society we believe that providing you 
     <script src="../static/js/bootstrap-datetimepicker.min.js"></script>
     <script>
     $(document).ready(function() {
-    $("#myBtn3").click(function(){
-          var $this = $(this).data('target');
-          $("#createEv-modalExt").load("url_for(modalCreateEvent)", function (responseTxt, statusTxt, xhr) {
-            if (statusTxt == "success"){
-                $(this).modal('show');
-                }
-            if(statusTxt == "error")
-                alert("Error while loading: " + xhr.status + ": " + xhr.statusText);
-          });
+        $("#myBtn3").click(function(){
+              var $this = $(this).data('target');
+              $("#createEv-modalExt").load("{{ url_for('.modalCreateEvent') }}", function (responseTxt, statusTxt, xhr) {
+                if (statusTxt == "success"){
+                    $(this).modal('show');
+                    }
+                if(statusTxt == "error")
+                    alert("Error while loading: " + xhr.status + ": " + xhr.statusText);
+              });
+        });
     });
+    </script>
+    <script>
+    $(document).ready(function() {
     $('#reg-modal').bootstrapValidator({
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
