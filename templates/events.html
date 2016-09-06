@@ -295,7 +295,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel5">{% trans %}Register user{% endtrans %}</h4>
                   </div>
-                  <form method="post" action="{{ url_for('register') }}" class="form-horizontal" id="reg-modal">
+                  <form method="post" action="{{ url_for('.register') }}" class="form-horizontal" id="reg-modal">
                     <div class="modal-body" style="padding:40px 50px;">
                       <div class="form-group">  
                           <label class="control-label">{% trans %}First name{% endtrans %}</label>
