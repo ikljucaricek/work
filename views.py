@@ -11,8 +11,6 @@ from smtplib import SMTP
 from flask.ext.babel import gettext, ngettext, gettext, refresh
 from flask.ext.sqlalchemy import BaseQuery
 
-
-
 @babel.localeselector
 def get_locale():
     if g.lang_code:
@@ -133,17 +131,19 @@ def register():
             flash(gettext('You have successfully Registered!'))
             session['id'] = us.id
             session['username'] = us.username
-            fromaddr = "%s <%s>" % ('TygAyo','tygayoinc@gmail.com')
+
+            fromaddr = "%s <%s>" % ('TygAyo','registration@tygayo.herokuapp.com')
             toaddrs  = us.email
             msg = registration_mail(us)
-            username = 'tygayoinc@gmail.com'
-            password = 'Work1234'
-            server = SMTP("smtp.gmail.com",587)
+            username = '953dfa2af4a2c579a134d7aaa74c646b'
+            password = '91626ab7ed85ca7162602bb37331e32a'
+            server = SMTP("in-v3.mailjet.com",587)
             server.ehlo()
-            server.starttls()
+            # server.starttls()
             server.login(username,password)
             server.sendmail(fromaddr, toaddrs, msg)
             server.close()
+            
             return redirect (url_for('.startup'))
     else:
         return redirect (url_for('.index'))
@@ -212,7 +212,7 @@ def showevent(id):
                                                                    repairman = repairman)
 
                                                                    
-@app.route('/signup', methods=['POST','GET'])
+@bp.route('/signup', methods=['POST','GET'])
 def signup():
     eventid = request.form.get('event_to_signup')
     if request.method == 'POST':      
@@ -227,7 +227,7 @@ def signup():
         user = User.get(id)    
     return redirect (url_for('.myPage',username=user.username))
     
-@app.route('/chooserm', methods=['POST'])
+@bp.route('/chooserm', methods=['POST'])
 def chooserm():
     eventid = request.form.get('event_to_choose')
     rmid = request.form.get('rm_to_choose')
@@ -241,16 +241,17 @@ def chooserm():
         event.save()
         rm.save()
         
-        fromaddr = 'tygayoinc@gmail.com'
         toaddrs  = rm.email
         toaddrs_client = client.email
         msg = confirmation_mail('repairman', rm, client, event, eventid)
         msg_client = confirmation_mail('client', rm, client, event, eventid)
-        username = 'tygayoinc@gmail.com'
-        password = 'Work1234'
-        server = SMTP("smtp.gmail.com",587)
+        
+        fromaddr = "%s <%s>" % ('TygAyo','eventrepairman@tygayo.herokuapp.com')
+        username = '953dfa2af4a2c579a134d7aaa74c646b'
+        password = '91626ab7ed85ca7162602bb37331e32a'
+        server = SMTP("in-v3.mailjet.com",587)
         server.ehlo()
-        server.starttls()
+        # server.starttls()
         server.login(username,password)
         server.sendmail(fromaddr, toaddrs, msg)
         server.sendmail(fromaddr, toaddrs_client, msg_client)
@@ -427,7 +428,7 @@ def modify_an_event():
     #flash('Event cannot be completed before it starts')
     return redirect (url_for('.showevent', id=originid))
     
-@app.route('/deactevent', methods=['GET', 'POST'])
+@bp.route('/deactevent', methods=['GET', 'POST'])
 @login_required
 def deactivate_event():
     if request.method == 'POST':
@@ -440,7 +441,7 @@ def deactivate_event():
     return redirect (url_for('.showevent', id=request.form.get('id')))
 
 
-@app.route('/unassign', methods=['GET', 'POST'])
+@bp.route('/unassign', methods=['GET', 'POST'])
 @login_required
 def un_assign():
     if request.method == 'POST':        
@@ -451,7 +452,7 @@ def un_assign():
         flash(gettext('You have successfully un-asigned from the Event!'))
     return redirect (url_for('.showevent', id=request.form.get('id')))
         
-@app.route('/declineevent', methods=['GET', 'POST'])
+@bp.route('/declineevent', methods=['GET', 'POST'])
 @login_required
 def decline_event():
     if request.method == 'POST':
@@ -471,7 +472,7 @@ def decline_event():
         flash(gettext('You have successfully declined the Event!'))
     return redirect (url_for('.showevent', id=request.form.get('id')))
     
-@app.route('/closeevent', methods=['GET', 'POST'])
+@bp.route('/closeevent', methods=['GET', 'POST'])
 @login_required
 def close_event():
     if request.method == 'POST':
@@ -512,7 +513,7 @@ def allevents(page=1):
 def confirmation_mail(msg_for_what, rm , client, event_obj, eventid):
     if msg_for_what == 'repairman':
         chosen_repariman_msg = "\r\n".join([
-            "From: tygayoinc@gmail.com",
+            "From: eventrepairman@tygayo.herokuapp.com",
             "To: " + rm.email,
             "Subject: Chosen to " + event_obj.name,
             "",
@@ -522,7 +523,7 @@ def confirmation_mail(msg_for_what, rm , client, event_obj, eventid):
             "The event takes place at " + event_obj.address + ", scheduled for " + str(event_obj.date_time_create) + ".",
             "",
             "The event details are in the link bellow:",
-            "http://tygayo.herokuapp.com/" + url_for('.showevent', id=eventid),
+            "http://tygayo.herokuapp.com" + url_for('.showevent', id=eventid),
             "",
             "Best Regards,",
             "TygAyo Inc."
@@ -531,7 +532,7 @@ def confirmation_mail(msg_for_what, rm , client, event_obj, eventid):
 
     if msg_for_what == 'client':
         msg_to_client = "\r\n".join([
-                "From: tygayoinc@gmail.com",
+                "From: eventrepairman@tygayo.herokuapp.com",
                 "To: " +  client.email,
                 "Subject: Chose repairman for " + event_obj.name,
                 "",
@@ -541,7 +542,7 @@ def confirmation_mail(msg_for_what, rm , client, event_obj, eventid):
                 "The event takes place at " + event_obj.address + ", scheduled for " + str(event_obj.date_time_create) + ".",
                 "",
                 "The event details are in the link bellow:",
-                "http://tygayo.herokuapp.com/" + url_for('.showevent', id=eventid),
+                "http://tygayo.herokuapp.com" + url_for('.showevent', id=eventid),
                 "",
                 "Best Regards,",
                 "TygAyo Inc."
@@ -550,7 +551,7 @@ def confirmation_mail(msg_for_what, rm , client, event_obj, eventid):
         
 def registration_mail(user):
         user_msg = "\r\n".join([
-            "From: tygayoinc@gmail.com",
+            "From: registration@tygayo.herokuapp.com",
             "To: " + user.email,
             "Subject: Tygayo inc - Registration",
             "",

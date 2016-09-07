@@ -160,7 +160,7 @@
                       {% if CreatedEvents %}
                         {% for event in CreatedEvents %}
                         <!-- paint rows in different colours according to their status -->  
-                        <tr class='clickable-row' data-href='{{ url_for('.showevent', id=event.id) }}'>
+                        <tr class='clickable-row' data-href="{{ url_for('.showevent', id=event.id) }}">
                           <th  scope="row">{{ event.id }}</th>
                           <td>{{ event.name }}</td>
                           <td>{{ event.description}}</td>
@@ -199,7 +199,7 @@
                     <tbody>
                       {% if SUPevents %}
                         {% for event in SUPevents %}                          
-                        <tr class='clickable-row' data-href='{{ url_for('.showevent', id=event.id) }}'>
+                        <tr class='clickable-row' data-href="{{ url_for('.showevent', id=event.id) }}">
                           <th scope="row">{{ event.id }}</th>
                           <td>{{ event.name }}</td>
                           <td>{{ event.description}}</td>
@@ -240,7 +240,7 @@
             Zagreb, HR 10000<br>
             <abbr title="Phone">P:</abbr> (123) 456-7890
               <strong>Full Name</strong><br>
-              <a href="mailto:#">tyg-ayo@example.com</a>
+              <a href="mailto:#">tygayoinc@gmail.com</a>
           </address>
         </div>
         <div class="col-lg-4">

@@ -6,7 +6,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">{% trans %}Create Event{% endtrans %}</h4>
               </div>
-              <form method='POST' action="/createvent" enctype="multipart/form-data" id='createEv-modalform'>
+              <form method='POST' action="{{ url_for('.create_an_event') }}" enctype="multipart/form-data" id='createEv-modalform'>
                 <div class="modal-body">
                   <div class="form-group">                
                       <label for="name" class="control-label"><span class="glyphicon glyphicon-user"></span> {% trans %}Event Name{% endtrans %}</label>

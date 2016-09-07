@@ -181,29 +181,6 @@
                 <br><br>  
                 <div class="row">
                     <div class="col-md-4">
-                      <!--{% if event.active != False and user.id == cuserId %}
-                      <button class="btn btn-info" type="button" data-toggle="modal" id="myBtn">Edit Event Info</button>
-                      {% endif %}-->
-                       <!--<div class="info-section">
-                            <span class="label label-default">Event Address:</span> <br/>
-                            <span class="info-text pre-info">{{ event.address }}</span><br/>
-                        </div>
-                        <div class="info-section">
-                            <span class="label label-default">Time and date:</span> <br/>
-                            <span class="info-text pre-info">{{ event.date_time_execute }}</span><br/>
-                        </div>
-                        <div class="info-section">
-                            <span class="label label-default">Price:</span><br/>
-                            <span class="info-text pre-info">{{ event.price }} </span>HRK<br/>
-                        </div>
-                        <div class="info-section">
-                            <span class="label label-default">Contact:</span><br/>
-                            <span class="pre-info">mail:</span><span class="info-text"> {{ user.email }}</span><br/>
-                            <span class="pre-info">phone:</span><span class="info-text"> {{ user.mobile }}</span><br/>
-                        </div><br/>-->
-                      <!--{% if event.active != False and user.id == cuserId %}
-                        <button class="btn btn-danger" type="button" data-toggle="modal" id="deactBtn">Deactivate Event</button>
-                      {% endif %}-->
                     </div>  
                     <div class="col-md-8">
                             {% if event.active == False %}
@@ -230,14 +207,13 @@
                                     {% if user.id != cuserId %}
                                         {% if already == 0 %}
                                             {% if username %}
-                                            <form action="{{ url_for('signup') }}" method=post class=signup>
+                                            <form action="{{ url_for('.signup') }}" method=post class=signup>
                                             <input type=hidden value="{{ event.id }}" name="event_to_signup"></input>
                                             
                                             <button type="submit" class="btn btn-info">{% trans %}Signup Now!{% endtrans %}</button>
                                             </form>
                                             {% else %}
                                             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#log-modal" id="myLnk">{% trans %}Signup Now!{% endtrans %}</button>
-                                            <!-- <button type="submit" class="btn btn-info">Signup Now!</button>  -->
                                             {% endif %}
                                             
                                         {% else %}
@@ -267,30 +243,13 @@
                                                 {% if users %}
                                                     {% for us in users %}
                                                         <tr class='clickable-row' data-href='#'>
-                                                            <th scope="row"><a href="{{ url_for('.profilePage', username=us.name) }}">{{us.name}}</a></th>
+                                                            <th scope="row"><a href="{{ url_for('.profilePage', username=us.username) }}">{{us.name}}</a></th>
                                                             <td>{{us.rating}}</td>
                                                             <td>{{us.email}}</td>
                                                             <td><a href="#myModal" data-toggle="modal" id="{{us.id}}_{{us.name}}" data-target="#edit-modal">{% trans %}Choose!{% endtrans %}</a></td>
-                                                            <!--     <form action="{{ url_for('chooserm') }}" method=post class=chooserm>
-                                                                    <input type=hidden value="{{ event.id }}" name="event_to_choose"></input>
-                                                                    <input type=hidden value="{{ us.id }}" name="rm_to_choose"></input>
-                                                                    <input type=submit value="Choose!"></input>
-                                                                </form>
-                                                            </td> -->
                                                         </tr>
                                                     {% endfor %}
                                                 {% endif %}
-                                                 
-                                                <!-- {% if repairmen %}
-                                                  {% for repairman in repairmen %}
-                                                  <tr class='clickable-row' data-href='#'>
-                                                    <th scope="row">{{ repairman.name }}</th>
-                                                    <td>{{ repairman.email }}</td>
-                                                    <td>{{ repairman.rating}}</td>
-                                                    <td><a href="{{ url_for('showevent', id=event.id) }}">Go To</a></td>
-                                                  </tr>
-                                                  {% endfor %}
-                                                {% endif %} -->
                                               </tbody>
                                             </table>
                                           </div>
@@ -425,7 +384,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">{% trans %}Deactivate Event{% endtrans %}</h4>
               </div>
-              <form method='POST' action="{{ url_for('.modify_an_event') }}" enctype="multipart/form-data">
+              <form method='POST' action="{{ url_for('.deactivate_event') }}" enctype="multipart/form-data">
                 <div class="modal-body">
                   <input type="hidden" class="form-control" name="id" id="id" placeholder="Id of Event" value="{{ event.id }}" readonly>
                   <p>{% trans %}Deactivation is permanent! Do you want to deactivate Event?{% endtrans %}</p>
@@ -446,7 +405,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">{% trans %}Decline Event{% endtrans %}</h4>
               </div>
-              <form method='POST' action="{{ url_for('decline_event') }}" enctype="multipart/form-data">
+              <form method='POST' action="{{ url_for('.decline_event') }}" enctype="multipart/form-data">
                 <div class="modal-body">
                   <input type="hidden" class="form-control" name="id" id="id" placeholder="{% trans %}Id of Event{% endtrans %}" value="{{ event.id }}" readonly>
                   <p>{% trans %}Are you sure you want to decline this event for which you were chosen as the repairman?{% endtrans %}
@@ -468,7 +427,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">{% trans %}Un-assign{% endtrans %}</h4>
               </div>
-              <form method='POST' action="{{ url_for('un_assign') }}" enctype="multipart/form-data">
+              <form method='POST' action="{{ url_for('.un_assign') }}" enctype="multipart/form-data">
                 <div class="modal-body">
                   <input type="hidden" class="form-control" name="id" id="id" placeholder="{% trans %}Id of Event{% endtrans %}" value="{{ event.id }}" readonly>
                   <p>{% trans %}Are you sure you want to un-assign from this event?{% endtrans %}
@@ -492,7 +451,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">{% trans %}Finish Event{% endtrans %}</h4>
               </div>
-              <form method='POST' action="{{ url_for('close_event') }}" enctype="multipart/form-data">
+              <form method='POST' action="{{ url_for('.close_event') }}" enctype="multipart/form-data">
                 <div class="modal-body">
                   <input type="hidden" class="form-control" name="id" id="id" placeholder="{% trans %}Id of Event{% endtrans %}" value="{{ event.id }}" readonly>
                   <p>{% trans %}Finishing the event is Permanent. Was the job carried out completely?{% endtrans %}</p>
@@ -518,7 +477,7 @@
                         <div class="modal-body edit-content">
                         </div>
                         <div class="modal-footer">
-                            <form action="{{ url_for('chooserm') }}" method="post" class="chooserm">
+                            <form action="{{ url_for('.chooserm') }}" method="post" class="chooserm">
                             <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
                                 <input type=hidden value="{{ event.id }}" name="event_to_choose"></input>
                                 <input id="repairman" type=hidden value="" name="rm_to_choose"></input>
@@ -540,7 +499,7 @@
                 <h4><span class="glyphicon glyphicon-lock"></span> {% trans %}Login{% endtrans %}</h4>
               </div>
               <div class="modal-body" style="padding:40px 50px;">
-                <form role="form" method='POST' action='{{ url_for('.login') }}'>
+                <form role="form" method='POST' action="{{ url_for('.login') }}">
                   <div class="form-group">
                     <label for="usrname"><span class="glyphicon glyphicon-user"></span> {% trans %}Email address{% endtrans %}</label>
                     <input type="text" class="form-control" id="mail" name="mail" placeholder="{% trans %}Enter email{% endtrans %}" autofocus required>
@@ -562,31 +521,6 @@
             </div>
           </div>
         </div> 
-  <!--   <div id="edit-modal"  class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-      
-        <!-- Modal content
-        <div class="modal-content">
-          <div class="modal-header" style="padding:35px 50px;">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4><span class="glyphicon glyphicon-lock"></span> Confirmation</h4>
-          </div>
-          <div class="modal-body edit-content" style="padding:40px 50px;">
-            <form action="{{ url_for('chooserm') }}" method="post" class="chooserm">
-            <!-- <form role="form" method='POST' action='/signin'>  role form??? what is that?
-                <label>Are you sure you want to hire </label>
-                <button type="submit" class="btn btn-success btn-block"> OK</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <p>Not a member? <a href="#">Sign Up</a></p>
-            <p>Forgot <a href="#">Password?</a></p>
-          </div>
-        </div>
-        
-      </div>
-    </div>  -->
     </div>
     
     <footer class="footer">
@@ -603,7 +537,7 @@
             Zagreb, HR 10000<br>
             <abbr title="Phone">P:</abbr> (123) 456-7890
               <strong>Tyg-Ayo</strong><br>
-              <a href="mailto:#">tyg-ayo@example.com</a>
+              <a href="mailto:#">tygayoinc@gmail.com</a>
           </address>
         </div>
         <div class="col-md-4">
