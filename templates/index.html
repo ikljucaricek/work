@@ -410,7 +410,7 @@
                 {% else %}
                 <p>Status: <span class="label label-danger">{% trans %}Inactive{% endtrans %}</span></p>
                 {% endif %}
-                <input type="button" class="btn btn-info btn-lg btn-block" onclick="window.open('{{ url_for('.showevent', id=event.id) }}','_blank');" value="{% trans %}See Event{% endtrans %}"/>
+                <input type="button" class="btn btn-info btn-lg btn-block" onclick="window.open('{{ url_for('.showevent', id=event.id) }}','_self');" value="{% trans %}See Event{% endtrans %}"/>
               </div>
             </div>
           </div>
