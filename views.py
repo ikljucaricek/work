@@ -38,7 +38,7 @@ def login_required(fn):
         if not ('id' in session):
             refresh()
             flash(gettext('You need to signin!'))
-            return redirect('/signin')
+            return redirect(url_for('.login'))
         return fn(*args, **kwargs)
     return decorated_view
 
