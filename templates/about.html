@@ -141,16 +141,11 @@
         <h1 class="display-3">{% trans %}About{% endtrans %}</h1>
         <h3>{% trans %}Why Tyg-Ayo?{% endtrans %}</h3>
         <p>
-        {% trans %}Tygayo application helps you to get the (home) job done.
-        It does not matter weather it is exchanging of a bulb or a water pipes,
-        or weather you need help or you are the one who would like to offer the service.
-        Tygayo makes the agreement easy and transparent.{% endtrans %}
+        {% trans %}Tygayo application helps you to get the (home) job done. It does not matter weather it is exchanging of a bulb or a water pipes, or weather you need help or you are the one who would like to offer the service. Tygayo makes the agreement easy and transparent.{% endtrans %}
         </p>
         <h3>{% trans %}Who we are?{% endtrans %}</h3>
         <p>
-        {% trans %}We are social enthusiast who want to solve people's problems using skills we have - programming.
-Simply, we want to make our world better place by making communication between people easier.
-As communication is a key aspect of every society we believe that providing you with tools for better communication we would make your life easier and less stresful.{% endtrans %}
+        {% trans %}We are social enthusiast who want to solve people's problems using skills we have - programming. Simply, we want to make our world better place by making communication between people easier. As communication is a key aspect of every society we believe that providing you with tools for better communication we would make your life easier and less stresful.{% endtrans %}
         </p>
         </div>
         </div>
@@ -401,38 +396,38 @@ As communication is a key aspect of every society we believe that providing you 
             name: {
                 validators: {
                     notEmpty: {
-                        message: {% trans %}'The first name is required and cannot be empty'{% endtrans %}
+                        message:'{% trans %}The first name is required and cannot be empty{% endtrans %}'
                     }
                 }
             },
             surename: {
                 validators: {
                     notEmpty: {
-                        message: {% trans %}'The surename is required and cannot be empty'{% endtrans %}
+                        message: '{% trans %}The surename is required and cannot be empty{% endtrans %}'
                     }
                 }
             },
             email: {
                 validators: {
                     notEmpty: {
-                        message: {% trans %}'The email address is required nd cannot be empty'{% endtrans %}
+                        message: '{% trans %}The email address is required nd cannot be empty{% endtrans %}'
                     },
                     emailAddress: {
-                        message: {% trans %}'The input is not a valid email address'{% endtrans %}
+                        message: '{% trans %}The input is not a valid email address{% endtrans %}'
                     }
                 }
             },
             username: {
                 validators: {
                     notEmpty: {
-                        message: {% trans %}'The username is required and cannot be empty'{% endtrans %}
+                        message: '{% trans %}The username is required and cannot be empty{% endtrans %}'
                     }
                 }
             },
             password: {
                 validators: {
                    notEmpty: {
-                        message: {% trans %}'The password is required and cannot be empty'{% endtrans %}
+                        message: '{% trans %}The password is required and cannot be empty{% endtrans %}'
                     }
                 }
             },
@@ -440,10 +435,10 @@ As communication is a key aspect of every society we believe that providing you 
                 validators: {
                     identical: {
                     field: 'password',
-                    message: {% trans %}'The password and its confirm are not the same'{% endtrans %}
+                    message: '{% trans %}The password and its confirm are not the same{% endtrans %}'
                 },
                     notEmpty: {
-                        message: {% trans %}'The password check is required and cannot be empty'{% endtrans %}
+                        message: '{% trans %}The password check is required and cannot be empty{% endtrans %}'
                     }
                 }
             }
