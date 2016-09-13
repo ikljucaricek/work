@@ -128,11 +128,11 @@
                         <div class="row">
                           <div class="col-md-4">
                             <div class="info-section">
-                                <span class="label label-default">City:</span>
+                                <span class="label label-default">{% trans %}City{% endtrans %}:</span>
                                 <p>{{ event.city }}</p>
                             </div>
                             <div class="info-section">
-                                <span class="label label-default">Neighborhood:</span>
+                                <span class="label label-default">{% trans %}Neighborhood{% endtrans %}:</span>
                                 <p>{{ event.neighborhood }}</p>
                             </div>                         
                            <div class="info-section">
@@ -164,13 +164,13 @@
                                 {% if event.repairman_id == cuserId  or user.id == cuserId %}
                                 <p> {{ user.email }}</p>
                                 {% else %}
-                                <p> - Private - </p>
+                                <p> - {% trans %}Private{% endtrans %} - </p>
                                 {% endif %}  
                                 <span class="label label-default">{% trans %}Phone{% endtrans %}:</span>
                                 {% if event.repairman_id == cuserId  or user.id == cuserId %}
                                 <p> {{ user.mobile }}</p>
                                 {% else %}
-                                <p> - Private - </p>
+                                <p> - {% trans %}Private{% endtrans %} - </p>
                                 {% endif %}  
                             </div>
                           </div>
@@ -637,38 +637,38 @@
             name: {
                 validators: {
                     notEmpty: {
-                        message: {% trans %}'The first name is required and cannot be empty'{% endtrans %}
+                        message: '{% trans %}The first name is required and cannot be empty{% endtrans %}'
                     }
                 }
             },
             surename: {
                 validators: {
                     notEmpty: {
-                        message: {% trans %}'The surename is required and cannot be empty'{% endtrans %}
+                        message: '{% trans %}The surename is required and cannot be empty{% endtrans %}'
                     }
                 }
             },
             email: {
                 validators: {
                     notEmpty: {
-                        message: {% trans %}'The email address is required nd cannot be empty'{% endtrans %}
+                        message: '{% trans %}The email address is required nd cannot be empty{% endtrans %}'
                     },
                     emailAddress: {
-                        message: {% trans %}'The input is not a valid email address'{% endtrans %}
+                        message: '{% trans %}The input is not a valid email address{% endtrans %}'
                     }
                 }
             },
             username: {
                 validators: {
                     notEmpty: {
-                        message: {% trans %}'The username is required and cannot be empty'{% endtrans %}
+                        message: '{% trans %}The username is required and cannot be empty{% endtrans %}'
                     }
                 }
             },
             password: {
                 validators: {
                    notEmpty: {
-                        message: {% trans %}'The password is required and cannot be empty'{% endtrans %}
+                        message: '{% trans %}The password is required and cannot be empty{% endtrans %}'
                     }
                 }
             },
@@ -676,10 +676,10 @@
                 validators: {
                     identical: {
                     field: 'password',
-                    message: {% trans %}'The password and its confirm are not the same'{% endtrans %}
+                    message: '{% trans %}The password and its confirm are not the same{% endtrans %}'
                 },
                     notEmpty: {
-                        message: {% trans %}'The password check is required and cannot be empty'{% endtrans %}
+                        message: '{% trans %}The password check is required and cannot be empty{% endtrans %}'
                     }
                 }
             }

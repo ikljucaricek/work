@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-12 15:54+0200\n"
+"POT-Creation-Date: 2016-09-13 20:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -186,131 +186,104 @@ msgid ""
 " we have - programming. Simply, we want to make our world better place by"
 " making communication between people easier. As communication is a key "
 "aspect of every society we believe that providing you with tools for "
-"better communication we would make your life easier and less stresful."
+"better communication we would make your life easier and less stressful."
 msgstr ""
 
-#: templates/about.html:172
-msgid ""
-"Igor believes that \"sunny & warm\" is not a paradox, myth or phrase. He "
-"likes discussing big ideas or simply drinking beer in 50 shades of shade "
-"while chit chating."
-msgstr ""
-
-#: templates/about.html:173
-msgid ""
-"Adrenalin sports and business opportunities are things were he pushes "
-"himself to the limits. But the real must are early mornings while holding"
-" a cup of coffie in his hands. "
-msgstr ""
-
-#: templates/about.html:194
-msgid ""
-"Pavel is interested in project development frameworks especially Scrum. "
-"He likes both people and animals and believes that all of them should be "
-"happy."
-msgstr ""
-
-#: templates/about.html:196
-msgid ""
-"He either reads a book and thinks about stuff or plays games and does not"
-" think about anythink. Well, he also programs now and then."
-msgstr ""
-
-#: templates/about.html:210 templates/edetails.html:328
+#: templates/about.html:164 templates/edetails.html:328
 #: templates/events.html:296 templates/index.html:270
 msgid "Register user"
 msgstr ""
 
-#: templates/about.html:215 templates/edetails.html:333
+#: templates/about.html:169 templates/edetails.html:333
 #: templates/events.html:301 templates/index.html:275
 msgid "First name"
 msgstr ""
 
-#: templates/about.html:216 templates/edetails.html:334
+#: templates/about.html:170 templates/edetails.html:334
 #: templates/events.html:302
 msgid "Enter your first Name"
 msgstr ""
 
-#: templates/about.html:219 templates/edetails.html:337
+#: templates/about.html:173 templates/edetails.html:337
 #: templates/events.html:305
 msgid "Surename"
 msgstr ""
 
-#: templates/about.html:220 templates/edetails.html:338
+#: templates/about.html:174 templates/edetails.html:338
 #: templates/events.html:306
 msgid "Enter your Surename"
 msgstr ""
 
-#: templates/about.html:223 templates/edetails.html:341
+#: templates/about.html:177 templates/edetails.html:341
 #: templates/events.html:309 templates/index.html:283
 msgid "Email"
 msgstr ""
 
-#: templates/about.html:224 templates/edetails.html:342
+#: templates/about.html:178 templates/edetails.html:342
 #: templates/events.html:310
 msgid "Enter your Email"
 msgstr ""
 
-#: templates/about.html:227 templates/edetails.html:345
+#: templates/about.html:181 templates/edetails.html:345
 #: templates/events.html:313 templates/index.html:287
 msgid "User alias"
 msgstr ""
 
-#: templates/about.html:228 templates/edetails.html:346
+#: templates/about.html:182 templates/edetails.html:346
 #: templates/events.html:314
 msgid "Enter your Alias"
 msgstr ""
 
-#: templates/about.html:231 templates/about.html:285 templates/about.html:320
+#: templates/about.html:185 templates/about.html:239 templates/about.html:274
 #: templates/edetails.html:349 templates/edetails.html:508
 #: templates/events.html:273 templates/events.html:284
 #: templates/events.html:317 templates/index.html:291 templates/index.html:342
 msgid "Password"
 msgstr ""
 
-#: templates/about.html:232 templates/edetails.html:350
+#: templates/about.html:186 templates/edetails.html:350
 #: templates/events.html:318
 msgid "Enter your Password"
 msgstr ""
 
-#: templates/about.html:235 templates/edetails.html:353
+#: templates/about.html:189 templates/edetails.html:353
 #: templates/events.html:321 templates/index.html:295
 msgid "Password confirmation"
 msgstr ""
 
-#: templates/about.html:239 templates/edetails.html:357
+#: templates/about.html:193 templates/edetails.html:357
 #: templates/events.html:325 templates/index.html:299
 msgid "Mobile"
 msgstr ""
 
-#: templates/about.html:240 templates/edetails.html:358
+#: templates/about.html:194 templates/edetails.html:358
 #: templates/events.html:326
 msgid "Enter your Mobile Phone number"
 msgstr ""
 
-#: templates/about.html:243 templates/edetails.html:361
+#: templates/about.html:197 templates/edetails.html:361
 #: templates/events.html:329 templates/index.html:303
 #: templates/profile.html:158
 msgid "Address"
 msgstr ""
 
-#: templates/about.html:244 templates/edetails.html:362
+#: templates/about.html:198 templates/edetails.html:362
 #: templates/events.html:330
 msgid "Enter your Address"
 msgstr ""
 
-#: templates/about.html:247 templates/edetails.html:365
+#: templates/about.html:201 templates/edetails.html:365
 #: templates/events.html:333 templates/index.html:307
 #: templates/modalCreateEvent.html:44
 msgid "Photo"
 msgstr ""
 
-#: templates/about.html:248 templates/edetails.html:366
+#: templates/about.html:202 templates/edetails.html:366
 #: templates/events.html:334
 msgid "Enter your profile Photo"
 msgstr ""
 
-#: templates/about.html:253 templates/edetails.html:314
+#: templates/about.html:207 templates/edetails.html:314
 #: templates/edetails.html:371 templates/edetails.html:393
 #: templates/edetails.html:415 templates/edetails.html:439
 #: templates/edetails.html:481 templates/events.html:339
@@ -319,70 +292,97 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: templates/about.html:276 templates/about.html:291 templates/about.html:311
-#: templates/about.html:326 templates/edetails.html:499
+#: templates/about.html:230 templates/about.html:245 templates/about.html:265
+#: templates/about.html:280 templates/edetails.html:499
 #: templates/edetails.html:514 templates/events.html:264
 #: templates/events.html:279 templates/index.html:333 templates/index.html:348
 msgid "Login"
 msgstr ""
 
-#: templates/about.html:281 templates/about.html:316
+#: templates/about.html:235 templates/about.html:270
 #: templates/edetails.html:504 templates/events.html:269
 #: templates/index.html:338
 msgid "Email address"
 msgstr ""
 
-#: templates/about.html:282 templates/about.html:317
+#: templates/about.html:236 templates/about.html:271
 #: templates/edetails.html:505 templates/events.html:270
 msgid "Enter email"
 msgstr ""
 
-#: templates/about.html:286 templates/about.html:321
+#: templates/about.html:240 templates/about.html:275
 #: templates/edetails.html:509 templates/events.html:274
 msgid "Enter password"
 msgstr ""
 
-#: templates/about.html:289 templates/about.html:324
+#: templates/about.html:243 templates/about.html:278
 #: templates/edetails.html:512 templates/events.html:277
 #: templates/index.html:346
 msgid "Remember me"
 msgstr ""
 
-#: templates/about.html:342 templates/edetails.html:529
+#: templates/about.html:312
+msgid ""
+"Igor believes that \"sunny & warm\" is not a paradox, myth or phrase. He "
+"likes discussing big ideas or simply drinking beer in 50 shades of shade "
+"while chit chating."
+msgstr ""
+
+#: templates/about.html:313
+msgid ""
+"Adrenalin sports and business opportunities are things where he pushes "
+"himself to the limits. But the real must are early mornings while holding"
+" a cup of coffee in his hands. "
+msgstr ""
+
+#: templates/about.html:334
+msgid ""
+"Pavel is interested in project development frameworks especially Scrum. "
+"He likes both people and animals and believes that all of them should be "
+"happy."
+msgstr ""
+
+#: templates/about.html:336
+msgid ""
+"He either reads a book and thinks about stuff or plays games and does not"
+" think about anything. Well, he also programs now and then."
+msgstr ""
+
+#: templates/about.html:346 templates/edetails.html:529
 #: templates/events.html:357 templates/index.html:427 templates/mypage.html:232
 #: templates/profile.html:216 templates/startup.html:319
 msgid "Back to top"
 msgstr ""
 
-#: templates/about.html:399
+#: templates/about.html:403 templates/edetails.html:640
 msgid "The first name is required and cannot be empty"
 msgstr ""
 
-#: templates/about.html:406
+#: templates/about.html:410 templates/edetails.html:647
 msgid "The surename is required and cannot be empty"
 msgstr ""
 
-#: templates/about.html:413
+#: templates/about.html:417 templates/edetails.html:654
 msgid "The email address is required nd cannot be empty"
 msgstr ""
 
-#: templates/about.html:416
+#: templates/about.html:420 templates/edetails.html:657
 msgid "The input is not a valid email address"
 msgstr ""
 
-#: templates/about.html:423
+#: templates/about.html:427 templates/edetails.html:664
 msgid "The username is required and cannot be empty"
 msgstr ""
 
-#: templates/about.html:430
+#: templates/about.html:434 templates/edetails.html:671
 msgid "The password is required and cannot be empty"
 msgstr ""
 
-#: templates/about.html:438
+#: templates/about.html:442 templates/edetails.html:679
 msgid "The password and its confirm are not the same"
 msgstr ""
 
-#: templates/about.html:441
+#: templates/about.html:445 templates/edetails.html:682
 msgid "The password check is required and cannot be empty"
 msgstr ""
 
@@ -405,6 +405,14 @@ msgstr ""
 msgid "Decline"
 msgstr ""
 
+#: templates/edetails.html:131
+msgid "City"
+msgstr ""
+
+#: templates/edetails.html:135
+msgid "Neighborhood"
+msgstr ""
+
 #: templates/edetails.html:139
 msgid "Street and number"
 msgstr ""
@@ -423,6 +431,10 @@ msgstr ""
 
 #: templates/edetails.html:163 templates/profile.html:156
 msgid "E-mail"
+msgstr ""
+
+#: templates/edetails.html:167 templates/edetails.html:173
+msgid "Private"
 msgstr ""
 
 #: templates/edetails.html:169 templates/profile.html:160
@@ -633,46 +645,6 @@ msgstr ""
 msgid "Are you sure you want to hire"
 msgstr ""
 
-#: templates/edetails.html:640 templates/events.html:403
-#: templates/index.html:474
-msgid "'The first name is required and cannot be empty'"
-msgstr ""
-
-#: templates/edetails.html:647 templates/events.html:410
-#: templates/index.html:481
-msgid "'The surename is required and cannot be empty'"
-msgstr ""
-
-#: templates/edetails.html:654 templates/events.html:417
-#: templates/index.html:488
-msgid "'The email address is required nd cannot be empty'"
-msgstr ""
-
-#: templates/edetails.html:657 templates/events.html:420
-#: templates/index.html:491
-msgid "'The input is not a valid email address'"
-msgstr ""
-
-#: templates/edetails.html:664 templates/events.html:427
-#: templates/index.html:498
-msgid "'The username is required and cannot be empty'"
-msgstr ""
-
-#: templates/edetails.html:671 templates/events.html:434
-#: templates/index.html:505
-msgid "'The password is required and cannot be empty'"
-msgstr ""
-
-#: templates/edetails.html:679 templates/events.html:442
-#: templates/index.html:513
-msgid "'The password and its confirm are not the same'"
-msgstr ""
-
-#: templates/edetails.html:682 templates/events.html:445
-#: templates/index.html:516
-msgid "'The password check is required and cannot be empty'"
-msgstr ""
-
 #: templates/events.html:153
 msgid "Search Events by Name and/or Description"
 msgstr ""
@@ -719,6 +691,38 @@ msgstr ""
 msgid "Forgot"
 msgstr ""
 
+#: templates/events.html:403 templates/index.html:474
+msgid "'The first name is required and cannot be empty'"
+msgstr ""
+
+#: templates/events.html:410 templates/index.html:481
+msgid "'The surename is required and cannot be empty'"
+msgstr ""
+
+#: templates/events.html:417 templates/index.html:488
+msgid "'The email address is required nd cannot be empty'"
+msgstr ""
+
+#: templates/events.html:420 templates/index.html:491
+msgid "'The input is not a valid email address'"
+msgstr ""
+
+#: templates/events.html:427 templates/index.html:498
+msgid "'The username is required and cannot be empty'"
+msgstr ""
+
+#: templates/events.html:434 templates/index.html:505
+msgid "'The password is required and cannot be empty'"
+msgstr ""
+
+#: templates/events.html:442 templates/index.html:513
+msgid "'The password and its confirm are not the same'"
+msgstr ""
+
+#: templates/events.html:445 templates/index.html:516
+msgid "'The password check is required and cannot be empty'"
+msgstr ""
+
 #: templates/index.html:165 templates/startup.html:181
 msgid "Choose your role"
 msgstr ""
@@ -751,7 +755,7 @@ msgid "Step 2"
 msgstr ""
 
 #: templates/index.html:195 templates/startup.html:200
-msgid "Wait for repairman to sign up for a job"
+msgid "Wait for repairman to apply for a job"
 msgstr ""
 
 #: templates/index.html:201 templates/index.html:209 templates/index.html:248
@@ -763,12 +767,16 @@ msgstr ""
 msgid "Choose your repairman"
 msgstr ""
 
-#: templates/index.html:227 templates/index.html:236 templates/startup.html:221
+#: templates/index.html:227 templates/startup.html:221
+msgid "Apply for a job"
+msgstr ""
+
+#: templates/index.html:236
 msgid "Sign up for a job"
 msgstr ""
 
 #: templates/index.html:244 templates/startup.html:228
-msgid "Wait for your employee"
+msgid "Wait for the client acceptance"
 msgstr ""
 
 #: templates/index.html:250 templates/startup.html:234
@@ -780,7 +788,7 @@ msgid "Last Name"
 msgstr ""
 
 #: templates/index.html:366 templates/startup.html:258
-msgid "Newest Events"
+msgid "Recent Events"
 msgstr ""
 
 #: templates/modalCreateEvent.html:13
