@@ -233,9 +233,8 @@ msgid ""
 "He likes both people and animals and believes that all of them should be "
 "happy."
 msgstr ""
-"Pavel is interested in project development frameworks especially Scrum. "
-"He likes both people and animals and believes that all of them should be "
-"happy."
+"Pavel je zainteresiran za metode agilnog razvoja - posebno Scruma.Voli "
+"ljude i životinje i vjeruje da svi trebaju biti sretni."
 
 #: templates/about.html:196
 msgid ""
