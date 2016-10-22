@@ -4,12 +4,13 @@ from functools import wraps
 from flask import request, render_template, Response, g, session, redirect, url_for, flash, send_from_directory, Blueprint
 from app import app, db, babel
 from datetime import datetime
-from model import User, Event, Applied_repairman  # from database
+from model import User, Event, Applied_repairman, Event_comment # from database
 from werkzeug import secure_filename
 from sqlalchemy.sql import and_, select, or_
 from smtplib import SMTP
 from flask.ext.babel import gettext, ngettext, gettext, refresh
 from flask.ext.sqlalchemy import BaseQuery
+
 
 @babel.localeselector
 def get_locale():
@@ -57,7 +58,7 @@ def about():
 @bp.route('/modalCreateEvent.html')
 def modalCreateEvent():
     return render_template('modalCreateEvent.html')    
-    
+   
 @bp.route('/startup')
 @login_required
 def startup():
@@ -301,6 +302,18 @@ def create_an_event():
     #flash('Event cannot be completed before it starts')
     return redirect (url_for('.myPage', username = session['username']))
 
+@bp.route('/addcomment', methods=['GET', 'POST'])
+@login_required
+def add_comment():
+    if request.method == 'POST':
+        eventcomment = Event_comment(
+            event_id = request.form.get('event_id'),
+            comment = request.form.get('commenttext')
+            )
+        eventcomment.save()    
+    #flash('Event cannot be completed before it starts')
+    return redirect (url_for('.myPage', username = session['username']))    
+    
 @bp.route('/profile/<username>')
 def profilePage(username):
     if len(username) != 0 and User.get_by_username(username) != None:

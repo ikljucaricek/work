@@ -272,6 +272,17 @@
                                 
                                 {% trans %}No comments yet{% endtrans %}
                                 </div>
+                                
+                                <div class="newcomment" id="now_comment_form">
+                                <form method='POST' action="{{ url_for('.add_comment') }}" enctype="multipart/form-data">
+                                  <input type="hidden" class="form-control" name="event_id" id="event_id" placeholder="Id of Event" value="{{ event.id }}" readonly>
+                                  <textarea class="form-control" name="commenttext" id="commenttext" placeholder="{% trans %}Your Text{% endtrans %}"></textarea><br>
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                                  <button type="submit" class="btn btn-info" id="postComment">{% trans %}Post Comment{% endtrans %}</button>
+                                </div>
+                              </form>
+                                </div>
+                                
                      </div>               
                 </div>
         </div>
@@ -505,7 +516,7 @@
 
         <div class="modal fade" id="createEv-modalExt" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"> 
         </div>
-        
+                
         <div class="modal fade" id="log-modal" role="dialog">
             <div class="modal-dialog">
             <div class="modal-content">
@@ -577,7 +588,19 @@
           $("#myBtn").click(function(){
               $("#modfyEvent").modal();
           });
-      });
+          $('#now_comment_form').hide();
+          $("#newCommBtn").click(function(){
+              $("#now_comment_form").show();
+              $("#newCommBtn").hide();
+          });
+          $(postComment).click(function(){
+              $("#newCommBtn").show();
+          });
+             
+                        
+
+          
+      });postComment
     </script>
     <script>
       $(document).ready(function(){
@@ -625,19 +648,19 @@
     </script>
     <script type="text/javascript">
     $(document).ready(function() {
-    $("#alrt").fadeTo(2000, 500).slideUp(500, function(){
-    $("#alrt").alert('close');
-      });
-    $("#myBtn3").click(function(){
-          var $this = $(this).data('target');
-          $("#createEv-modalExt").load("{{ url_for('.modalCreateEvent') }}", function (responseTxt, statusTxt, xhr) {
-            if (statusTxt == "success"){
-                $(this).modal('show');
-                }
-            if(statusTxt == "error")
-                alert("Error while loading: " + xhr.status + ": " + xhr.statusText);
+        $("#alrt").fadeTo(2000, 500).slideUp(500, function(){
+        $("#alrt").alert('close');
           });
-    });
+        $("#myBtn3").click(function(){
+              var $this = $(this).data('target');
+              $("#createEv-modalExt").load("{{ url_for('.modalCreateEvent' ) }}", function (responseTxt, statusTxt, xhr) {
+                if (statusTxt == "success"){
+                    $(this).modal('show');
+                    }
+                if(statusTxt == "error")
+                    alert("Error while loading: " + xhr.status + ": " + xhr.statusText);
+              });
+        });
     });
     </script>
         <script>
