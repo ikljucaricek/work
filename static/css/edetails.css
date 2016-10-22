@@ -83,3 +83,22 @@ hr {
 #lng:hover, #lng2:hover {
   color: #57BDDC;
 }
+
+.offset {
+  /* if your browser supports this property, the 3rd example will have a smaller outline than the 2nd example */
+  outline-offset: -10px;
+}
+
+.comments {
+    border-radius: 25px;
+    border: 3px solid gray;
+    padding: 20px;
+    margin-top: 40px;
+    background-color: #e5e5e5;
+}
+
+.beforeComment{
+    padding: 5px;
+    font-size: 130%;  
+}
+

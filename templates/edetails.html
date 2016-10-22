@@ -257,10 +257,25 @@
                                     {% endif %}
                                 </div>
                             </div> 
+                            
+                            
+                            
                             {% endif %}
+                            <br>
+                                <span class="beforeComment" style="float:left;">
+                                    {% trans %}Comments:{% endtrans %}
+                                </span>
+                                <span style="float:right;">
+                                   <button class="btn btn-info" type="button" data-toggle="modal" id="newCommBtn">{% trans %}Add a Comment{% endtrans %}</button>
+                                </span>
+                                <div class="comments">
+                                
+                                {% trans %}No comments yet{% endtrans %}
+                                </div>
                      </div>               
                 </div>
         </div>
+        
     </div>
     <div class="container">
      <!-- Three columns of text below the carousel -->
