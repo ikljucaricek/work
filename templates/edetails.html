@@ -268,7 +268,7 @@
                                 <span style="float:right;">
                                    <button class="btn btn-info" type="button" data-toggle="modal" id="newCommBtn">{% trans %}Add a Comment{% endtrans %}</button>
                                 </span>
-                                <div class="comments">
+                                <div class="comments" id="comments">
                                 
                                 {% trans %}No comments yet{% endtrans %}
                                 </div>
@@ -277,7 +277,7 @@
                                 <form method='POST' action="{{ url_for('.add_comment') }}" enctype="multipart/form-data">
                                   <input type="hidden" class="form-control" name="event_id" id="event_id" placeholder="Id of Event" value="{{ event.id }}" readonly>
                                   <textarea class="form-control" name="commenttext" id="commenttext" placeholder="{% trans %}Your Text{% endtrans %}"></textarea><br>
-                                  <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                                  <button type="button" class="btn btn-default" id="cancelComment">{% trans %}Close{% endtrans %}</button>
                                   <button type="submit" class="btn btn-info" id="postComment">{% trans %}Post Comment{% endtrans %}</button>
                                 </div>
                               </form>
@@ -596,11 +596,16 @@
           $(postComment).click(function(){
               $("#newCommBtn").show();
           });
+          $(cancelComment).click(function(){
+              $("#now_comment_form").hide();
+              $("#commenttext").val("");
+              $("#newCommBtn").show();
+          });
              
                         
 
           
-      });postComment
+      });
     </script>
     <script>
       $(document).ready(function(){
