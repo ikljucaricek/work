@@ -35,6 +35,7 @@ class Event(db.Model):
     city = db.Column(db.String(250),nullable=False)
     neighborhood = db.Column(db.String(250))
     address = db.Column(db.String(250),nullable=False)
+    rate = db.Column(db.Integer)
     date_time_create = db.Column(db.DateTime)
     date_time_execute = db.Column(db.DateTime)
     date_time_close = db.Column(db.DateTime)
@@ -84,8 +85,13 @@ class Event(db.Model):
         our_event.repairman_id = self.repairman_id
         db.session.add(our_event)
         db.session.commit()
-     
-        
+    
+    def rate(self):
+        our_event = db.session.query(Event).get(self.id)
+        our_event.rate = self.rate
+        db.session.add(our_event)
+        db.session.commit()
+
     def close(self):
         our_event = db.session.query(Event).get(self.id)
         our_event.active = self.active
