@@ -85,17 +85,12 @@ class Event(db.Model):
         our_event.repairman_id = self.repairman_id
         db.session.add(our_event)
         db.session.commit()
-    
-    def rate(self):
-        our_event = db.session.query(Event).get(self.id)
-        our_event.rate = self.rate
-        db.session.add(our_event)
-        db.session.commit()
 
-    def close(self):
+    def close_rate(self):
         our_event = db.session.query(Event).get(self.id)
         our_event.active = self.active
         our_event.closed = self.closed
+        our_event.rate = self.rate
         db.session.add(our_event)
         db.session.commit()
     

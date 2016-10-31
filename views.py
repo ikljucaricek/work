@@ -474,15 +474,16 @@ def decline_event():
     
 @bp.route('/closeevent', methods=['GET', 'POST'])
 @login_required
-def close_event():
+def close_rate_event():
     if request.method == 'POST':
         eventid = request.form.get('id')
+        rate_it = request.form.get('rating-id')
         event = Event(
             id = eventid,
             active = 0,
-            closed = 1)
-        event.close()
-        print 'event was closed'
+            closed = 1,
+            rate = rate_it)
+        event.close_rate()
         refresh()
         flash(gettext('Event has been Finished!'))
     return redirect (url_for('.showevent', id=eventid))
