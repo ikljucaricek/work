@@ -485,6 +485,7 @@ def close_rate_event():
             rate = rate_it)
         event.close_rate()
         refresh()
+        calculate_repairman_average_rate(Event.get(eventid).repairman_id)
         flash(gettext('Event has been Finished!'))
     return redirect (url_for('.showevent', id=eventid))
 
@@ -565,5 +566,11 @@ def registration_mail(user):
             "http://tygayo.herokuapp.com/"
             ])
         return user_msg  
+
+def calculate_repairman_average_rate(repairman_id):
+    user = User(
+        id = repairman_id,
+        rating = Event.get_repairman_avg_rating(repairman_id))
+    user.save_avg_rating()
 
 app.register_blueprint(bp)

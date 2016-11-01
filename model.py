@@ -114,6 +114,19 @@ class Event(db.Model):
         result_of_query = Event.query.filter(Event.name.like('%' + filter_event + '%') | Event.description.like('%' + filter_event + '%')).paginate(page, 12, False)
         pages = result_of_query.pages
         return result_of_query.items[::-1], pages
+
+    @staticmethod
+    def get_repairman_avg_rating(repairman_id):
+        results = Event.query.filter(Event.repairman_id == repairman_id)
+        sum_for_avg = 0
+        counter = 0
+        #sum(res.rate > 0 for res in results)
+        for res in results:
+            if res.rate > 0:
+                sum_for_avg = sum_for_avg + res.rate
+                counter = counter + 1
+        return sum_for_avg / float(counter)
+
     
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -160,6 +173,12 @@ class User(db.Model):
         if self.password == password:
             return True
         return False
+
+    def save_avg_rating(self):
+        repairman = db.session.query(User).get(self.id)
+        repairman.rating = self.rating
+        db.session.add(repairman)
+        db.session.commit()
         
     def save(self):
         db.session.add(self)
