@@ -173,8 +173,23 @@ def showevent(id):
     cuserId=session.get('id')
     Signedupusers = None
     already = 0
+    # Check for event comments
+    sComs = select([(Event_comment)]).where(
+                                        Event_comment.event_id == event.id)
+    eventcomments = db.engine.execute(sComs).fetchall()
+    print eventcomments
+    
+    print "length"
+    numOfComments = len(eventcomments)
+    print numOfComments
+    print type(eventcomments)
+    comms_list = [str(x[2]) for x in eventcomments]
+    print comms_list
+    
+    
+    print "event"
+    print event.description
     # Checking if the user is owner of this event
-
     if event.user_id == cuserId:
         #If yes, fetch ids of all signedup users for this event
         s2 = select([(Applied_repairman.repairman_id)]).where(
@@ -203,14 +218,15 @@ def showevent(id):
             # print "The user is signed up in this events:"
     if event.photo == None:
         event.photo = "./static/images/events_photos/default.jpg"
-    
     return render_template('edetails.html',username = session.get('username'),event=event,
                                                                             user=user,
                                                                    users = Signedupusers,
                                                                    already = already,
                                                                    cuserId = cuserId,
                                                                    accessP = accessP,
-                                                                   repairman = repairman)
+                                                                   repairman = repairman,
+                                                                   eventcomments = comms_list,
+                                                                   numOfComments = str(numOfComments))
 
                                                                    
 @bp.route('/signup', methods=['POST','GET'])

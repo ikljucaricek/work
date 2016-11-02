@@ -95,7 +95,6 @@ hr {
     padding: 20px;
     margin-top: 40px;
     margin-bottom: 20px;
-    background-color: #e5e5e5;
 }
 
 .beforeComment{
@@ -103,3 +102,11 @@ hr {
     font-size: 130%;  
 }
 
+.innercomment{
+    border-radius: 10px;
+    border: 2px  blue;
+    /* border does not show */
+    padding: 10px;
+    margin-bottom:10px;
+    background-color: #f0f0f0;
+}

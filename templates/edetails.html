@@ -269,8 +269,10 @@
                                    <button class="btn btn-info" type="button" data-toggle="modal" id="newCommBtn">{% trans %}Add a Comment{% endtrans %}</button>
                                 </span>
                                 <div class="comments" id="comments">
-                                
+                                {% if eventcomments %}
+                                {% else %}
                                 {% trans %}No comments yet{% endtrans %}
+                                {% endif %}
                                 </div>
                                 
                                 <div class="newcomment" id="now_comment_form">
@@ -601,10 +603,16 @@
               $("#commenttext").val("");
               $("#newCommBtn").show();
           });
-             
-                        
-
           
+        var numOfc = {{ eventcomments|safe }};
+       
+        for (i = 0; i < numOfc.length; i++) { 
+            jQuery('<div/>', {
+                class: 'innercomment',
+                title: 'comment',
+                text: numOfc[i],
+            }).appendTo('#comments');    
+        };
       });
     </script>
     <script>
