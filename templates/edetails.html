@@ -278,6 +278,7 @@
                                 <div class="newcomment" id="now_comment_form">
                                 <form method='POST' action="{{ url_for('.add_comment') }}" enctype="multipart/form-data">
                                   <input type="hidden" class="form-control" name="event_id" id="event_id" placeholder="Id of Event" value="{{ event.id }}" readonly>
+                                  <input type="hidden" class="form-control" name="user_id" id="user_id" placeholder="Id of Author" value="{{ cuserId }}" readonly>
                                   <textarea class="form-control" name="commenttext" id="commenttext" placeholder="{% trans %}Your Text{% endtrans %}"></textarea><br>
                                   <button type="button" class="btn btn-default" id="cancelComment">{% trans %}Close{% endtrans %}</button>
                                   <button type="submit" class="btn btn-info" id="postComment">{% trans %}Post Comment{% endtrans %}</button>
@@ -605,13 +606,22 @@
           });
           
         var numOfc = {{ eventcomments|safe }};
-       
+        var authors = {{ author_list|safe }};
+        var dates = {{ date_list|safe }};
+        
         for (i = 0; i < numOfc.length; i++) { 
-            jQuery('<div/>', {
-                class: 'innercomment',
-                title: 'comment',
-                text: numOfc[i],
-            }).appendTo('#comments');    
+             $("#comments").append(
+                    jQuery('<div/>', {
+                        class: 'innerauthor',
+                        title: 'date and author',
+                        text: dates[i]+ ' by ' +authors[i]}
+                    ).append(jQuery('<div/>', {
+                        class: 'innercomment',
+                        title: 'comment',
+                        text: numOfc[i]}
+                    )
+                    )
+            )
         };
       });
     </script>

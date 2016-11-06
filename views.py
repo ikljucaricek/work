@@ -177,18 +177,26 @@ def showevent(id):
     sComs = select([(Event_comment)]).where(
                                         Event_comment.event_id == event.id)
     eventcomments = db.engine.execute(sComs).fetchall()
-    print eventcomments
-    
-    print "length"
-    numOfComments = len(eventcomments)
-    print numOfComments
-    print type(eventcomments)
+
     comms_list = [str(x[2]) for x in eventcomments]
-    print comms_list
+    author_ids = [str(x[3]) for x in eventcomments]
+    date_list = [str(x[4]) for x in eventcomments]
     
+    uComs = select([(User)]).where(User.id.in_(author_ids))
+    usercomments = db.engine.execute(uComs).fetchall()
+    # this is done because we do not know how to iterate and object in jQuery
+    # in jQuery we would need to use someting like objects[i].comment
+    # so we send list of stings instead, 
+
     
-    print "event"
-    print event.description
+    user_list = [str(x[3]) for x in usercomments]
+    userid_list = [str(x[0]) for x in usercomments]
+    user_dict = dict(zip(userid_list,user_list))
+    author_list = [];
+    
+    for y in author_ids:
+        author_list.append(user_dict[str(y)])
+        print user_dict[y]
     # Checking if the user is owner of this event
     if event.user_id == cuserId:
         #If yes, fetch ids of all signedup users for this event
@@ -226,9 +234,9 @@ def showevent(id):
                                                                    accessP = accessP,
                                                                    repairman = repairman,
                                                                    eventcomments = comms_list,
-                                                                   numOfComments = str(numOfComments))
-
-                                                                   
+                                                                   author_list = author_list,
+                                                                   date_list = date_list                                                                                                                                     
+                                                                   )
 @bp.route('/signup', methods=['POST','GET'])
 def signup():
     eventid = request.form.get('event_to_signup')
@@ -324,7 +332,9 @@ def add_comment():
     if request.method == 'POST':
         eventcomment = Event_comment(
             event_id = request.form.get('event_id'),
-            comment = request.form.get('commenttext')
+            comment = request.form.get('commenttext'),
+            user_id = request.form.get('user_id'),
+            date_time_post = datetime.now()
             )
         eventcomment.save()    
     #flash('Event cannot be completed before it starts')
