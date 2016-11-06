@@ -588,7 +588,7 @@ def notification_mail_about_changed_event(signedupusers, evnt_id):
                 "TygAyo Inc.",
                 "http://tygayo.herokuapp.com/"
                 ])
-        return modify_msg
+    return modify_msg
 
 
 def send_mail_notification_about_changed_event(evnt_id):
