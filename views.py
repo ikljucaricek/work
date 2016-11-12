@@ -10,6 +10,7 @@ from sqlalchemy.sql import and_, select, or_
 from smtplib import SMTP
 from flask.ext.babel import gettext, ngettext, gettext, refresh
 from flask.ext.sqlalchemy import BaseQuery
+import os
 
 
 @babel.localeselector
@@ -196,7 +197,6 @@ def showevent(id):
     
     for y in author_ids:
         author_list.append(user_dict[str(y)])
-        print user_dict[y]
     # Checking if the user is owner of this event
     if event.user_id == cuserId:
         #If yes, fetch ids of all signedup users for this event
@@ -339,7 +339,8 @@ def add_comment():
         eventcomment.save()    
     #flash('Event cannot be completed before it starts')
     return redirect (url_for('.myPage', username = session['username']))    
-    
+
+   
 @bp.route('/profile/<username>')
 def profilePage(username):
     if len(username) != 0 and User.get_by_username(username) != None:
@@ -352,6 +353,7 @@ def profilePage(username):
             return render_template('profile.html', user = user, cuserId = session.get('id'))
     else:
         refresh()
+        print "Refreshing"
         flash(gettext("%s doesn't exist!") %username, "warning")
         return redirect (url_for('.profilePage', username = session['username']))
 
@@ -548,6 +550,7 @@ def allevents(page=1):
         #else:
         #    return render_template('events.html', username = session.get('username'), events = Event.get_all()[::-1])
     return render_template('events.html', username = session.get('username'), events = events, pages = pages)
+
 
 def confirmation_mail(msg_for_what, rm , client, event_obj, eventid):
     if msg_for_what == 'repairman':

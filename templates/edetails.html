@@ -7,7 +7,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="Page of Event details.">
     <meta name="author" content="ikypav">
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="../favicon.ico">
 
     <title>{% trans %}Small Home Maintenance Work{% endtrans %}</title>
 
@@ -608,20 +608,25 @@
         var numOfc = {{ eventcomments|safe }};
         var authors = {{ author_list|safe }};
         var dates = {{ date_list|safe }};
-        
-        for (i = 0; i < numOfc.length; i++) { 
+        $SCRIPT_ROOT = "http://localhost:5000"
+        //{{ request.script_root|tojson|safe }};
+        for (i = 0; i < numOfc.length; i++) {
+        $author = authors[i]
              $("#comments").append(
                     jQuery('<div/>', {
-                        class: 'innerauthor',
-                        title: 'date and author',
-                        text: dates[i]+ ' by ' +authors[i]}
-                    ).append(jQuery('<div/>', {
-                        class: 'innercomment',
-                        title: 'comment',
-                        text: numOfc[i]}
-                    )
-                    )
+                            class: 'innerauthor',
+                            title: 'date and  author',
+                            text: dates[i]+ ' by '}
+                            ).append(jQuery('<a/>', {
+                            href : $SCRIPT_ROOT+"/{{ g.lang_code }}/profile/"+$author,
+                            text : authors[i]})
+                            .append(jQuery('<div/>', {
+                                class: 'innercomment',
+                                title: 'comment',
+                                text: numOfc[i]}))
+                            )
             )
+            
         };
       });
     </script>
