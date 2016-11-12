@@ -608,7 +608,7 @@
         var numOfc = {{ eventcomments|safe }};
         var authors = {{ author_list|safe }};
         var dates = {{ date_list|safe }};
-        $SCRIPT_ROOT = "http://localhost:5000"
+        $SCRIPT_ROOT = "{{ url_for('.index', _external=True)}}";
         //{{ request.script_root|tojson|safe }};
         for (i = 0; i < numOfc.length; i++) {
         $author = authors[i]
@@ -618,7 +618,7 @@
                             title: 'date and  author',
                             text: dates[i]+ ' by '}
                             ).append(jQuery('<a/>', {
-                            href : $SCRIPT_ROOT+"/{{ g.lang_code }}/profile/"+$author,
+                            href : $SCRIPT_ROOT+"profile/"+$author,
                             text : authors[i]})
                             .append(jQuery('<div/>', {
                                 class: 'innercomment',
