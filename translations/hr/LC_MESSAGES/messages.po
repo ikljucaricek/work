@@ -601,7 +601,7 @@ msgstr "Kupovina materijala"
 
 #: templates/edetails.html:313 templates/modalCreateEvent.html:48
 msgid "Purchase Accessories Explanation"
-msgstr " Objašnjenje Kupovine materijala"
+msgstr "Objašnjenje - Kupovina materijala"
 
 #: templates/edetails.html:313 templates/modalCreateEvent.html:48
 msgid ""
