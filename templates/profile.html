@@ -206,7 +206,7 @@
                   <label for="address"><span class="glyphicon glyphicon-map-marker"></span> {% trans %}User's Address{% endtrans %}</label>
                   <input type="text" class="form-control" name="address" id="address" placeholder="{% trans %}Change Address of User location{% endtrans %}" value="{{ user.address }}"><br>
                   <label for="mobile"><span class="glyphicon glyphicon-phone"></span> {% trans %}User's Mobile{% endtrans %}</label>
-                  <input type="text" class="form-control" name="mobile" id="mobile" placeholder="{% trans %}Change Mobile of User{% endtrans %}" value="{{ user.mobile }}"><br>
+                  <input type="number" class="form-control" name="mobile" id="mobile" placeholder="{% trans %}Change Mobile of User{% endtrans %}" value="{{ user.mobile }}"><br>
                   <label for="photo"><span class="glyphicon glyphicon-camera"></span> {% trans %}User's Photo{% endtrans %}</label>
                   <input type="file" accept="image/*" class="form-control" name="photo" id="photo" placeholder="{% trans %}Change Photo of User{% endtrans %}" value="\{{ user.picture }}">
                 </div>
