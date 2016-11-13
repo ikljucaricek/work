@@ -167,27 +167,27 @@
                     <div class="modal-body" style="padding:40px 50px;">
                       <div class="form-group">  
                           <label class="control-label">{% trans %}First name{% endtrans %}</label>
-                          <input type="text" class="form-control" name="name" id="name" placeholder="{% trans %}Enter your first Name{% endtrans %}" required />
+                          <input type="text" class="form-control" name="name" id="name" placeholder="{% trans %}John{% endtrans %}" autofocus required />
                       </div>
                       <div class="form-group">
-                          <label for="surename" class="control-label">{% trans %}Surename{% endtrans %}</label>
-                          <input type="text" class="form-control" name="surename" id="surename" placeholder="{% trans %}Enter your Surename{% endtrans %}" required>
+                          <label for="surename" class="control-label">{% trans %}Last Name{% endtrans %}</label>
+                          <input type="text" class="form-control" name="surename" id="surename" placeholder="{% trans %}Smith{% endtrans %}" required>
                       </div>
                       <div class="form-group">                      
                         <label for="email" class="control-label">{% trans %}Email{% endtrans %}</label>
-                        <input type="email" class="form-control" name="email" id="email" placeholder="{% trans %}Enter your Email{% endtrans %}" required>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="{% trans %}example@email.com{% endtrans %}" required>
                       </div>
                       <div class="form-group">  
                         <label for="username" class="control-label">{% trans %}User alias{% endtrans %}</label>
-                        <input type="text" class="form-control" name="username" id="username" placeholder="{% trans %}Enter your Alias{% endtrans %}" required>
+                        <input type="text" class="form-control" name="username" id="username" placeholder="{% trans %}jsmith{% endtrans %}" required>
                       </div>
                       <div class="form-group"> 
                         <label for="password" class="control-label">{% trans %}Password{% endtrans %}</label><br>
-                        <input type="password" class="form-control" name="password" id="password" placeholder="{% trans %}Enter your Password{% endtrans %}" required>
+                        <input type="password" class="form-control" name="password" id="password" placeholder="{% trans %}Password should have at least one number and one uppercase letter{% endtrans %}" required>
                       </div>
                       <div class="form-group"> 
                         <label for="passwordConfr" class="control-label">{% trans %}Password confirmation{% endtrans %}</label><br>
-                        <input type="password" class="form-control" name="passwordConfr" id="passwordConfr" required>
+                        <input type="password" class="form-control" name="passwordConfr" id="passwordConfr" placeholder="{% trans %}Retype your Password{% endtrans %}" required>
                       </div>
                       <div align="right">
                       <a data-toggle="collapse" href="#registrationReduction" aria-expanded="false" aria-controls="registrationReduction">Advanced<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a>
@@ -195,11 +195,11 @@
                       <div class="collapse" id="registrationReduction">
                       <div class="form-group"> 
                         <label for="mobile" class="control-label">{% trans %}Mobile{% endtrans %}</label><br>
-                        <input type="number" class="form-control" name="mobile" id="mobile" placeholder="{% trans %}Enter your Mobile Phone number{% endtrans %}">
+                        <input type="number" class="form-control" name="mobile" id="mobile" placeholder="3851234567">
                       </div>
                       <div class="form-group"> 
                         <label for="address" class="control-label">{% trans %}Address{% endtrans %}</label><br>
-                        <input type="text" class="form-control" name="address" id="address" placeholder="{% trans %}Enter your Address{% endtrans %}">
+                        <input type="text" class="form-control" name="address" id="address" placeholder="{% trans %}Street and number{% endtrans %}">
                       </div>
                       <div class="form-group"> 
                         <label for="photo" class="control-label">{% trans %}Photo{% endtrans %}</label>

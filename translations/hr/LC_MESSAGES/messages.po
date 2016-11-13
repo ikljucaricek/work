@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-11-02 22:06+0100\n"
+"POT-Creation-Date: 2016-11-13 17:03+0100\n"
 "PO-Revision-Date: 2016-08-10 08:47+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: hr\n"
@@ -63,7 +63,7 @@ msgstr "Uspješno ste izabrali majstora!"
 msgid "You have successfully created Event!"
 msgstr "Uspješno ste kreirali događaj!"
 
-#: views.py:300 views.py:427
+#: views.py:300 views.py:428
 msgid "Execution Date of Event can't be before Event is created!"
 msgstr "Datum izvođenja događaja ne može biti prije nego je događaj kreiran!"
 
@@ -81,23 +81,23 @@ msgstr "Vi niste %s!"
 msgid "You successfully modified Profile!"
 msgstr "Uspješno ste izmijenili profil!"
 
-#: views.py:424
+#: views.py:425
 msgid "You successfully modified Event!"
 msgstr "Uspješno ste izmijenili događaj!"
 
-#: views.py:440
+#: views.py:441
 msgid "You successfully deactivated Event!"
 msgstr "Uspješno ste deaktivirali događaj!"
 
-#: views.py:452
+#: views.py:453
 msgid "You have successfully un-asigned from the Event!"
 msgstr "Uspješno ste se odjavili s događaja!"
 
-#: views.py:472
+#: views.py:473
 msgid "You have successfully declined the Event!"
 msgstr "Uspješno ste odbili događaj!"
 
-#: views.py:489
+#: views.py:490
 msgid "Event has been Finished!"
 msgstr "Događaj je završen!"
 
@@ -172,7 +172,7 @@ msgstr "hr"
 
 #: templates/about.html:142
 msgid "Why Tyg-Ayo?"
-msgstr "Za što Tyg-Ayo?"
+msgstr "Zašto Tyg-Ayo?"
 
 #: templates/about.html:144
 msgid ""
@@ -218,19 +218,20 @@ msgid "First name"
 msgstr "Ime"
 
 #: templates/about.html:170 templates/edetails.html:337
-#: templates/events.html:302
-msgid "Enter your first Name"
-msgstr "Unos imena"
+#: templates/events.html:302 templates/index.html:276
+msgid "John"
+msgstr "Maja"
 
 #: templates/about.html:173 templates/edetails.html:340
-#: templates/events.html:305
-msgid "Surename"
+#: templates/events.html:305 templates/index.html:279
+#: templates/profile.html:149
+msgid "Last Name"
 msgstr "Prezime"
 
 #: templates/about.html:174 templates/edetails.html:341
-#: templates/events.html:306
-msgid "Enter your Surename"
-msgstr "Unos prezimena"
+#: templates/events.html:306 templates/index.html:280
+msgid "Smith"
+msgstr "Majić"
 
 #: templates/about.html:177 templates/edetails.html:344
 #: templates/events.html:309 templates/index.html:283
@@ -238,9 +239,9 @@ msgid "Email"
 msgstr ""
 
 #: templates/about.html:178 templates/edetails.html:345
-#: templates/events.html:310
-msgid "Enter your Email"
-msgstr "Unos mail adrese"
+#: templates/events.html:310 templates/index.html:284
+msgid "example@email.com"
+msgstr "primjer@email.com"
 
 #: templates/about.html:181 templates/edetails.html:348
 #: templates/events.html:313 templates/index.html:287
@@ -248,98 +249,99 @@ msgid "User alias"
 msgstr "Korisničko ime"
 
 #: templates/about.html:182 templates/edetails.html:349
-#: templates/events.html:314
-msgid "Enter your Alias"
-msgstr "Unos korisničkog imena"
+#: templates/events.html:314 templates/index.html:288
+msgid "jsmith"
+msgstr "mmajic"
 
-#: templates/about.html:185 templates/about.html:239 templates/about.html:274
-#: templates/edetails.html:352 templates/edetails.html:511
+#: templates/about.html:185 templates/about.html:244 templates/about.html:279
+#: templates/edetails.html:352 templates/edetails.html:516
 #: templates/events.html:273 templates/events.html:284
-#: templates/events.html:317 templates/index.html:291 templates/index.html:342
+#: templates/events.html:317 templates/index.html:291 templates/index.html:347
 msgid "Password"
 msgstr "Lozinka"
 
 #: templates/about.html:186 templates/edetails.html:353
-#: templates/events.html:318
-msgid "Enter your Password"
-msgstr "Unos lozinke"
+#: templates/events.html:318 templates/index.html:292
+msgid "Password should have at least one number and one uppercase letter"
+msgstr "Lozinka bi trebala sadržavati najmanje jedan broj i jedno veliko slovo"
 
 #: templates/about.html:189 templates/edetails.html:356
 #: templates/events.html:321 templates/index.html:295
 msgid "Password confirmation"
 msgstr "Potvrda lozinke"
 
-#: templates/about.html:193 templates/edetails.html:360
-#: templates/events.html:325 templates/index.html:299
-msgid "Mobile"
-msgstr "Mobitel"
-
-#: templates/about.html:194 templates/edetails.html:361
-#: templates/events.html:326
-msgid "Enter your Mobile Phone number"
-msgstr "Unos broja mobitela"
+#: templates/about.html:190 templates/edetails.html:357
+#: templates/events.html:322 templates/index.html:296
+msgid "Retype your Password"
+msgstr "Prepiši lozinku za potvrdu"
 
 #: templates/about.html:197 templates/edetails.html:364
 #: templates/events.html:329 templates/index.html:303
-#: templates/profile.html:158
-msgid "Address"
-msgstr "Adresa"
-
-#: templates/about.html:198 templates/edetails.html:365
-#: templates/events.html:330
-msgid "Enter your Address"
-msgstr "Unos adrese stanovanja"
+msgid "Mobile"
+msgstr "Mobitel"
 
 #: templates/about.html:201 templates/edetails.html:368
 #: templates/events.html:333 templates/index.html:307
+#: templates/profile.html:163
+msgid "Address"
+msgstr "Adresa"
+
+#: templates/about.html:202 templates/edetails.html:140
+#: templates/edetails.html:369 templates/events.html:334
+#: templates/index.html:308
+msgid "Street and number"
+msgstr "Ulica i broj"
+
+#: templates/about.html:205 templates/edetails.html:372
+#: templates/events.html:337 templates/index.html:311
 #: templates/modalCreateEvent.html:44
 msgid "Photo"
 msgstr "Slika"
 
-#: templates/about.html:202 templates/edetails.html:369
-#: templates/events.html:334
+#: templates/about.html:206 templates/edetails.html:373
+#: templates/events.html:338
 msgid "Enter your profile Photo"
 msgstr "Unos slike profila"
 
-#: templates/about.html:207 templates/edetails.html:317
-#: templates/edetails.html:374 templates/edetails.html:396
-#: templates/edetails.html:418 templates/edetails.html:442
-#: templates/edetails.html:484 templates/events.html:339
-#: templates/index.html:313 templates/modalCreateEvent.html:52
-#: templates/profile.html:199
+#: templates/about.html:212 templates/edetails.html:317
+#: templates/edetails.html:379 templates/edetails.html:401
+#: templates/edetails.html:423 templates/edetails.html:447
+#: templates/edetails.html:489 templates/events.html:344
+#: templates/index.html:318 templates/modalCreateEvent.html:52
+#: templates/profile.html:214
 msgid "Close"
 msgstr "Zatvori"
 
-#: templates/about.html:230 templates/about.html:245 templates/about.html:265
-#: templates/about.html:280 templates/edetails.html:502
-#: templates/edetails.html:517 templates/events.html:264
-#: templates/events.html:279 templates/index.html:333 templates/index.html:348
+#: templates/about.html:235 templates/about.html:250 templates/about.html:270
+#: templates/about.html:285 templates/edetails.html:507
+#: templates/edetails.html:522 templates/events.html:264
+#: templates/events.html:279 templates/index.html:338 templates/index.html:353
 msgid "Login"
 msgstr "Prijava"
 
-#: templates/about.html:235 templates/about.html:270
-#: templates/edetails.html:507 templates/events.html:269
-#: templates/index.html:338
+#: templates/about.html:240 templates/about.html:275
+#: templates/edetails.html:512 templates/events.html:269
+#: templates/index.html:343
 msgid "Email address"
 msgstr "Email adresa"
 
-#: templates/about.html:236 templates/about.html:271
-#: templates/edetails.html:508 templates/events.html:270
+#: templates/about.html:241 templates/about.html:276
+#: templates/edetails.html:513 templates/events.html:270
 msgid "Enter email"
 msgstr "Unos mail adrese"
 
-#: templates/about.html:240 templates/about.html:275
-#: templates/edetails.html:512 templates/events.html:274
+#: templates/about.html:245 templates/about.html:280
+#: templates/edetails.html:517 templates/events.html:274
 msgid "Enter password"
 msgstr "Unos lozinke"
 
-#: templates/about.html:243 templates/about.html:278
-#: templates/edetails.html:515 templates/events.html:277
-#: templates/index.html:346
+#: templates/about.html:248 templates/about.html:283
+#: templates/edetails.html:520 templates/events.html:277
+#: templates/index.html:351
 msgid "Remember me"
 msgstr "Zapamti me"
 
-#: templates/about.html:312
+#: templates/about.html:317
 msgid ""
 "Igor believes that \"sunny & warm\" is not a paradox, myth or phrase. He "
 "likes discussing big ideas or simply drinking beer in 50 shades of shade "
@@ -349,7 +351,7 @@ msgstr ""
 "diskutirati o super idejama\n"
 "ili jednostavno ispijati pivkana u hladu dok priča o glupostima."
 
-#: templates/about.html:313
+#: templates/about.html:318
 msgid ""
 "Adrenalin sports and business opportunities are things where he pushes "
 "himself to the limits. But the real must are early mornings while holding"
@@ -359,7 +361,7 @@ msgstr ""
 "granice.\n"
 "Ali ono u čemu zaista uživa su jutra sa šalicom kave u rukama."
 
-#: templates/about.html:334
+#: templates/about.html:339
 msgid ""
 "Pavel is interested in project development frameworks especially Scrum. "
 "He likes both people and animals and believes that all of them should be "
@@ -368,7 +370,7 @@ msgstr ""
 "Pavel je zainteresiran za metode agilnog razvoja - posebno Scruma.Voli "
 "ljude i životinje i vjeruje da svi trebaju biti sretni."
 
-#: templates/about.html:336
+#: templates/about.html:341
 msgid ""
 "He either reads a book and thinks about stuff or plays games and does not"
 " think about anything. Well, he also programs now and then."
@@ -376,41 +378,41 @@ msgstr ""
 "U slobodno vrijeme čita knjige i razmišlja o stvarima ili igra igrice i "
 "ne razmišlja o ničemu. Dobro, ponekad i programira."
 
-#: templates/about.html:346 templates/edetails.html:532
-#: templates/events.html:357 templates/index.html:427 templates/mypage.html:232
-#: templates/profile.html:216 templates/startup.html:319
+#: templates/about.html:351 templates/edetails.html:537
+#: templates/events.html:362 templates/index.html:432 templates/mypage.html:232
+#: templates/profile.html:231 templates/startup.html:319
 msgid "Back to top"
 msgstr "Povratak na vrh"
 
-#: templates/about.html:403 templates/edetails.html:644
+#: templates/about.html:408 templates/edetails.html:649
 msgid "The first name is required and cannot be empty"
 msgstr "Polje za unos imena ne može ostati prazno"
 
-#: templates/about.html:410 templates/edetails.html:651
+#: templates/about.html:415 templates/edetails.html:656
 msgid "The surename is required and cannot be empty"
 msgstr "Polje za unos prezimena ne može ostati prazno"
 
-#: templates/about.html:417 templates/edetails.html:658
+#: templates/about.html:422 templates/edetails.html:663
 msgid "The email address is required nd cannot be empty"
 msgstr "Polje za unos mail adrese ne može ostati prazno"
 
-#: templates/about.html:420 templates/edetails.html:661
+#: templates/about.html:425 templates/edetails.html:666
 msgid "The input is not a valid email address"
 msgstr "Unos nije ispravna mail adresa"
 
-#: templates/about.html:427 templates/edetails.html:668
+#: templates/about.html:432 templates/edetails.html:673
 msgid "The username is required and cannot be empty"
 msgstr "Polje za unos korisničkog imena je obavezno i ne može ostati prazno"
 
-#: templates/about.html:434 templates/edetails.html:675
+#: templates/about.html:439 templates/edetails.html:680
 msgid "The password is required and cannot be empty"
 msgstr "Polje za unos lozinke je obavezno i ne može ostati prazno"
 
-#: templates/about.html:442 templates/edetails.html:683
+#: templates/about.html:447 templates/edetails.html:688
 msgid "The password and its confirm are not the same"
 msgstr "Potvrda lozinke i lozinka nisu jednake"
 
-#: templates/about.html:445 templates/edetails.html:686
+#: templates/about.html:450 templates/edetails.html:691
 msgid "The password check is required and cannot be empty"
 msgstr "Polje za potvrdu lozinke je obavezno i ne može ostati prazno"
 
@@ -424,8 +426,8 @@ msgstr "Početna"
 msgid "Edit Event Info"
 msgstr "Uredi info o popravku"
 
-#: templates/edetails.html:115 templates/edetails.html:388
-#: templates/edetails.html:397
+#: templates/edetails.html:115 templates/edetails.html:393
+#: templates/edetails.html:402
 msgid "Deactivate Event"
 msgstr "Deaktiviraj popravak"
 
@@ -440,10 +442,6 @@ msgstr "Grad"
 #: templates/edetails.html:136
 msgid "Neighborhood"
 msgstr "Kvart"
-
-#: templates/edetails.html:140
-msgid "Street and number"
-msgstr "Ulica i broj"
 
 #: templates/edetails.html:148
 msgid "Time and date"
@@ -465,7 +463,7 @@ msgstr ""
 msgid "Private"
 msgstr "Privatno"
 
-#: templates/edetails.html:170 templates/profile.html:160
+#: templates/edetails.html:170 templates/profile.html:170
 msgid "Phone"
 msgstr "Telefon"
 
@@ -493,8 +491,8 @@ msgstr "za majstora."
 msgid "If the event has beed carried on, please, close the event:"
 msgstr "Ako je popravak obavljen, molim Vas da zatvorite događaj:"
 
-#: templates/edetails.html:201 templates/edetails.html:455
-#: templates/edetails.html:464
+#: templates/edetails.html:201 templates/edetails.html:460
+#: templates/edetails.html:469
 msgid "Finish Event"
 msgstr "Završi popravak"
 
@@ -506,8 +504,8 @@ msgstr "Prijavi se!"
 msgid "You are already signed up!"
 msgstr "Već si prijavljen!"
 
-#: templates/edetails.html:224 templates/edetails.html:431
-#: templates/edetails.html:443
+#: templates/edetails.html:224 templates/edetails.html:436
+#: templates/edetails.html:448
 msgid "Un-assign"
 msgstr "Odjava"
 
@@ -533,7 +531,7 @@ msgstr ""
 msgid "Select"
 msgstr "Izbor"
 
-#: templates/edetails.html:252 templates/edetails.html:487
+#: templates/edetails.html:252 templates/edetails.html:492
 msgid "Choose!"
 msgstr "Odaberi!"
 
@@ -577,7 +575,7 @@ msgstr "Kvart u kojem će se obaviti popravak"
 msgid "Event Address"
 msgstr "Adresa gdje će se vršiti popravak"
 
-#: templates/edetails.html:293 templates/profile.html:192
+#: templates/edetails.html:293 templates/profile.html:207
 msgid "Change Address of User location"
 msgstr "Promijeni adresu korisnika"
 
@@ -593,7 +591,7 @@ msgstr "Promijeni datum popravka"
 msgid "Event Photo"
 msgstr "Slika događaja"
 
-#: templates/edetails.html:311 templates/profile.html:196
+#: templates/edetails.html:311 templates/profile.html:211
 msgid "Change Photo of User"
 msgstr "Promijeni sliku korisnika"
 
@@ -613,24 +611,24 @@ msgstr ""
 "Ako majstor treba kupiti materijal potreban za popravak - označiti ovu "
 "opciju"
 
-#: templates/edetails.html:318 templates/profile.html:200
+#: templates/edetails.html:318 templates/profile.html:215
 msgid "Save changes"
 msgstr "Spremi promijene"
 
-#: templates/edetails.html:393
+#: templates/edetails.html:398
 msgid "Deactivation is permanent! Do you want to deactivate Event?"
 msgstr "Deaktivacija je trajna! Da li želite deaktivirati popravak?"
 
-#: templates/edetails.html:409 templates/edetails.html:419
+#: templates/edetails.html:414 templates/edetails.html:424
 msgid "Decline Event"
 msgstr "Odbij popravak"
 
-#: templates/edetails.html:413 templates/edetails.html:435
-#: templates/edetails.html:459
+#: templates/edetails.html:418 templates/edetails.html:440
+#: templates/edetails.html:464
 msgid "Id of Event"
 msgstr "Id popravka"
 
-#: templates/edetails.html:414
+#: templates/edetails.html:419
 msgid ""
 "Are you sure you want to decline this event for which you were chosen as "
 "the repairman?"
@@ -638,7 +636,7 @@ msgstr ""
 "Da li ste sigurni kako želite odbiti popravak za koji ste izabrani kao "
 "majstor?"
 
-#: templates/edetails.html:415
+#: templates/edetails.html:420
 msgid ""
 "If you do this you would be signoff from the event and in case the time "
 "for the execution did not pass the event would go back to active."
@@ -646,36 +644,36 @@ msgstr ""
 "Ukoliko ste sigurni da ne želite biti dodijeljeni na popravak i ako "
 "vrijeme izvršenja popravka nije prošlo isti će ponovno postati aktivan."
 
-#: templates/edetails.html:436
+#: templates/edetails.html:441
 msgid "Are you sure you want to un-assign from this event?"
 msgstr "Da li ste sigurni da se želite odjaviti s trenutnog popravka?"
 
-#: templates/edetails.html:437
+#: templates/edetails.html:442
 msgid "If you do this the client would not be able to pick you as the reparman."
 msgstr "Ukoliko se odjavite klijent Vas neće moći izabrati kao svog majstora."
 
-#: templates/edetails.html:438
+#: templates/edetails.html:443
 msgid "You can sign up any time again."
 msgstr "Na popravak se ponovno možete prijaviti bilo kada."
 
-#: templates/edetails.html:463
+#: templates/edetails.html:468
 msgid "Back"
 msgstr "Povratak"
 
-#: templates/edetails.html:478 templates/index.html:221
+#: templates/edetails.html:483 templates/index.html:221
 #: templates/startup.html:216
 msgid "Repairman"
 msgstr "Majstor"
 
-#: templates/edetails.html:521 templates/events.html:283
+#: templates/edetails.html:526 templates/events.html:283
 msgid "Sign Up"
 msgstr "Prijava"
 
-#: templates/edetails.html:522
+#: templates/edetails.html:527
 msgid "Password?"
 msgstr "Lozinka?"
 
-#: templates/edetails.html:607
+#: templates/edetails.html:612
 msgid "Are you sure you want to hire"
 msgstr "Da li ste sigurni da želite zaposliti"
 
@@ -696,23 +694,23 @@ msgstr "Lista svih popravaka"
 msgid "Description"
 msgstr "Opis popravka"
 
-#: templates/events.html:234 templates/events.html:528 templates/index.html:407
+#: templates/events.html:234 templates/events.html:533 templates/index.html:412
 #: templates/startup.html:299
 msgid "Price:"
 msgstr "Cijena:"
 
-#: templates/events.html:236 templates/events.html:530 templates/index.html:409
+#: templates/events.html:236 templates/events.html:535 templates/index.html:414
 #: templates/mypage.html:175 templates/mypage.html:214
 #: templates/startup.html:301
 msgid "Active"
 msgstr "Aktivan"
 
-#: templates/events.html:238 templates/events.html:532 templates/index.html:411
+#: templates/events.html:238 templates/events.html:537 templates/index.html:416
 #: templates/mypage.html:174 templates/startup.html:303
 msgid "Inactive"
 msgstr "Neaktivan"
 
-#: templates/events.html:240 templates/events.html:534 templates/index.html:413
+#: templates/events.html:240 templates/events.html:539 templates/index.html:418
 #: templates/startup.html:305
 msgid "See Event"
 msgstr "Pogledaj događaj"
@@ -725,35 +723,35 @@ msgstr "Da li si član"
 msgid "Forgot"
 msgstr "Zaboravili ste"
 
-#: templates/events.html:403 templates/index.html:474
+#: templates/events.html:408 templates/index.html:479
 msgid "'The first name is required and cannot be empty'"
 msgstr "Polje za unos imena ne može ostati prazno"
 
-#: templates/events.html:410 templates/index.html:481
+#: templates/events.html:415 templates/index.html:486
 msgid "'The surename is required and cannot be empty'"
 msgstr "Polje za unos prezimena ne može ostati prazno"
 
-#: templates/events.html:417 templates/index.html:488
+#: templates/events.html:422 templates/index.html:493
 msgid "'The email address is required nd cannot be empty'"
 msgstr "Polje za unos mail adrese ne može ostati prazno"
 
-#: templates/events.html:420 templates/index.html:491
+#: templates/events.html:425 templates/index.html:496
 msgid "'The input is not a valid email address'"
 msgstr "Unos nije ispravna mail adresa"
 
-#: templates/events.html:427 templates/index.html:498
+#: templates/events.html:432 templates/index.html:503
 msgid "'The username is required and cannot be empty'"
 msgstr "Polje za unos korisničkog imena je obavezno i ne može ostati prazno"
 
-#: templates/events.html:434 templates/index.html:505
+#: templates/events.html:439 templates/index.html:510
 msgid "'The password is required and cannot be empty'"
 msgstr "Polje za unos lozinke je obavezno i ne može ostati prazno"
 
-#: templates/events.html:442 templates/index.html:513
+#: templates/events.html:447 templates/index.html:518
 msgid "'The password and its confirm are not the same'"
 msgstr "Potvrda lozinke i lozinka nisu jednake"
 
-#: templates/events.html:445 templates/index.html:516
+#: templates/events.html:450 templates/index.html:521
 msgid "'The password check is required and cannot be empty'"
 msgstr "Polje za potvrdu lozinke je obavezno i ne može ostati prazno"
 
@@ -817,11 +815,7 @@ msgstr "Pričekajte odobrenje od strane klijenta"
 msgid "Bring your tools and come over"
 msgstr "Ponesi potreban alat i dođi"
 
-#: templates/index.html:279 templates/profile.html:149
-msgid "Last Name"
-msgstr "Prezime"
-
-#: templates/index.html:366 templates/startup.html:258
+#: templates/index.html:371 templates/startup.html:258
 msgid "Recent Events"
 msgstr "Najnoviji popravci"
 
@@ -909,53 +903,46 @@ msgstr "Korisničko ime"
 msgid "Join date"
 msgstr "Član od"
 
-#: templates/profile.html:162
+#: templates/profile.html:177
 msgid "Average Rate"
 msgstr "Prosječna ocjena"
 
-#: templates/profile.html:183
+#: templates/profile.html:198
 msgid "Change Your Info Data"
 msgstr "Uredi informacije profila"
 
-#: templates/profile.html:187
+#: templates/profile.html:202
 msgid "User's Name"
 msgstr "Ime korisnika"
 
-#: templates/profile.html:188
+#: templates/profile.html:203
 msgid "Change Name of User"
 msgstr "Promijeni ime korisnika"
 
-#: templates/profile.html:189
+#: templates/profile.html:204
 msgid "User's Last Name"
 msgstr "Prezime korisnika"
 
-#: templates/profile.html:190
+#: templates/profile.html:205
 msgid "Change Last Name of User"
 msgstr "Promijeni prezime korisnika"
 
-#: templates/profile.html:191
+#: templates/profile.html:206
 msgid "User's Address"
 msgstr "Adresa korisnika"
 
-#: templates/profile.html:193
+#: templates/profile.html:208
 msgid "User's Mobile"
 msgstr "Broj mobilnog telefona korisnika"
 
-#: templates/profile.html:194
+#: templates/profile.html:209
 msgid "Change Mobile of User"
 msgstr "Promijeni broj mobilnog telefona korisnika"
 
-#: templates/profile.html:195
+#: templates/profile.html:210
 msgid "User's Photo"
 msgstr "Slika korisnika"
 
 #: templates/startup.html:241
 msgid "See All Events"
 msgstr "Pogledaj sve popravke"
-
-#~ msgid "Rating"
-#~ msgstr "Ocjena"
-
-#~ msgid "Finishing the event is Permanent. Was the job carried out completely?"
-#~ msgstr "Završetak popravka je trajan. Da li je posao u potpunosti završen?"
-
