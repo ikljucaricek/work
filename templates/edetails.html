@@ -151,7 +151,7 @@
                             <div class="info-section">
                                 <span class="label label-default">{% trans %}Accessories Purchased{% endtrans %}:</span>
                                 <p>
-                                <input type="checkbox" name="accessories" disabled="disabled" value="Accessories purchased" {{ accessP }}>
+                                <input type="checkbox" name="accessories" disabled="disabled" {{ accessP }}>
                                 </p>
                             </div>
                           </div>
@@ -311,7 +311,13 @@
                   <input type="file" accept="image/*" class="form-control" name="photo" id="photo" placeholder="{% trans %}Change Photo of User{% endtrans %}" value="/{{ event.photo }}"><br>
                   <label for="accessories"><span class="glyphicon glyphicon-check"></span> {% trans %}Purchase Accessories{% endtrans %}</label>
                   <div class="pull-right"><span type="button" title="{% trans %}Purchase Accessories Explanation{% endtrans %}" data-toggle="popover" class="glyphicon glyphicon-question-sign" data-placement="left" data-content="{% trans %}If you don't have all the required parts and Repairman needs to bring something - then you select this checkbox{% endtrans %}"></span></div>
-                  <input type="checkbox" class="form-control" name="accessories" id="accessories" value="0" {{ accessP }}> 
+                  {% if event.accessories_purchased != None or event.accessories_purchased != 0 %}
+                  <input type="checkbox" class="form-control" name="accessories" id="accessories" 
+                  value="1" {{ accessP }}>
+                  {% else %}
+                  <input type="checkbox" class="form-control" name="accessories" id="accessories" 
+                  value="0" {{ accessP }}>
+                  {%endif%}
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
