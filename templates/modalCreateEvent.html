@@ -18,7 +18,7 @@
                   </div>
                   <div class="form-group">  
                       <label for="price"><span class="glyphicon glyphicon-usd"></span> {% trans %}Event Price{% endtrans %}</label>
-                      <input type="number" class="form-control" name="price" id="price" step="any" placeholder="{% trans %}Put price which you consider adequate (e.g. 120 HRK){% endtrans %}" required><br>
+                      <input type="number" class="form-control" name="price" id="price" step="any" placeholder="{% trans %}Put price which you consider adequate (e.g. 120 HRK){% endtrans %}" min="1" required><br>
                   </div>  
                   <label for="date"><span class="glyphicon glyphicon-calendar"></span> {% trans %}Event Date{% endtrans %}</label>
                   <div class='input-group date' id='datetimepicker1'>

@@ -284,7 +284,7 @@
                   <label for="description"><span class="glyphicon glyphicon-comment"></span> {% trans %}Event Description{% endtrans %}</label><br>
                   <textarea class="form-control" name="description" id="description" placeholder="{% trans %}Change Description of Event{% endtrans %}">{{ event.description }}</textarea><br>
                   <label for="price"><span class="glyphicon glyphicon-usd"></span> {% trans %}Event Price{% endtrans %}</label>
-                  <input type="number" class="form-control" name="price" id="price" step="any" placeholder="{% trans %}Change Price of Event{% endtrans %}" value="{{ event.price }}"><br>
+                  <input type="number" class="form-control" name="price" id="price" step="any" placeholder="{% trans %}Change Price of Event{% endtrans %}" value="{{ event.price }}" min="1"><br>
                   <label for="address"><span class="glyphicon glyphicon-map-marker"></span> {% trans %}Event City{% endtrans %}</label>
                   <select class="form-control" name="cityList" id="cityList2"></select><br>
                   <label for="address"><span class="glyphicon glyphicon-map-marker"></span> {% trans %}Event Neighborhood{% endtrans %}</label>
