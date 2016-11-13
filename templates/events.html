@@ -321,6 +321,10 @@
                         <label for="passwordConfr" class="control-label">{% trans %}Password confirmation{% endtrans %}</label><br>
                         <input type="password" class="form-control" name="passwordConfr" id="passwordConfr" required>
                       </div>
+                      <div align="right">
+                      <a data-toggle="collapse" href="#registrationReduction" aria-expanded="false" aria-controls="registrationReduction">Advanced<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a>
+                      </div>
+                      <div class="collapse" id="registrationReduction">
                       <div class="form-group"> 
                         <label for="mobile" class="control-label">{% trans %}Mobile{% endtrans %}</label><br>
                         <input type="number" class="form-control" name="mobile" id="mobile" placeholder="{% trans %}Enter your Mobile Phone number{% endtrans %}">
@@ -332,6 +336,7 @@
                       <div class="form-group"> 
                         <label for="photo" class="control-label">{% trans %}Photo{% endtrans %}</label>
                         <input type="file" accept="image/*" class="form-control" name="photo" id="photo" placeholder="{% trans %}Enter your profile Photo{% endtrans %}">
+                      </div>
                       </div>
                     </div>
                     <div class="modal-footer" style="padding:40px;">
