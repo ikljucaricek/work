@@ -114,7 +114,7 @@
                           <button class="btn btn-info" type="button" data-toggle="modal" id="myBtn">{% trans %}Edit Event Info{% endtrans %}</button><br><br>
                           <button class="btn btn-danger" type="button" data-toggle="modal" id="deactBtn">{% trans %}Deactivate Event{% endtrans %}</button>
                           {% endif %}
-                          {% if event.active == False and event.repairman_id == cuserId %}
+                          {% if event.active == False and event.repairman_id == cuserId and event.closed != True %}
                             <button class="btn btn-danger" type="button" data-toggle="modal" id="declineBtn">{% trans %}Decline{% endtrans %} Event</button>
                           {% endif %}
                         </div>
