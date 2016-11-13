@@ -543,7 +543,7 @@ msgstr "Uredi informacije o popravku"
 
 #: templates/edetails.html:282 templates/modalCreateEvent.html:12
 msgid "Event Name"
-msgstr "Ime popravka"
+msgstr "Naziv popravka"
 
 #: templates/edetails.html:283
 msgid "Change Name of Event"
