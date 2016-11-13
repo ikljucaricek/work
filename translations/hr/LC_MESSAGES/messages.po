@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-11-13 17:03+0100\n"
+"POT-Creation-Date: 2016-11-13 18:30+0100\n"
 "PO-Revision-Date: 2016-08-10 08:47+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: hr\n"
@@ -263,7 +263,7 @@ msgstr "Lozinka"
 #: templates/about.html:186 templates/edetails.html:353
 #: templates/events.html:318 templates/index.html:292
 msgid "Password should have at least one number and one uppercase letter"
-msgstr "Lozinka bi trebala sadržavati najmanje jedan broj i jedno veliko slovo"
+msgstr ""
 
 #: templates/about.html:189 templates/edetails.html:356
 #: templates/events.html:321 templates/index.html:295
@@ -551,7 +551,7 @@ msgstr "Promijeni ime popravka"
 msgid "Event Description"
 msgstr "Opis popravka"
 
-#: templates/edetails.html:285 templates/modalCreateEvent.html:17
+#: templates/edetails.html:285
 msgid "Change Description of Event"
 msgstr "Promijeni opis popravka"
 
@@ -820,16 +820,22 @@ msgid "Recent Events"
 msgstr "Najnoviji popravci"
 
 #: templates/modalCreateEvent.html:13
-msgid "Enter Name of Event"
-msgstr "Unesi ime popravka"
+msgid "Change of water tap"
+msgstr "Zamjena slavine"
+
+#: templates/modalCreateEvent.html:17
+msgid ""
+"Be as descriptive as you can (e.g. Current water tap is double handed and"
+" new water tap should be sigle handed)"
+msgstr "Unesite opis popravka - budite jasni i sažeti (npr. Nova slavina koju treba postaviti ima jednoručnu mješalicu)"
 
 #: templates/modalCreateEvent.html:21
-msgid "Enter Price of Event"
-msgstr "Unesi cijenu popravka"
+msgid "Put price which you consider adequate (e.g. 120 HRK)"
+msgstr "Unesite cijenu koju smatrate primjerenom (npr. 120 HRK)"
 
 #: templates/modalCreateEvent.html:25
-msgid "Enter End Date of Event"
-msgstr "Unesi krajnji datum popravka"
+msgid "Put the date and time you want event to happen (e.g. 02/29/2020 05:00 PM)"
+msgstr "Unesite datum i vrijeme kada želite obaviti popravak (npr. 02/29/2020 05:00 PM)"
 
 #: templates/modalCreateEvent.html:32
 msgid "City of the Event"
@@ -844,12 +850,8 @@ msgid "Event Street and number"
 msgstr "Naziv ulice i broj gdje će se vršiti popravak"
 
 #: templates/modalCreateEvent.html:41
-msgid "Enter Address of Event location"
-msgstr "Unesi Adresu gdje će se vršiti popravak"
-
-#: templates/modalCreateEvent.html:45
-msgid "Enter Photo of Event"
-msgstr "Unesi sliku događaja"
+msgid "Enter Address of Event location (e.g. Puljska 1)"
+msgstr "Unesite adresu gdje će se obavljati popravak (npr. Puljska 1)"
 
 #: templates/modalCreateEvent.html:53
 msgid "Start Event"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-11-13 17:03+0100\n"
+"POT-Creation-Date: 2016-11-13 18:30+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -244,7 +244,7 @@ msgstr ""
 
 #: templates/about.html:186 templates/edetails.html:353
 #: templates/events.html:318 templates/index.html:292
-msgid "Password should have at leat one number and one uppercase letter"
+msgid "Password should have at least one number and one uppercase letter"
 msgstr ""
 
 #: templates/about.html:189 templates/edetails.html:356
@@ -523,7 +523,7 @@ msgstr ""
 msgid "Event Description"
 msgstr ""
 
-#: templates/edetails.html:285 templates/modalCreateEvent.html:17
+#: templates/edetails.html:285
 msgid "Change Description of Event"
 msgstr ""
 
@@ -786,15 +786,21 @@ msgid "Recent Events"
 msgstr ""
 
 #: templates/modalCreateEvent.html:13
-msgid "Enter Name of Event"
+msgid "Change of water tap"
+msgstr ""
+
+#: templates/modalCreateEvent.html:17
+msgid ""
+"Be as descriptive as you can (e.g. Current water tap is double handed and"
+" new water tap should be sigle handed)"
 msgstr ""
 
 #: templates/modalCreateEvent.html:21
-msgid "Enter Price of Event"
+msgid "Put price which you consider adequate (e.g. 120 HRK)"
 msgstr ""
 
 #: templates/modalCreateEvent.html:25
-msgid "Enter End Date of Event"
+msgid "Put the date and time you want event to happen (e.g. 02/29/2020 05:00 PM)"
 msgstr ""
 
 #: templates/modalCreateEvent.html:32
@@ -810,11 +816,7 @@ msgid "Event Street and number"
 msgstr ""
 
 #: templates/modalCreateEvent.html:41
-msgid "Enter Address of Event location"
-msgstr ""
-
-#: templates/modalCreateEvent.html:45
-msgid "Enter Photo of Event"
+msgid "Enter Address of Event location (e.g. Puljska 1)"
 msgstr ""
 
 #: templates/modalCreateEvent.html:53

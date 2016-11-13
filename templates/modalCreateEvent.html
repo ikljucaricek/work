@@ -10,19 +10,19 @@
                 <div class="modal-body">
                   <div class="form-group">                
                       <label for="name" class="control-label"><span class="glyphicon glyphicon-user"></span> {% trans %}Event Name{% endtrans %}</label>
-                      <input type="text" class="form-control" name="name" id="name" placeholder="{% trans %}Enter Name of Event{% endtrans %}" required><br>
+                      <input type="text" class="form-control" name="name" id="name" placeholder="{% trans %}Change of water tap{% endtrans %}" required><br>
                   </div>
                   <div class="form-group"> 
                       <label for="description" class="control-label"><span class="glyphicon glyphicon-comment"></span> {% trans %}Event Description{% endtrans %}</label><br>
-                      <textarea class="form-control" name="description" id="description" placeholder="{% trans %}Change Description of Event{% endtrans %}" required></textarea><br>
+                      <textarea class="form-control" name="description" id="description" placeholder="{% trans %}Be as descriptive as you can (e.g. Current water tap is double handed and new water tap should be sigle handed){% endtrans %}" required></textarea><br>
                   </div>
                   <div class="form-group">  
                       <label for="price"><span class="glyphicon glyphicon-usd"></span> {% trans %}Event Price{% endtrans %}</label>
-                      <input type="number" class="form-control" name="price" id="price" step="any" placeholder="{% trans %}Enter Price of Event{% endtrans %}" required><br>
+                      <input type="number" class="form-control" name="price" id="price" step="any" placeholder="{% trans %}Put price which you consider adequate (e.g. 120 HRK){% endtrans %}" required><br>
                   </div>  
                   <label for="date"><span class="glyphicon glyphicon-calendar"></span> {% trans %}Event Date{% endtrans %}</label>
                   <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' name="datmtme" placeholder="{% trans %}Enter End Date of Event{% endtrans %}" class="form-control" required/>
+                    <input type='text' name="datmtme" placeholder="{% trans %}Put the date and time you want event to happen (e.g. 02/29/2020 05:00 PM){% endtrans %}" class="form-control" required/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -38,11 +38,11 @@
                   </div>
                                     <div class="form-group">  
                       <label for="address"><span class="glyphicon glyphicon-map-marker"></span> {% trans %}Event Street and number{% endtrans %}</label>
-                      <input type="text" class="form-control" name="address" id="address" placeholder="{% trans %}Enter Address of Event location{% endtrans %}" required><br>
+                      <input type="text" class="form-control" name="address" id="address" placeholder="{% trans %}Enter Address of Event location (e.g. Puljska 1){% endtrans %}" required><br>
                   </div>
                   <div class="form-group">  
                       <label for="photo"><span class="glyphicon glyphicon-picture"></span> {% trans %}Photo{% endtrans %}</label>
-                      <input type="file" accept="image/*" class="form-control" name="photo" id="photo" placeholder="{% trans %}Enter Photo of Event{% endtrans %}"><br>
+                      <input type="file" accept="image/*" class="form-control" name="photo" id="photo"><br>
                   </div>
                   <label for="purchase accessories"><span class="glyphicon glyphicon-check"></span> {% trans %}Purchase Accessories{% endtrans %}</label>
                   <div class="pull-right"><span type="button" title="{% trans %}Purchase Accessories Explanation{% endtrans %}" data-toggle="popover" class="glyphicon glyphicon-question-sign" data-placement="left" data-content="{% trans %}If you don't have all the required parts and Repairman needs to bring something - then you select this checkbox{% endtrans %}"></span></div>
