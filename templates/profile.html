@@ -131,12 +131,12 @@
             {% endfor %}
           {% endif %}
         {% endwith %}
-        <h1 class="display-3">{{ user.username }}'s {% trans %}Profile{% endtrans %}</h1>
+        <h2>{{ user.username }}'s {% trans %}Profile{% endtrans %}</h2>
 
         <br>
 
       <div class="row">
-        <div class="col-lg-4" align="center">
+        <div class="col-lg-4" align="cleft">
           <img class="img-circle" src="/{{ user.picture }}" alt="Generic placeholder image">
           <br><br>
           {% if user.id == cuserId %}
