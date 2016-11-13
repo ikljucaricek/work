@@ -103,7 +103,7 @@
             {% if user.username %}              
               <li><a href="{{ url_for('.myPage', username=user.username) }}">{% trans %}My Events{% endtrans %}</a></li> 
               <li class="nav-item active"><a href="{{ url_for('.profilePage', username=user.username) }}">{% trans %}My Profile{% endtrans %}</a></li>           
-              <li><a href="{{ url_for('logout') }}">{% trans %}Sign Out{% endtrans %} {{ user.username }}</a></li>
+              <li><a href="{{ url_for('logout') }}">{% trans %}Sign Out{% endtrans %} {{ session['username'] }}</a></li>
             {% endif %}
               <li><a id="lng" href="/hr/profile/{{user.username}}">{% trans %}cro{% endtrans %}</a></li>
               <li><a id="lng2" href="/en/profile/{{user.username}}">en</a></li>
@@ -153,11 +153,26 @@
           <span class="label label-default">{% trans %}Join date{% endtrans %}:</span><p>{{ user.joindate }}</p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-5">
-          <span class="label label-default">{% trans %}E-mail{% endtrans %}:</span><p> {{ user.email }}</p>
+          <span class="label label-default">{% trans %}E-mail{% endtrans %}:</span>
+          {% if cuserId != None and cuserId == user.id %}
+          <p> {{ user.email }}</p>
+          {% else %}
+          <p>- Private -</p>
+          {% endif %}
 
-          <span class="label label-default">{% trans %}Address{% endtrans %}:</span><p> {{ user.address }}</p>
+          <span class="label label-default">{% trans %}Address{% endtrans %}:</span>
+          {% if cuserId != None and cuserId == user.id %}
+          <p> {{ user.address }}</p>
+          {% else %}
+          <p>- Private -</p>
+          {% endif %}
 
-          <span class="label label-default">{% trans %}Phone{% endtrans %}:</span><p> {{ user.mobile }}</p>
+          <span class="label label-default">{% trans %}Phone{% endtrans %}:</span>
+          {% if cuserId != None and cuserId == user.id %}
+          <p> {{ user.mobile }}</p>
+          {% else %}
+          <p>- Private -</p>
+          {% endif %}
 
           <span class="label label-default">{% trans %}Average Rate{% endtrans %}:</span><input id="rating-id" name="rating-id" value={{ user.rating }} type="number" class="rating" min="0" max="5" step="0.1" data-size="xs" readonly>
         </div><!-- /.col-lg-4 -->
