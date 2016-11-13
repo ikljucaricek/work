@@ -234,6 +234,8 @@
                   <p><b>{% trans %}Price:{% endtrans %} </b>{{ event.price }} HRK</p>
                   {% if event.active %}
                   <p>Status: <span class="label label-success">{% trans %}Active{% endtrans %}</span></p>
+                  {% elif event.closed %}
+                  <p>Status: <span class="label label-default">{% trans %}Closed{% endtrans %}</span></p>
                   {% else %}
                   <p>Status: <span class="label label-danger">{% trans %}Inactive{% endtrans %}</span></p>
                   {% endif %}

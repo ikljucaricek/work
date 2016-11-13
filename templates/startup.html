@@ -297,11 +297,13 @@
                 <h3><span class="label label-default">#{{ event.id }}</span> | {{ event.name[0:23] }}</h3>
                 <p>{{ event.description[0:57] }}</p>
                 <p><b>{% trans %}Price:{% endtrans %} </b>{{ event.price }} HRK</p>
-                {% if event.active %}
-                <p>Status: <span class="label label-success">{% trans %}Active{% endtrans %}</span></p>
-                {% else %}
-                <p>Status: <span class="label label-danger">{% trans %}Inactive{% endtrans %}</span></p>
-                {% endif %}
+                  {% if event.active %}
+                  <p>Status: <span class="label label-success">{% trans %}Active{% endtrans %}</span></p>
+                  {% elif event.closed %}
+                  <p>Status: <span class="label label-default">{% trans %}Closed{% endtrans %}</span></p>
+                  {% else %}
+                  <p>Status: <span class="label label-danger">{% trans %}Inactive{% endtrans %}</span></p>
+                  {% endif %}
                 <input type="button" class="btn btn-info btn-lg btn-block" onclick="window.open('{{ url_for('.showevent', id=event.id) }}','_self');" value="{% trans %}See Event{% endtrans %}"/>
               </div>
             </div>
