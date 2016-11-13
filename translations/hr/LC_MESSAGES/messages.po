@@ -839,7 +839,7 @@ msgstr "Unesi krajnji datum popravka"
 
 #: templates/modalCreateEvent.html:32
 msgid "City of the Event"
-msgstr "Grad kde će se vršiti popravak"
+msgstr "Grad gdje će se vršiti popravak"
 
 #: templates/modalCreateEvent.html:36
 msgid "Neighborhood of the Event"
