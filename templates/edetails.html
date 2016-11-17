@@ -630,7 +630,7 @@
              $("#comments").append(
                     jQuery('<div/>', {
                             class: 'innerauthor',
-                            title: 'date and  author',
+                            title: '{% trans %}date and  author{% endtrans %}',
                             text: dates[i]+ ' by '}
                             ).append(jQuery('<a/>', {
                             href : $SCRIPT_ROOT+"profile/"+$author,
