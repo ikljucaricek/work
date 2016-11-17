@@ -338,7 +338,7 @@ def add_comment():
             )
         eventcomment.save()    
     #flash('Event cannot be completed before it starts')
-    return redirect (url_for('.myPage', username = session['username']))    
+    return redirect (url_for('.showevent', id=request.form.get('event_id')))
 
    
 @bp.route('/profile/<username>')
@@ -356,6 +356,7 @@ def profilePage(username):
         print "Refreshing"
         flash(gettext("%s doesn't exist!") %username, "warning")
         return redirect (url_for('.profilePage', username = session['username']))
+        
 
 @bp.route('/mypage/<username>')
 @bp.route('/mypage/')
