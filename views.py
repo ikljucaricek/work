@@ -463,6 +463,7 @@ def modify_an_event():
         if (datetime.strptime(request.form.get('datmtme'), "%m/%d/%Y %I:%M %p") > datetime.now()):
             event.modify()
             refresh()
+            send_mail_notification_about_changed_event(originid)
             flash(gettext('You successfully modified Event!'))
         else:
             refresh()
@@ -516,16 +517,18 @@ def decline_event():
     
 @bp.route('/closeevent', methods=['GET', 'POST'])
 @login_required
-def close_event():
+def close_rate_event():
     if request.method == 'POST':
         eventid = request.form.get('id')
+        rate_it = request.form.get('rating-id')
         event = Event(
             id = eventid,
             active = 0,
-            closed = 1)
-        event.close()
-        print 'event was closed'
+            closed = 1,
+            rate = rate_it)
+        event.close_rate()
         refresh()
+        calculate_repairman_average_rate(Event.get(eventid).repairman_id)
         flash(gettext('Event has been Finished!'))
     return redirect (url_for('.showevent', id=eventid))
 
@@ -600,12 +603,62 @@ def registration_mail(user):
             "",
             "Dear " + user.name + ",",
             "",
-            "You have sacessfully registered on portal Tygayo Inc. Thank You for Your interest."
+            "You have successfully registered on portal Tygayo Inc. Thank You for Your interest."
             "",
             "Best Regards,",
             "TygAyo Inc."
             "http://tygayo.herokuapp.com/"
             ])
-        return user_msg  
+        return user_msg
+
+
+def notification_mail_about_changed_event(signedupusers, evnt_id):
+    modify_msg = {}
+    for repairman in signedupusers:
+        modify_msg[repairman.id] = "\r\n".join([
+                "From: eventrepairman@tygayo.herokuapp.com",
+                "To: " +  repairman.email,
+                "Subject: Tygayo inc - '" + Event.get(evnt_id).name + "' event modified",
+                "",
+                "Dear " + repairman.name + ",",
+                "",
+                "Details of event '" + Event.get(evnt_id).name + "' you signed up for have changed",
+                "",
+                "The event details are in the link bellow:",
+                "http://tygayo.herokuapp.com" + url_for('.showevent', id=evnt_id),
+                "",
+                "Best Regards,",
+                "TygAyo Inc.",
+                "http://tygayo.herokuapp.com/"
+                ])
+    return modify_msg
+
+
+def send_mail_notification_about_changed_event(evnt_id):
+    id_list_of_signedup_repairmen_query = select([(Applied_repairman.repairman_id)]).where(
+                                    Applied_repairman.event_id == evnt_id)
+    allsignedup = db.engine.execute(id_list_of_signedup_repairmen_query).fetchall()
+    allsignedups = [r[0] for r in allsignedup]
+    # Fetch User objects for these ids
+    list_of_signedup_repairmen_object = select([(User)]).where(User.id.in_(allsignedups))
+    Signedupusers = db.engine.execute(list_of_signedup_repairmen_object).fetchall()
+    map_of_msg_for_repairmen = notification_mail_about_changed_event(Signedupusers, evnt_id)
+    username = '953dfa2af4a2c579a134d7aaa74c646b'
+    password = '91626ab7ed85ca7162602bb37331e32a'
+    server = SMTP("in-v3.mailjet.com",587)
+    server.ehlo()
+    server.login(username,password)
+    fromaddr = "%s <%s>" % ('TygAyo','eventrepairman@tygayo.herokuapp.com')
+    for repairman, repairman_msg in zip(Signedupusers, map_of_msg_for_repairmen.values()):
+        server.sendmail(fromaddr, repairman.email, repairman_msg)
+    server.close()
+
+
+def calculate_repairman_average_rate(repairman_id):
+    user = User(
+        id = repairman_id,
+        rating = Event.get_repairman_avg_rating(repairman_id))
+    user.save_avg_rating()
+
 
 app.register_blueprint(bp)

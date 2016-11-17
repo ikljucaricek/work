@@ -50,6 +50,7 @@ class Event(db.Model):
     city = db.Column(db.String(250),nullable=False)
     neighborhood = db.Column(db.String(250))
     address = db.Column(db.String(250),nullable=False)
+    rate = db.Column(db.Integer)
     date_time_create = db.Column(db.DateTime)
     date_time_execute = db.Column(db.DateTime)
     date_time_close = db.Column(db.DateTime)
@@ -100,12 +101,12 @@ class Event(db.Model):
         our_event.repairman_id = self.repairman_id
         db.session.add(our_event)
         db.session.commit()
-     
-        
-    def close(self):
+
+    def close_rate(self):
         our_event = db.session.query(Event).get(self.id)
         our_event.active = self.active
         our_event.closed = self.closed
+        our_event.rate = self.rate
         db.session.add(our_event)
         db.session.commit()
     
@@ -129,6 +130,19 @@ class Event(db.Model):
         result_of_query = Event.query.filter(Event.name.like('%' + filter_event + '%') | Event.description.like('%' + filter_event + '%')).paginate(page, 12, False)
         pages = result_of_query.pages
         return result_of_query.items[::-1], pages
+
+    @staticmethod
+    def get_repairman_avg_rating(repairman_id):
+        results = Event.query.filter(Event.repairman_id == repairman_id)
+        sum_for_avg = 0
+        counter = 0
+        #sum(res.rate > 0 for res in results)
+        for res in results:
+            if res.rate > 0:
+                sum_for_avg = sum_for_avg + res.rate
+                counter = counter + 1
+        return sum_for_avg / float(counter)
+
     
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -176,6 +190,12 @@ class User(db.Model):
         if self.password == password:
             return True
         return False
+
+    def save_avg_rating(self):
+        repairman = db.session.query(User).get(self.id)
+        repairman.rating = self.rating
+        db.session.add(repairman)
+        db.session.commit()
         
     def save(self):
         db.session.add(self)
