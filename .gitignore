@@ -3,6 +3,7 @@
 *.swp
 *.orig
 *.pyc
+.idea
 model_*.py
 ssc
 views_*.py
