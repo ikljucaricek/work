@@ -85,13 +85,14 @@
         background-color: #d9534f;
         display: inline-block;
       }
-      .jumbotron {
+      .jumbotron.pictr{
         background-image: url(../static/images/tyg_ayo/zagreb_night.jpg);
         background-size: cover;
         background-attachment: fixed;
-        height: 100%;
+        height: 700px;
+        margin-bottom: 0;
       }
-      .jumbotron h1, h2, blockquote{
+      .jumbotron h1, blockquote{
         color: white;
         border-left: hidden;
       }
@@ -107,6 +108,19 @@
       .footer a:hover{
         color: #2dacd3;
       }
+    .glyphicon.big{
+        font-size: 70px;
+    }
+    hr{
+            border-color: #333333;
+    }
+    a:hover p{
+        color: #2dacd3;
+    }
+    h2{
+        margin-bottom: 55px;
+        font-style: italic;
+    }
     </style>
 
   </head>
@@ -149,7 +163,7 @@
     </nav>
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
+    <div class="jumbotron pictr">
       <div class="container">
         {% with messages = get_flashed_messages() %}
           {% if messages %}
@@ -166,99 +180,75 @@
         <p><blockquote class="col-sm-8 col-sm-offset-2">{% trans %}Do you need something done or you are handy with the tools?{% endtrans %}<br> {% trans %}Choose your role and make things happen!{% endtrans %}</blockquote></p>
         <br>
       </div>
-      <div class="row">
-        <div class="col-lg-4" align="center">
-          <img class="img-circle" src="../static/images/tyg_ayo/client_1.png" alt="Generic placeholder image" width="140" height="140">
-          <h2>{% trans %}Client{% endtrans %}</h2>
-          {% if username %}
-          <a href="{{ url_for('.startup') }}" data-toggle="modal" id="myBtn2">
-            <div class="panel panel-info">
-            <div class="panel-heading">{% trans %}Step 1{% endtrans %}</div>
-            <div class="panel-body">
-              {% trans %}Create an event{% endtrans %}
-            </div>
-          </div>
-          </a>
-          {% else %}
-          <a href="#logModal" data-toggle="modal" data-target="#log-modal" id="myLnk">
-            <div class="panel panel-info">
-            <div class="panel-heading">{% trans %}Step 1{% endtrans %}</div>
-            <div class="panel-body">
-              {% trans %}Create an event{% endtrans %}
-            </div>
-          </div>
-          </a>
-          {% endif %}
-          <div class="panel panel-info">
-            <div class="panel-heading">{% trans %}Step 2{% endtrans %}</div>
-            <div class="panel-body">
-              {% trans %}Wait for repairman to apply for a job{% endtrans %}
-            </div>
-          </div>
-          {% if username %}
-          <a href="{{ url_for('.myPage', username) }}">
-          <div class="panel panel-info">
-            <div class="panel-heading">{% trans %}Step 3{% endtrans %}</div>
-            <div class="panel-body">
-              {% trans %}Choose your repairman{% endtrans %}
-          </div>
-          </a>
-          {% else %}
-          <a href="#logModal" data-toggle="modal" data-target="#log-modal" id="myLnk">
-          <div class="panel panel-info">
-            <div class="panel-heading">{% trans %}Step 3{% endtrans %}</div>
-            <div class="panel-body">
-              {% trans %}Choose your repairman{% endtrans %}
-            </div>
-          </div>
-          </a>
-          {% endif %}     
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4" align="center">
-          <img class="img-circle" src="../static/images/tyg_ayo/repairmanicon_1.png" alt="Generic placeholder image" width="140" height="140">
-          <h2>{% trans %}Repairman{% endtrans %}</h2>
-          {% if username %}
-          <a href="{{ url_for('.allevents') }}">
-          <div class="panel panel-info">
-            <div class="panel-heading">{% trans %}Step 1{% endtrans %}</div>
-            <div class="panel-body">
-              {% trans %}Apply for a job{% endtrans %}
-            </div>
-          </div>
-          </a>
-          {% else %}
-          <a href="#logModal" data-toggle="modal" data-target="#log-modal" id="myLnk">
-          <div class="panel panel-info">
-            <div class="panel-heading">{% trans %}Step 1{% endtrans %}</div>
-            <div class="panel-body">
-              {% trans %}Apply for a job{% endtrans %}
-            </div>
-          </div>
-          </a>
-          {% endif %}
-          <div class="panel panel-info">
-            <div class="panel-heading">{% trans %}Step 2{% endtrans %}</div>
-            <div class="panel-body">
-              {% trans %}Wait for the client acceptance{% endtrans %}
-            </div>
-          </div>
-          <div class="panel panel-info">
-            <div class="panel-heading">{% trans %}Step 3{% endtrans %}</div>
-            <div class="panel-body">
-              {% trans %}Bring your tools and come over{% endtrans %}
-            </div>
-          </div>
-        </div><!-- /.col-lg-4 -->
-
-<!--         <div class="col-lg-6 col-md-offset-3">
-          <hr class="featurette-divider">
-          <button type="button" class="btn btn-primary btn-lg btn-block">Create Event</button>
-        </div> -->
-      </div><!-- /.row -->
-
       </div>
+    </div>
+
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row">
+            <div class="col-lg-4" align="center">
+
+              <h2>{% trans %}Client{% endtrans %}</h2>
+              {% if username %}
+              <a href="{{ url_for('.startup') }}" data-toggle="modal" id="myBtn2">
+                <span class="glyphicon glyphicon-edit big" aria-hidden="true"></span>
+                  <p>{% trans %}Create an event{% endtrans %}</p>
+              </a>
+              {% else %}
+              <a href="#logModal" data-toggle="modal" data-target="#log-modal" id="myLnk">
+                <span class="glyphicon glyphicon-edit big" aria-hidden="true"></span>
+                  <p>{% trans %}Create an event{% endtrans %}</p>
+
+              </a>
+              {% endif %}
+            <hr>
+                <span class="glyphicon glyphicon-time big" aria-hidden="true"></span>
+                  <p>{% trans %}Wait for repairman to apply for a job{% endtrans %}</p>
+            <hr>
+              {% if username %}
+              <a href="{{ url_for('.myPage', username) }}">
+              <span class="glyphicon glyphicon-check big" aria-hidden="true"></span>
+                  <p>{% trans %}Choose your repairman{% endtrans %}</p>
+
+              </a>
+              {% else %}
+              <a href="#logModal" data-toggle="modal" data-target="#log-modal" id="myLnk">
+              <span class="glyphicon glyphicon-check big" aria-hidden="true"></span>
+                  <p>{% trans %}Choose your repairman{% endtrans %}</p>
+              </a>
+              {% endif %}
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-4">
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-4" align="center">
+
+              <h2>{% trans %}Repairman{% endtrans %}</h2>
+              {% if username %}
+              <a href="{{ url_for('.allevents') }}">
+              <span class="glyphicon glyphicon-wrench big" aria-hidden="true"></span>
+                  <p>{% trans %}Apply for a job{% endtrans %}</p>
+
+              </a>
+              {% else %}
+              <a href="#logModal" data-toggle="modal" data-target="#log-modal" id="myLnk">
+              <span class="glyphicon glyphicon-wrench big" aria-hidden="true"></span>
+                  <p>{% trans %}Apply for a job{% endtrans %}</p>
+              </a>
+              {% endif %}
+            <hr>
+            <span class="glyphicon glyphicon-user big" aria-hidden="true"></span>
+                  <p>{% trans %}Wait for the client acceptance{% endtrans %}</p>
+            <hr>
+            <span class="glyphicon glyphicon-map-marker big" aria-hidden="true"></span>
+                 <p>{% trans %}Bring your tools and come over{% endtrans %}</p>
+            </div>
+    <!--         <div class="col-lg-6 col-md-offset-3">
+              <hr class="featurette-divider">
+              <button type="button" class="btn btn-primary btn-lg btn-block">Create Event</button>
+            </div> -->
+          </div><!-- /.row -->
+        </div>
+
     </div>
      
     <!-- Modal Register -->
