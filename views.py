@@ -4,12 +4,14 @@ from functools import wraps
 from flask import request, render_template, Response, g, session, redirect, url_for, flash, send_from_directory, Blueprint
 from app import app, db, babel
 from datetime import datetime
-from model import User, Event, Applied_repairman  # from database
+from model import User, Event, Applied_repairman, Event_comment # from database
 from werkzeug import secure_filename
 from sqlalchemy.sql import and_, select, or_
 from smtplib import SMTP
 from flask.ext.babel import gettext, ngettext, gettext, refresh
 from flask.ext.sqlalchemy import BaseQuery
+import os
+
 
 @babel.localeselector
 def get_locale():
@@ -57,7 +59,7 @@ def about():
 @bp.route('/modalCreateEvent.html')
 def modalCreateEvent():
     return render_template('modalCreateEvent.html')    
-    
+   
 @bp.route('/startup')
 @login_required
 def startup():
@@ -172,8 +174,30 @@ def showevent(id):
     cuserId=session.get('id')
     Signedupusers = None
     already = 0
-    # Checking if the user is owner of this event
+    # Check for event comments
+    sComs = select([(Event_comment)]).where(
+                                        Event_comment.event_id == event.id)
+    eventcomments = db.engine.execute(sComs).fetchall()
 
+    comms_list = [str(x[2]) for x in eventcomments]
+    author_ids = [str(x[3]) for x in eventcomments]
+    date_list = [str(x[4]) for x in eventcomments]
+    
+    uComs = select([(User)]).where(User.id.in_(author_ids))
+    usercomments = db.engine.execute(uComs).fetchall()
+    # this is done because we do not know how to iterate and object in jQuery
+    # in jQuery we would need to use someting like objects[i].comment
+    # so we send list of stings instead, 
+
+    
+    user_list = [str(x[3]) for x in usercomments]
+    userid_list = [str(x[0]) for x in usercomments]
+    user_dict = dict(zip(userid_list,user_list))
+    author_list = [];
+    
+    for y in author_ids:
+        author_list.append(user_dict[str(y)])
+    # Checking if the user is owner of this event
     if event.user_id == cuserId:
         #If yes, fetch ids of all signedup users for this event
         s2 = select([(Applied_repairman.repairman_id)]).where(
@@ -202,16 +226,17 @@ def showevent(id):
             # print "The user is signed up in this events:"
     if event.photo == None:
         event.photo = "./static/images/events_photos/default.jpg"
-    
     return render_template('edetails.html',username = session.get('username'),event=event,
                                                                             user=user,
                                                                    users = Signedupusers,
                                                                    already = already,
                                                                    cuserId = cuserId,
                                                                    accessP = accessP,
-                                                                   repairman = repairman)
-
-                                                                   
+                                                                   repairman = repairman,
+                                                                   eventcomments = comms_list,
+                                                                   author_list = author_list,
+                                                                   date_list = date_list                                                                                                                                     
+                                                                   )
 @bp.route('/signup', methods=['POST','GET'])
 def signup():
     eventid = request.form.get('event_to_signup')
@@ -301,6 +326,21 @@ def create_an_event():
     #flash('Event cannot be completed before it starts')
     return redirect (url_for('.myPage', username = session['username']))
 
+@bp.route('/addcomment', methods=['GET', 'POST'])
+@login_required
+def add_comment():
+    if request.method == 'POST':
+        eventcomment = Event_comment(
+            event_id = request.form.get('event_id'),
+            comment = request.form.get('commenttext'),
+            user_id = request.form.get('user_id'),
+            date_time_post = datetime.now()
+            )
+        eventcomment.save()    
+    #flash('Event cannot be completed before it starts')
+    return redirect (url_for('.showevent', id=request.form.get('event_id')))
+
+   
 @bp.route('/profile/<username>')
 def profilePage(username):
     if len(username) != 0 and User.get_by_username(username) != None:
@@ -313,8 +353,10 @@ def profilePage(username):
             return render_template('profile.html', user = user, cuserId = session.get('id'))
     else:
         refresh()
+        print "Refreshing"
         flash(gettext("%s doesn't exist!") %username, "warning")
         return redirect (url_for('.profilePage', username = session['username']))
+        
 
 @bp.route('/mypage/<username>')
 @bp.route('/mypage/')
@@ -512,6 +554,7 @@ def allevents(page=1):
         #else:
         #    return render_template('events.html', username = session.get('username'), events = Event.get_all()[::-1])
     return render_template('events.html', username = session.get('username'), events = events, pages = pages)
+
 
 def confirmation_mail(msg_for_what, rm , client, event_obj, eventid):
     if msg_for_what == 'repairman':

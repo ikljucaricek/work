@@ -23,6 +23,21 @@ class Applied_repairman(db.Model):
         db.session.delete(self)
         db.session.commit()
         
+class Event_comment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    event_id = db.Column(db.Integer,db.ForeignKey('event.id'))
+    comment = db.Column(db.String(255),nullable=False)
+    user_id = db.Column(db.Integer,db.ForeignKey('user.id'))
+    date_time_post = db.Column(db.DateTime)
+    
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+            
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()    
+        
         
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -43,6 +58,7 @@ class Event(db.Model):
     user_id = db.Column(db.Integer,db.ForeignKey('user.id'))
     repairman_id = db.Column(db.Integer,db.ForeignKey('user.id'))
     signedupe = db.relationship('Applied_repairman',backref='eventup',foreign_keys=[Applied_repairman.event_id],lazy='dynamic')
+    comment = db.relationship('Event_comment',backref='eventcomm',foreign_keys=[Event_comment.event_id],lazy='dynamic')
 
         #Needs to be revised
     def modify(self):
@@ -143,6 +159,7 @@ class User(db.Model):
     events = db.relationship('Event',backref='user',foreign_keys=[Event.user_id],lazy='dynamic')
     repairman = db.relationship('Event',backref='repairman',foreign_keys=[Event.repairman_id],lazy='dynamic')
     signedupu = db.relationship('Applied_repairman',backref='userup',foreign_keys=[Applied_repairman.repairman_id],lazy='dynamic')
+    comment = db.relationship('Event_comment',backref='usercomm',foreign_keys=[Event_comment.user_id],lazy='dynamic')
     
     #Needs to be revised
     def modify(self):
