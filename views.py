@@ -122,11 +122,11 @@ def register():
             print "Tak sto sad: ",request.files.getlist('photo')
             # pho = request.files[0]
             # print pho.filename
-            if 'photo' in request.files and request.files['photo'].filename != '':
+            if request.files['photo'].filename != '':
                 photo = request.files['photo']
                 extension = photo.filename.split('.')
-                path_to_photo = '.\\static\\images\\users_avatar\\' + secure_filename(str(us.id) + '.' + extension[-1])
-                photo.save(path_to_photo)
+                path_to_photo = './static/images/users_avatar/' + secure_filename(str(us.id) + '.' + extension[-1])
+                #photo.save(path_to_photo)
                 us.picture = path_to_photo
                 us.save()
             refresh()
@@ -294,7 +294,7 @@ def create_an_event():
         if 'photo' in request.files and request.files['photo'].filename != '':
             photo = request.files['photo']
             extension = photo.filename.split('.')
-            path_to_photo = '.\\static\\images\\events_photos\\' + secure_filename(str(session['id']) + '.' + extension[-1])
+            path_to_photo = './static/images/events_photos/' + secure_filename(str(session['id']) + '.' + extension[-1])
             photo.save(path_to_photo)
             
         if request.form.get('cityList') == "Zagreb":
