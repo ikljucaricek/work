@@ -46,11 +46,14 @@ def login_required(fn):
 
 @bp.route('/')
 def index():
+    total_users = len(User.get_all())
+    active_events = Event.get_active_events().count()
+    closed_events = Event.get_closed_events().count()
     events = Event.get_all()[0][:-10:-1]
     for event in events:
         if event.photo == None:
             event.photo = "../static/images/events_photos/default.jpg"
-    return render_template('index.html', events = events)
+    return render_template('index.html', events = events, active_events = active_events, closed_events = closed_events , total_users = total_users)
 
 @bp.route('/about')
 def about():
@@ -63,11 +66,14 @@ def modalCreateEvent():
 @bp.route('/startup')
 @login_required
 def startup():
+    total_users = len(User.get_all())
+    active_events = Event.get_active_events().count()
+    closed_events = Event.get_closed_events().count()
     events = Event.get_all()[0][:-10:-1]
     for event in events:
         if event.photo == None:
             event.photo = "../static/images/events_photos/default.jpg"
-    return render_template('startup.html', username = session['username'], events = events)
+    return render_template('startup.html', username = session['username'], events = events, active_events = active_events, closed_events = closed_events , total_users = total_users)
 
 @bp.route('/signin', methods=['GET', 'POST'])
 def login():

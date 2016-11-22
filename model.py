@@ -126,6 +126,14 @@ class Event(db.Model):
         #return db.session.query(Event).all()
 
     @staticmethod
+    def get_active_events():
+        return db.session.query(Event).filter(Event.active == '1')
+
+    @staticmethod
+    def get_closed_events():
+        return db.session.query(Event).filter(Event.closed == 1)
+
+    @staticmethod
     def get_by_name_or_description(filter_event, page):
         result_of_query = Event.query.filter(Event.name.like('%' + filter_event + '%') | Event.description.like('%' + filter_event + '%')).paginate(page, 12, False)
         pages = result_of_query.pages
@@ -185,6 +193,10 @@ class User(db.Model):
     @staticmethod
     def get(user_id):
         return db.session.query(User).filter(User.id == user_id).first()
+
+    @staticmethod
+    def get_all():
+        return db.session.query(User).all()
 
     def check_password(self, password):
         if self.password == password:

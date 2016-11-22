@@ -119,6 +119,18 @@
         margin-bottom: 55px;
         font-style: italic;
     }
+    .activitycicle{
+        border-radius: 100%;
+        height: 120px;
+        width: 120px;
+    }
+    .activitycicleborder{
+        border-style: solid;
+        border-color: #16a6b6;
+    }
+    .cntr{
+        padding-top: 37%;
+    }
     </style>
   </head>
 
@@ -238,19 +250,19 @@
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-4 hidden-xs" align="center">
                 <div align="center" class="activitycicle activitycicleborder">
-                    <p class="cntr">1234</p>
+                    <p class="cntr">{{ total_users }}</p>
                 </div>
                 <p>{% trans %}Total Users{% endtrans %}</p>
                 <div align="center" class="activitycicle activitycicleborder">
-                    <p class="cntr">2345</p>
+                    <p class="cntr">{{ events|length }}</p>
                 </div>
                 <p>{% trans %}Total Events{% endtrans %}</p>
                 <div align="center" class="activitycicle activitycicleborder">
-                    <p class="cntr">4321</p>
+                    <p class="cntr">{{ active_events }}</p>
                 </div>
                 <p>{% trans %}Total Active Events{% endtrans %}</p>
                 <div align="center" class="activitycicle activitycicleborder">
-                    <p class="cntr">2341</p>
+                    <p class="cntr">{{ closed_events }}</p>
                 </div>
                 <p>{% trans %}Total Closed Events{% endtrans %}</p>
 
