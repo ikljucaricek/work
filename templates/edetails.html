@@ -61,7 +61,7 @@
             <a class="nav-link" href="#contact">{% trans %}Contact{% endtrans %}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('.allevents') }}">{% trans %}All Events{% endtrans %}</a>
+            <a class="nav-link" href="{{ url_for('.allevents') }}">{% trans %}All Events{% endtrans %} <span class="badge">{{ active_events }}</span></a>
           </li>
           <li class="nav-item">
             {% if username %}
@@ -630,7 +630,7 @@
              $("#comments").append(
                     jQuery('<div/>', {
                             class: 'innerauthor',
-                            title: '{% trans %}date and  author{% endtrans %}',
+                            title: '{% trans %}date and author{% endtrans %}',
                             text: dates[i]+ ' by '}
                             ).append(jQuery('<a/>', {
                             href : $SCRIPT_ROOT+"profile/"+$author,
@@ -724,14 +724,14 @@
             surename: {
                 validators: {
                     notEmpty: {
-                        message: '{% trans %}The surename is required and cannot be empty{% endtrans %}'
+                        message: '{% trans %}The surname is required and cannot be empty{% endtrans %}'
                     }
                 }
             },
             email: {
                 validators: {
                     notEmpty: {
-                        message: '{% trans %}The email address is required nd cannot be empty{% endtrans %}'
+                        message: '{% trans %}The email address is required and cannot be empty{% endtrans %}'
                     },
                     emailAddress: {
                         message: '{% trans %}The input is not a valid email address{% endtrans %}'

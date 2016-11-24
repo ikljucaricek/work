@@ -57,7 +57,8 @@ def index():
 
 @bp.route('/about')
 def about():
-    return render_template('about.html',username = session.get('username'))
+    active_events = Event.get_active_events().count()
+    return render_template('about.html', username = session.get('username'), active_events = active_events)
 
 @bp.route('/modalCreateEvent.html')
 def modalCreateEvent():
@@ -232,6 +233,7 @@ def showevent(id):
             # print "The user is signed up in this events:"
     if event.photo == None:
         event.photo = "./static/images/events_photos/default.jpg"
+    active_events = Event.get_active_events().count()
     return render_template('edetails.html',username = session.get('username'),event=event,
                                                                             user=user,
                                                                    users = Signedupusers,
@@ -241,7 +243,8 @@ def showevent(id):
                                                                    repairman = repairman,
                                                                    eventcomments = comms_list,
                                                                    author_list = author_list,
-                                                                   date_list = date_list                                                                                                                                     
+                                                                   date_list = date_list,
+                                                                    active_events = active_events
                                                                    )
 @bp.route('/signup', methods=['POST','GET'])
 def signup():
@@ -349,14 +352,15 @@ def add_comment():
    
 @bp.route('/profile/<username>')
 def profilePage(username):
+    active_events = Event.get_active_events().count()
     if len(username) != 0 and User.get_by_username(username) != None:
         user = User.get_by_username(username)
         #user_photo = user.picture
         if user.picture != None:
-            return render_template('profile.html', user = user, cuserId = session.get('id'))
+            return render_template('profile.html', user = user, cuserId = session.get('id'), active_events = active_events)
         else:
             user.picture = "./static/images/users_avatar/default.jpg"
-            return render_template('profile.html', user = user, cuserId = session.get('id'))
+            return render_template('profile.html', user = user, cuserId = session.get('id'), active_events = active_events)
     else:
         refresh()
         print "Refreshing"
@@ -368,6 +372,7 @@ def profilePage(username):
 @bp.route('/mypage/')
 @login_required
 def myPage(username):
+    active_events = Event.get_active_events().count()
     if len(username) != 0 and User.get_by_username(username) != None:
         user = User.get_by_username(username)
         sqltxt = select([(Applied_repairman.event_id)]).where(Applied_repairman.repairman_id == user.id)
@@ -387,7 +392,7 @@ def myPage(username):
         #Get all events creted by User
         event_created_by_user_query = select([Event]).where(Event.user_id == user.id)
         event_created_by_user = db.engine.execute(event_created_by_user_query).fetchall()
-        return render_template('mypage.html', user = user, CreatedEvents = event_created_by_user, SUPevents = Signedupuevents)
+        return render_template('mypage.html', user = user, CreatedEvents = event_created_by_user, SUPevents = Signedupuevents, active_events = active_events)
     else:
         refresh()
         flash(gettext("You are not %s!") %username, "warning")
@@ -541,6 +546,7 @@ def close_rate_event():
 @bp.route('/events', methods=['GET', 'POST'])
 @bp.route('/events/<int:page>', methods=['GET', 'POST'])
 def allevents(page=1):
+    active_events = Event.get_active_events().count()
     events, pages = Event.get_all(page)
     for event in events:
         if event.photo == None:
@@ -554,12 +560,12 @@ def allevents(page=1):
                 if evnt.photo == None:
                     evnt.photo = "../static/images/events_photos/default.jpg"
             if  events_by_name != None:       
-                return render_template('events.html', username = session.get('username'), events = events_by_name, srch_value=filter_by_name, pages=pages)
+                return render_template('events.html', username = session.get('username'), events = events_by_name, srch_value=filter_by_name, pages=pages, active_events = active_events)
             else:
-                return render_template('events.html', username = session.get('username'), events = None, srch_value=filter_by_name)
+                return render_template('events.html', username = session.get('username'), events = None, srch_value=filter_by_name, active_events = active_events)
         #else:
         #    return render_template('events.html', username = session.get('username'), events = Event.get_all()[::-1])
-    return render_template('events.html', username = session.get('username'), events = events, pages = pages)
+    return render_template('events.html', username = session.get('username'), events = events, pages = pages, active_events = active_events)
 
 
 def confirmation_mail(msg_for_what, rm , client, event_obj, eventid):
