@@ -4,7 +4,7 @@ from functools import wraps
 from flask import request, render_template, Response, g, session, redirect, url_for, flash, send_from_directory, Blueprint
 from app import app, db, babel
 from datetime import datetime
-from model import User, Event, Applied_repairman, Event_comment # from database
+from model import User, Event, Applied_repairman, Event_comment, Tag # from database
 from werkzeug import secure_filename
 from sqlalchemy.sql import and_, select, or_
 from smtplib import SMTP
@@ -310,6 +310,7 @@ def create_an_event():
             neighborhoodinput = request.form.get('neighborhoodList')
         else:
             neighborhoodinput = ""
+        tags = request.form.get('tag').split(',')
         event = Event(
             name = request.form.get('name'),
             description = request.form.get('description'),
@@ -324,7 +325,6 @@ def create_an_event():
             active = 1,
             closed = 0,
             photo = path_to_photo)
-            
         if (datetime.strptime(request.form.get('datmtme'), "%m/%d/%Y %I:%M %p") > datetime.now()):    
             event.save()
             refresh()
@@ -332,6 +332,12 @@ def create_an_event():
         else:
             refresh()
             flash(gettext("Execution Date of Event can't be before Event is created!"), "warning")
+        for tg in tags:
+            tag = Tag(
+                event_id = event.id,
+                tag_description = tg
+            )
+            tag.save()
     #flash('Event cannot be completed before it starts')
     return redirect (url_for('.myPage', username = session['username']))
 

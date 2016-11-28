@@ -36,7 +36,16 @@ class Event_comment(db.Model):
             
     def delete(self):
         db.session.delete(self)
-        db.session.commit()    
+        db.session.commit()
+
+class Tag(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    event_id = db.Column(db.Integer, db.ForeignKey('event.id'))
+    tag_description = db.Column(db.String(255))
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
         
         
 class Event(db.Model):
@@ -59,7 +68,7 @@ class Event(db.Model):
     repairman_id = db.Column(db.Integer,db.ForeignKey('user.id'))
     signedupe = db.relationship('Applied_repairman',backref='eventup',foreign_keys=[Applied_repairman.event_id],lazy='dynamic')
     comment = db.relationship('Event_comment',backref='eventcomm',foreign_keys=[Event_comment.event_id],lazy='dynamic')
-
+    tag = db.relationship('Tag', backref = 'event', lazy='dynamic')
         #Needs to be revised
     def modify(self):
         #our_user = User.query.filter_by(id=id).first()
