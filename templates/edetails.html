@@ -174,7 +174,11 @@
                                 <p> - {% trans %}Private{% endtrans %} - </p>
                                 {% endif %}  
                                 <span class="label label-default">{% trans %}Rate{% endtrans %}:</span>
-                                <input id="rate" name="rate" value={{ event.rate }} type="number" class="rating" min="0" max="5" step="1" data-size="xs" readOnly="true"> 
+                                <input id="rate" name="rate" value={{ event.rate }} type="number" class="rating" min="0" max="5" step="1" data-size="xs" readOnly="true">
+                                <span class="label label-default">{% trans %}Tags{% endtrans %}:</span><br>
+                                  {% for tg in event.tag %}
+                                  <span class="label label-primary">{{ tg.tag_description }}</span>
+                                  {% endfor %}
                             </div>
                           </div>
                         </div>

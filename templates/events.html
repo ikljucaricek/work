@@ -239,6 +239,18 @@
                   {% else %}
                   <p>Status: <span class="label label-danger">{% trans %}Inactive{% endtrans %}</span></p>
                   {% endif %}
+                  {% if event.tag %}
+                  <p>Tags:
+                      {% for tg in event.tag[:3] %}
+                      <span class="label label-primary">{{ tg.tag_description }}</span>
+                      {% endfor %}
+                      {% if event.tag.count() > 3%}
+                      <span class="label label-primary">...</span>
+                      {% endif %}
+                  </p>
+                  {% else %}
+                  <p>Tags: </p>
+                  {% endif %}
                   <input type="button" class="btn btn-info btn-lg btn-block" onclick="window.open('{{ url_for('.showevent', id=event.id) }}','_self');" value="{% trans %}See Event{% endtrans %}"/>
                 </div>
               </div>
