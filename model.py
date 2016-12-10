@@ -150,9 +150,14 @@ class Event(db.Model):
         return db.session.query(Event).filter(Event.closed == 1)
 
     @staticmethod
-    def get_by_name_or_description(filter_event, page):
+    def get_by_name_tag_or_description(filter_event, page):
+        tag_objects = []
+        for word in filter_event.split():
+            tag_objects.append(Tag.query.filter(Tag.tag_description.like('%' + word + '%')))
+        for lst_evnt in tag_objects:
+            event_ids = [e_id.event_id for e_id in lst_evnt]
         result_of_query = Event.query.filter(
-            Event.name.like('%' + filter_event + '%') | Event.description.like('%' + filter_event + '%')).paginate(page,
+            Event.name.like('%' + filter_event + '%') | Event.id.in_(event_ids) | Event.description.like('%' + filter_event + '%')).paginate(page,
                                                                                                                    12,
                                                                                                                    False)
         pages = result_of_query.pages

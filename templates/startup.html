@@ -369,7 +369,7 @@
                   <p>Status: <span class="label label-danger">{% trans %}Inactive{% endtrans %}</span></p>
                   {% endif %}
                   {% if event.tag %}
-                  <p>Tags:
+                  <p>{% trans %}Tags{% endtrans %}:
                       {% for tg in event.tag[:3] %}
                       <span class="label label-primary">{{ tg.tag_description }}</span>
                       {% endfor %}
@@ -378,7 +378,7 @@
                       {% endif %}
                   </p>
                   {% else %}
-                  <p>Tags: </p>
+                  <p>{% trans %}Tags{% endtrans %}: </p>
                   {% endif %}
                 <input type="button" class="btn btn-info btn-lg btn-block" onclick="window.open('{{ url_for('.showevent', id=event.id) }}','_self');" value="{% trans %}See Event{% endtrans %}"/>
               </div>

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-12-10 21:21+0100\n"
+"POT-Creation-Date: 2016-12-11 00:07+0100\n"
 "PO-Revision-Date: 2016-08-10 08:47+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: hr\n"
@@ -19,19 +19,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-#: views.py:42
+#: views.py:47
 msgid "You need to signin!"
 msgstr "Potrebno se prijaviti!"
 
-#: views.py:93
+#: views.py:106
 msgid "You entered wrong data!"
 msgstr "Unijeti su krivi podaci"
 
-#: views.py:96
+#: views.py:109
 msgid "Hello  !"
 msgstr "Bok"
 
-#: views.py:110
+#: views.py:124
 msgid ""
 "We are sorry, register was not successful as this email adress is already"
 " registered."
@@ -39,7 +39,7 @@ msgstr ""
 "Žao nam je, ali registracija je neuspješna. Registracija s navedenom "
 "email adresom već je izvršena."
 
-#: views.py:114
+#: views.py:128
 msgid ""
 "We are sorry, register was not successful as this username is already "
 "registered."
@@ -47,57 +47,57 @@ msgstr ""
 "Žao nam je, ali registracija je neuspješna. Registracija s navedenim "
 "korisničkim imenom već je izvršena."
 
-#: views.py:142
+#: views.py:156
 msgid "You have successfully Registered!"
 msgstr "Uspješno ste registrirani!"
 
-#: views.py:261
+#: views.py:279
 msgid "You have successfully signed up for the event!"
 msgstr "Uspješno ste prijavljeni na događaj"
 
-#: views.py:296
+#: views.py:315
 msgid "You have successfully chosed a repairman!"
 msgstr "Uspješno ste izabrali majstora!"
 
-#: views.py:333
+#: views.py:353
 msgid "You have successfully created Event!"
 msgstr "Uspješno ste kreirali događaj!"
 
-#: views.py:336 views.py:489
+#: views.py:356 views.py:515
 msgid "Execution Date of Event can't be before Event is created!"
 msgstr "Datum izvođenja događaja ne može biti prije nego je događaj kreiran!"
 
-#: views.py:375
+#: views.py:396
 #, python-format
 msgid "%s doesn't exist!"
 msgstr "%s ne postoji!"
 
-#: views.py:406
+#: views.py:428
 #, python-format
 msgid "You are not %s!"
 msgstr "Vi niste %s!"
 
-#: views.py:437
+#: views.py:461
 msgid "You successfully modified Profile!"
 msgstr "Uspješno ste izmijenili profil!"
 
-#: views.py:486
+#: views.py:512
 msgid "You successfully modified Event!"
 msgstr "Uspješno ste izmijenili događaj!"
 
-#: views.py:502
+#: views.py:529
 msgid "You successfully deactivated Event!"
 msgstr "Uspješno ste deaktivirali događaj!"
 
-#: views.py:514
+#: views.py:541
 msgid "You have successfully un-asigned from the Event!"
 msgstr "Uspješno ste se odjavili s događaja!"
 
-#: views.py:534
+#: views.py:562
 msgid "You have successfully declined the Event!"
 msgstr "Uspješno ste odbili događaj!"
 
-#: views.py:551
+#: views.py:580
 msgid "Event has been Finished!"
 msgstr "Događaj je završen!"
 
@@ -471,8 +471,10 @@ msgstr "Telefon"
 msgid "Rate"
 msgstr "Ocjena"
 
-#: templates/edetails.html:178 templates/index.html:451
-#: templates/index.html:460 templates/modalCreateEvent.html:39
+#: templates/edetails.html:178 templates/events.html:243
+#: templates/events.html:252 templates/index.html:451 templates/index.html:460
+#: templates/modalCreateEvent.html:39 templates/startup.html:372
+#: templates/startup.html:381
 msgid "Tags"
 msgstr "Oznake"
 
@@ -715,8 +717,8 @@ msgid "The email address is required and cannot be empty"
 msgstr "Potrebno je unijeti email adresu"
 
 #: templates/events.html:153
-msgid "Search Events by Name and/or Description"
-msgstr "Pretraživanje popravaka po imenu ili opisu"
+msgid "Search Events by Name, Tag or Description"
+msgstr "Pretraži popravke po imenu, oznaci ili opisu"
 
 #: templates/events.html:155
 msgid "Go!"
@@ -1001,4 +1003,7 @@ msgstr "Promijeni broj mobilnog telefona korisnika"
 #: templates/profile.html:210
 msgid "User's Photo"
 msgstr "Slika korisnika"
+
+#~ msgid "Search Events by Name and/or Description"
+#~ msgstr "Pretraživanje popravaka po imenu ili opisu"
 

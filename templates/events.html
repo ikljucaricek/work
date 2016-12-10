@@ -150,7 +150,7 @@
           <div class="col-sm-8 col-sm-offset-3">
             <form method='POST' action="{{ url_for('.allevents') }}" class="form-inline">
               <div class="input-group">
-                <input type="text" class="form-control" id="srch" name="srch" placeholder="{% trans %}Search Events by Name and/or Description{% endtrans %}" value="{{ srch_value }}">
+                <input type="text" class="form-control" id="srch" name="srch" placeholder="{% trans %}Search Events by Name, Tag or Description{% endtrans %}" value="{{ srch_value }}">
                 <span class="input-group-btn">
                   <button class="btn btn-info" type="submit">{% trans %}Go!{% endtrans %}</button>
                 </span>
@@ -240,7 +240,7 @@
                   <p>Status: <span class="label label-danger">{% trans %}Inactive{% endtrans %}</span></p>
                   {% endif %}
                   {% if event.tag %}
-                  <p>Tags:
+                  <p>{% trans %}Tags{% endtrans %}:
                       {% for tg in event.tag[:3] %}
                       <span class="label label-primary">{{ tg.tag_description }}</span>
                       {% endfor %}
@@ -249,7 +249,7 @@
                       {% endif %}
                   </p>
                   {% else %}
-                  <p>Tags: </p>
+                  <p>{% trans %}Tags{% endtrans %}: </p>
                   {% endif %}
                   <input type="button" class="btn btn-info btn-lg btn-block" onclick="window.open('{{ url_for('.showevent', id=event.id) }}','_self');" value="{% trans %}See Event{% endtrans %}"/>
                 </div>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-12-10 21:21+0100\n"
+"POT-Creation-Date: 2016-12-11 00:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,81 +17,81 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-#: views.py:42
+#: views.py:47
 msgid "You need to signin!"
 msgstr ""
 
-#: views.py:93
+#: views.py:106
 msgid "You entered wrong data!"
 msgstr ""
 
-#: views.py:96
+#: views.py:109
 msgid "Hello  !"
 msgstr ""
 
-#: views.py:110
+#: views.py:124
 msgid ""
 "We are sorry, register was not successful as this email adress is already"
 " registered."
 msgstr ""
 
-#: views.py:114
+#: views.py:128
 msgid ""
 "We are sorry, register was not successful as this username is already "
 "registered."
 msgstr ""
 
-#: views.py:142
+#: views.py:156
 msgid "You have successfully Registered!"
 msgstr ""
 
-#: views.py:261
+#: views.py:279
 msgid "You have successfully signed up for the event!"
 msgstr ""
 
-#: views.py:296
+#: views.py:315
 msgid "You have successfully chosed a repairman!"
 msgstr ""
 
-#: views.py:333
+#: views.py:353
 msgid "You have successfully created Event!"
 msgstr ""
 
-#: views.py:336 views.py:489
+#: views.py:356 views.py:515
 msgid "Execution Date of Event can't be before Event is created!"
 msgstr ""
 
-#: views.py:375
+#: views.py:396
 #, python-format
 msgid "%s doesn't exist!"
 msgstr ""
 
-#: views.py:406
+#: views.py:428
 #, python-format
 msgid "You are not %s!"
 msgstr ""
 
-#: views.py:437
+#: views.py:461
 msgid "You successfully modified Profile!"
 msgstr ""
 
-#: views.py:486
+#: views.py:512
 msgid "You successfully modified Event!"
 msgstr ""
 
-#: views.py:502
+#: views.py:529
 msgid "You successfully deactivated Event!"
 msgstr ""
 
-#: views.py:514
+#: views.py:541
 msgid "You have successfully un-asigned from the Event!"
 msgstr ""
 
-#: views.py:534
+#: views.py:562
 msgid "You have successfully declined the Event!"
 msgstr ""
 
-#: views.py:551
+#: views.py:580
 msgid "Event has been Finished!"
 msgstr ""
 
@@ -443,8 +443,10 @@ msgstr ""
 msgid "Rate"
 msgstr ""
 
-#: templates/edetails.html:178 templates/index.html:451
-#: templates/index.html:460 templates/modalCreateEvent.html:39
+#: templates/edetails.html:178 templates/events.html:243
+#: templates/events.html:252 templates/index.html:451 templates/index.html:460
+#: templates/modalCreateEvent.html:39 templates/startup.html:372
+#: templates/startup.html:381
 msgid "Tags"
 msgstr ""
 
@@ -681,7 +683,7 @@ msgid "The email address is required and cannot be empty"
 msgstr ""
 
 #: templates/events.html:153
-msgid "Search Events by Name and/or Description"
+msgid "Search Events by Name, Tag or Description"
 msgstr ""
 
 #: templates/events.html:155

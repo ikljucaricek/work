@@ -593,7 +593,7 @@ def allevents(page=1):
     if request.method == 'POST':
         filter_by_name = request.form.get('srch')
         if filter_by_name != '':
-            events_by_name, pages = Event.get_by_name_or_description(filter_by_name, page)
+            events_by_name, pages = Event.get_by_name_tag_or_description(filter_by_name, page)
             for evnt in events_by_name:
                 if evnt.photo == None:
                     evnt.photo = "../static/images/events_photos/default.jpg"
@@ -696,7 +696,7 @@ def send_mail_notification_about_changed_event(evnt_id):
     allsignedup = db.engine.execute(id_list_of_signedup_repairmen_query).fetchall()
     allsignedups = [r[0] for r in allsignedup]
     # Fetch User objects for these ids
-    list_of_signedup_repairmen_object = select([(User)]).where(User.id.in_(allsignedups))
+    list_of_signedup_repairmen_object = select([User]).where(User.id.in_(allsignedups))
     Signedupusers = db.engine.execute(list_of_signedup_repairmen_object).fetchall()
     map_of_msg_for_repairmen = notification_mail_about_changed_event(Signedupusers, evnt_id)
     username = '953dfa2af4a2c579a134d7aaa74c646b'
