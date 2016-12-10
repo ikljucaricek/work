@@ -6,7 +6,7 @@ from app import app, db, babel
 from datetime import datetime
 from model import User, Event, Applied_repairman, Event_comment, Tag # from database
 from werkzeug import secure_filename
-from sqlalchemy.sql import and_, select, or_
+from sqlalchemy.sql import and_, select, or_, func
 from smtplib import SMTP
 from flask.ext.babel import gettext, ngettext, gettext, refresh
 from flask.ext.sqlalchemy import BaseQuery
@@ -49,11 +49,12 @@ def index():
     total_users = len(User.get_all())
     active_events = Event.get_active_events().count()
     closed_events = Event.get_closed_events().count()
+    money_earned = db.session.query(func.sum(Event.price)).filter(Event.closed == bool(1)).scalar()
     events = Event.get_all()[0][:-10:-1]
     for event in events:
         if event.photo == None:
             event.photo = "../static/images/events_photos/default.jpg"
-    return render_template('index.html', events = events, active_events = active_events, closed_events = closed_events , total_users = total_users)
+    return render_template('index.html', events = events, active_events = active_events, closed_events = closed_events , total_users = total_users, money_earned = int(money_earned))
 
 @bp.route('/about')
 def about():
@@ -70,11 +71,12 @@ def startup():
     total_users = len(User.get_all())
     active_events = Event.get_active_events().count()
     closed_events = Event.get_closed_events().count()
+    money_earned = db.session.query(func.sum(Event.price)).filter(Event.closed == bool(1)).scalar()
     events = Event.get_all()[0][:-10:-1]
     for event in events:
         if event.photo == None:
             event.photo = "../static/images/events_photos/default.jpg"
-    return render_template('startup.html', username = session['username'], events = events, active_events = active_events, closed_events = closed_events , total_users = total_users)
+    return render_template('startup.html', username = session['username'], events = events, active_events = active_events, closed_events = closed_events , total_users = total_users, money_earned = money_earned)
 
 @bp.route('/signin', methods=['GET', 'POST'])
 def login():

@@ -130,8 +130,15 @@
         border-style: solid;
         border-color: #16a6b6;
     }
+    .money{
+        border-color: #ccff33;
+    }
     .cntr{
         padding-top: 37%;
+    }
+    .spacer{
+        margin-top: 37px;
+        margin-bottom: 37px;
     }
     </style>
 
@@ -203,29 +210,29 @@
               <h2>{% trans %}Client{% endtrans %}</h2>
               {% if username %}
               <a href="{{ url_for('.startup') }}" data-toggle="modal" id="myBtn2">
-                <span class="glyphicon glyphicon-edit big" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-edit big spacer" aria-hidden="true"></span>
                   <p>{% trans %}Create an event{% endtrans %}</p>
               </a>
               {% else %}
               <a href="#logModal" data-toggle="modal" data-target="#log-modal" id="myLnk">
-                <span class="glyphicon glyphicon-edit big" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-edit big spacer" aria-hidden="true"></span>
                   <p>{% trans %}Create an event{% endtrans %}</p>
 
               </a>
               {% endif %}
             <hr>
-                <span class="glyphicon glyphicon-time big" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-time big spacer" aria-hidden="true"></span>
                   <p>{% trans %}Wait for repairman to apply for a job{% endtrans %}</p>
             <hr>
               {% if username %}
               <a href="{{ url_for('.myPage', username) }}">
-              <span class="glyphicon glyphicon-check big" aria-hidden="true"></span>
+              <span class="glyphicon glyphicon-check big spacer" aria-hidden="true"></span>
                   <p>{% trans %}Choose your repairman{% endtrans %}</p>
 
               </a>
               {% else %}
               <a href="#logModal" data-toggle="modal" data-target="#log-modal" id="myLnk">
-              <span class="glyphicon glyphicon-check big" aria-hidden="true"></span>
+              <span class="glyphicon glyphicon-check big spacer" aria-hidden="true"></span>
                   <p>{% trans %}Choose your repairman{% endtrans %}</p>
               </a>
               {% endif %}
@@ -239,6 +246,10 @@
                     <p class="cntr">{{ events|length }}</p>
                 </div>
                 <p>{% trans %}Total Events{% endtrans %}</p>
+                <div align="center" class="activitycicle activitycicleborder money">
+                    <p class="cntr">{{ money_earned }}</p>
+                </div>
+                <p>{% trans %}Total Money Earned{% endtrans %}</p>
                 <div align="center" class="activitycicle activitycicleborder">
                     <p class="cntr">{{ active_events }}</p>
                 </div>
@@ -254,21 +265,21 @@
               <h2>{% trans %}Repairman{% endtrans %}</h2>
               {% if username %}
               <a href="{{ url_for('.allevents') }}">
-              <span class="glyphicon glyphicon-wrench big" aria-hidden="true"></span>
+              <span class="glyphicon glyphicon-wrench big spacer" aria-hidden="true"></span>
                   <p>{% trans %}Apply for a job{% endtrans %}</p>
 
               </a>
               {% else %}
               <a href="#logModal" data-toggle="modal" data-target="#log-modal" id="myLnk">
-              <span class="glyphicon glyphicon-wrench big" aria-hidden="true"></span>
+              <span class="glyphicon glyphicon-wrench big spacer" aria-hidden="true"></span>
                   <p>{% trans %}Apply for a job{% endtrans %}</p>
               </a>
               {% endif %}
             <hr>
-            <span class="glyphicon glyphicon-user big" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-user big spacer" aria-hidden="true"></span>
                   <p>{% trans %}Wait for the client acceptance{% endtrans %}</p>
             <hr>
-            <span class="glyphicon glyphicon-map-marker big" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-map-marker big spacer" aria-hidden="true"></span>
                  <p>{% trans %}Bring your tools and come over{% endtrans %}</p>
             </div>
     <!--         <div class="col-lg-6 col-md-offset-3">
