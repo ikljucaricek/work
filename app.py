@@ -13,14 +13,13 @@ if os.environ.get('JAWSDB_MARIA_URL') is None:
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://workuser:work1234@localhost/work'
 else:
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['JAWSDB_MARIA_URL']
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://fglzebctdqphod:aK6qOhgTPt-e2JSQP05DKpes2S@ec2-54-247-185-241.eu-west-1.compute.amazonaws.com:5432/debfq3v7p66b39'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://fglzebctdqphod:aK6qOhgTPt-e2JSQP05DKpes2S@ec2-54-247-185-241.eu-west-1.compute.amazonaws.com:5432/debfq3v7p66b39'
 
 db = SQLAlchemy(app)
 
 from views import *
 
-
-#if __name__ == "__main__":
+# if __name__ == "__main__":
 #    logging.basicConfig(filename='logs.log', level=logging.DEBUG)
 #    logging.getLogger().addHandler(logging.StreamHandler())
 #    app.run(debug=False, host="0.0.0.0")
