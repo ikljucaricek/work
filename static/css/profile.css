@@ -1,0 +1,29 @@
+.comments {
+    border-radius: 15px;
+    border: 3px solid gray;
+    padding: 20px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.beforeComment{
+    padding: 5px;
+    font-size: 130%;  
+}
+
+.innercomment{
+    border-radius: 10px;
+    border: 2px solid #c8c8de;
+    /* border does not show */
+    margin-bottom:10px;
+    background-color: #ffffff;
+    text-align: left;
+    padding: 10px;
+}
+
+
+.innerauthor{
+    padding-bottom: 5px;
+    margin-bottom:2px;
+    text-align: right;
+}
