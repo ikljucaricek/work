@@ -114,8 +114,14 @@ $(document).ready(function(){
 $(function () {
     $('.label').on('click', function (event) {
     		var tag_def = $('#tag-default');
-        tag_def.val(tag_def.val() + $("#" + event.target.id).text() + ", ");
-        $("#" + event.target.id).removeClass("label label-primary").addClass("label label-info");
+        if($("#" + event.target.id).hasClass("label-primary")) {
+            $("#" + event.target.id).removeClass("label label-primary").addClass("label label-info");
+            tag_def.val(tag_def.val() + $("#" + event.target.id).text() + ", ");
+        }
+        else{
+            $("#" + event.target.id).removeClass("label label-info").addClass("label label-primary");
+            tag_def.val(tag_def.val().replace($("#" + event.target.id).text() + ", ", ""))
+        }
     });
 });
 </script>
