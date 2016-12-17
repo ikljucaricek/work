@@ -14,6 +14,9 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
+        span.label{
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -34,10 +37,12 @@
                       <label for="description" class="control-label"><span class="glyphicon glyphicon-comment"></span> {% trans %}Event Description{% endtrans %}</label><br>
                       <textarea class="form-control" name="description" id="description" placeholder="{% trans %}Be as descriptive as you can (e.g. Current water tap is double handed and new water tap should be sigle handed){% endtrans %}" required></textarea><br>
                   </div>
-                  <div class="pull-right"><span type="button" title="{% trans %}Tags Explanation{% endtrans %}" data-toggle="popover" class="glyphicon glyphicon-question-sign" data-placement="left" data-content="{% trans %}Insert tags separated by comma which best describe your event{% endtrans %}"></span></div>
+                  <div class="pull-right"><span type="button" title="{% trans %}Tags Explanation{% endtrans %}" data-toggle="popover" class="glyphicon glyphicon-question-sign" data-placement="left" data-content="{% trans %}Insert tags separated by comma which best describe your event or choose from default ones below{% endtrans %}"></span></div>
                   <div class="form-group" id="bloodhound">
                       <label for="tags" class="control-label"><span class="glyphicon glyphicon-tags"></span> {% trans %}Tags{% endtrans %}</label><br>
-                      <input class="typeahead" type="text" class="form-control" data-role="tagsinput" name="tag" placeholder="{% trans %}water, gas, electricity, ...{% endtrans %}" required><br>
+                      <input class="typeahead" type="text" class="form-control" data-role="tagsinput" name="tag" placeholder="{% trans %}water, gas, electricity, ...{% endtrans %}" required>
+                      <span id="electricity" class="label label-primary">{% trans %}electricity{% endtrans %}</span> <span id="water" class="label label-primary">{% trans %}water{% endtrans %}</span> <span id="gas" class="label label-primary">{% trans %}gas{% endtrans %}</span> <span id="glass" class="label label-primary">{% trans %}glass{% endtrans %}</span> <span id="other" class="label label-primary">{% trans %}other{% endtrans %}</span><br>
+                      <input name="tag-default" id="tag-default" type="hidden">
                   </div>
                   <div class="form-group">
                       <label for="price"><span class="glyphicon glyphicon-usd"></span> {% trans %}Event Price{% endtrans %}</label>
@@ -83,7 +88,7 @@
               </div>  
               </form>
             </div>
-          </div>        
+          </div>
 <script src="../static/js/CreateEventValidation.js"></script>
 <script src="../static/js/cities.js"></script>
 <script src="../static/js/neighborhoods.js"></script>
@@ -105,3 +110,13 @@ $(document).ready(function(){
     $('[data-toggle="popover"]').popover()
   })
 </script>
+<script type="text/javascript">
+$(function () {
+    $('.label').on('click', function (event) {
+    		var tag_def = $('#tag-default');
+        tag_def.val(tag_def.val() + $("#" + event.target.id).text() + ", ");
+        $("#" + event.target.id).removeClass("label label-primary").addClass("label label-info");
+    });
+});
+</script>
+
