@@ -423,7 +423,7 @@
                 </div>
               </div>
             </div>
-        
+        <!-- Modal Deactivate Event -->
         <div class="modal fade" id="deactEvent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -444,7 +444,7 @@
             </div>
           </div>
         </div>
-        
+        <!-- Modal Decline Event -->
         <div class="modal fade" id="declineEvent" tabindex="-1" role="dialog" aria-labelledby="DeclineModal">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -466,7 +466,7 @@
             </div>
           </div>
         </div>
-        
+        <!-- Modal Unassign -->
         <div class="modal fade" id="unsign-modal" tabindex="-1" role="dialog" aria-labelledby="DeclineModal">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -490,7 +490,7 @@
             </div>
           </div>
         </div>
-        
+        <!-- Modal Finish Event -->
         <div class="modal fade" id="closeEvent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -500,8 +500,11 @@
               </div>
               <form method='POST' action="{{ url_for('.close_rate_event') }}" enctype="multipart/form-data">
                 <div class="modal-body" align="center">
-                  <input type="hidden" class="form-control" name="id" id="id" placeholder="{% trans %}Id of Event{% endtrans %}" value="{{ event.id }}" readonly>
+                  <input type="hidden" class="form-control" name="eventid" id="eventid" placeholder="{% trans %}Id of Event{% endtrans %}" value="{{ event.id }}" readonly>
                   <input id="rating-id" name="rating-id" value="0" type="number" class="rating" min="0" max="5" step="1" data-size="xs">
+                  <input type="hidden" name="repairmanid" id="repairmanid" value="{{ event.repairman_id }}" readonly>
+                  <input type="hidden" name="clientid" id="clientid" value="{{ event.user_id }}" readonly>
+                  <textarea class="form-control" name="commenttext" id="commenttext" placeholder="{% trans %}Your Comment{% endtrans %}"></textarea>
                 </div>                
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Back{% endtrans %}</button>

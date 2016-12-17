@@ -569,6 +569,12 @@ def close_rate_event():
     if request.method == 'POST':
         eventid = request.form.get('id')
         rate_it = request.form.get('rating-id')
+        repairman_comment = Repairman_comment(
+            comment =  request.form.get('commenttext'),
+            repairman_id = request.form.get('repairmanid'),
+            client_id = request.form.get('clientid'),
+            event_id = eventid,
+            date_time_post = datetime.now())
         event = Event(
             id=eventid,
             active=0,
