@@ -392,18 +392,51 @@ def profilePage(username):
     active_events = Event.get_active_events().count()
     if len(username) != 0 and User.get_by_username(username) != None:
         user = User.get_by_username(username)
+        
+        # Check for user comments
+        commentsquery = select([(Repairman_comment)]).where(
+            Repairman_comment.repairman_id == user.id)
+        repairmancomments = db.engine.execute(commentsquery).fetchall()
+
+        comms_list = [str(x[1]) for x in repairmancomments]
+        author_ids = [str(x[3]) for x in repairmancomments]
+        event_ids = [str(x[4]) for x in repairmancomments]
+        date_list = [str(x[5]) for x in repairmancomments]
+
+        authorQuery = select([(User)]).where(User.id.in_(author_ids))
+        authors = db.engine.execute(authorQuery).fetchall()
+        # this is done because we do not know how to iterate and object in jQuery
+        # in jQuery we would need to use someting like objects[i].comment
+        # so we send list of stings instead, 
+
+
+        user_list = [str(x[3]) for x in authors]
+        userid_list = [str(x[0]) for x in authors]
+        user_dict = dict(zip(userid_list, user_list))
+        
+        author_list = []
+        for y in author_ids:
+            author_list.append(user_dict[str(y)])
+        
         # user_photo = user.picture
         if user.picture != None:
-            return render_template('profile.html', user=user, cuserId=session.get('id'), active_events=active_events)
+            return render_template('profile.html', user=user, cuserId=session.get('id'), active_events=active_events,
+                                        usercomments=comms_list,
+                                        author_list=author_list,
+                                        event_list=event_ids,
+                                        date_list=date_list,)
         else:
             user.picture = "./static/images/users_avatar/default.jpg"
-            return render_template('profile.html', user=user, cuserId=session.get('id'), active_events=active_events)
+            return render_template('profile.html', user=user, cuserId=session.get('id'), active_events=active_events,
+                                        usercomments=comms_list,
+                                        author_list=author_list,
+                                        event_list=event_ids,
+                                        date_list=date_list,)
     else:
         refresh()
         print "Refreshing"
         flash(gettext("%s doesn't exist!") % username, "warning")
         return redirect(url_for('.profilePage', username=session['username']))
-
 
 @bp.route('/mypage/<username>')
 @bp.route('/mypage/')

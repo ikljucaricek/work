@@ -27,6 +27,9 @@
     
     <!-- Validatror -->
     <link href="../../static/css/bootstrapvalidator.min.css" rel="stylesheet">
+    
+    <!-- Custom styles for this template -->
+    <link href="../../static/css/profile.css" rel="stylesheet">
     <style>
       .footer {
         background: linear-gradient(#3c3c3c 0,#222 100%);
@@ -175,14 +178,25 @@
           {% endif %}
 
           <span class="label label-default">{% trans %}Average Rate{% endtrans %}:</span><input id="rating-id" name="rating-id" value={{ user.rating }} type="number" class="rating" min="0" max="5" step="0.1" data-size="xs" readonly>
-        </div><!-- /.col-lg-4 -->
+        </div>
+        <!-- /.col-lg-4 -->
 
 <!--         <div class="col-lg-6 col-md-offset-3">
           <hr class="featurette-divider">
           <button type="button" class="btn btn-primary btn-lg btn-block">Create Event</button>
         </div> -->
       </div><!-- /.row -->
-
+      <br>
+      <br>
+      <span class="beforeComment" style="float:left;">
+                                    {% trans %}Comments:{% endtrans %}
+      </span>
+      <div class="comments" id="comments">
+        {% if usercomments %}
+        {% else %}
+        {% trans %}No comments yet{% endtrans %}
+        {% endif %}
+      </div>      
       </div>
     </div>
 
@@ -275,6 +289,36 @@
                     alert("Error while loading: " + xhr.status + ": " + xhr.statusText);
               });             
           });
+          var numOfc = {{ usercomments|safe }};
+          var authors = {{ author_list|safe }};
+          var events = {{ event_list|safe }};
+          var dates = {{ date_list|safe }};
+          $SCRIPT_ROOT = "{{ url_for('.index', _external=True)}}";
+          for (i = 0; i < numOfc.length; i++) {
+          $author = authors[i]
+          $event = events[i]
+             $("#comments").append(
+                    jQuery('<div/>', {
+                            class: 'innerauthor',
+                            title: '{% trans %}date and author{% endtrans %}',
+                            text: dates[i]+ ' by '}
+                            ).append(jQuery('<a/>', {
+                            href : $SCRIPT_ROOT+"profile/"+$author,
+                            text : authors[i]})
+                            ).append(jQuery('<span/>', {
+                            text : ', for event with id: '})
+                            ).append(jQuery('<a/>', {
+                            href : $SCRIPT_ROOT+"edetails/"+$event,
+                            text : events[i]})
+                            ).append(jQuery('<div/>', {
+                                class: 'innercomment',
+                                title: 'comment',
+                                text: numOfc[i]}))
+            )
+            
+        };
+      });
+    </script>
       });
     </script>
     
