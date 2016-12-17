@@ -5,7 +5,7 @@ from flask import request, render_template, Response, g, session, redirect, url_
     Blueprint
 from app import app, db, babel
 from datetime import datetime
-from model import User, Event, Applied_repairman, Event_comment, Tag  # from database
+from model import User, Event, Applied_repairman, Event_comment, Tag, Repairman_comment  # from database
 from werkzeug import secure_filename
 from sqlalchemy.sql import and_, select, or_, func
 from smtplib import SMTP
@@ -54,9 +54,17 @@ def login_required(fn):
 @bp.route('/')
 def index():
     total_users = len(User.get_all())
+    if not total_users:
+        total_users = 0
     active_events = Event.get_active_events().count()
+    if not active_events:
+        active_events = 0
     closed_events = Event.get_closed_events().count()
+    if not closed_events:
+        closed_events = 0
     money_earned = db.session.query(func.sum(Event.price)).filter(Event.closed == bool(1)).scalar()
+    if not money_earned:
+        money_earned = 0
     events = Event.get_all()[0][:-10:-1]
     for event in events:
         if event.photo == None:
@@ -567,7 +575,7 @@ def decline_event():
 @login_required
 def close_rate_event():
     if request.method == 'POST':
-        eventid = request.form.get('id')
+        eventid = request.form.get('eventid')
         rate_it = request.form.get('rating-id')
         repairman_comment = Repairman_comment(
             comment =  request.form.get('commenttext'),
@@ -575,6 +583,7 @@ def close_rate_event():
             client_id = request.form.get('clientid'),
             event_id = eventid,
             date_time_post = datetime.now())
+        repairman_comment.save()
         event = Event(
             id=eventid,
             active=0,
