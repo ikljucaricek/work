@@ -333,7 +333,6 @@ def create_an_event():
         else:
             neighborhoodinput = ""
         default_tags = request.form.get('tag-default').strip().split(',')
-        print default_tags
         tags = default_tags + request.form.get('tag').split(',')
         event = Event(
             name=request.form.get('name'),
@@ -593,7 +592,11 @@ def allevents(page=1):
             event.photo = "../static/images/events_photos/default.jpg"
 
     if request.method == 'POST':
-        filter_by_name = request.form.get('srch')
+        default_tags = request.form.get('tag-default').strip()
+        if default_tags != None:
+            filter_by_name = request.form.get('srch') + default_tags
+        else:
+            filter_by_name = request.form.get('srch')
         if filter_by_name != '':
             events_by_name, pages = Event.get_by_name_tag_or_description(filter_by_name, page)
             for evnt in events_by_name:
