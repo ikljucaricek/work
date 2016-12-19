@@ -69,6 +69,10 @@
       #lng:hover, #lng2:hover {
         color: #57BDDC;
       }
+      .tag span{
+          margin-left: 25%;
+          cursor: pointer;
+      }
     </style>
   </head>
 
@@ -154,7 +158,11 @@
                 <span class="input-group-btn">
                   <button class="btn btn-info" type="submit">{% trans %}Go!{% endtrans %}</button>
                 </span>
-              </div>      
+              </div>
+            <div class="input-group tag" align="center">
+            <span id="electricity" name="electricity" class="label label-default">{% trans %}electricity{% endtrans %}</span> <span id="water" class="label label-default">{% trans %}water{% endtrans %}</span> <span id="gas" class="label label-default">{% trans %}gas{% endtrans %}</span> <span id="glass" class="label label-default">{% trans %}glass{% endtrans %}</span> <span id="other" class="label label-default">{% trans %}other{% endtrans %}</span><br>
+            <input name="tag-default" id="tag-default" type="hidden">
+            </div>
             </form>
           </div>
         {% if username %}
@@ -356,7 +364,7 @@
                     <div class="modal-footer" style="padding:40px;">
                     <div class="form-group">
                       <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button> 
-                      <input type="submit" class="btn btn-info" value="Submit"></input>
+                      <input type="submit" class="btn btn-info" value="Submit"/>
                      </div>
                     </div>
                   </form>
@@ -558,5 +566,69 @@
           {% endfor %}
         {% endif %}
     </script>
+<script type="text/javascript">
+$(function tag_filter() {
+    $('.tag').on('click', function (event) {
+        var active_tag;
+        if($("#" + event.target.id).hasClass("label-default")) {
+            $("#" + event.target.id).removeClass("label label-default").addClass("label label-info");
+            active_tag = $("#" + event.target.id).attr('class');
+        }
+        else{
+            $("#" + event.target.id).removeClass("label label-info").addClass("label label-default");
+            sessionStorage.removeItem(event.target.id);
+            active_tag = $("#" + event.target.id).attr('class');
+        }
+        sessionStorage.setItem(event.target.id,active_tag);
+    });
+});
+</script>
+  <script>
+      $( document ).ready(function() {
+          if($("#electricity").hasClass("label-default") && sessionStorage.getItem("electricity") != null) {
+              $("#electricity").removeClass("label label-default").addClass(sessionStorage.getItem("electricity"));
+          }
+          if($("#electricity").hasClass("label-info") && sessionStorage.getItem("electricity") != null){
+              $("#electricity").removeClass("label label-info").addClass(sessionStorage.getItem("electricity"));
+          }
+          if($("#water").hasClass("label-default") && sessionStorage.getItem("water") != null) {
+              $("#water").removeClass("label label-default").addClass(sessionStorage.getItem("water"));
+          }
+          if($("#water").hasClass("label-info") && sessionStorage.getItem("water") != null) {
+              $("#water").removeClass("label label-info").addClass(sessionStorage.getItem("water"));
+          }
+          if($("#gas").hasClass("label-default") && sessionStorage.getItem("gas") != null) {
+              $("#gas").removeClass("label label-default").addClass(sessionStorage.getItem("gas"));
+          }
+          if($("#gas").hasClass("label-info") && sessionStorage.getItem("gas") != null) {
+              $("#gas").removeClass("label label-info").addClass(sessionStorage.getItem("gas"));
+          }
+          if($("#glass").hasClass("label-default") && sessionStorage.getItem("glass") != null) {
+              $("#glass").removeClass("label label-default").addClass(sessionStorage.getItem("glass"));
+          }
+          if($("#glass").hasClass("label-info") && sessionStorage.getItem("glass") != null) {
+              $("#glass").removeClass("label label-info").addClass(sessionStorage.getItem("glass"));
+          }
+          if($("#other").hasClass("label-default") && sessionStorage.getItem("other") != null) {
+              $("#other").removeClass("label label-default").addClass(sessionStorage.getItem("other"));
+          }
+          if($("#other").hasClass("label-info") && sessionStorage.getItem("other") != null) {
+              $("#other").removeClass("label label-info").addClass(sessionStorage.getItem("other"));
+          }
+});
+  </script>
+  <script type="text/javascript">
+$(function () {
+    $('.label').on('click', function (event) {
+    		var tag_def = $('#tag-default');
+        if($("#" + event.target.id).hasClass("label-default")) {
+            tag_def.val(tag_def.val() + $("#" + event.target.id).text() + " ");
+        }
+        else{
+            tag_def.val(tag_def.val().replace($("#" + event.target.id).text() + " ", ""))
+        }
+    });
+});
+</script>
   </body>
 </html>
