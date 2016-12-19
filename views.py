@@ -340,7 +340,9 @@ def create_an_event():
             neighborhoodinput = request.form.get('neighborhoodList')
         else:
             neighborhoodinput = ""
-        tags = request.form.get('tag').split(',')
+        default_tags = request.form.get('tag-default').strip().split(',')
+        print default_tags
+        tags = default_tags + request.form.get('tag').split(',')
         event = Event(
             name=request.form.get('name'),
             description=request.form.get('description'),
