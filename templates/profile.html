@@ -301,12 +301,12 @@
                     jQuery('<div/>', {
                             class: 'innerauthor',
                             title: '{% trans %}date and author{% endtrans %}',
-                            text: dates[i]+ ' by '}
+                            text: dates[i]+ '{% trans %} by {% endtrans %}'}
                             ).append(jQuery('<a/>', {
                             href : $SCRIPT_ROOT+"profile/"+$author,
                             text : authors[i]})
                             ).append(jQuery('<span/>', {
-                            text : ', for event with id: '})
+                            text : '{% trans %}, for event with id: {% endtrans %}'})
                             ).append(jQuery('<a/>', {
                             href : $SCRIPT_ROOT+"edetails/"+$event,
                             text : events[i]})
