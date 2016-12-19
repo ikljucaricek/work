@@ -54,9 +54,17 @@ def login_required(fn):
 @bp.route('/')
 def index():
     total_users = len(User.get_all())
+    if not total_users:
+        total_users = 0
     active_events = Event.get_active_events().count()
+    if not active_events:
+        active_events = 0
     closed_events = Event.get_closed_events().count()
+    if not closed_events:
+        closed_events = 0
     money_earned = db.session.query(func.sum(Event.price)).filter(Event.closed == bool(1)).scalar()
+    if not money_earned:
+        money_earned = 0
     events = Event.get_all()[0][:-10:-1]
     for event in events:
         if event.photo == None:
