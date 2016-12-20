@@ -396,7 +396,10 @@ def profilePage(username):
         
         # Check for user comments
         commentsquery = select([(Repairman_comment)]).where(
-            Repairman_comment.repairman_id == user.id)
+            and_(
+                Repairman_comment.repairman_id == user.id,
+                Repairman_comment.comment != ""))
+
         repairmancomments = db.engine.execute(commentsquery).fetchall()
 
         comms_list = [str(x[1]) for x in repairmancomments]
