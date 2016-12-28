@@ -29,6 +29,9 @@
     
     <!-- Validatror -->
     <link href="../../static/css/bootstrapvalidator.min.css" rel="stylesheet">
+
+    <!-- Select2 -->
+    <link href="../../static/css/select2.min.css" rel="stylesheet" />
     
     <style>
       .panel {
@@ -70,8 +73,11 @@
         color: #57BDDC;
       }
       .tag span{
-          margin-left: 25%;
+          margin-left: 7px;
           cursor: pointer;
+      }
+      .tags{
+        width: 500px;
       }
     </style>
   </head>
@@ -160,9 +166,20 @@
                 </span>
               </div>
             <div class="input-group tag" align="center">
-            <span id="electricity" name="electricity" class="label label-default">{% trans %}electricity{% endtrans %}</span> <span id="water" class="label label-default">{% trans %}water{% endtrans %}</span> <span id="gas" class="label label-default">{% trans %}gas{% endtrans %}</span> <span id="glass" class="label label-default">{% trans %}glass{% endtrans %}</span> <span id="other" class="label label-default">{% trans %}other{% endtrans %}</span><br>
+            <span id="electricity" name="electricity" class="label label-default">{% trans %}electricity{% endtrans %}</span> <span id="water" class="label label-default">{% trans %}water{% endtrans %}</span> <span id="gas" class="label label-default">{% trans %}gas{% endtrans %}</span> <span id="ceramic" class="label label-default">{% trans %}ceramic{% endtrans %}</span> <span id="glass" class="label label-default">{% trans %}glass{% endtrans %}</span> <span id="paint" class="label label-default">{% trans %}paint{% endtrans %}</span> <span id="internal_construction" class="label label-default">{% trans %}internal-construction{% endtrans %}</span> <span id="other" class="label label-default">{% trans %}other{% endtrans %}</span><br>
             <input name="tag-default" id="tag-default" type="hidden">
             </div>
+            <!--<div class="input-group" align="center">
+              <select class="tags" multiple="multiple">
+                <option value="electricity">electricity</option>
+                <option value="gas">gas</option>
+                <option value="ceramic">ceramic</option>
+                <option value="glass">glass</option>
+                <option value="paint">paint</option>
+                <option value="internal construction">internal construction</option>
+                <option value="other">other</option>
+              </select>
+            </div>-->
             </form>
           </div>
         {% if username %}
@@ -414,6 +431,8 @@
     <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
     <!-- Validator -->
     <script src="../../static/js/bootstrapvalidator.min.js"></script>
+    <!-- Select2 -->
+    <script src="../../static/js/select2.min.js"></script>
     <script>
     $(document).ready(function() {
     $('#reg-modal').bootstrapValidator({
@@ -566,6 +585,7 @@
         {% endif %}
     </script>
 <script type="text/javascript">
+// To set color on label when the one is clicked
 $(function tag_filter() {
     $('.tag').on('click', function (event) {
         var active_tag;
@@ -583,7 +603,8 @@ $(function tag_filter() {
 });
 </script>
   <script>
-      $( document ).ready(function() {
+  // To know which tags are active and which are not when page is loaded
+      $( document ).ready(function() {        
           if($("#electricity").hasClass("label-default") && sessionStorage.getItem("electricity") != null) {
               $("#electricity").removeClass("label label-default").addClass(sessionStorage.getItem("electricity"));
           }
@@ -602,11 +623,29 @@ $(function tag_filter() {
           if($("#gas").hasClass("label-info") && sessionStorage.getItem("gas") != null) {
               $("#gas").removeClass("label label-info").addClass(sessionStorage.getItem("gas"));
           }
+          if($("#ceramic").hasClass("label-default") && sessionStorage.getItem("ceramic") != null) {
+              $("#ceramic").removeClass("label label-default").addClass(sessionStorage.getItem("ceramic"));                         
+          }
+          if($("#ceramic").hasClass("label-info") && sessionStorage.getItem("ceramic") != null) {
+              $("#ceramic").removeClass("label label-info").addClass(sessionStorage.getItem("ceramic"));            
+          }
           if($("#glass").hasClass("label-default") && sessionStorage.getItem("glass") != null) {
               $("#glass").removeClass("label label-default").addClass(sessionStorage.getItem("glass"));
           }
           if($("#glass").hasClass("label-info") && sessionStorage.getItem("glass") != null) {
               $("#glass").removeClass("label label-info").addClass(sessionStorage.getItem("glass"));
+          }
+          if($("#paint").hasClass("label-default") && sessionStorage.getItem("paint") != null) {
+              $("#paint").removeClass("label label-default").addClass(sessionStorage.getItem("paint"));
+          }
+          if($("#paint").hasClass("label-info") && sessionStorage.getItem("paint") != null) {
+              $("#paint").removeClass("label label-info").addClass(sessionStorage.getItem("paint"));
+          }
+          if($("#internal_construction").hasClass("label-default") && sessionStorage.getItem("internal_construction") != null) {
+              $("#internal_construction").removeClass("label label-default").addClass(sessionStorage.getItem("internal_construction"));
+          }
+          if($("#internal_construction").hasClass("label-info") && sessionStorage.getItem("internal_construction") != null) {
+              $("#internal_construction").removeClass("label label-info").addClass(sessionStorage.getItem("internal_construction"));
           }
           if($("#other").hasClass("label-default") && sessionStorage.getItem("other") != null) {
               $("#other").removeClass("label label-default").addClass(sessionStorage.getItem("other"));
@@ -619,15 +658,24 @@ $(function tag_filter() {
   <script type="text/javascript">
 $(function () {
     $('.label').on('click', function (event) {
+        var srch_array = $("#srch").val().split(" ");
     		var tag_def = $('#tag-default');
         if($("#" + event.target.id).hasClass("label-default")) {
             tag_def.val(tag_def.val() + $("#" + event.target.id).text() + " ");
         }
         else{
-            tag_def.val(tag_def.val().replace($("#" + event.target.id).text() + " ", ""))
+            tag_def.val(tag_def.val().replace($("#" + event.target.id).text() + " ", ""));
+            var tg_val = $("#" + event.target.id).text();            
+            srch_array = jQuery.grep(srch_array, function(arr_val){
+                return arr_val !== tg_val;
+              });
+            $("#srch").val(srch_array.toString());
         }
     });
 });
+</script>
+<script type="text/javascript">
+$(".tags").select2({tags: true});
 </script>
   </body>
 </html>
