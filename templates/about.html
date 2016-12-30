@@ -300,7 +300,7 @@
         <div class="row">
             <div class="col-md-3 col-md-offset-2">
                 <div class="centerBlock">
-                    <img class="img-circle" src="../static/images/tyg_ayo/ikljucaricek.jpg" alt="Generic placeholder image"  height="180">
+                    <img class="img-circle" src="../static/images/tyg_ayo/ikljucaricek.jpg" alt="Generic placeholder image" data-toggle="tooltip" title="Igor Kljucaricek" data-placement="bottom" height="180">
                 </div>    
                 </br>
                 </br>
@@ -308,11 +308,11 @@
                         <div role="tab" id="headingIgor">
                             <!-- <h4 class="panel-title"> -->
                                 <button class="btn btn-info btn-block" type="button" data-toggle="collapse" data-target="#collapseIgor" aria-controls="collapseIgor" aria-expanded="true">
-                                    Igor Kljucaricek - Co-founder
+                                    Want to know more?
                                 </button>
                             <!-- </h4> -->
                         </div>
-                        <div id="collapseIgor" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingIgor">
+                        <div id="collapseIgor" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingIgor">
                             <div class="panel-body">
                                 {% trans %}Igor believes that "sunny & warm" is not a paradox, myth or phrase. He likes discussing big ideas or simply drinking beer in 50 shades of shade while chit chating.{% endtrans %}
                                 </br> </br>{% trans %}Adrenalin sports and business opportunities are things where he pushes himself to the limits. But the real must are early mornings while holding a cup of coffee in his hands. {% endtrans %}
@@ -322,7 +322,7 @@
             </div>
             <div class="col-md-3 col-md-offset-1">
                 <div class="centerBlock">
-                    <img class="img-circle" src="../static/images/tyg_ayo/pnajman.jpg" alt="Generic placeholder image" height="180">
+                    <img class="img-circle" src="../static/images/tyg_ayo/pnajman.jpg" alt="Generic placeholder image" data-toggle="tooltip" title="Pavel Najman" data-placement="bottom" height="180">
                 </div>
                 </br>
                 </br> 
@@ -330,11 +330,11 @@
                         <div role="tab" id="headingPavel">
                             <!-- <h4 class="panel-title"> -->
                                 <button class="btn btn-info btn-block" type="button" data-toggle="collapse" data-target="#collapsePavel" aria-expanded="true" aria-controls="collapsePavel">
-                                    Pavel Najman - Co-founder
+                                    Want to know more?
                                 </button>
                             <!-- </h4> -->
                         </div>
-                        <div id="collapsePavel" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingPavel">
+                        <div id="collapsePavel" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingPavel">
                             <div class="panel-body">
                                 {% trans %}Pavel is interested in project development frameworks especially Scrum. He likes both people and animals and believes that all of them should be happy.{% endtrans %}
                                 </br></br>
@@ -458,6 +458,11 @@
     <script type="text/javascript">
       $(function () {
         $('[data-toggle="popover"]').popover()
+      })
+    </script>
+    <script type="text/javascript">
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
       })
     </script>
   </body>
