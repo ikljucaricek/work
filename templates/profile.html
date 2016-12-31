@@ -185,19 +185,24 @@
           <hr class="featurette-divider">
           <button type="button" class="btn btn-primary btn-lg btn-block">Create Event</button>
         </div> -->
-      </div><!-- /.row -->
-      <br>
-      <br>
-      <span class="beforeComment" style="float:left;">
-                                    {% trans %}Comments:{% endtrans %}
-      </span>
-      <div class="comments" id="comments">
-        {% if usercomments %}
-        {% else %}
-        {% trans %}No comments yet{% endtrans %}
-        {% endif %}
-      </div>      
+      </div><!-- /.row -->     
       </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="col-xs-4"></div>
+      <div class="col-xs-6">
+        <span class="beforeComment" style="float:left;">
+                                    {% trans %}Comments:{% endtrans %}
+        </span>
+        <div class="comments" id="comments">
+          {% if usercomments %}
+          {% else %}
+          {% trans %}No comments yet{% endtrans %}
+          {% endif %}
+        </div> 
+      </div>
+      <div class="col-xs-2"></div>      
     </div>
 
     <div class="container">
