@@ -776,7 +776,7 @@ def send_mail_notification_about_changed_event(evnt_id):
     server.close()
 
 
- def calculate_repairman_average_rate(repairman_id):
+def calculate_repairman_average_rate(repairman_id):
     user = User(
         id=repairman_id,
         rating=Event.get_repairman_avg_rating(repairman_id))
