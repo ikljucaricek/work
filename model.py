@@ -206,6 +206,8 @@ class User(db.Model):
     address = db.Column(db.String(250))
     rating = db.Column(db.Float)
     joindate = db.Column(db.DateTime)
+    xp = db.Column(db.Integer)
+    level = db.Column(db.Integer)
     events = db.relationship('Event', backref='user', foreign_keys=[Event.user_id], lazy='dynamic')
     repairman = db.relationship('Event', backref='repairman', foreign_keys=[Event.repairman_id], lazy='dynamic')
     signedupu = db.relationship('Applied_repairman', backref='userup', foreign_keys=[Applied_repairman.repairman_id],
@@ -243,6 +245,10 @@ class User(db.Model):
     def get_all():
         return db.session.query(User).all()
 
+    @staticmethod
+    def get_all_xp_desc():
+        return db.session.query(User).order_by(User.xp.desc()).all()
+
     def check_password(self, password):
         if self.password == password:
             return True
@@ -251,6 +257,13 @@ class User(db.Model):
     def save_avg_rating(self):
         repairman = db.session.query(User).get(self.id)
         repairman.rating = self.rating
+        db.session.add(repairman)
+        db.session.commit()
+
+    def save_lvl_xp(self):
+        repairman = db.session.query(User).get(self.id)
+        repairman.xp = self.xp
+        repairman.level = self.level
         db.session.add(repairman)
         db.session.commit()
 
