@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="{{ g.lang_code }}>
+<head>
+    <meta charset="UTF-8">
+    <title>{% trans %}Small Home Maintenance Work{% endtrans %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      .footer {
+        background: linear-gradient(#3c3c3c 0,#222 100%);
+        color: white;
+        position: fixed;
+        margin-top: 30px;
+        bottom: 0px;
+        width: 100%;
+        padding-top: 15px;
+      }
+      .footer a{
+        color: #337ab7;
+      }
+      .footer a:hover{
+        color: #2dacd3;
+      }
+      table {
+
+      }
+      tr:hover { cursor: pointer; }
+      a:hover, a:link {
+          text-decoration: none;
+      }
+      #lng, #lng2 {
+        color: #2dacd3;
+      }
+      #myBtn3{
+        color: #2dacd3;
+      }
+      #myBtn3:hover {
+        color: #57BDDC;
+      }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          {% if username %}
+              <a class="navbar-brand" href="{{ url_for('.startup') }}">Tyg-Ayo</a>
+          {% else %}
+              <a class="navbar-brand" href="{{ url_for('.index') }}">Tyg-Ayo</a>
+          {% endif %}
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <!--<li class="nav-item">
+            {% if username %}
+            <a class="nav-link" href="{{ url_for('.startup') }}">{% trans %}Home{% endtrans %} <span class="sr-only">(current)</span></a>
+            {% else %}
+            <a class="nav-link" href="{{ url_for('.index') }}">{% trans %}Home{% endtrans %} <span class="sr-only">(current)</span></a>
+            {% endif %}
+          </li>-->
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('.about') }}">{% trans %}About{% endtrans %}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">{% trans %}Contact{% endtrans %}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('.allevents') }}">{% trans %}All Events{% endtrans %} <span class="badge">{{ active_events }}</span></a>
+          </li>
+          <li class="nav-item">
+            {% if username %}
+            <a class="nav-link" href data-toggle="modal" id="myBtn3">{% trans %}Create Event{% endtrans %}</a>
+            {% else %}
+            <a class="nav-link" href data-toggle="modal" data-target="#log-modal" id="myLnk">{% trans %}Create Event{% endtrans %}</a>
+            {% endif %}
+          </li>
+        </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {% if username %}
+              <li class="nav-item active"><a href="{{ url_for('.rank_page', username=username) }}">{% trans %}Rank Page{% endtrans %}</a></li>
+              <li><a href="{{ url_for('.myPage', username=username) }}">{% trans %}My Events{% endtrans %}</a></li>
+              <li><a href="{{ url_for('.profilePage', username=username) }}">{% trans %}My Profile{% endtrans %}</a></li>
+              <li><a href="{{ url_for('logout') }}">{% trans %}Sign Out{% endtrans %} {{ username }}</a></li>
+            {% else %}
+              <li class="nav-item active"><a href="{{ url_for('.rank_page') }}">{% trans %}Rank Page{% endtrans %}</a></li>
+              <li><a href="#regModal" data-toggle="modal" id="regLnk" data-target="#regForm-modal">{% trans %}Register{% endtrans %}</a></li>
+              <li><a href data-toggle="modal" data-target="#log-modal" id="myLnk">{% trans %}Sign In{% endtrans %}</a></li>
+            {% endif %}
+
+            <li><a id="lng" href="/hr/events">{% trans %}cro{% endtrans %}</a></li>
+            <li><a id="lng2" href="/en/events">en</a></li>
+          </ul>
+          </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-dismissible alert-success" id="alrt" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                {{ message|safe }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+      <h2>{% trans %}Rank Page{% endtrans %}</h2>
+        <br><br><br>
+      </div><!-- /.row -->
+
+      </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-md-10">
+                <div class="table-responsive">
+                  <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>{% trans %}Name{% endtrans %}</th>
+                            <th>{% trans %}Last Name{% endtrans %}</th>
+                            <th>{% trans %}Username{% endtrans %}</th>
+                            <th>XP</th>
+                            <th>{% trans %}Level{% endtrans %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%  for repairman in repairmen %}
+                            {% if repairman.username == username and username != None %}
+                        <tr class="clickable-row info" data-href='{{ url_for('.profilePage', username=repairman.username) }}'>
+                            <th>{{ loop.index }}</th>
+                            <th>{{ repairman.name }}</th>
+                            <th>{{ repairman.surename }}</th>
+                            <th>{{ repairman.username }}</th>
+                            <th>{{ repairman.xp }}</th>
+                            <th>{{ repairman.level }}</th>
+                        </tr>
+                            {% else %}
+                        <tr class='clickable-row' data-href='{{ url_for('.profilePage', username=repairman.username) }}'>
+                            <th>{{ loop.index }}</th>
+                            <th>{{ repairman.name }}</th>
+                            <th>{{ repairman.surename }}</th>
+                            <th>{{ repairman.username }}</th>
+                            <th>{{ repairman.xp }}</th>
+                            <th>{{ repairman.level }}</th>
+                        </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+            <div class="col-lg-1"></div>
+        </div>
+    </div>
+
+        <!-- Modal Register -->
+            <div id="regForm-modal" class="modal fade" role="dialog" aria-labelledby="myModalLabel5" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header" >
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel5">{% trans %}Register user{% endtrans %}</h4>
+                  </div>
+                  <form method="post" action="{{ url_for('.register') }}" class="form-horizontal" id="reg-modal" enctype="multipart/form-data">
+                    <div class="modal-body" style="padding:40px 50px;">
+                      <div class="form-group">
+                          <label class="control-label">{% trans %}First name{% endtrans %}</label>
+                          <input type="text" class="form-control" name="name" id="name" placeholder="{% trans %}John{% endtrans %}" autofocus required />
+                      </div>
+                      <div class="form-group">
+                          <label for="surename" class="control-label">{% trans %}Last Name{% endtrans %}</label>
+                          <input type="text" class="form-control" name="surename" id="surename" placeholder="{% trans %}Smith{% endtrans %}" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="email" class="control-label">{% trans %}Email{% endtrans %}</label>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="{% trans %}example@email.com{% endtrans %}" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="username" class="control-label">{% trans %}User alias{% endtrans %}</label>
+                        <input type="text" class="form-control" name="username" id="username" placeholder="{% trans %}jsmith{% endtrans %}" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="password" class="control-label">{% trans %}Password{% endtrans %}</label><br>
+                        <input type="password" class="form-control" name="password" id="password" placeholder="{% trans %}Password should have at least one number and one uppercase letter{% endtrans %}" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="passwordConfr" class="control-label">{% trans %}Password confirmation{% endtrans %}</label><br>
+                        <input type="password" class="form-control" name="passwordConfr" id="passwordConfr" placeholder="{% trans %}Retype your Password{% endtrans %}" required>
+                      </div>
+                      <div align="right">
+                      <a data-toggle="collapse" href="#registrationReduction" aria-expanded="false" aria-controls="registrationReduction">Advanced<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a>
+                      </div>
+                      <div class="collapse" id="registrationReduction">
+                      <div class="form-group">
+                        <label for="mobile" class="control-label">{% trans %}Mobile{% endtrans %}</label><br>
+                        <input type="number" class="form-control" name="mobile" id="mobile" placeholder="3851234567">
+                      </div>
+                      <div class="form-group">
+                        <label for="address" class="control-label">{% trans %}Address{% endtrans %}</label><br>
+                        <input type="text" class="form-control" name="address" id="address" placeholder="{% trans %}Street and number{% endtrans %}">
+                      </div>
+                      <div class="form-group">
+                        <label for="photo" class="control-label">{% trans %}Photo{% endtrans %}</label>
+                        <input type="file" accept="image/*" class="form-control" name="photo" id="photo">
+                      </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer" style="padding:40px;">
+                    <div class="form-group">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+                      <input type="submit" class="btn btn-info" value="Submit"></input>
+                     </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+    <!-- Modal -->
+        <div class="modal fade" id="log-modal" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header" style="padding:35px 50px;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4><span class="glyphicon glyphicon-lock"></span> {% trans %}Login{% endtrans %}</h4>
+              </div>
+              <div class="modal-body" style="padding:40px 50px;">
+                <form role="form" method='POST' action='{{ url_for('.login') }}'>
+                  <div class="form-group">
+                    <label for="usrname"><span class="glyphicon glyphicon-user"></span> {% trans %}Email address{% endtrans %}</label>
+                    <input type="text" class="form-control" id="mail" name="mail" placeholder="Enter email" autofocus required>
+                  </div>
+                  <div class="form-group">
+                    <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> {% trans %}Password{% endtrans %}</label>
+                    <input type="password" class="form-control" id="psw" name="lozinka" placeholder="Enter password">
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" checked>{% trans %}Remember me{% endtrans %}</label>
+                  </div>
+                    <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> {% trans %}Login{% endtrans %}</button>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <p>Not a member? <a href="#">Sign Up</a></p>
+                <p>Forgot <a href="#">Password?</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="createEv-modalExt" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    </div>
+
+    <footer class="footer">
+      <div class="container" align="center">
+        <p class="pull-xs-right">
+          <a href="#">{% trans %}Back to top{% endtrans %}</a>
+        </p>
+        <div class="col-md-4">
+        </div>
+        <div id="contact" class= "col-md-4">
+          <address>
+            <strong>Tyg - Ayo, Inc.</strong><br>
+            1355 Market Street, Suite 900<br>
+            Zagreb, HR 10000<br>
+            <abbr title="Phone">P:</abbr> (123) 456-7890
+              <strong>Tyg-Ayo</strong><br>
+              <a href="mailto:#">tygayoinc@gmail.com</a>
+          </address>
+        </div>
+        <div class="col-md-4">
+        </div>
+      </div>
+    </footer>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+    <script src="../../static/js/bootstrap-datetimepicker.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../static/js/jquery.min.js"><\/script>')</script>
+    <script src="../../static/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../static/js/ie10-viewport-bug-workaround.js"></script>
+    <!-- Validator -->
+    <script src="../../static/js/bootstrapvalidator.min.js"></script>
+    <script>
+      $(document).ready(function(){
+          $("#myBtn3").click(function(){
+              var $this = $(this).data('target');
+              $("#createEv-modalExt").load("{{ url_for('.modalCreateEvent') }}", function (responseTxt, statusTxt, xhr) {
+                if (statusTxt == "success"){
+                    $(this).modal('show');
+                    }
+                if(statusTxt == "error")
+                    alert("Error while loading: " + xhr.status + ": " + xhr.statusText);
+              });
+          });
+      });
+    </script>
+    <script>
+        jQuery(document).ready(function($) {
+        $(".clickable-row").click(function() {
+            window.document.location = $(this).data("href");
+        });
+    });
+    </script>
+</body>
+</html>
