@@ -12,6 +12,7 @@ from smtplib import SMTP
 from flask.ext.babel import gettext, ngettext, gettext, refresh
 from flask.ext.sqlalchemy import BaseQuery
 import os
+from operator import itemgetter, attrgetter
 
 
 @babel.localeselector
@@ -629,6 +630,7 @@ def close_rate_event():
         event.close_rate()
         refresh()
         calculate_repairman_average_rate(Event.get(eventid).repairman_id)
+        calculate_xp(rate_it, Event.get(eventid).price, Event.get(eventid).repairman_id)
         flash(gettext('Event has been Finished!'))
     return redirect(url_for('.showevent', id=eventid))
 
@@ -663,6 +665,14 @@ def allevents(page=1):
                 #    return render_template('events.html', username = session.get('username'), events = Event.get_all()[::-1])
     return render_template('events.html', username=session.get('username'), events=events, pages=pages,
                            active_events=active_events)
+
+
+@bp.route('/rank')
+@bp.route('/rank/username')
+def rank_page(username=None):
+    active_events = Event.get_active_events().count()
+    repairmen = User.get_all_xp_desc()
+    return render_template('rank.html', repairmen = repairmen, username=session.get('username'), active_events=active_events)
 
 
 def confirmation_mail(msg_for_what, rm, client, event_obj, eventid):
@@ -766,11 +776,95 @@ def send_mail_notification_about_changed_event(evnt_id):
     server.close()
 
 
-def calculate_repairman_average_rate(repairman_id):
+ def calculate_repairman_average_rate(repairman_id):
     user = User(
         id=repairman_id,
         rating=Event.get_repairman_avg_rating(repairman_id))
     user.save_avg_rating()
+
+
+def calculate_xp(rate, price, repairman_id):
+    xp_value_factor = lookup_rate_xp.get(int(rate))
+    xp_price_factor = lookup_pricedigit_rate.get(len(str(int(price))))
+    if User.get(repairman_id).xp != None:
+        xp = User.get(repairman_id).xp
+    else:
+        xp = 0
+    xp = xp + (xp_value_factor * xp_price_factor)
+    level = calculate_level(xp)
+    save_xp_lvl_in_database(xp, level, repairman_id)
+
+
+def calculate_level(xp):
+    levels = lookuptable_level_xp.keys()
+    levels.sort()
+    print levels
+    level = 0
+    for lvl in levels:
+        if xp <= lvl:
+            level = lookuptable_level_xp.get(lvl)
+            break
+    return (level-1)
+
+
+def save_xp_lvl_in_database(xp, level, repairman_id):
+    user = User(
+        id=repairman_id,
+        xp=xp,
+        level=level
+    )
+    user.save_lvl_xp()
+
+
+lookuptable_level_xp = {
+    0: 1,
+    100: 2,
+    300: 3,
+    600: 4,
+    1000: 5,
+    1500: 6,
+    2100: 7,
+    2800: 8,
+    3600: 9,
+    4500: 10,
+    5500: 11,
+    6500: 12,
+    7500: 13,
+    8500: 14,
+    10000: 15,
+    12000: 16,
+    14000: 17,
+    16000: 18,
+    18500: 19,
+    21000: 20
+}
+
+
+lookup_rate_xp = {
+    5: 500,
+    4: 400,
+    3: 100,
+    2: -50,
+    1: -100
+}
+
+
+lookup_pricedigit_rate = {
+    1: 1,
+    2: 1,
+    3: 2,
+    4: 3,
+    5: 5
+}
+
+
+lookup_color_levels = {
+    1: ('#ffff00', '#ffff33'),
+    2: ('#ebeb02', '#979708'),
+    3: ('#ff3300', '#ff5c33'),
+    4: ('#ff3333', '#ff6666'),
+    5: ('#99003d', '#cc0052')
+}
 
 
 app.register_blueprint(bp)
