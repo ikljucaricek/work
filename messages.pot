@@ -1,14 +1,14 @@
 # Translations template for PROJECT.
-# Copyright (C) 2016 ORGANIZATION
+# Copyright (C) 2017 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-12-28 22:27+0100\n"
+"POT-Creation-Date: 2017-01-02 07:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,158 +17,158 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-#: views.py:47
+#: views.py:48
 msgid "You need to signin!"
 msgstr ""
 
-#: views.py:114
+#: views.py:115
 msgid "You entered wrong data!"
 msgstr ""
 
-#: views.py:117
+#: views.py:118
 msgid "Hello  !"
 msgstr ""
 
-#: views.py:132
+#: views.py:133
 msgid ""
 "We are sorry, register was not successful as this email adress is already"
 " registered."
 msgstr ""
 
-#: views.py:136
+#: views.py:137
 msgid ""
 "We are sorry, register was not successful as this username is already "
 "registered."
 msgstr ""
 
-#: views.py:164
+#: views.py:165
 msgid "You have successfully Registered!"
 msgstr ""
 
-#: views.py:287
+#: views.py:288
 msgid "You have successfully signed up for the event!"
 msgstr ""
 
-#: views.py:323
+#: views.py:324
 msgid "You have successfully chosed a repairman!"
 msgstr ""
 
-#: views.py:362
+#: views.py:363
 msgid "You have successfully created Event!"
 msgstr ""
 
-#: views.py:365 views.py:560
+#: views.py:366 views.py:562
 msgid "Execution Date of Event can't be before Event is created!"
 msgstr ""
 
-#: views.py:442
+#: views.py:443
 #, python-format
 msgid "%s doesn't exist!"
 msgstr ""
 
-#: views.py:473
+#: views.py:475
 #, python-format
 msgid "You are not %s!"
 msgstr ""
 
-#: views.py:506
+#: views.py:508
 msgid "You successfully modified Profile!"
 msgstr ""
 
-#: views.py:557
+#: views.py:559
 msgid "You successfully modified Event!"
 msgstr ""
 
-#: views.py:574
+#: views.py:576
 msgid "You successfully deactivated Event!"
 msgstr ""
 
-#: views.py:586
+#: views.py:588
 msgid "You have successfully un-asigned from the Event!"
 msgstr ""
 
-#: views.py:607
+#: views.py:609
 msgid "You have successfully declined the Event!"
 msgstr ""
 
-#: views.py:632
+#: views.py:635
 msgid "Event has been Finished!"
 msgstr ""
 
 #: templates/about.html:13 templates/edetails.html:13 templates/events.html:12
 #: templates/index.html:13 templates/mypage.html:12 templates/profile.html:12
-#: templates/startup.html:12
+#: templates/rank.html:5 templates/startup.html:12
 msgid "Small Home Maintenance Work"
 msgstr ""
 
-#: templates/about.html:101 templates/about.html:141 templates/edetails.html:59
-#: templates/events.html:111 templates/index.html:165 templates/mypage.html:92
-#: templates/profile.html:93 templates/startup.html:166
+#: templates/about.html:104 templates/about.html:144 templates/edetails.html:59
+#: templates/events.html:114 templates/index.html:165 templates/mypage.html:92
+#: templates/profile.html:118 templates/rank.html:68 templates/startup.html:166
 msgid "About"
 msgstr ""
 
-#: templates/about.html:104 templates/edetails.html:62
-#: templates/events.html:114 templates/index.html:168 templates/mypage.html:95
-#: templates/profile.html:96 templates/startup.html:169
+#: templates/about.html:107 templates/edetails.html:62
+#: templates/events.html:117 templates/index.html:168 templates/mypage.html:95
+#: templates/profile.html:121 templates/rank.html:71 templates/startup.html:169
 msgid "Contact"
 msgstr ""
 
-#: templates/about.html:107 templates/edetails.html:65
-#: templates/events.html:117 templates/events.html:146 templates/index.html:171
-#: templates/mypage.html:98 templates/profile.html:99
+#: templates/about.html:110 templates/edetails.html:65
+#: templates/events.html:120 templates/events.html:149 templates/index.html:171
+#: templates/mypage.html:98 templates/profile.html:124 templates/rank.html:74
 #: templates/startup.html:172
 msgid "All Events"
 msgstr ""
 
-#: templates/about.html:111 templates/about.html:113 templates/edetails.html:69
-#: templates/edetails.html:71 templates/events.html:121
-#: templates/events.html:123 templates/events.html:188
-#: templates/events.html:193 templates/modalCreateEvent.html:28
-#: templates/mypage.html:101 templates/profile.html:102
-#: templates/startup.html:175
+#: templates/about.html:114 templates/about.html:116 templates/edetails.html:69
+#: templates/edetails.html:71 templates/events.html:124
+#: templates/events.html:126 templates/events.html:191
+#: templates/events.html:196 templates/modalCreateEvent.html:28
+#: templates/mypage.html:101 templates/profile.html:127 templates/rank.html:78
+#: templates/rank.html:80 templates/startup.html:175
 msgid "Create Event"
 msgstr ""
 
-#: templates/about.html:120 templates/edetails.html:77
-#: templates/events.html:129 templates/mypage.html:106
-#: templates/profile.html:107 templates/startup.html:180
+#: templates/about.html:123 templates/edetails.html:77
+#: templates/events.html:132 templates/mypage.html:106
+#: templates/profile.html:133 templates/rank.html:87 templates/startup.html:180
 msgid "My Events"
 msgstr ""
 
-#: templates/about.html:121 templates/edetails.html:78
-#: templates/events.html:130 templates/mypage.html:107
-#: templates/profile.html:108 templates/startup.html:181
+#: templates/about.html:124 templates/edetails.html:78
+#: templates/events.html:133 templates/mypage.html:107
+#: templates/profile.html:134 templates/rank.html:88 templates/startup.html:181
 msgid "My Profile"
 msgstr ""
 
-#: templates/about.html:122 templates/edetails.html:79
-#: templates/events.html:131 templates/mypage.html:108
-#: templates/profile.html:109 templates/startup.html:182
+#: templates/about.html:125 templates/edetails.html:79
+#: templates/events.html:134 templates/mypage.html:108
+#: templates/profile.html:135 templates/rank.html:89 templates/startup.html:182
 #: templates/startup.html:184
 msgid "Sign Out"
 msgstr ""
 
-#: templates/about.html:124 templates/edetails.html:81
-#: templates/events.html:133 templates/index.html:175
+#: templates/about.html:127 templates/edetails.html:81
+#: templates/events.html:136 templates/index.html:175 templates/rank.html:92
 msgid "Register"
 msgstr ""
 
-#: templates/about.html:125 templates/edetails.html:82
-#: templates/events.html:134 templates/index.html:176
+#: templates/about.html:128 templates/edetails.html:82
+#: templates/events.html:137 templates/index.html:176 templates/rank.html:93
 msgid "Sign In"
 msgstr ""
 
-#: templates/about.html:127 templates/edetails.html:84
-#: templates/events.html:136 templates/index.html:177 templates/mypage.html:110
-#: templates/profile.html:111 templates/startup.html:186
+#: templates/about.html:130 templates/edetails.html:84
+#: templates/events.html:139 templates/index.html:177 templates/mypage.html:110
+#: templates/profile.html:137 templates/rank.html:96 templates/startup.html:186
 msgid "cro"
 msgstr ""
 
-#: templates/about.html:142
+#: templates/about.html:145
 msgid "Why Tyg-Ayo?"
 msgstr ""
 
-#: templates/about.html:144
+#: templates/about.html:147
 msgid ""
 "Tygayo application helps you to get the (home) job done. It does not "
 "matter weather it is exchanging of a bulb or a water pipes, or weather "
@@ -176,11 +176,11 @@ msgid ""
 "Tygayo makes the agreement easy and transparent."
 msgstr ""
 
-#: templates/about.html:146
+#: templates/about.html:149
 msgid "Who we are?"
 msgstr ""
 
-#: templates/about.html:148
+#: templates/about.html:151
 msgid ""
 "We are social enthusiast who want to solve people's problems using skills"
 " we have - programming. Simply, we want to make our world better place by"
@@ -189,227 +189,232 @@ msgid ""
 "better communication we would make your life easier and less stressful."
 msgstr ""
 
-#: templates/about.html:164 templates/edetails.html:371
-#: templates/events.html:335 templates/index.html:300
+#: templates/about.html:167 templates/edetails.html:371
+#: templates/events.html:338 templates/index.html:300 templates/rank.html:174
 msgid "Register user"
 msgstr ""
 
-#: templates/about.html:169 templates/edetails.html:376
-#: templates/events.html:340 templates/index.html:305
+#: templates/about.html:172 templates/edetails.html:376
+#: templates/events.html:343 templates/index.html:305 templates/rank.html:179
 msgid "First name"
 msgstr ""
 
-#: templates/about.html:170 templates/edetails.html:377
-#: templates/events.html:341 templates/index.html:306
+#: templates/about.html:173 templates/edetails.html:377
+#: templates/events.html:344 templates/index.html:306 templates/rank.html:180
 msgid "John"
 msgstr ""
 
-#: templates/about.html:173 templates/edetails.html:380
-#: templates/events.html:344 templates/index.html:309
-#: templates/profile.html:152
+#: templates/about.html:176 templates/edetails.html:380
+#: templates/events.html:347 templates/index.html:309
+#: templates/profile.html:182 templates/rank.html:132 templates/rank.html:183
 msgid "Last Name"
 msgstr ""
 
-#: templates/about.html:174 templates/edetails.html:381
-#: templates/events.html:345 templates/index.html:310
+#: templates/about.html:177 templates/edetails.html:381
+#: templates/events.html:348 templates/index.html:310 templates/rank.html:184
 msgid "Smith"
 msgstr ""
 
-#: templates/about.html:177 templates/edetails.html:384
-#: templates/events.html:348 templates/index.html:313
+#: templates/about.html:180 templates/edetails.html:384
+#: templates/events.html:351 templates/index.html:313 templates/rank.html:187
 msgid "Email"
 msgstr ""
 
-#: templates/about.html:178 templates/edetails.html:385
-#: templates/events.html:349 templates/index.html:314
+#: templates/about.html:181 templates/edetails.html:385
+#: templates/events.html:352 templates/index.html:314 templates/rank.html:188
 msgid "example@email.com"
 msgstr ""
 
-#: templates/about.html:181 templates/edetails.html:388
-#: templates/events.html:352 templates/index.html:317
+#: templates/about.html:184 templates/edetails.html:388
+#: templates/events.html:355 templates/index.html:317 templates/rank.html:191
 msgid "User alias"
 msgstr ""
 
-#: templates/about.html:182 templates/edetails.html:389
-#: templates/events.html:353 templates/index.html:318
+#: templates/about.html:185 templates/edetails.html:389
+#: templates/events.html:356 templates/index.html:318 templates/rank.html:192
 msgid "jsmith"
 msgstr ""
 
-#: templates/about.html:185 templates/about.html:244 templates/about.html:279
+#: templates/about.html:188 templates/about.html:247 templates/about.html:282
 #: templates/edetails.html:392 templates/edetails.html:559
-#: templates/events.html:312 templates/events.html:323
-#: templates/events.html:356 templates/index.html:321 templates/index.html:377
+#: templates/events.html:315 templates/events.html:326
+#: templates/events.html:359 templates/index.html:321 templates/index.html:377
+#: templates/rank.html:195 templates/rank.html:248
 msgid "Password"
 msgstr ""
 
-#: templates/about.html:186 templates/edetails.html:393
-#: templates/events.html:357 templates/index.html:322
+#: templates/about.html:189 templates/edetails.html:393
+#: templates/events.html:360 templates/index.html:322 templates/rank.html:196
 msgid "Password should have at least one number and one uppercase letter"
 msgstr ""
 
-#: templates/about.html:189 templates/edetails.html:396
-#: templates/events.html:360 templates/index.html:325
+#: templates/about.html:192 templates/edetails.html:396
+#: templates/events.html:363 templates/index.html:325 templates/rank.html:199
 msgid "Password confirmation"
 msgstr ""
 
-#: templates/about.html:190 templates/edetails.html:397
-#: templates/events.html:361 templates/index.html:326
+#: templates/about.html:193 templates/edetails.html:397
+#: templates/events.html:364 templates/index.html:326 templates/rank.html:200
 msgid "Retype your Password"
 msgstr ""
 
-#: templates/about.html:197 templates/edetails.html:404
-#: templates/events.html:368 templates/index.html:333
+#: templates/about.html:200 templates/edetails.html:404
+#: templates/events.html:371 templates/index.html:333 templates/rank.html:207
 msgid "Mobile"
 msgstr ""
 
-#: templates/about.html:201 templates/edetails.html:408
-#: templates/events.html:372 templates/index.html:337
-#: templates/profile.html:166
+#: templates/about.html:204 templates/edetails.html:408
+#: templates/events.html:375 templates/index.html:337
+#: templates/profile.html:196 templates/rank.html:211
 msgid "Address"
 msgstr ""
 
-#: templates/about.html:202 templates/edetails.html:141
-#: templates/edetails.html:409 templates/events.html:373
-#: templates/index.html:338
+#: templates/about.html:205 templates/edetails.html:141
+#: templates/edetails.html:409 templates/events.html:376
+#: templates/index.html:338 templates/rank.html:212
 msgid "Street and number"
 msgstr ""
 
-#: templates/about.html:205 templates/edetails.html:412
-#: templates/events.html:376 templates/index.html:341
-#: templates/modalCreateEvent.html:72
+#: templates/about.html:208 templates/edetails.html:412
+#: templates/events.html:379 templates/index.html:341
+#: templates/modalCreateEvent.html:72 templates/rank.html:215
 msgid "Photo"
 msgstr ""
 
-#: templates/about.html:206 templates/edetails.html:413
-#: templates/events.html:377
+#: templates/about.html:209 templates/edetails.html:413
+#: templates/events.html:380
 msgid "Enter your profile Photo"
 msgstr ""
 
-#: templates/about.html:212 templates/edetails.html:291
+#: templates/about.html:215 templates/edetails.html:291
 #: templates/edetails.html:357 templates/edetails.html:419
 #: templates/edetails.html:441 templates/edetails.html:463
 #: templates/edetails.html:487 templates/edetails.html:532
-#: templates/events.html:383 templates/index.html:348
-#: templates/modalCreateEvent.html:86 templates/profile.html:228
+#: templates/events.html:386 templates/index.html:348
+#: templates/modalCreateEvent.html:86 templates/profile.html:265
+#: templates/rank.html:222
 msgid "Close"
 msgstr ""
 
-#: templates/about.html:235 templates/about.html:250 templates/about.html:270
-#: templates/about.html:285 templates/edetails.html:550
-#: templates/edetails.html:565 templates/events.html:303
-#: templates/events.html:318 templates/index.html:368 templates/index.html:383
+#: templates/about.html:238 templates/about.html:253 templates/about.html:273
+#: templates/about.html:288 templates/edetails.html:550
+#: templates/edetails.html:565 templates/events.html:306
+#: templates/events.html:321 templates/index.html:368 templates/index.html:383
+#: templates/rank.html:239 templates/rank.html:254
 msgid "Login"
 msgstr ""
 
-#: templates/about.html:240 templates/about.html:275
-#: templates/edetails.html:555 templates/events.html:308
-#: templates/index.html:373
+#: templates/about.html:243 templates/about.html:278
+#: templates/edetails.html:555 templates/events.html:311
+#: templates/index.html:373 templates/rank.html:244
 msgid "Email address"
 msgstr ""
 
-#: templates/about.html:241 templates/about.html:276
-#: templates/edetails.html:556 templates/events.html:309
+#: templates/about.html:244 templates/about.html:279
+#: templates/edetails.html:556 templates/events.html:312
 msgid "Enter email"
 msgstr ""
 
-#: templates/about.html:245 templates/about.html:280
-#: templates/edetails.html:560 templates/events.html:313
+#: templates/about.html:248 templates/about.html:283
+#: templates/edetails.html:560 templates/events.html:316
 msgid "Enter password"
 msgstr ""
 
-#: templates/about.html:248 templates/about.html:283
-#: templates/edetails.html:563 templates/events.html:316
-#: templates/index.html:381
+#: templates/about.html:251 templates/about.html:286
+#: templates/edetails.html:563 templates/events.html:319
+#: templates/index.html:381 templates/rank.html:252
 msgid "Remember me"
 msgstr ""
 
-#: templates/about.html:317
+#: templates/about.html:320
 msgid ""
 "Igor believes that \"sunny & warm\" is not a paradox, myth or phrase. He "
 "likes discussing big ideas or simply drinking beer in 50 shades of shade "
 "while chit chating."
 msgstr ""
 
-#: templates/about.html:318
+#: templates/about.html:321
 msgid ""
 "Adrenalin sports and business opportunities are things where he pushes "
 "himself to the limits. But the real must are early mornings while holding"
 " a cup of coffee in his hands. "
 msgstr ""
 
-#: templates/about.html:339
+#: templates/about.html:342
 msgid ""
 "Pavel is interested in project development frameworks especially Scrum. "
 "He likes both people and animals and believes that all of them should be "
 "happy."
 msgstr ""
 
-#: templates/about.html:341
+#: templates/about.html:344
 msgid ""
 "He either reads a book and thinks about stuff or plays games and does not"
 " think about anything. Well, he also programs now and then."
 msgstr ""
 
-#: templates/about.html:351 templates/edetails.html:580
-#: templates/events.html:401 templates/index.html:476 templates/mypage.html:232
-#: templates/profile.html:245 templates/startup.html:397
+#: templates/about.html:354 templates/edetails.html:580
+#: templates/events.html:404 templates/index.html:476 templates/mypage.html:232
+#: templates/profile.html:282 templates/rank.html:272
+#: templates/startup.html:397
 msgid "Back to top"
 msgstr ""
 
-#: templates/about.html:360 templates/about.html:361
+#: templates/about.html:363 templates/about.html:364
 #: templates/edetails.html:171 templates/edetails.html:589
-#: templates/edetails.html:590 templates/events.html:410
-#: templates/events.html:411 templates/index.html:485 templates/index.html:486
+#: templates/edetails.html:590 templates/events.html:413
+#: templates/events.html:414 templates/index.html:485 templates/index.html:486
 #: templates/mypage.html:241 templates/mypage.html:242
-#: templates/profile.html:173 templates/profile.html:254
-#: templates/profile.html:255 templates/startup.html:406
+#: templates/profile.html:203 templates/profile.html:291
+#: templates/profile.html:292 templates/startup.html:406
 #: templates/startup.html:407
 msgid "Phone"
 msgstr ""
 
-#: templates/about.html:360 templates/about.html:361
+#: templates/about.html:363 templates/about.html:364
 #: templates/edetails.html:589 templates/edetails.html:590
-#: templates/events.html:410 templates/events.html:411 templates/index.html:485
+#: templates/events.html:413 templates/events.html:414 templates/index.html:485
 #: templates/index.html:486 templates/mypage.html:241 templates/mypage.html:242
-#: templates/profile.html:254 templates/profile.html:255
+#: templates/profile.html:291 templates/profile.html:292
 #: templates/startup.html:406 templates/startup.html:407
 msgid "P:"
 msgstr ""
 
-#: templates/about.html:407 templates/edetails.html:727
+#: templates/about.html:410 templates/edetails.html:727
 msgid "The first name is required and cannot be empty"
 msgstr ""
 
-#: templates/about.html:414
+#: templates/about.html:417
 msgid "The surename is required and cannot be empty"
 msgstr ""
 
-#: templates/about.html:421
+#: templates/about.html:424
 msgid "The email address is required nd cannot be empty"
 msgstr ""
 
-#: templates/about.html:424 templates/edetails.html:744
+#: templates/about.html:427 templates/edetails.html:744
 msgid "The input is not a valid email address"
 msgstr ""
 
-#: templates/about.html:431 templates/edetails.html:751
+#: templates/about.html:434 templates/edetails.html:751
 msgid "The username is required and cannot be empty"
 msgstr ""
 
-#: templates/about.html:438 templates/edetails.html:758
+#: templates/about.html:441 templates/edetails.html:758
 msgid "The password is required and cannot be empty"
 msgstr ""
 
-#: templates/about.html:446 templates/edetails.html:766
+#: templates/about.html:449 templates/edetails.html:766
 msgid "The password and its confirm are not the same"
 msgstr ""
 
-#: templates/about.html:449 templates/edetails.html:769
+#: templates/about.html:452 templates/edetails.html:769
 msgid "The password check is required and cannot be empty"
 msgstr ""
 
-#: templates/edetails.html:56 templates/events.html:105
-#: templates/events.html:107 templates/mypage.html:89 templates/profile.html:90
+#: templates/edetails.html:56 templates/events.html:108
+#: templates/events.html:110 templates/mypage.html:89
+#: templates/profile.html:115 templates/rank.html:62 templates/rank.html:64
 #: templates/startup.html:163
 msgid "Home"
 msgstr ""
@@ -439,15 +444,15 @@ msgstr ""
 msgid "Time and date"
 msgstr ""
 
-#: templates/edetails.html:153 templates/events.html:225
+#: templates/edetails.html:153 templates/events.html:228
 msgid "Accessories Purchased"
 msgstr ""
 
-#: templates/edetails.html:161 templates/events.html:224
+#: templates/edetails.html:161 templates/events.html:227
 msgid "Price"
 msgstr ""
 
-#: templates/edetails.html:165 templates/profile.html:159
+#: templates/edetails.html:165 templates/profile.html:189
 msgid "E-mail"
 msgstr ""
 
@@ -459,8 +464,8 @@ msgstr ""
 msgid "Rate"
 msgstr ""
 
-#: templates/edetails.html:179 templates/events.html:268
-#: templates/events.html:277 templates/index.html:451 templates/index.html:460
+#: templates/edetails.html:179 templates/events.html:271
+#: templates/events.html:280 templates/index.html:451 templates/index.html:460
 #: templates/modalCreateEvent.html:42 templates/startup.html:372
 #: templates/startup.html:381
 msgid "Tags"
@@ -508,9 +513,9 @@ msgstr ""
 msgid "Applicants"
 msgstr ""
 
-#: templates/edetails.html:244 templates/events.html:222
+#: templates/edetails.html:244 templates/events.html:225
 #: templates/mypage.html:153 templates/mypage.html:193
-#: templates/profile.html:150
+#: templates/profile.html:180 templates/rank.html:131
 msgid "Name"
 msgstr ""
 
@@ -530,7 +535,7 @@ msgstr ""
 msgid "Choose!"
 msgstr ""
 
-#: templates/edetails.html:274 templates/profile.html:192
+#: templates/edetails.html:274 templates/profile.html:229
 msgid "Comments:"
 msgstr ""
 
@@ -538,7 +543,7 @@ msgstr ""
 msgid "Add a Comment"
 msgstr ""
 
-#: templates/edetails.html:282 templates/profile.html:197
+#: templates/edetails.html:282 templates/profile.html:234
 msgid "No comments yet"
 msgstr ""
 
@@ -590,7 +595,7 @@ msgstr ""
 msgid "Event Address"
 msgstr ""
 
-#: templates/edetails.html:327 templates/profile.html:221
+#: templates/edetails.html:327 templates/profile.html:258
 msgid "Change Address of User location"
 msgstr ""
 
@@ -606,7 +611,7 @@ msgstr ""
 msgid "Event Photo"
 msgstr ""
 
-#: templates/edetails.html:345 templates/profile.html:225
+#: templates/edetails.html:345 templates/profile.html:262
 msgid "Change Photo of User"
 msgstr ""
 
@@ -624,7 +629,7 @@ msgid ""
 "something - then you select this checkbox"
 msgstr ""
 
-#: templates/edetails.html:358 templates/profile.html:229
+#: templates/edetails.html:358 templates/profile.html:266
 msgid "Save changes"
 msgstr ""
 
@@ -678,7 +683,7 @@ msgstr ""
 msgid "Repairman"
 msgstr ""
 
-#: templates/edetails.html:569 templates/events.html:322
+#: templates/edetails.html:569 templates/events.html:325
 msgid "Sign Up"
 msgstr ""
 
@@ -686,7 +691,7 @@ msgstr ""
 msgid "Password?"
 msgstr ""
 
-#: templates/edetails.html:640 templates/profile.html:302
+#: templates/edetails.html:640 templates/profile.html:339
 msgid "date and author"
 msgstr ""
 
@@ -702,118 +707,118 @@ msgstr ""
 msgid "The email address is required and cannot be empty"
 msgstr ""
 
-#: templates/events.html:163
+#: templates/events.html:166
 msgid "Search Events by Name, Tag or Description"
 msgstr ""
 
-#: templates/events.html:165
+#: templates/events.html:168
 msgid "Go!"
 msgstr ""
 
-#: templates/events.html:169 templates/modalCreateEvent.html:44
+#: templates/events.html:172 templates/modalCreateEvent.html:44
 msgid "electricity"
 msgstr ""
 
-#: templates/events.html:169 templates/modalCreateEvent.html:44
+#: templates/events.html:172 templates/modalCreateEvent.html:44
 msgid "water"
 msgstr ""
 
-#: templates/events.html:169 templates/modalCreateEvent.html:44
+#: templates/events.html:172 templates/modalCreateEvent.html:44
 msgid "gas"
 msgstr ""
 
-#: templates/events.html:169 templates/modalCreateEvent.html:44
+#: templates/events.html:172 templates/modalCreateEvent.html:44
 msgid "ceramic"
 msgstr ""
 
-#: templates/events.html:169 templates/modalCreateEvent.html:44
+#: templates/events.html:172 templates/modalCreateEvent.html:44
 msgid "glass"
 msgstr ""
 
-#: templates/events.html:169 templates/modalCreateEvent.html:44
+#: templates/events.html:172 templates/modalCreateEvent.html:44
 msgid "paint"
 msgstr ""
 
-#: templates/events.html:169
+#: templates/events.html:172 templates/modalCreateEvent.html:44
 msgid "internal-construction"
 msgstr ""
 
-#: templates/events.html:169 templates/modalCreateEvent.html:44
+#: templates/events.html:172 templates/modalCreateEvent.html:44
 msgid "other"
 msgstr ""
 
-#: templates/events.html:215
+#: templates/events.html:218
 msgid "List of All Events"
 msgstr ""
 
-#: templates/events.html:223 templates/mypage.html:154
+#: templates/events.html:226 templates/mypage.html:154
 #: templates/mypage.html:194
 msgid "Description"
 msgstr ""
 
-#: templates/events.html:259 templates/events.html:573 templates/index.html:442
+#: templates/events.html:262 templates/events.html:576 templates/index.html:442
 #: templates/startup.html:363
 msgid "Price:"
 msgstr ""
 
-#: templates/events.html:261 templates/events.html:575 templates/index.html:444
+#: templates/events.html:264 templates/events.html:578 templates/index.html:444
 #: templates/mypage.html:175 templates/mypage.html:214
 #: templates/startup.html:365
 msgid "Active"
 msgstr ""
 
-#: templates/events.html:263 templates/index.html:446 templates/mypage.html:173
+#: templates/events.html:266 templates/index.html:446 templates/mypage.html:173
 #: templates/mypage.html:212 templates/startup.html:367
 msgid "Closed"
 msgstr ""
 
-#: templates/events.html:265 templates/events.html:577 templates/index.html:448
+#: templates/events.html:268 templates/events.html:580 templates/index.html:448
 #: templates/mypage.html:174 templates/startup.html:369
 msgid "Inactive"
 msgstr ""
 
-#: templates/events.html:279 templates/events.html:579 templates/index.html:462
+#: templates/events.html:282 templates/events.html:582 templates/index.html:462
 #: templates/startup.html:383
 msgid "See Event"
 msgstr ""
 
-#: templates/events.html:322
+#: templates/events.html:325
 msgid "Not a member"
 msgstr ""
 
-#: templates/events.html:323
+#: templates/events.html:326
 msgid "Forgot"
 msgstr ""
 
-#: templates/events.html:448 templates/index.html:522
+#: templates/events.html:451 templates/index.html:522
 msgid "'The first name is required and cannot be empty'"
 msgstr ""
 
-#: templates/events.html:455 templates/index.html:529
+#: templates/events.html:458 templates/index.html:529
 msgid "'The surename is required and cannot be empty'"
 msgstr ""
 
-#: templates/events.html:462 templates/index.html:536
+#: templates/events.html:465 templates/index.html:536
 msgid "'The email address is required nd cannot be empty'"
 msgstr ""
 
-#: templates/events.html:465 templates/index.html:539
+#: templates/events.html:468 templates/index.html:539
 msgid "'The input is not a valid email address'"
 msgstr ""
 
-#: templates/events.html:472 templates/index.html:546
+#: templates/events.html:475 templates/index.html:546
 msgid "'The username is required and cannot be empty'"
 msgstr ""
 
-#: templates/events.html:479 templates/index.html:553
+#: templates/events.html:482 templates/index.html:553
 msgid "'The password is required and cannot be empty'"
 msgstr ""
 
-#: templates/events.html:487 templates/index.html:561
+#: templates/events.html:490 templates/index.html:561
 msgid "'The password and its confirm are not the same'"
 msgstr ""
 
-#: templates/events.html:490 templates/index.html:564
+#: templates/events.html:493 templates/index.html:564
 msgid "'The password check is required and cannot be empty'"
 msgstr ""
 
@@ -908,10 +913,6 @@ msgstr ""
 msgid "water, gas, electricity, ..."
 msgstr ""
 
-#: templates/modalCreateEvent.html:44
-msgid "internal construction"
-msgstr ""
-
 #: templates/modalCreateEvent.html:49
 msgid "Put price which you consider adequate (e.g. 120 HRK)"
 msgstr ""
@@ -968,67 +969,80 @@ msgstr ""
 msgid "Chosen"
 msgstr ""
 
-#: templates/profile.html:137
+#: templates/profile.html:132 templates/rank.html:86 templates/rank.html:91
+#: templates/rank.html:116
+msgid "Rank Page"
+msgstr ""
+
+#: templates/profile.html:163
 msgid "Profile"
 msgstr ""
 
-#: templates/profile.html:146
+#: templates/profile.html:176
 msgid "Edit Profile Info"
 msgstr ""
 
-#: templates/profile.html:154
+#: templates/profile.html:184 templates/rank.html:133
 msgid "Username"
 msgstr ""
 
-#: templates/profile.html:156
+#: templates/profile.html:186
 msgid "Join date"
 msgstr ""
 
-#: templates/profile.html:180
+#: templates/profile.html:210
+msgid "XP"
+msgstr ""
+
+#: templates/profile.html:213
 msgid "Average Rate"
 msgstr ""
 
-#: templates/profile.html:212
+#: templates/profile.html:249
 msgid "Change Your Info Data"
 msgstr ""
 
-#: templates/profile.html:216
+#: templates/profile.html:253
 msgid "User's Name"
 msgstr ""
 
-#: templates/profile.html:217
+#: templates/profile.html:254
 msgid "Change Name of User"
 msgstr ""
 
-#: templates/profile.html:218
+#: templates/profile.html:255
 msgid "User's Last Name"
 msgstr ""
 
-#: templates/profile.html:219
+#: templates/profile.html:256
 msgid "Change Last Name of User"
 msgstr ""
 
-#: templates/profile.html:220
+#: templates/profile.html:257
 msgid "User's Address"
 msgstr ""
 
-#: templates/profile.html:222
+#: templates/profile.html:259
 msgid "User's Mobile"
 msgstr ""
 
-#: templates/profile.html:223
+#: templates/profile.html:260
 msgid "Change Mobile of User"
 msgstr ""
 
-#: templates/profile.html:224
+#: templates/profile.html:261
 msgid "User's Photo"
 msgstr ""
 
-#: templates/profile.html:303
+#: templates/profile.html:340
 msgid " by "
 msgstr ""
 
-#: templates/profile.html:308
-msgid ", for event with id: "
+#: templates/profile.html:345
+msgid ", Event No.: "
+msgstr ""
+
+#: templates/rank.html:135
+msgid "Level"
 msgstr ""
 

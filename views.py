@@ -443,6 +443,7 @@ def profilePage(username):
         flash(gettext("%s doesn't exist!") % username, "warning")
         return redirect(url_for('.profilePage', username=session['username']))
 
+
 @bp.route('/mypage/<username>')
 @bp.route('/mypage/')
 @login_required
@@ -785,12 +786,13 @@ def calculate_repairman_average_rate(repairman_id):
 
 def calculate_xp(rate, price, repairman_id):
     xp_value_factor = lookup_rate_xp.get(int(rate))
-    xp_price_factor = lookup_pricedigit_rate.get(len(str(int(price))))
+    #xp_price_factor = lookup_pricedigit_rate.get(len(str(int(price))))
     if User.get(repairman_id).xp != None:
         xp = User.get(repairman_id).xp
     else:
         xp = 0
-    xp = xp + (xp_value_factor * xp_price_factor)
+    #xp = xp + (xp_value_factor * xp_price_factor)
+    xp = xp + xp_value_factor
     level = calculate_level(xp)
     save_xp_lvl_in_database(xp, level, repairman_id)
 
@@ -798,7 +800,6 @@ def calculate_xp(rate, price, repairman_id):
 def calculate_level(xp):
     levels = lookuptable_level_xp.keys()
     levels.sort()
-    print levels
     level = 0
     for lvl in levels:
         if xp <= lvl:
