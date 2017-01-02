@@ -394,7 +394,13 @@ def profilePage(username):
     active_events = Event.get_active_events().count()
     if len(username) != 0 and User.get_by_username(username) != None:
         user = User.get_by_username(username)
-        
+        xps = lookuptable_level_xp.keys()
+        xps.sort()
+        next_level_xp = 0
+        for xp in xps:
+            if user.xp < xp:
+                next_level_xp = xp
+                break 
         # Check for user comments
         commentsquery = select([(Repairman_comment)]).where(
             and_(
@@ -429,14 +435,16 @@ def profilePage(username):
                                         usercomments=comms_list,
                                         author_list=author_list,
                                         event_list=event_ids,
-                                        date_list=date_list,)
+                                        date_list=date_list,
+                                        next_level_xp=next_level_xp)
         else:
             user.picture = "./static/images/users_avatar/default.jpg"
             return render_template('profile.html', user=user, cuserId=session.get('id'), active_events=active_events,
                                         usercomments=comms_list,
                                         author_list=author_list,
                                         event_list=event_ids,
-                                        date_list=date_list,)
+                                        date_list=date_list,
+                                        next_level_xp=next_level_xp)
     else:
         refresh()
         print "Refreshing"

@@ -208,7 +208,7 @@
           {% endif %}
 
           <span class="label label-default">{% trans %}XP{% endtrans %}:</span>
-          <p> {{ user.xp }}</p>
+          <p> {{ user.xp }} / {{ next_level_xp }}</p>
 
           <span class="label label-default">{% trans %}Average Rate{% endtrans %}:</span><input id="rating-id" name="rating-id" value={{ user.rating }} type="number" class="rating" min="0" max="5" step="0.1" data-size="xs" readonly>
         </div>
