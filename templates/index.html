@@ -172,6 +172,7 @@
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{ url_for('.rank_page', username=username) }}">{% trans %}Rank Page{% endtrans %}</a></li>
             <li><a href="#regModal" data-toggle="modal" id="regLnk" data-target="#regForm-modal">{% trans %}Register{% endtrans %}</a></li>
             <li><a href="#logModal" data-toggle="modal" data-target="#log-modal" id="myLnk">{% trans %}Sign In{% endtrans %}</a></li>
             <li><a id="lng" href="/hr/">{% trans %}cro{% endtrans %}</a></li>
