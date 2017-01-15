@@ -112,7 +112,7 @@
                         <div align="center">
                            <img class="img-circle" src="/{{ event.photo }}"><br><br>
                           {% if event.active != False and user.id == cuserId %}
-                          <button class="btn btn-info" type="button" data-toggle="modal" id="myBtn">{% trans %}Edit Event Info{% endtrans %}</button><br><br>
+                          <button class="btn btn-info" type="button" data-toggle="modal" id="modifBtn">{% trans %}Edit Event Info{% endtrans %}</button><br><br>
                           <button class="btn btn-danger" type="button" data-toggle="modal" id="deactBtn">{% trans %}Deactivate Event{% endtrans %}</button>
                           {% endif %}
                           {% if event.active == False and event.repairman_id == cuserId and event.closed != True %}
@@ -302,65 +302,8 @@
     <div class="container">
      <!-- Three columns of text below the carousel -->
       <div class="row">
-        <!-- Modal -->
-        <div class="modal fade" id="modfyEvent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">{% trans %}Modify Event Details{% endtrans %}</h4>
-              </div>
-              <form method='POST' action="{{ url_for('.modify_an_event') }}" enctype="multipart/form-data">
-                <div class="modal-body">
-                  <input type="hidden" class="form-control" name="id" id="id" placeholder="Id of Event" value="{{ event.id }}" readonly>
-                  <label for="name"><span class="glyphicon glyphicon-user"></span> {% trans %}Event Name{% endtrans %}</label>
-                  <input type="text" class="form-control" name="name" id="name" placeholder="{% trans %}Change Name of Event{% endtrans %}" value="{{ event.name }}"><br>
-                  <label for="description"><span class="glyphicon glyphicon-comment"></span> {% trans %}Event Description{% endtrans %}</label><br>
-                  <textarea class="form-control" name="description" id="description" placeholder="{% trans %}Change Description of Event{% endtrans %}">{{ event.description }}</textarea><br>
-                  <label for="price"><span class="glyphicon glyphicon-usd"></span> {% trans %}Event Price{% endtrans %}</label>
-                  <input type="number" class="form-control" name="price" id="price" step="any" placeholder="{% trans %}Change Price of Event{% endtrans %}" value="{{ event.price }}" min="1"><br>
-                  <label for="address"><span class="glyphicon glyphicon-map-marker"></span> {% trans %}Event City{% endtrans %}</label>
-                  <select class="form-control" name="cityList" id="cityList2"></select><br>
-                  <label for="address"><span class="glyphicon glyphicon-map-marker"></span> {% trans %}Event Neighborhood{% endtrans %}</label>
-                  <select class="form-control" name="neighborhoodList" id="neighborhoodList2"></select><br>
-                  <label for="address"><span class="glyphicon glyphicon-map-marker"></span> {% trans %}Event Address{% endtrans %}</label>
-                  <input type="text" class="form-control" name="address" id="address" placeholder="{% trans %}Change Address of User location{% endtrans %}" value="{{ event.address }}"><br>
-                  <label for="date"><span class="glyphicon glyphicon-calendar"></span> {% trans %}Event Date{% endtrans %}</label>
-                  {% if event.date_time_execute != None %}
-                  <div class='input-group date' id='datetimepicker3'>
-                    <input type='text' name="datmtme" placeholder="{% trans %}Change End Date of Event{% endtrans %}" class="form-control" value="{{ event.date_time_execute.strftime("%m/%d/%Y %H:%M %p") }}" required/>
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                  </div><br>
-                  {% else %}
-                  <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' name="datmtme" placeholder="{% trans %}Change End Date of Event{% endtrans %}" class="form-control" required/>
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                  </div><br>
-                  {% endif %}
-                  <label for="photo"><span class="glyphicon glyphicon-camera"></span> {% trans %}Event Photo{% endtrans %}</label>
-                  <input type="file" accept="image/*" class="form-control" name="photo" id="photo" placeholder="{% trans %}Change Photo of User{% endtrans %}" value="/{{ event.photo }}"><br>
-                  <label for="accessories"><span class="glyphicon glyphicon-check"></span> {% trans %}Purchase Accessories{% endtrans %}</label>
-                  <div class="pull-right"><span type="button" title="{% trans %}Purchase Accessories Explanation{% endtrans %}" data-toggle="popover" class="glyphicon glyphicon-question-sign" data-placement="left" data-content="{% trans %}If you don't have all the required parts and Repairman needs to bring something - then you select this checkbox{% endtrans %}"></span></div>
-                  {% if event.accessories_purchased != None or event.accessories_purchased != 0 %}
-                  <input type="checkbox" class="form-control" name="accessories" id="accessories" 
-                  value="1" {{ accessP }}>
-                  {% else %}
-                  <input type="checkbox" class="form-control" name="accessories" id="accessories" 
-                  value="0" {{ accessP }}>
-                  {%endif%}
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
-                  <button type="submit" class="btn btn-info">{% trans %}Save changes{% endtrans %}</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
+        <!-- Modal Modify Event -->
+
         
         <!-- Modal Register -->
             <div id="regForm-modal" class="modal fade" role="dialog" aria-labelledby="myModalLabel5" aria-hidden="true">
@@ -538,9 +481,12 @@
                     </div>
                 </div>
         </div>
-
+        <!-- Modal Create Event -->
         <div class="modal fade" id="createEv-modalExt" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"> 
         </div>
+        <div class="modal fade" id="modifEv-modalExt" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"> 
+        </div>
+        
                 
         <div class="modal fade" id="log-modal" role="dialog">
             <div class="modal-dialog">
@@ -710,6 +656,16 @@
                     alert("Error while loading: " + xhr.status + ": " + xhr.statusText);
               });
         });
+        $("#modifBtn").click(function(){
+              var $this = $(this).data('target');
+              $("#modifEv-modalExt").load("{{ url_for('.modalModifyEvent', eventId=1 ) }}", function (responseTxt, statusTxt, xhr) {
+                if (statusTxt == "success"){
+                    $(this).modal('show');
+                    }
+                if(statusTxt == "error")
+                    alert("Error while loading: " + xhr.status + ": " + xhr.statusText);
+              });
+        });
     });
     </script>
         <script>
@@ -776,56 +732,9 @@
     });
     </script>
     <script type="text/javascript">
-        $(function () {
-            $('#datetimepicker3').datetimepicker();
-        });
-    </script>
-    <script type="text/javascript">
       $(function () {
         $('[data-toggle="popover"]').popover()
       })
-    </script>
-    <script>
-        var neighborhoods = ["Blato","Borongaj","Borovje","Botinec","Brestje","Brezovica","Bukovac","Buzin","Centar","Črnomerec","Čulinec","Cvjetno naselje","Dubec","Dubrava","Dugave","Ferenščica","Folnegovićevo","Gajnice","Gračani","Ivanja Reka","Jakuševec","Jankomir","Jarun","Kajzerica","Kanal","Klara","Knežija","Kruge","Ksaver","Kustošija","Kvatrić","Lanište","Lučko","Ljubljanica","Maksimir","Malešnica","Markuševec","Medveščak","Mikulići","Mlinovi","Peščenica","Podsused","Poljanice","Prečko","Ravnice","Remete","Remetinec","Retkovec","Rudeš","Savica","Savski gaj","Šestine","Sesvete","Sigečica","Siget","Sloboština","Sopot","Špansko","Središće","Srednjaci","Stenjevec","Stupnik","Sveta Nedelja","Svetice","Travno","Trešnjevka","Trnava","Trnovčica","Trnsko","Trnje","Trokut","Utrina","Veliko Polje","Volovčica","Voltino","Vrapče","Vrbani","Vrbik","Vukomerec","Zapruđe","Zavrtnica","Žitnjak"];     
-            var sel = document.getElementById('neighborhoodList2');
-            var fragment = document.createDocumentFragment();
-            
-            neighborhoods.forEach(function(cuisine, index) {
-                var opt = document.createElement('option');
-                opt.innerHTML = cuisine;
-                opt.value = cuisine;
-                if (cuisine == "{{ event.neighborhood }}"){
-                    opt.selected = "selected";
-                }
-                fragment.appendChild(opt);
-            });
-        sel.appendChild(fragment);
-    </script>
-    <script>
-        var cities = ["Bakar","Beli Manastir","Belišće","Benkovac","Biograd na Moru","Bjelovar","Buje","Buzet","Cres","Crikvenica","Čabar","Čakovec","Čazma","Daruvar","Delnice","Donja Stubica","Donji Miholjac","Drniš","Dubrovnik","Duga Resa","Dugo Selo","Đakovo","Đurđevac","Garešnica","Glina","Gospić","Grubišno Polje","Hrvatska Kostajnica","Hvar","Ilok","Imotski","Ivanec","Ivanić-Grad","Jastrebarsko","Karlovac","Kastav","Kaštela","Klanjec","Knin","Komiža","Koprivnica","Korčula","Kraljevica","Krapina","Križevci","Krk","Kutina","Kutjevo","Labin","Lepoglava","Lipik","Ludbreg","Makarska","Mali Lošinj","Metković","Mursko Središće","Našice","Nin","Nova Gradiška","Novalja","Novi Marof","Novi Vinodolski","Novigrad","Novska","Obrovac","Ogulin","Omiš","Opatija","Opuzen","Orahovica","Oroslavje","Osijek","Otočac","Otok","Ozalj","Pag","Pakrac","Pazin","Petrinja","Pleternica","Ploče","Popovača","Poreč","Požega","Pregrada","Prelog","Pula","Rab","Rijeka","Rovinj","Samobor","Senj","Sinj","Sisak","Skradin","Slatina","Slavonski Brod","Slunj","Solin","Split","Stari Grad","Supetar","Sveta Nedelja","Sveti Ivan Zelina","Šibenik","Trilj","Trogir","Umag","Valpovo","Varaždin","Varaždinske Toplice","Velika Gorica","Vinkovci","Virovitica","Vis","Vodice","Vodnjan","Vrbovec","Vrbovsko","Vrgorac","Vrlika","Vukovar","Zabok","Zadar","Zagreb","Zaprešić","Zlatar","Županja"];     
-        var sel = document.getElementById('cityList2');
-        var fragment = document.createDocumentFragment();
-        
-        cities.forEach(function(cuisine, index) {
-            var opt = document.createElement('option');
-            opt.innerHTML = cuisine;
-            opt.value = cuisine;
-            if (cuisine == "{{ event.city }}"){
-                opt.selected = "selected";
-            }
-            fragment.appendChild(opt);
-        });
-        sel.appendChild(fragment);
-    </script>
-    <script>
-        $(document).ready(function(){
-            if ("{{ event.city }}" != "Zagreb"){
-                $('#neighborhoodList2').attr('disabled',true);
-                }
-            $("#cityList2").change(function() {
-                $('#neighborhoodList2').attr('disabled', !(this.value === "Zagreb"));
-            });
-        });
     </script>
   </body>
 </html>

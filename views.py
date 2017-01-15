@@ -80,10 +80,16 @@ def about():
     return render_template('about.html', username=session.get('username'), active_events=active_events)
 
 
-@bp.route('/modalCreateEvent.html')
+@bp.route('/modalCreateEvent')
 def modalCreateEvent():
     return render_template('modalCreateEvent.html')
 
+@bp.route('/modalModifyEvent')
+def modalModifyEvent():
+    print "boj bok"
+    eventid = request.args.get('eventId')
+    event = db.session.query(Event).get(eventid)
+    return render_template('modalModifyEvent.html',event=event)
 
 @bp.route('/startup')
 @login_required
