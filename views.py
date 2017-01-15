@@ -9,7 +9,7 @@ from model import User, Event, Applied_repairman, Event_comment, Tag, Repairman_
 from werkzeug import secure_filename
 from sqlalchemy.sql import and_, select, or_, func
 from smtplib import SMTP
-from flask.ext.babel import gettext, ngettext, gettext, refresh
+from flask.ext.babel import gettext, ngettext, refresh
 from flask.ext.sqlalchemy import BaseQuery
 import os
 from operator import itemgetter, attrgetter
@@ -227,8 +227,7 @@ def showevent(id):
     usercomments = db.engine.execute(uComs).fetchall()
     # this is done because we do not know how to iterate and object in jQuery
     # in jQuery we would need to use someting like objects[i].comment
-    # so we send list of stings instead, 
-
+    # so we send list of stings instead
 
     user_list = [str(x[3]) for x in usercomments]
     userid_list = [str(x[0]) for x in usercomments]
@@ -406,7 +405,7 @@ def profilePage(username):
         for xp in xps:
             if user.xp < xp:
                 next_level_xp = xp
-                break 
+                break
         bg_color = ()
         if user.level < 6:
             bg_color = lookup_color_levels[1]
@@ -439,7 +438,7 @@ def profilePage(username):
         user_list = [str(x[3]) for x in authors]
         userid_list = [str(x[0]) for x in authors]
         user_dict = dict(zip(userid_list, user_list))
-        
+
         author_list = []
         for y in author_ids:
             author_list.append(user_dict[str(y)])
@@ -540,7 +539,6 @@ def modify_an_user():
 def modify_an_event():
     if request.method == 'POST':
         path_to_photo = None
-        user_n = User.get_by_username(session['username'])
         originid = request.form.get('id')
         originEvent = Event.get(originid)
         # if request.form.get('datmtme') >= datetime.now():

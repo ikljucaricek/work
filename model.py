@@ -19,7 +19,7 @@ class Applied_repairman(db.Model):
     def get_link(event_id, repairman_id):
         return db.session.query(Applied_repairman).filter(
             Applied_repairman.event_id == event_id and Applied_repairman.repairman_id == repairman_id).first()
-        # here is a potential source of the problem, in general it should be ".all()" in the end but then the views needs to operate with a list 
+        # here is a potential source of the problem, in general it should be ".all()" in the end but then the views needs to operate with a list
 
     def delete(self):
         db.session.delete(self)
@@ -90,9 +90,8 @@ class Event(db.Model):
     comment = db.relationship('Event_comment', backref='eventcomm', foreign_keys=[Event_comment.event_id],
                               lazy='dynamic')
     repcomment = db.relationship('Repairman_comment', backref='repcomme', foreign_keys=[Repairman_comment.event_id],
-                              lazy='dynamic')               
+                              lazy='dynamic') 
     tag = db.relationship('Tag', backref='event', lazy='dynamic')
-    
 
     # Needs to be revised
     def modify(self):

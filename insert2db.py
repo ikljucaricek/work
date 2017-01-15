@@ -14,14 +14,14 @@ ev1 = Event(name='bulb',description='has 59W,5th floor,bell - cukipuki',price='5
 ev2 = Event(name='pipe',description='has 5meters,5th floor,bell - cukipuki',price='777',address='Korita 44, Dol0y, 56546')
 ev3 = Event(name='wash-machine',description='exchange el. cable 2m',price='222',address='Kalupi 12, Hory, 48963')
 
-# link 
+# link
 us1.events.append(ev1)
 us1.events.append(ev2)
 us2.events.append(ev3)
 
 # link1 = Signup(event_id=ev1.id,signedup_id=us3.id)
 link2 = Signedup()
- 
+
 # link2.event_id = ev1
 us4.signedupu.append(link2)
 ev1.signedupe.append(link2)
