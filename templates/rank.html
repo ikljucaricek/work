@@ -2,6 +2,8 @@
 <html lang="{{ g.lang_code }}>
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{% trans %}Small Home Maintenance Work{% endtrans %}</title>
 
     <!-- Bootstrap core CSS -->
@@ -83,7 +85,7 @@
         </ul>
           <ul class="nav navbar-nav navbar-right">
             {% if username %}
-              <li class="nav-item active"><a href="{{ url_for('.rank_page', username=username) }}">{% trans %}Rank Page{% endtrans %}</a></li>
+              <li class="nav-item active"><a href="{{ url_for('.rank_page') }}">{% trans %}Rank Page{% endtrans %}</a></li>
               <li><a href="{{ url_for('.myPage', username=username) }}">{% trans %}My Events{% endtrans %}</a></li>
               <li><a href="{{ url_for('.profilePage', username=username) }}">{% trans %}My Profile{% endtrans %}</a></li>
               <li><a href="{{ url_for('logout') }}">{% trans %}Sign Out{% endtrans %} {{ username }}</a></li>

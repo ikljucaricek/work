@@ -407,6 +407,15 @@ def profilePage(username):
             if user.xp < xp:
                 next_level_xp = xp
                 break 
+        bg_color = ()
+        if user.level < 6:
+            bg_color = lookup_color_levels[1]
+        elif user.level < 11:
+            bg_color = lookup_color_levels[2]
+        elif user.level < 16:
+            bg_color = lookup_color_levels[3]
+        else:
+            bg_color = lookup_color_levels[4]
         # Check for user comments
         commentsquery = select([(Repairman_comment)]).where(
             and_(
@@ -442,7 +451,8 @@ def profilePage(username):
                                         author_list=author_list,
                                         event_list=event_ids,
                                         date_list=date_list,
-                                        next_level_xp=next_level_xp)
+                                        next_level_xp=next_level_xp,
+                                        bg_color=bg_color)
         else:
             user.picture = "./static/images/users_avatar/default.jpg"
             return render_template('profile.html', user=user, cuserId=session.get('id'), active_events=active_events,
@@ -450,7 +460,8 @@ def profilePage(username):
                                         author_list=author_list,
                                         event_list=event_ids,
                                         date_list=date_list,
-                                        next_level_xp=next_level_xp)
+                                        next_level_xp=next_level_xp,
+                                        bg_color=bg_color)
     else:
         refresh()
         print "Refreshing"
@@ -874,11 +885,10 @@ lookup_pricedigit_rate = {
 
 
 lookup_color_levels = {
-    1: ('#ffff00', '#ffff33'),
-    2: ('#ebeb02', '#979708'),
-    3: ('#ff3300', '#ff5c33'),
-    4: ('#ff3333', '#ff6666'),
-    5: ('#99003d', '#cc0052')
+    1: ('#ff5c33', '#ff3300'),
+    2: ('#86b242', '#6fad10'),
+    3: ('#b23380', '#ad106f'),
+    4: ('#008fc6', '#46a1c4')
 }
 
 

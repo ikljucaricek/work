@@ -119,6 +119,7 @@
           
         </ul>
           <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{ url_for('.rank_page', username=username) }}">{% trans %}Rank Page{% endtrans %}</a></li>
           {% if username %}
             <li><a href="{{ url_for('.myPage', username=username) }}">{% trans %}My Events{% endtrans %}</a></li>
             <li><a href="{{ url_for('.profilePage', username=username) }}">{% trans %}My Profile{% endtrans %}</a></li>            
