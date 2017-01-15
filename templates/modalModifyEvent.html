@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<head>
+    <style>
+        #bloodhound input{
+            width: 100%;
+            display: inline-block;
+            height: 34px;
+            padding: 6px 12px;
+            margin-top: 4px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        span.label{
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<html lang="{{ g.lang_code }}"> 
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">{% trans %}Modify Event Details{% endtrans %}</h4>
+      </div>
+      <form method='POST' action="{{ url_for('.modify_an_event') }}" enctype="multipart/form-data" id="event_modalform">
+        <div class="modal-body">
+            <div class="form-group">    
+                <input type="hidden" class="form-control" name="id" id="id" placeholder="Id of Event" value="{{ event.id }}" readonly>
+            </div>
+            <div class="form-group"> 
+              <label for="name"><span class="glyphicon glyphicon-user"></span> {% trans %}Event Name{% endtrans %}</label>
+              <input type="text" class="form-control" name="name" id="name" placeholder="{% trans %}Change Name of Event{% endtrans %}" value="{{ event.name }}"><br>
+            </div>
+            <div class="form-group"> 
+              <label for="description"><span class="glyphicon glyphicon-comment"></span> {% trans %}Event Description{% endtrans %}</label><br>
+              <textarea class="form-control" name="description" id="description" placeholder="{% trans %}Change Description of Event{% endtrans %}">{{ event.description }}</textarea><br>
+            </div>
+            <div class="form-group">    
+              <label for="price"><span class="glyphicon glyphicon-usd"></span> {% trans %}Event Price{% endtrans %}</label>
+              <input type="number" class="form-control" name="price" id="price" step="any" placeholder="{% trans %}Change Price of Event{% endtrans %}" value="{{ event.price }}" min="1"><br>
+            </div>
+            <div class="form-group"> 
+                <label for="address"><span class="glyphicon glyphicon-map-marker"></span> {% trans %}Event City{% endtrans %}</label>
+                <select class="form-control" name="cityList" id="cityList"></select><br>
+            </div>
+            <div class="form-group"> 
+              <label for="address"><span class="glyphicon glyphicon-map-marker"></span> {% trans %}Event Neighborhood{% endtrans %}</label>
+              <select class="form-control" name="neighborhoodList" id="neighborhoodList"></select><br>
+            </div>
+            <div class="form-group"> 
+              <label for="address"><span class="glyphicon glyphicon-map-marker"></span> {% trans %}Event Address{% endtrans %}</label>
+              <input type="text" class="form-control" name="address" id="address" placeholder="{% trans %}Change Address of User location{% endtrans %}" value="{{ event.address }}"><br>
+            </div>
+            <div class="form-group"> 
+              <label for="date"><span class="glyphicon glyphicon-calendar"></span> {% trans %}Event Date{% endtrans %}</label>
+              {% if event.date_time_execute != None %}
+              <div class='input-group date' id='datetimepicker1'>
+                <input type='text' name="datmtme" placeholder="{% trans %}Change End Date of Event{% endtrans %}" class="form-control" value="{{ event.date_time_execute.strftime("%m/%d/%Y %H:%M %p") }}" required/>
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+              </div><br>
+              {% else %}
+              <div class='input-group date' id='datetimepicker1'>
+                <input type='text' name="datmtme" placeholder="{% trans %}Change End Date of Event{% endtrans %}" class="form-control" required/>
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+              </div><br>
+                {% endif %}
+            </div>
+            <div class="form-group">   
+                <label for="photo"><span class="glyphicon glyphicon-camera"></span> {% trans %}Event Photo{% endtrans %}</label>
+                <input type="file" accept="image/*" class="form-control" name="photo" id="photo" placeholder="{% trans %}Change Photo of User{% endtrans %}" value="/{{ event.photo }}"><br>
+            </div>
+            <div class="form-group">     
+              <label for="accessories"><span class="glyphicon glyphicon-check"></span> {% trans %}Purchase Accessories{% endtrans %}</label>
+              <div class="pull-right"><span type="button" title="{% trans %}Purchase Accessories Explanation{% endtrans %}" data-toggle="popover" class="glyphicon glyphicon-question-sign" data-placement="left" data-content="{% trans %}If you don't have all the required parts and Repairman needs to bring something - then you select this checkbox{% endtrans %}"></span></div>
+              {% if event.accessories_purchased != None or event.accessories_purchased != 0 %}
+              <input type="checkbox" class="form-control" name="accessories" id="accessories" 
+              value="1" {{ accessP }}>
+              {% else %}
+              <input type="checkbox" class="form-control" name="accessories" id="accessories" 
+              value="0" {{ accessP }}>
+              {%endif%}
+            </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Close{% endtrans %}</button>
+          <button type="submit" class="btn btn-info">{% trans %}Save changes{% endtrans %}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+<script src="../../static/js/CreateEventValidation.js"></script>  
+<script src="../../static/js/cities.js"></script>
+<script src="../../static/js/neighborhoods.js"></script>
+<script src="../../static/js/bootstrap-tagsinput.js"></script>
+<script type="text/javascript">
+$(function (){
+    $('#datetimepicker1').datetimepicker();
+});
+</script>
+<script>
+$(document).ready(function(){
+    $("#cityList").change(function() {
+        $('#neighborhoodList').attr('disabled', !(this.value === "Zagreb"));
+    });
+});
+</script>
+<script type="text/javascript">
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  })
+</script>
+<script type="text/javascript">
+$(function () {
+    $('.label').on('click', function (event) {
+    		var tag_def = $('#tag-default');
+        if($("#" + event.target.id).hasClass("label-primary")) {
+            $("#" + event.target.id).removeClass("label label-primary").addClass("label label-info");
+            tag_def.val(tag_def.val() + $("#" + event.target.id).text() + ", ");
+        }
+        else{
+            $("#" + event.target.id).removeClass("label label-info").addClass("label label-primary");
+            tag_def.val(tag_def.val().replace($("#" + event.target.id).text() + ", ", ""))
+        }
+    });
+});
+</script>
+
+    

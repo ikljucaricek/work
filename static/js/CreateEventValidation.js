@@ -1,5 +1,5 @@
   $(document).ready(function() {
-        $('#createEv-modalform').bootstrapValidator({
+        $('#event_modalform').bootstrapValidator({
             feedbackIcons: {
                 valid: 'glyphicon glyphicon-ok',
                 invalid: 'glyphicon glyphicon-remove',
